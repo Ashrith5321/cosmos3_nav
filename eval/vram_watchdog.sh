@@ -36,7 +36,7 @@ while true; do
         exit 1
     elif (( USED > LIMIT_MIB - 1500 )); then
         echo "WATCHDOG warning: pid $TARGET_PID at ${USED} MiB (limit ${LIMIT_MIB})"
-    elif (( NOW - LAST_EMIT >= 300 )); then
+    elif (( NOW - LAST_EMIT >= 3600 )); then
         echo "WATCHDOG: pid $TARGET_PID using ${USED} MiB / limit ${LIMIT_MIB} MiB"
         LAST_EMIT=$NOW
     fi

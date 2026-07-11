@@ -107,6 +107,21 @@ def run_episode(env, index, max_steps, out_dir, done=frozenset()):
             break
 
     metrics = env.get_metrics()
+
+    # Save the episode rollout as an mp4 (frames are already collected as JPEGs)
+    video_dir = out_dir / "videos"
+    video_dir.mkdir(exist_ok=True)
+    clean = lambda v: "".join(c if c.isalnum() or c in "-_" else "_" for c in str(v))
+    stem = (f"{index:04d}_{clean(key[0])}_{clean(episode.episode_id)}_{clean(goal)}"
+            f"_{'succ' if metrics.get('success') else 'fail'}")
+    video_path = video_dir / f"{stem}.mp4"
+    import cv2
+    writer = cv2.VideoWriter(str(video_path), cv2.VideoWriter_fourcc(*"mp4v"), 5, (640, 480))
+    for b in frames:
+        img = np.array(Image.open(io.BytesIO(base64.b64decode(b))))
+        writer.write(cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
+    writer.release()
+
     record = {
         "episode_index": index,
         "scene": Path(episode.scene_id).name.replace(".basis.glb", ""),
@@ -120,6 +135,7 @@ def run_episode(env, index, max_steps, out_dir, done=frozenset()):
         "soft_spl": metrics.get("soft_spl"),
         "distance_to_goal": metrics.get("distance_to_goal"),
         "elapsed_seconds": round(time.time() - started, 1),
+        "video": str(video_path),
     }
     with open(out_dir / "results.jsonl", "a") as f:
         f.write(json.dumps(record) + "\n")
