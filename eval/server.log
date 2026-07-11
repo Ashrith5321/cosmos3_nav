@@ -1,0 +1,4 @@
+Loading /home/ashed/Documents/Cosmos3-Nano ...
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:  45%|████▌     | 341/750 [00:00<00:00, 1551.75it/s]Loading weights:  66%|██████▋   | 497/750 [00:00<00:00, 590.06it/s] Loading weights:  77%|███████▋  | 579/750 [00:01<00:00, 452.76it/s]Loading weights:  85%|████████▍ | 635/750 [00:01<00:00, 418.49it/s]Loading weights:  91%|█████████ | 682/750 [00:01<00:00, 401.00it/s]Loading weights:  97%|█████████▋| 724/750 [00:01<00:00, 357.18it/s]Loading weights: 100%|██████████| 750/750 [00:01<00:00, 444.80it/s]
+Model ready.
+Serving on 127.0.0.1:8399
