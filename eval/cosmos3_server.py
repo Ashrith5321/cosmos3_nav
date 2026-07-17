@@ -35,6 +35,17 @@ PROMPT = (
     "Briefly reason in 1-2 sentences, then end with exactly: ACTION: <forward|left|right|stop>"
 )
 
+MAP_SECTION = (
+    "\nThe FINAL image is your top-down exploration map of the current floor: "
+    "white = explored floor, black = walls/obstacles, gray = UNEXPLORED, "
+    "blue dots = your path so far, green arrow = your position and heading, "
+    "red regions labeled A/B/C... = unexplored openings (frontiers), "
+    "magenta = predicted frontiers.\n"
+    "Frontier directions relative to you:\n{frontier_text}\n"
+    "Use the map: avoid re-walking your blue path, and head toward frontiers "
+    "likely to contain a {goal}."
+)
+
 print(f"Loading {MODEL_ID} ...", flush=True)
 model = AutoModelForImageTextToText.from_pretrained(
     MODEL_ID, dtype=torch.bfloat16, attn_implementation="sdpa", device_map={"": 0})
@@ -43,13 +54,19 @@ processor = AutoProcessor.from_pretrained(MODEL_ID)
 print("Model ready.", flush=True)
 
 
-def pick_action(goal, images, past_actions):
+def pick_action(goal, images, past_actions, map_image=None, frontier_text=""):
     frames = [Image.open(io.BytesIO(base64.b64decode(b))).convert("RGB").resize(FRAME_SIZE)
               for b in images]
     past = ", ".join(past_actions[-10:]) if past_actions else "none yet"
     content = [{"type": "image", "image": f} for f in frames]
-    content.append({"type": "text",
-                    "text": PROMPT.format(goal=goal, n=len(frames), past=past)})
+    prompt = PROMPT.format(goal=goal, n=len(frames), past=past)
+    if map_image is not None:
+        m = Image.open(io.BytesIO(base64.b64decode(map_image))).convert("RGB")
+        m.thumbnail((384, 384))
+        content.append({"type": "image", "image": m})
+        prompt += MAP_SECTION.format(frontier_text=frontier_text or "(none detected yet)",
+                                     goal=goal)
+    content.append({"type": "text", "text": prompt})
     inputs = processor.apply_chat_template(
         [{"role": "user", "content": content}], tokenize=True,
         add_generation_prompt=True, return_dict=True, return_tensors="pt").to(model.device)
@@ -92,7 +109,9 @@ class Handler(BaseHTTPRequestHandler):
             return
         try:
             req = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
-            action, text = pick_action(req["goal"], req["images"], req.get("past_actions", []))
+            action, text = pick_action(req["goal"], req["images"], req.get("past_actions", []),
+                                       map_image=req.get("map_image"),
+                                       frontier_text=req.get("frontier_text", ""))
             self._send(200, {"action": action, "text": text})
         except Exception as e:
             self._send(500, {"error": str(e)})
