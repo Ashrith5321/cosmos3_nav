@@ -13,5 +13,5 @@ eval/habitat_first100_out/videos/
 eval/*.log
 
 # local checkouts / scratch
-cosmos/
-OpenFrontier/
+# cosmos/
+# OpenFrontier/
