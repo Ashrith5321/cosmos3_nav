@@ -944,3 +944,1673 @@ Using driver workarounds:
 [228] goal=plant      steps= 32 success=0.0 spl=0.00 dtg=12.71m (29.4s)
 [229] goal=toilet     steps=  1 success=0.0 spl=0.00 dtg=9.11m (0.9s)
 [230] goal=sofa       steps= 79 success=1.0 spl=0.40 dtg=0.61m (72.3s)
+[231] goal=toilet     steps= 70 success=0.0 spl=0.00 dtg=8.66m (67.4s)
+[232] goal=bed        steps= 42 success=0.0 spl=0.00 dtg=9.65m (37.8s)
+[233] goal=tv_monitor steps= 15 success=0.0 spl=0.00 dtg=4.34m (14.6s)
+[234] goal=sofa       steps= 47 success=0.0 spl=0.00 dtg=4.80m (48.5s)
+[235] goal=sofa       steps= 15 success=0.0 spl=0.00 dtg=9.99m (15.5s)
+[236] goal=tv_monitor steps= 35 success=0.0 spl=0.00 dtg=14.53m (32.7s)
+[237] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=8.41m (95.0s)
+[238] goal=plant      steps=100 success=0.0 spl=0.00 dtg=7.83m (97.5s)
+[239] goal=bed        steps=  8 success=0.0 spl=0.00 dtg=8.49m (7.2s)
+[240] goal=chair      steps= 61 success=0.0 spl=0.00 dtg=4.24m (54.5s)
+[241] goal=bed        steps= 62 success=0.0 spl=0.00 dtg=9.53m (56.2s)
+[242] goal=chair      steps=  9 success=0.0 spl=0.00 dtg=5.93m (8.3s)
+[243] goal=plant      steps=100 success=0.0 spl=0.00 dtg=11.52m (94.9s)
+[244] goal=plant      steps= 80 success=0.0 spl=0.00 dtg=12.60m (75.5s)
+[245] goal=chair      steps=  1 success=0.0 spl=0.00 dtg=4.17m (1.0s)
+[246] goal=chair      steps= 21 success=0.0 spl=0.00 dtg=7.85m (19.2s)
+[247] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=8.43m (91.4s)
+[248] goal=chair      steps= 15 success=0.0 spl=0.00 dtg=8.24m (13.3s)
+[249] goal=toilet     steps= 14 success=0.0 spl=0.00 dtg=4.38m (14.9s)
+[250] goal=sofa       steps= 21 success=0.0 spl=0.00 dtg=9.58m (20.4s)
+[251] goal=plant      steps=  3 success=0.0 spl=0.00 dtg=10.07m (2.6s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[252] goal=plant      steps=100 success=0.0 spl=0.00 dtg=5.23m (92.4s)
+[253] goal=plant      steps=  9 success=0.0 spl=0.00 dtg=6.82m (8.4s)
+[254] goal=plant      steps= 70 success=0.0 spl=0.00 dtg=2.40m (63.3s)
+[255] goal=plant      steps= 26 success=0.0 spl=0.00 dtg=2.95m (23.3s)
+[256] goal=plant      steps= 12 success=0.0 spl=0.00 dtg=4.41m (11.5s)
+[257] goal=plant      steps=  5 success=0.0 spl=0.00 dtg=5.59m (4.6s)
+[258] goal=plant      steps=  2 success=0.0 spl=0.00 dtg=1.96m (1.8s)
+[259] goal=plant      steps=100 success=0.0 spl=0.00 dtg=5.28m (88.1s)
+[260] goal=plant      steps=  4 success=0.0 spl=0.00 dtg=3.32m (3.4s)
+[261] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=12.64m (87.4s)
+[262] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=18.28m (88.9s)
+[263] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=12.36m (92.4s)
+[264] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=17.23m (94.8s)
+[265] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=16.01m (93.0s)
+[266] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=13.73m (92.6s)
+[267] goal=tv_monitor steps= 30 success=0.0 spl=0.00 dtg=23.49m (27.9s)
+[268] goal=tv_monitor steps= 96 success=0.0 spl=0.00 dtg=8.63m (89.1s)
+[269] goal=tv_monitor steps= 42 success=0.0 spl=0.00 dtg=24.05m (39.9s)
+[270] goal=chair      steps= 64 success=0.0 spl=0.00 dtg=6.65m (61.1s)
+[271] goal=chair      steps= 68 success=1.0 spl=0.54 dtg=0.80m (61.9s)
+[272] goal=chair      steps=100 success=0.0 spl=0.00 dtg=10.92m (93.3s)
+[273] goal=chair      steps= 47 success=0.0 spl=0.00 dtg=2.24m (43.9s)
+[274] goal=chair      steps=  2 success=0.0 spl=0.00 dtg=2.65m (1.7s)
+[275] goal=chair      steps= 70 success=0.0 spl=0.00 dtg=8.70m (65.4s)
+[276] goal=chair      steps=  6 success=0.0 spl=0.00 dtg=4.49m (5.4s)
+[277] goal=chair      steps= 18 success=0.0 spl=0.00 dtg=8.23m (17.9s)
+[278] goal=chair      steps= 12 success=0.0 spl=0.00 dtg=1.35m (11.5s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[279] goal=tv_monitor steps= 33 success=0.0 spl=0.00 dtg=9.22m (29.4s)
+[280] goal=tv_monitor steps= 14 success=0.0 spl=0.00 dtg=1.16m (14.1s)
+[281] goal=chair      steps=100 success=0.0 spl=0.00 dtg=7.60m (97.9s)
+[282] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=6.20m (102.9s)
+[283] goal=sofa       steps= 26 success=0.0 spl=0.00 dtg=1.30m (25.6s)
+[284] goal=tv_monitor steps=  5 success=0.0 spl=0.00 dtg=10.04m (4.3s)
+[285] goal=chair      steps= 10 success=0.0 spl=0.00 dtg=5.51m (10.4s)
+[286] goal=bed        steps= 95 success=1.0 spl=0.70 dtg=0.81m (87.6s)
+[287] goal=plant      steps=100 success=0.0 spl=0.00 dtg=7.79m (96.5s)
+[288] goal=sofa       steps= 17 success=0.0 spl=0.00 dtg=8.66m (14.7s)
+[289] goal=chair      steps=  1 success=0.0 spl=0.00 dtg=5.43m (0.8s)
+[290] goal=chair      steps=100 success=0.0 spl=0.00 dtg=6.07m (83.1s)
+[291] goal=plant      steps=100 success=0.0 spl=0.00 dtg=2.08m (98.0s)
+[292] goal=sofa       steps= 34 success=0.0 spl=0.00 dtg=7.51m (34.5s)
+[293] goal=bed        steps=100 success=0.0 spl=0.00 dtg=2.63m (93.9s)
+[294] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=4.73m (100.8s)
+[295] goal=tv_monitor steps= 18 success=0.0 spl=0.00 dtg=6.03m (16.9s)
+[296] goal=plant      steps= 49 success=0.0 spl=0.00 dtg=2.89m (48.0s)
+[297] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=5.78m (96.0s)
+[298] goal=chair      steps=100 success=0.0 spl=0.00 dtg=7.52m (95.0s)
+[299] goal=plant      steps=  1 success=0.0 spl=0.00 dtg=3.29m (1.0s)
+[300] goal=sofa       steps= 27 success=0.0 spl=0.00 dtg=6.39m (29.6s)
+[301] goal=bed        steps= 42 success=0.0 spl=0.00 dtg=2.31m (40.9s)
+[302] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=7.22m (98.2s)
+[303] goal=plant      steps=  3 success=0.0 spl=0.00 dtg=2.29m (3.0s)
+[304] goal=sofa       steps=  4 success=0.0 spl=0.00 dtg=8.13m (4.2s)
+[305] goal=bed        steps= 12 success=0.0 spl=0.00 dtg=6.58m (11.5s)
+[306] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=8.75m (98.2s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[307] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=5.61m (96.3s)
+[308] goal=bed        steps= 55 success=0.0 spl=0.00 dtg=6.26m (50.3s)
+[309] goal=tv_monitor steps= 96 success=0.0 spl=0.00 dtg=2.74m (92.8s)
+[310] goal=tv_monitor steps= 45 success=0.0 spl=0.00 dtg=6.49m (42.0s)
+[311] goal=toilet     steps= 19 success=0.0 spl=0.00 dtg=6.23m (19.1s)
+[312] goal=sofa       steps=  6 success=0.0 spl=0.00 dtg=2.60m (5.5s)
+[313] goal=plant      steps=100 success=0.0 spl=0.00 dtg=3.86m (97.3s)
+[314] goal=chair      steps=  3 success=0.0 spl=0.00 dtg=1.38m (3.3s)
+[315] goal=sofa       steps= 13 success=0.0 spl=0.00 dtg=5.15m (13.8s)
+[316] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=4.48m (94.8s)
+[317] goal=chair      steps=100 success=0.0 spl=0.00 dtg=5.35m (92.6s)
+[318] goal=plant      steps= 80 success=1.0 spl=0.31 dtg=0.02m (76.7s)
+[319] goal=chair      steps=100 success=0.0 spl=0.00 dtg=6.20m (90.8s)
+[320] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=4.08m (3.2s)
+[321] goal=bed        steps=  5 success=0.0 spl=0.00 dtg=4.50m (4.3s)
+[322] goal=sofa       steps=  9 success=0.0 spl=0.00 dtg=3.86m (7.9s)
+[323] goal=tv_monitor steps= 44 success=0.0 spl=0.00 dtg=3.92m (40.8s)
+[324] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=6.43m (88.8s)
+[325] goal=tv_monitor steps=  9 success=0.0 spl=0.00 dtg=2.92m (8.1s)
+[326] goal=plant      steps=100 success=0.0 spl=0.00 dtg=2.28m (94.2s)
+[327] goal=toilet     steps= 59 success=0.0 spl=0.00 dtg=1.11m (58.2s)
+[328] goal=plant      steps=100 success=0.0 spl=0.00 dtg=3.09m (94.6s)
+[329] goal=sofa       steps= 16 success=0.0 spl=0.00 dtg=2.60m (13.8s)
+[330] goal=chair      steps= 69 success=0.0 spl=0.00 dtg=5.87m (64.5s)
+[331] goal=bed        steps=  4 success=0.0 spl=0.00 dtg=7.15m (3.8s)
+[332] goal=bed        steps=  1 success=0.0 spl=0.00 dtg=3.52m (1.1s)
+[333] goal=bed        steps=  3 success=0.0 spl=0.00 dtg=2.64m (2.9s)
+[334] goal=chair      steps=  9 success=0.0 spl=0.00 dtg=2.41m (7.6s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[335] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=10.34m (0.8s)
+[336] goal=tv_monitor steps=  3 success=0.0 spl=0.00 dtg=3.18m (2.5s)
+[337] goal=toilet     steps= 27 success=0.0 spl=0.00 dtg=5.93m (26.0s)
+[338] goal=sofa       steps= 24 success=1.0 spl=0.70 dtg=0.54m (20.8s)
+[339] goal=sofa       steps=  4 success=0.0 spl=0.00 dtg=7.18m (3.6s)
+[340] goal=toilet     steps=  6 success=1.0 spl=1.00 dtg=0.57m (5.3s)
+[341] goal=bed        steps=100 success=0.0 spl=0.00 dtg=3.47m (96.0s)
+[342] goal=bed        steps=  8 success=0.0 spl=0.00 dtg=5.59m (7.2s)
+[343] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=8.30m (93.2s)
+[344] goal=chair      steps= 24 success=0.0 spl=0.00 dtg=5.04m (23.4s)
+[345] goal=tv_monitor steps= 13 success=0.0 spl=0.00 dtg=9.63m (12.1s)
+[346] goal=bed        steps= 74 success=0.0 spl=0.00 dtg=3.87m (66.7s)
+[347] goal=toilet     steps= 58 success=0.0 spl=0.00 dtg=7.04m (54.3s)
+[348] goal=tv_monitor steps= 99 success=0.0 spl=0.00 dtg=8.54m (91.4s)
+[349] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=13.89m (96.6s)
+[350] goal=sofa       steps=  2 success=0.0 spl=0.00 dtg=3.36m (1.7s)
+[351] goal=sofa       steps=  2 success=0.0 spl=0.00 dtg=8.53m (1.8s)
+[352] goal=bed        steps= 17 success=0.0 spl=0.00 dtg=6.54m (15.3s)
+[353] goal=chair      steps=100 success=0.0 spl=0.00 dtg=5.86m (92.9s)
+[354] goal=bed        steps=  1 success=0.0 spl=0.00 dtg=3.24m (1.0s)
+[355] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=5.86m (96.0s)
+[356] goal=chair      steps= 35 success=0.0 spl=0.00 dtg=5.41m (33.6s)
+[357] goal=tv_monitor steps=  1 success=0.0 spl=0.00 dtg=3.60m (0.9s)
+[358] goal=bed        steps= 17 success=0.0 spl=0.00 dtg=7.45m (15.8s)
+[359] goal=chair      steps= 49 success=1.0 spl=0.39 dtg=0.45m (43.7s)
+[360] goal=chair      steps= 29 success=0.0 spl=0.00 dtg=4.90m (25.5s)
+[361] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=3.85m (92.2s)
+[362] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=4.10m (2.5s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[363] goal=bed        steps= 40 success=0.0 spl=0.00 dtg=5.39m (36.8s)
+[364] goal=sofa       steps=  7 success=0.0 spl=0.00 dtg=6.46m (6.6s)
+[365] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=4.85m (2.3s)
+[366] goal=tv_monitor steps= 30 success=0.0 spl=0.00 dtg=2.56m (27.3s)
+[367] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=3.26m (1.0s)
+[368] goal=bed        steps= 13 success=0.0 spl=0.00 dtg=4.42m (11.9s)
+[369] goal=chair      steps=  3 success=0.0 spl=0.00 dtg=3.83m (2.5s)
+[370] goal=toilet     steps= 81 success=0.0 spl=0.00 dtg=15.62m (85.3s)
+[371] goal=bed        steps= 37 success=0.0 spl=0.00 dtg=7.04m (35.4s)
+[372] goal=sofa       steps=  9 success=0.0 spl=0.00 dtg=3.54m (9.4s)
+[373] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=13.18m (97.2s)
+[374] goal=tv_monitor steps= 12 success=0.0 spl=0.00 dtg=3.36m (11.3s)
+[375] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=12.11m (99.3s)
+[376] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=6.46m (2.9s)
+[377] goal=bed        steps= 15 success=0.0 spl=0.00 dtg=3.41m (13.7s)
+[378] goal=chair      steps=  8 success=0.0 spl=0.00 dtg=3.58m (7.6s)
+[379] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=12.70m (97.0s)
+[380] goal=tv_monitor steps= 18 success=0.0 spl=0.00 dtg=4.91m (17.4s)
+[381] goal=sofa       steps=  7 success=0.0 spl=0.00 dtg=7.23m (7.2s)
+[382] goal=tv_monitor steps=  1 success=0.0 spl=0.00 dtg=5.94m (0.8s)
+[383] goal=chair      steps=  6 success=0.0 spl=0.00 dtg=4.24m (5.4s)
+[384] goal=chair      steps= 58 success=0.0 spl=0.00 dtg=3.69m (58.7s)
+[385] goal=toilet     steps=  3 success=0.0 spl=0.00 dtg=7.20m (2.4s)
+[386] goal=bed        steps= 63 success=0.0 spl=0.00 dtg=8.96m (60.5s)
+[387] goal=chair      steps= 32 success=1.0 spl=0.35 dtg=0.01m (29.5s)
+[388] goal=tv_monitor steps= 76 success=0.0 spl=0.00 dtg=4.02m (77.8s)
+[389] goal=toilet     steps= 96 success=0.0 spl=0.00 dtg=11.77m (101.1s)
+[390] goal=tv_monitor steps= 11 success=0.0 spl=0.00 dtg=1.96m (10.2s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[391] goal=toilet     steps= 46 success=0.0 spl=0.00 dtg=6.85m (43.9s)
+[392] goal=bed        steps=  3 success=0.0 spl=0.00 dtg=11.07m (2.4s)
+[393] goal=sofa       steps=  5 success=0.0 spl=0.00 dtg=6.83m (4.5s)
+[394] goal=bed        steps= 31 success=0.0 spl=0.00 dtg=9.22m (27.3s)
+[395] goal=bed        steps=100 success=0.0 spl=0.00 dtg=6.09m (95.6s)
+[396] goal=chair      steps=100 success=0.0 spl=0.00 dtg=7.37m (87.8s)
+[397] goal=tv_monitor steps= 78 success=0.0 spl=0.00 dtg=7.41m (74.4s)
+[398] goal=bed        steps=100 success=0.0 spl=0.00 dtg=6.81m (85.4s)
+[399] goal=sofa       steps=  4 success=0.0 spl=0.00 dtg=4.37m (3.5s)
+[400] goal=sofa       steps= 83 success=0.0 spl=0.00 dtg=7.92m (87.6s)
+[401] goal=tv_monitor steps= 24 success=0.0 spl=0.00 dtg=7.49m (22.4s)
+[402] goal=chair      steps= 14 success=0.0 spl=0.00 dtg=5.51m (12.2s)
+[403] goal=chair      steps=100 success=0.0 spl=0.00 dtg=5.91m (88.0s)
+[404] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=8.73m (101.1s)
+[405] goal=plant      steps=100 success=0.0 spl=0.00 dtg=10.15m (94.0s)
+[406] goal=toilet     steps= 84 success=0.0 spl=0.00 dtg=5.33m (81.0s)
+[407] goal=plant      steps=100 success=0.0 spl=0.00 dtg=9.31m (94.4s)
+[408] goal=chair      steps= 13 success=1.0 spl=1.00 dtg=0.60m (12.1s)
+[409] goal=plant      steps=100 success=0.0 spl=0.00 dtg=10.41m (95.2s)
+[410] goal=plant      steps=100 success=0.0 spl=0.00 dtg=8.59m (102.6s)
+[411] goal=plant      steps= 33 success=1.0 spl=0.65 dtg=0.70m (30.6s)
+[412] goal=tv_monitor steps=  1 success=0.0 spl=0.00 dtg=5.76m (0.9s)
+[413] goal=sofa       steps= 26 success=0.0 spl=0.00 dtg=10.05m (24.2s)
+[414] goal=bed        steps=  4 success=0.0 spl=0.00 dtg=3.29m (4.2s)
+[415] goal=tv_monitor steps= 30 success=0.0 spl=0.00 dtg=8.36m (30.6s)
+[416] goal=toilet     steps= 75 success=0.0 spl=0.00 dtg=5.35m (79.2s)
+[417] goal=chair      steps=  2 success=0.0 spl=0.00 dtg=3.69m (2.2s)
+[418] goal=toilet     steps= 51 success=0.0 spl=0.00 dtg=10.37m (47.9s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[419] goal=toilet     steps=  8 success=0.0 spl=0.00 dtg=11.93m (7.6s)
+[420] goal=sofa       steps= 36 success=1.0 spl=0.79 dtg=0.04m (33.2s)
+[421] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=4.90m (94.5s)
+[422] goal=tv_monitor steps= 13 success=0.0 spl=0.00 dtg=3.45m (12.6s)
+[423] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=4.57m (95.7s)
+[424] goal=bed        steps=  4 success=0.0 spl=0.00 dtg=7.50m (4.1s)
+[425] goal=chair      steps= 26 success=0.0 spl=0.00 dtg=2.71m (23.4s)
+[426] goal=bed        steps= 19 success=0.0 spl=0.00 dtg=5.57m (18.0s)
+[427] goal=plant      steps=100 success=0.0 spl=0.00 dtg=7.02m (86.8s)
+[428] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=4.57m (91.8s)
+[429] goal=plant      steps=100 success=0.0 spl=0.00 dtg=2.72m (86.1s)
+[430] goal=plant      steps=100 success=0.0 spl=0.00 dtg=7.22m (88.4s)
+[431] goal=sofa       steps=100 success=0.0 spl=0.00 dtg=0.13m (93.7s)
+[432] goal=chair      steps=  7 success=1.0 spl=1.00 dtg=0.80m (6.4s)
+[433] goal=tv_monitor steps=  4 success=0.0 spl=0.00 dtg=3.68m (3.5s)
+[434] goal=chair      steps= 22 success=0.0 spl=0.00 dtg=2.58m (18.8s)
+[435] goal=sofa       steps=  5 success=0.0 spl=0.00 dtg=3.78m (5.2s)
+[436] goal=bed        steps= 15 success=0.0 spl=0.00 dtg=4.44m (13.3s)
+[437] goal=bed        steps= 75 success=0.0 spl=0.00 dtg=1.47m (69.1s)
+[438] goal=chair      steps= 23 success=0.0 spl=0.00 dtg=2.04m (20.0s)
+[439] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=5.03m (96.5s)
+[440] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=4.80m (93.6s)
+[441] goal=plant      steps=100 success=0.0 spl=0.00 dtg=6.78m (92.6s)
+[442] goal=bed        steps= 20 success=0.0 spl=0.00 dtg=3.62m (18.6s)
+[443] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=4.04m (1.4s)
+[444] goal=chair      steps=  1 success=0.0 spl=0.00 dtg=2.34m (0.8s)
+[445] goal=sofa       steps=  8 success=0.0 spl=0.00 dtg=4.47m (8.1s)
+[446] goal=tv_monitor steps= 50 success=0.0 spl=0.00 dtg=2.23m (45.0s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[447] goal=plant      steps=100 success=0.0 spl=0.00 dtg=1.88m (91.0s)
+[448] goal=bed        steps=  2 success=0.0 spl=0.00 dtg=2.19m (2.2s)
+[449] goal=sofa       steps= 50 success=1.0 spl=0.45 dtg=0.38m (49.2s)
+[450] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=4.17m (92.8s)
+[451] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=4.87m (94.6s)
+[452] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=2.88m (93.2s)
+[453] goal=sofa       steps= 44 success=0.0 spl=0.00 dtg=2.04m (41.7s)
+[454] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=4.69m (90.5s)
+[455] goal=bed        steps=100 success=0.0 spl=0.00 dtg=2.49m (100.1s)
+[456] goal=toilet     steps= 70 success=0.0 spl=0.00 dtg=3.66m (70.1s)
+[457] goal=bed        steps= 18 success=0.0 spl=0.00 dtg=1.72m (17.8s)
+[458] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=1.76m (94.7s)
+[459] goal=toilet     steps=  4 success=0.0 spl=0.00 dtg=4.86m (3.9s)
+[460] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=4.75m (0.8s)
+[461] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=2.80m (95.6s)
+[462] goal=bed        steps=100 success=0.0 spl=0.00 dtg=2.23m (91.8s)
+[463] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=2.19m (0.6s)
+[464] goal=chair      steps= 22 success=0.0 spl=0.00 dtg=3.01m (20.4s)
+[465] goal=plant      steps= 60 success=0.0 spl=0.00 dtg=2.17m (57.4s)
+[466] goal=chair      steps=100 success=0.0 spl=0.00 dtg=5.50m (83.2s)
+[467] goal=tv_monitor steps=  3 success=0.0 spl=0.00 dtg=4.14m (2.3s)
+[468] goal=plant      steps=  1 success=0.0 spl=0.00 dtg=3.85m (1.0s)
+[469] goal=bed        steps= 78 success=0.0 spl=0.00 dtg=2.19m (76.4s)
+[470] goal=sofa       steps= 32 success=0.0 spl=0.00 dtg=5.76m (32.1s)
+[471] goal=plant      steps= 10 success=0.0 spl=0.00 dtg=3.20m (9.3s)
+[472] goal=chair      steps=  7 success=0.0 spl=0.00 dtg=1.61m (6.2s)
+[473] goal=chair      steps=  2 success=0.0 spl=0.00 dtg=1.20m (1.6s)
+[474] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=4.49m (94.9s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[475] goal=sofa       steps= 10 success=0.0 spl=0.00 dtg=3.10m (9.6s)
+[476] goal=chair      steps= 39 success=1.0 spl=0.44 dtg=0.34m (35.0s)
+[477] goal=sofa       steps= 46 success=0.0 spl=0.00 dtg=1.75m (42.5s)
+[478] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=6.70m (89.4s)
+[479] goal=plant      steps=100 success=0.0 spl=0.00 dtg=3.74m (95.0s)
+[480] goal=tv_monitor steps= 15 success=0.0 spl=0.00 dtg=3.88m (14.0s)
+[481] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=1.24m (93.1s)
+[482] goal=tv_monitor steps= 28 success=0.0 spl=0.00 dtg=2.31m (25.6s)
+[483] goal=tv_monitor steps=  2 success=0.0 spl=0.00 dtg=3.12m (1.6s)
+[484] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=1.56m (4.4s)
+[485] goal=sofa       steps= 31 success=0.0 spl=0.00 dtg=2.04m (32.1s)
+[486] goal=plant      steps= 77 success=0.0 spl=0.00 dtg=3.84m (73.4s)
+[487] goal=bed        steps= 12 success=0.0 spl=0.00 dtg=7.80m (10.8s)
+[488] goal=chair      steps= 43 success=1.0 spl=0.30 dtg=0.34m (42.8s)
+[489] goal=toilet     steps= 73 success=0.0 spl=0.00 dtg=1.54m (72.2s)
+[490] goal=bed        steps= 19 success=0.0 spl=0.00 dtg=2.73m (17.0s)
+[491] goal=bed        steps=100 success=0.0 spl=0.00 dtg=4.72m (92.7s)
+[492] goal=toilet     steps= 87 success=0.0 spl=0.00 dtg=3.44m (83.0s)
+[493] goal=bed        steps= 50 success=0.0 spl=0.00 dtg=7.89m (46.8s)
+[494] goal=chair      steps=  5 success=0.0 spl=0.00 dtg=1.07m (4.3s)
+[495] goal=sofa       steps= 15 success=0.0 spl=0.00 dtg=3.06m (15.1s)
+[496] goal=tv_monitor steps=  3 success=0.0 spl=0.00 dtg=3.78m (2.3s)
+[497] goal=plant      steps= 51 success=0.0 spl=0.00 dtg=3.86m (47.2s)
+[498] goal=bed        steps= 30 success=0.0 spl=0.00 dtg=4.98m (27.9s)
+[499] goal=toilet     steps= 32 success=0.0 spl=0.00 dtg=6.52m (31.9s)
+[500] goal=toilet     steps=  5 success=0.0 spl=0.00 dtg=5.00m (4.6s)
+[501] goal=plant      steps= 44 success=0.0 spl=0.00 dtg=3.48m (41.1s)
+[502] goal=plant      steps=100 success=0.0 spl=0.00 dtg=6.79m (92.6s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[503] goal=chair      steps=  3 success=0.0 spl=0.00 dtg=1.88m (2.7s)
+[504] goal=bed        steps= 85 success=0.0 spl=0.00 dtg=5.24m (79.2s)
+[505] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=5.53m (96.6s)
+[506] goal=bed        steps= 49 success=0.0 spl=0.00 dtg=1.79m (47.3s)
+[507] goal=bed        steps= 38 success=0.0 spl=0.00 dtg=4.19m (34.0s)
+[508] goal=chair      steps=  2 success=0.0 spl=0.00 dtg=2.11m (1.9s)
+[509] goal=sofa       steps= 22 success=0.0 spl=0.00 dtg=7.77m (21.0s)
+[510] goal=chair      steps=100 success=0.0 spl=0.00 dtg=3.17m (81.7s)
+[511] goal=chair      steps= 42 success=0.0 spl=0.00 dtg=2.33m (40.1s)
+[512] goal=bed        steps= 36 success=0.0 spl=0.00 dtg=2.40m (32.2s)
+[513] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=7.73m (95.0s)
+[514] goal=plant      steps= 83 success=1.0 spl=0.59 dtg=0.42m (75.2s)
+[515] goal=bed        steps= 14 success=0.0 spl=0.00 dtg=4.48m (12.6s)
+[516] goal=plant      steps= 63 success=1.0 spl=0.56 dtg=0.36m (57.8s)
+[517] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=4.81m (94.7s)
+[518] goal=sofa       steps= 11 success=0.0 spl=0.00 dtg=4.27m (11.9s)
+[519] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=4.28m (2.3s)
+[520] goal=plant      steps=  9 success=0.0 spl=0.00 dtg=6.36m (9.1s)
+[521] goal=sofa       steps=  8 success=0.0 spl=0.00 dtg=3.20m (7.4s)
+[522] goal=plant      steps= 34 success=0.0 spl=0.00 dtg=1.88m (32.0s)
+[523] goal=sofa       steps= 16 success=1.0 spl=1.00 dtg=0.57m (14.0s)
+[524] goal=sofa       steps=  2 success=0.0 spl=0.00 dtg=8.15m (2.2s)
+[525] goal=toilet     steps= 38 success=1.0 spl=0.73 dtg=0.16m (35.5s)
+[526] goal=chair      steps=  3 success=0.0 spl=0.00 dtg=1.02m (3.1s)
+[527] goal=plant      steps=100 success=0.0 spl=0.00 dtg=1.93m (92.1s)
+[528] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=1.81m (4.2s)
+[529] goal=toilet     steps=  3 success=0.0 spl=0.00 dtg=6.79m (2.5s)
+[530] goal=bed        steps= 31 success=1.0 spl=1.00 dtg=0.33m (28.1s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[531] goal=bed        steps= 48 success=0.0 spl=0.00 dtg=2.63m (44.4s)
+[532] goal=sofa       steps=  4 success=0.0 spl=0.00 dtg=3.62m (3.8s)
+[533] goal=bed        steps= 80 success=0.0 spl=0.00 dtg=1.20m (77.1s)
+[534] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=2.32m (96.1s)
+[535] goal=plant      steps=100 success=0.0 spl=0.00 dtg=6.71m (92.8s)
+[536] goal=chair      steps=  1 success=0.0 spl=0.00 dtg=4.21m (0.9s)
+[537] goal=plant      steps=100 success=0.0 spl=0.00 dtg=8.55m (94.1s)
+[538] goal=chair      steps=100 success=0.0 spl=0.00 dtg=3.95m (93.6s)
+[539] goal=chair      steps=100 success=0.0 spl=0.00 dtg=5.30m (88.1s)
+[540] goal=toilet     steps=  4 success=0.0 spl=0.00 dtg=3.83m (4.2s)
+[541] goal=toilet     steps= 11 success=0.0 spl=0.00 dtg=3.37m (10.8s)
+[542] goal=plant      steps=100 success=0.0 spl=0.00 dtg=7.91m (81.8s)
+[543] goal=sofa       steps= 10 success=0.0 spl=0.00 dtg=4.14m (8.5s)
+[544] goal=bed        steps=100 success=0.0 spl=0.00 dtg=1.64m (95.2s)
+[545] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=4.85m (94.2s)
+[546] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=2.59m (0.9s)
+[547] goal=bed        steps= 45 success=0.0 spl=0.00 dtg=2.71m (41.0s)
+[548] goal=chair      steps=  1 success=0.0 spl=0.00 dtg=2.35m (0.9s)
+[549] goal=plant      steps=100 success=0.0 spl=0.00 dtg=6.76m (99.0s)
+[550] goal=sofa       steps= 30 success=0.0 spl=0.00 dtg=2.56m (28.0s)
+[551] goal=chair      steps=100 success=0.0 spl=0.00 dtg=6.23m (89.1s)
+[552] goal=plant      steps=100 success=0.0 spl=0.00 dtg=6.13m (91.7s)
+[553] goal=toilet     steps= 71 success=0.0 spl=0.00 dtg=2.69m (69.2s)
+[554] goal=bed        steps= 16 success=0.0 spl=0.00 dtg=1.28m (15.1s)
+[555] goal=sofa       steps= 29 success=1.0 spl=0.74 dtg=0.07m (28.1s)
+[556] goal=bed        steps= 13 success=0.0 spl=0.00 dtg=3.60m (12.8s)
+[557] goal=sofa       steps=  5 success=0.0 spl=0.00 dtg=2.10m (4.7s)
+[558] goal=chair      steps= 32 success=0.0 spl=0.00 dtg=2.60m (30.7s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[559] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=5.83m (89.5s)
+[560] goal=tv_monitor steps= 25 success=0.0 spl=0.00 dtg=7.29m (23.3s)
+[561] goal=tv_monitor steps=  7 success=0.0 spl=0.00 dtg=5.79m (6.5s)
+[562] goal=chair      steps= 16 success=0.0 spl=0.00 dtg=8.56m (14.7s)
+[563] goal=bed        steps= 29 success=0.0 spl=0.00 dtg=3.68m (29.3s)
+[564] goal=tv_monitor steps=  8 success=0.0 spl=0.00 dtg=2.10m (8.1s)
+[565] goal=sofa       steps= 27 success=0.0 spl=0.00 dtg=3.80m (25.7s)
+[566] goal=sofa       steps= 23 success=0.0 spl=0.00 dtg=5.83m (23.9s)
+[567] goal=chair      steps=  3 success=0.0 spl=0.00 dtg=10.21m (2.8s)
+[568] goal=toilet     steps=  3 success=0.0 spl=0.00 dtg=3.25m (2.6s)
+[569] goal=tv_monitor steps= 34 success=0.0 spl=0.00 dtg=2.24m (32.8s)
+[570] goal=plant      steps= 50 success=0.0 spl=0.00 dtg=7.46m (49.1s)
+[571] goal=bed        steps= 40 success=0.0 spl=0.00 dtg=1.09m (36.6s)
+[572] goal=chair      steps= 17 success=0.0 spl=0.00 dtg=10.55m (15.7s)
+[573] goal=sofa       steps= 37 success=0.0 spl=0.00 dtg=8.40m (34.0s)
+[574] goal=bed        steps= 44 success=0.0 spl=0.00 dtg=4.43m (40.4s)
+[575] goal=plant      steps=100 success=0.0 spl=0.00 dtg=7.69m (94.7s)
+[576] goal=toilet     steps=  3 success=0.0 spl=0.00 dtg=10.49m (2.7s)
+[577] goal=sofa       steps= 14 success=0.0 spl=0.00 dtg=3.64m (13.3s)
+[578] goal=plant      steps=100 success=0.0 spl=0.00 dtg=12.06m (84.6s)
+[579] goal=bed        steps=  5 success=0.0 spl=0.00 dtg=1.07m (5.2s)
+[580] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=7.73m (86.7s)
+[581] goal=chair      steps= 65 success=0.0 spl=0.00 dtg=1.48m (57.8s)
+[582] goal=chair      steps= 65 success=0.0 spl=0.00 dtg=1.04m (59.9s)
+[583] goal=plant      steps=100 success=0.0 spl=0.00 dtg=11.52m (91.2s)
+[584] goal=toilet     steps=  3 success=0.0 spl=0.00 dtg=8.25m (2.3s)
+[585] goal=plant      steps= 18 success=0.0 spl=0.00 dtg=7.81m (16.3s)
+[586] goal=bed        steps=  3 success=0.0 spl=0.00 dtg=3.87m (2.3s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[587] goal=plant      steps= 26 success=0.0 spl=0.00 dtg=14.29m (23.8s)
+[588] goal=tv_monitor steps= 84 success=0.0 spl=0.00 dtg=6.43m (78.2s)
+[589] goal=bed        steps= 12 success=0.0 spl=0.00 dtg=5.78m (10.5s)
+[590] goal=bed        steps= 42 success=0.0 spl=0.00 dtg=15.11m (39.5s)
+[591] goal=toilet     steps= 27 success=0.0 spl=0.00 dtg=3.36m (25.5s)
+[592] goal=tv_monitor steps= 67 success=0.0 spl=0.00 dtg=1.72m (65.5s)
+[593] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=7.60m (1.2s)
+[594] goal=bed        steps= 40 success=0.0 spl=0.00 dtg=4.94m (38.9s)
+[595] goal=plant      steps= 43 success=0.0 spl=0.00 dtg=7.49m (41.3s)
+[596] goal=sofa       steps= 14 success=0.0 spl=0.00 dtg=10.25m (13.6s)
+[597] goal=plant      steps=100 success=0.0 spl=0.00 dtg=14.24m (95.4s)
+[598] goal=sofa       steps= 10 success=0.0 spl=0.00 dtg=6.49m (9.6s)
+[599] goal=chair      steps=100 success=0.0 spl=0.00 dtg=4.01m (93.3s)
+[600] goal=chair      steps=  9 success=0.0 spl=0.00 dtg=13.36m (8.3s)
+[601] goal=chair      steps= 14 success=0.0 spl=0.00 dtg=8.00m (14.2s)
+[602] goal=sofa       steps= 20 success=0.0 spl=0.00 dtg=11.98m (19.0s)
+[603] goal=sofa       steps=  9 success=0.0 spl=0.00 dtg=6.98m (8.2s)
+[604] goal=chair      steps=100 success=0.0 spl=0.00 dtg=7.54m (89.2s)
+[605] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=15.00m (100.4s)
+[606] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=20.30m (98.8s)
+[607] goal=bed        steps=100 success=0.0 spl=0.00 dtg=12.62m (103.2s)
+[608] goal=tv_monitor steps= 66 success=0.0 spl=0.00 dtg=6.43m (60.5s)
+[609] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=21.65m (101.1s)
+[610] goal=plant      steps=100 success=0.0 spl=0.00 dtg=5.98m (92.7s)
+[611] goal=plant      steps=100 success=0.0 spl=0.00 dtg=9.80m (92.5s)
+[612] goal=chair      steps=  1 success=0.0 spl=0.00 dtg=3.93m (0.7s)
+[613] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=9.20m (98.9s)
+[614] goal=bed        steps=100 success=0.0 spl=0.00 dtg=2.53m (94.3s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[615] goal=bed        steps= 71 success=0.0 spl=0.00 dtg=4.79m (68.0s)
+[616] goal=tv_monitor steps= 30 success=0.0 spl=0.00 dtg=11.66m (27.7s)
+[617] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=10.59m (95.2s)
+[618] goal=sofa       steps= 43 success=0.0 spl=0.00 dtg=7.33m (42.8s)
+[619] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=12.79m (95.8s)
+[620] goal=bed        steps= 38 success=0.0 spl=0.00 dtg=7.72m (35.5s)
+[621] goal=plant      steps= 39 success=0.0 spl=0.00 dtg=2.45m (37.6s)
+[622] goal=plant      steps=100 success=0.0 spl=0.00 dtg=7.32m (93.2s)
+[623] goal=plant      steps= 64 success=0.0 spl=0.00 dtg=5.61m (59.6s)
+[624] goal=bed        steps= 10 success=0.0 spl=0.00 dtg=2.70m (10.6s)
+[625] goal=sofa       steps=  4 success=0.0 spl=0.00 dtg=5.77m (3.8s)
+[626] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=4.05m (99.0s)
+[627] goal=plant      steps=  9 success=0.0 spl=0.00 dtg=3.19m (8.0s)
+[628] goal=chair      steps=  2 success=0.0 spl=0.00 dtg=8.45m (1.5s)
+[629] goal=chair      steps=100 success=0.0 spl=0.00 dtg=3.95m (82.9s)
+[630] goal=tv_monitor steps= 10 success=0.0 spl=0.00 dtg=11.97m (9.5s)
+[631] goal=toilet     steps=  4 success=0.0 spl=0.00 dtg=6.69m (3.5s)
+[632] goal=chair      steps= 28 success=0.0 spl=0.00 dtg=1.87m (24.9s)
+[633] goal=sofa       steps= 30 success=0.0 spl=0.00 dtg=10.72m (28.2s)
+[634] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=10.43m (96.0s)
+[635] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=12.75m (0.9s)
+[636] goal=sofa       steps=  6 success=0.0 spl=0.00 dtg=7.20m (5.5s)
+[637] goal=plant      steps=100 success=0.0 spl=0.00 dtg=6.95m (93.7s)
+[638] goal=chair      steps=100 success=0.0 spl=0.00 dtg=9.22m (91.8s)
+[639] goal=chair      steps= 26 success=0.0 spl=0.00 dtg=4.01m (24.5s)
+[640] goal=tv_monitor steps= 29 success=0.0 spl=0.00 dtg=10.19m (28.7s)
+[641] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=8.56m (96.7s)
+[642] goal=bed        steps= 14 success=0.0 spl=0.00 dtg=4.43m (13.0s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[643] goal=sofa       steps=  5 success=0.0 spl=0.00 dtg=2.95m (4.3s)
+[644] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=3.98m (2.8s)
+[645] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=11.21m (2.7s)
+[646] goal=sofa       steps=  5 success=0.0 spl=0.00 dtg=6.83m (4.8s)
+[647] goal=sofa       steps=  2 success=0.0 spl=0.00 dtg=14.49m (1.8s)
+[648] goal=sofa       steps= 33 success=0.0 spl=0.00 dtg=11.58m (31.7s)
+[649] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=3.11m (3.4s)
+[650] goal=sofa       steps= 24 success=0.0 spl=0.00 dtg=4.61m (23.9s)
+[651] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=11.58m (0.6s)
+[652] goal=chair      steps= 12 success=0.0 spl=0.00 dtg=1.19m (10.5s)
+[653] goal=chair      steps=  8 success=0.0 spl=0.00 dtg=4.40m (7.7s)
+[654] goal=chair      steps= 28 success=0.0 spl=0.00 dtg=1.21m (26.8s)
+[655] goal=chair      steps=  8 success=0.0 spl=0.00 dtg=5.47m (7.5s)
+[656] goal=chair      steps= 52 success=1.0 spl=0.22 dtg=0.78m (52.0s)
+[657] goal=chair      steps=  8 success=0.0 spl=0.00 dtg=1.24m (5.9s)
+[658] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=5.08m (3.7s)
+[659] goal=chair      steps=  7 success=0.0 spl=0.00 dtg=3.38m (6.3s)
+[660] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=2.52m (3.9s)
+[661] goal=plant      steps= 42 success=1.0 spl=0.70 dtg=0.50m (41.7s)
+[662] goal=plant      steps= 36 success=1.0 spl=1.00 dtg=0.88m (34.6s)
+[663] goal=plant      steps=  4 success=0.0 spl=0.00 dtg=1.44m (3.7s)
+[664] goal=plant      steps= 13 success=1.0 spl=0.82 dtg=0.52m (12.0s)
+[665] goal=plant      steps= 14 success=1.0 spl=1.00 dtg=0.66m (13.4s)
+[666] goal=plant      steps= 38 success=1.0 spl=0.73 dtg=0.97m (38.9s)
+[667] goal=plant      steps= 54 success=1.0 spl=0.83 dtg=0.17m (54.2s)
+[668] goal=plant      steps=  8 success=0.0 spl=0.00 dtg=1.01m (7.9s)
+[669] goal=plant      steps=  9 success=0.0 spl=0.00 dtg=1.09m (8.9s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[670] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=5.43m (93.2s)
+[671] goal=chair      steps= 25 success=0.0 spl=0.00 dtg=1.58m (24.6s)
+[672] goal=bed        steps= 10 success=0.0 spl=0.00 dtg=6.80m (9.6s)
+[673] goal=plant      steps=  6 success=0.0 spl=0.00 dtg=5.11m (5.3s)
+[674] goal=sofa       steps= 30 success=0.0 spl=0.00 dtg=1.69m (29.8s)
+[675] goal=toilet     steps= 24 success=0.0 spl=0.00 dtg=4.30m (23.2s)
+[676] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=3.61m (94.3s)
+[677] goal=toilet     steps= 25 success=0.0 spl=0.00 dtg=2.69m (25.0s)
+[678] goal=bed        steps= 48 success=0.0 spl=0.00 dtg=6.32m (46.8s)
+[679] goal=toilet     steps= 95 success=0.0 spl=0.00 dtg=1.33m (91.7s)
+[680] goal=sofa       steps= 49 success=0.0 spl=0.00 dtg=4.57m (46.7s)
+[681] goal=plant      steps=100 success=0.0 spl=0.00 dtg=5.44m (109.5s)
+[682] goal=chair      steps= 42 success=0.0 spl=0.00 dtg=4.67m (42.1s)
+[683] goal=chair      steps=100 success=0.0 spl=0.00 dtg=4.67m (97.4s)
+[684] goal=plant      steps=100 success=0.0 spl=0.00 dtg=5.56m (103.8s)
+[685] goal=bed        steps= 26 success=0.0 spl=0.00 dtg=4.04m (25.7s)
+[686] goal=plant      steps=100 success=0.0 spl=0.00 dtg=5.27m (111.1s)
+[687] goal=sofa       steps= 16 success=0.0 spl=0.00 dtg=5.23m (13.9s)
+[688] goal=bed        steps= 25 success=0.0 spl=0.00 dtg=6.62m (22.1s)
+[689] goal=bed        steps=100 success=0.0 spl=0.00 dtg=5.95m (90.6s)
+[690] goal=sofa       steps=  7 success=0.0 spl=0.00 dtg=3.69m (7.0s)
+[691] goal=plant      steps= 48 success=0.0 spl=0.00 dtg=2.63m (44.6s)
+[692] goal=bed        steps=100 success=0.0 spl=0.00 dtg=4.49m (94.7s)
+[693] goal=plant      steps=100 success=0.0 spl=0.00 dtg=5.12m (93.8s)
+[694] goal=toilet     steps= 38 success=0.0 spl=0.00 dtg=2.26m (38.2s)
+[695] goal=chair      steps= 67 success=0.0 spl=0.00 dtg=1.88m (61.5s)
+[696] goal=chair      steps=100 success=0.0 spl=0.00 dtg=4.68m (97.8s)
+[697] goal=sofa       steps= 29 success=0.0 spl=0.00 dtg=6.63m (28.0s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[698] goal=sofa       steps=  8 success=0.0 spl=0.00 dtg=9.75m (6.9s)
+[699] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=4.74m (4.3s)
+[700] goal=bed        steps=100 success=0.0 spl=0.00 dtg=4.23m (96.2s)
+[701] goal=bed        steps=  8 success=0.0 spl=0.00 dtg=4.17m (7.8s)
+[702] goal=bed        steps= 67 success=0.0 spl=0.00 dtg=3.39m (68.2s)
+[703] goal=sofa       steps= 20 success=0.0 spl=0.00 dtg=14.15m (19.4s)
+[704] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=1.90m (3.7s)
+[705] goal=plant      steps=100 success=0.0 spl=0.00 dtg=7.49m (90.1s)
+[706] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=8.20m (98.5s)
+[707] goal=plant      steps=100 success=0.0 spl=0.00 dtg=12.01m (94.0s)
+[708] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=6.79m (99.7s)
+[709] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=5.10m (3.7s)
+[710] goal=bed        steps= 32 success=0.0 spl=0.00 dtg=5.25m (30.3s)
+[711] goal=tv_monitor steps= 40 success=0.0 spl=0.00 dtg=8.08m (35.8s)
+[712] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=2.78m (3.8s)
+[713] goal=toilet     steps= 19 success=0.0 spl=0.00 dtg=7.55m (18.8s)
+[714] goal=sofa       steps= 22 success=0.0 spl=0.00 dtg=4.40m (20.7s)
+[715] goal=sofa       steps=  8 success=0.0 spl=0.00 dtg=4.76m (7.7s)
+[716] goal=chair      steps=  3 success=0.0 spl=0.00 dtg=7.63m (2.9s)
+[717] goal=plant      steps= 24 success=1.0 spl=0.86 dtg=0.55m (22.2s)
+[718] goal=plant      steps=100 success=0.0 spl=0.00 dtg=12.73m (96.0s)
+[719] goal=bed        steps= 85 success=0.0 spl=0.00 dtg=1.28m (83.4s)
+[720] goal=tv_monitor steps= 27 success=0.0 spl=0.00 dtg=14.13m (26.0s)
+[721] goal=tv_monitor steps=  6 success=0.0 spl=0.00 dtg=20.80m (4.7s)
+[722] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=11.05m (95.9s)
+[723] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=11.84m (95.3s)
+[724] goal=tv_monitor steps= 54 success=0.0 spl=0.00 dtg=5.47m (48.1s)
+[725] goal=plant      steps=100 success=0.0 spl=0.00 dtg=6.05m (82.2s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[726] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=7.79m (100.0s)
+[727] goal=bed        steps= 84 success=0.0 spl=0.00 dtg=5.23m (81.5s)
+[728] goal=toilet     steps=  7 success=0.0 spl=0.00 dtg=9.07m (5.4s)
+[729] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=13.86m (3.0s)
+[730] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=5.83m (4.1s)
+[731] goal=chair      steps= 72 success=0.0 spl=0.00 dtg=12.95m (65.3s)
+[732] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=4.40m (3.5s)
+[733] goal=tv_monitor steps= 12 success=0.0 spl=0.00 dtg=6.96m (10.6s)
+[734] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=7.93m (97.3s)
+[735] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=2.48m (101.1s)
+[736] goal=bed        steps= 27 success=1.0 spl=0.66 dtg=0.59m (25.0s)
+[737] goal=bed        steps= 92 success=0.0 spl=0.00 dtg=7.57m (85.4s)
+[738] goal=tv_monitor steps= 81 success=0.0 spl=0.00 dtg=10.98m (73.4s)
+[739] goal=bed        steps= 32 success=0.0 spl=0.00 dtg=6.07m (32.4s)
+[740] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=2.83m (99.4s)
+[741] goal=bed        steps= 60 success=0.0 spl=0.00 dtg=5.47m (52.8s)
+[742] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=10.40m (0.9s)
+[743] goal=sofa       steps= 59 success=0.0 spl=0.00 dtg=2.13m (54.6s)
+[744] goal=chair      steps=100 success=0.0 spl=0.00 dtg=3.00m (95.6s)
+[745] goal=tv_monitor steps= 82 success=0.0 spl=0.00 dtg=17.76m (73.7s)
+[746] goal=sofa       steps= 29 success=0.0 spl=0.00 dtg=5.88m (28.8s)
+[747] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=12.04m (94.9s)
+[748] goal=tv_monitor steps= 10 success=0.0 spl=0.00 dtg=8.44m (9.6s)
+[749] goal=tv_monitor steps= 63 success=0.0 spl=0.00 dtg=15.38m (58.8s)
+[750] goal=tv_monitor steps=  1 success=0.0 spl=0.00 dtg=8.33m (0.9s)
+[751] goal=chair      steps=  5 success=0.0 spl=0.00 dtg=13.54m (5.2s)
+[752] goal=sofa       steps=  8 success=0.0 spl=0.00 dtg=14.06m (7.5s)
+[753] goal=bed        steps= 11 success=0.0 spl=0.00 dtg=2.28m (10.5s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[754] goal=bed        steps=  3 success=0.0 spl=0.00 dtg=2.80m (3.1s)
+[755] goal=bed        steps=  5 success=0.0 spl=0.00 dtg=1.94m (4.2s)
+[756] goal=bed        steps=  9 success=0.0 spl=0.00 dtg=2.77m (9.5s)
+[757] goal=bed        steps= 52 success=0.0 spl=0.00 dtg=2.11m (49.7s)
+[758] goal=bed        steps=  4 success=0.0 spl=0.00 dtg=1.62m (3.5s)
+[759] goal=bed        steps=  1 success=0.0 spl=0.00 dtg=3.83m (0.7s)
+[760] goal=bed        steps= 11 success=0.0 spl=0.00 dtg=4.68m (10.4s)
+[761] goal=toilet     steps= 90 success=0.0 spl=0.00 dtg=3.94m (88.5s)
+[762] goal=toilet     steps= 16 success=0.0 spl=0.00 dtg=4.28m (15.5s)
+[763] goal=toilet     steps= 36 success=0.0 spl=0.00 dtg=2.02m (36.0s)
+[764] goal=toilet     steps=  3 success=0.0 spl=0.00 dtg=5.42m (2.9s)
+[765] goal=toilet     steps= 65 success=0.0 spl=0.00 dtg=3.84m (61.9s)
+[766] goal=toilet     steps=  5 success=0.0 spl=0.00 dtg=4.21m (4.9s)
+[767] goal=toilet     steps=  7 success=1.0 spl=1.00 dtg=0.69m (5.7s)
+[768] goal=chair      steps=100 success=0.0 spl=0.00 dtg=3.54m (93.2s)
+[769] goal=chair      steps= 27 success=0.0 spl=0.00 dtg=3.61m (22.3s)
+[770] goal=chair      steps= 44 success=0.0 spl=0.00 dtg=1.19m (43.0s)
+[771] goal=chair      steps=  1 success=0.0 spl=0.00 dtg=3.35m (0.7s)
+[772] goal=chair      steps=  7 success=0.0 spl=0.00 dtg=3.60m (7.2s)
+[773] goal=chair      steps=100 success=0.0 spl=0.00 dtg=2.25m (91.1s)
+[774] goal=chair      steps= 23 success=0.0 spl=0.00 dtg=2.38m (22.5s)
+[775] goal=sofa       steps=  6 success=0.0 spl=0.00 dtg=3.90m (5.9s)
+[776] goal=sofa       steps= 11 success=0.0 spl=0.00 dtg=4.72m (10.0s)
+[777] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=2.45m (2.8s)
+[778] goal=sofa       steps=  2 success=0.0 spl=0.00 dtg=2.95m (1.8s)
+[779] goal=sofa       steps= 29 success=0.0 spl=0.00 dtg=3.41m (28.7s)
+[780] goal=sofa       steps= 12 success=0.0 spl=0.00 dtg=2.93m (11.9s)
+[781] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=2.54m (1.1s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[782] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=1.95m (3.2s)
+[783] goal=bed        steps= 40 success=0.0 spl=0.00 dtg=8.35m (36.9s)
+[784] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=5.77m (4.1s)
+[785] goal=bed        steps=100 success=0.0 spl=0.00 dtg=2.69m (91.5s)
+[786] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=12.45m (85.3s)
+[787] goal=plant      steps=100 success=0.0 spl=0.00 dtg=5.53m (92.7s)
+[788] goal=chair      steps=  1 success=0.0 spl=0.00 dtg=7.00m (0.9s)
+[789] goal=plant      steps=100 success=0.0 spl=0.00 dtg=7.29m (90.7s)
+[790] goal=toilet     steps=  7 success=0.0 spl=0.00 dtg=7.50m (6.8s)
+[791] goal=plant      steps=100 success=0.0 spl=0.00 dtg=5.57m (91.4s)
+[792] goal=chair      steps=  1 success=0.0 spl=0.00 dtg=8.47m (0.8s)
+[793] goal=chair      steps=  1 success=0.0 spl=0.00 dtg=7.80m (1.0s)
+[794] goal=toilet     steps= 84 success=0.0 spl=0.00 dtg=12.00m (80.7s)
+[795] goal=tv_monitor steps= 20 success=0.0 spl=0.00 dtg=7.85m (18.0s)
+[796] goal=toilet     steps= 10 success=0.0 spl=0.00 dtg=9.01m (9.3s)
+[797] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=7.58m (96.6s)
+[798] goal=bed        steps= 14 success=0.0 spl=0.00 dtg=3.26m (12.6s)
+[799] goal=tv_monitor steps= 80 success=0.0 spl=0.00 dtg=2.80m (75.0s)
+[800] goal=sofa       steps=  4 success=0.0 spl=0.00 dtg=5.12m (3.5s)
+[801] goal=tv_monitor steps= 99 success=0.0 spl=0.00 dtg=3.54m (90.8s)
+[802] goal=bed        steps= 56 success=0.0 spl=0.00 dtg=6.99m (51.2s)
+[803] goal=sofa       steps= 18 success=0.0 spl=0.00 dtg=8.43m (16.8s)
+[804] goal=tv_monitor steps=  5 success=0.0 spl=0.00 dtg=4.53m (4.1s)
+[805] goal=plant      steps=100 success=0.0 spl=0.00 dtg=7.64m (91.6s)
+[806] goal=sofa       steps=  4 success=0.0 spl=0.00 dtg=3.36m (3.7s)
+[807] goal=bed        steps=  6 success=0.0 spl=0.00 dtg=9.28m (5.1s)
+[808] goal=plant      steps=100 success=0.0 spl=0.00 dtg=3.46m (90.3s)
+[809] goal=chair      steps= 25 success=0.0 spl=0.00 dtg=5.93m (22.3s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[810] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=2.39m (95.1s)
+[811] goal=tv_monitor steps= 12 success=0.0 spl=0.00 dtg=3.30m (10.9s)
+[812] goal=bed        steps=  5 success=0.0 spl=0.00 dtg=1.52m (4.9s)
+[813] goal=chair      steps=  1 success=0.0 spl=0.00 dtg=3.27m (0.8s)
+[814] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=2.47m (92.3s)
+[815] goal=tv_monitor steps= 89 success=0.0 spl=0.00 dtg=4.02m (84.0s)
+[816] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=5.46m (3.3s)
+[817] goal=bed        steps=  8 success=0.0 spl=0.00 dtg=2.92m (6.9s)
+[818] goal=bed        steps= 13 success=0.0 spl=0.00 dtg=2.08m (12.7s)
+[819] goal=tv_monitor steps= 51 success=0.0 spl=0.00 dtg=3.40m (47.1s)
+[820] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=4.21m (99.7s)
+[821] goal=toilet     steps= 25 success=1.0 spl=1.00 dtg=0.57m (25.1s)
+[822] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=2.83m (3.4s)
+[823] goal=bed        steps= 35 success=1.0 spl=0.55 dtg=0.20m (33.2s)
+[824] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=1.66m (2.7s)
+[825] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=3.92m (89.8s)
+[826] goal=sofa       steps= 15 success=1.0 spl=0.88 dtg=0.75m (14.6s)
+[827] goal=bed        steps= 81 success=1.0 spl=0.24 dtg=0.16m (79.1s)
+[828] goal=chair      steps=  8 success=0.0 spl=0.00 dtg=2.25m (7.5s)
+[829] goal=sofa       steps= 10 success=0.0 spl=0.00 dtg=3.00m (10.1s)
+[830] goal=sofa       steps= 14 success=0.0 spl=0.00 dtg=1.83m (14.0s)
+[831] goal=chair      steps= 50 success=0.0 spl=0.00 dtg=3.49m (46.2s)
+[832] goal=sofa       steps= 32 success=0.0 spl=0.00 dtg=2.44m (30.6s)
+[833] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=5.88m (93.8s)
+[834] goal=sofa       steps=  7 success=0.0 spl=0.00 dtg=3.84m (6.6s)
+[835] goal=bed        steps=  9 success=0.0 spl=0.00 dtg=2.33m (8.9s)
+[836] goal=chair      steps=  6 success=0.0 spl=0.00 dtg=2.31m (5.6s)
+[837] goal=toilet     steps=  3 success=0.0 spl=0.00 dtg=3.95m (2.7s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[838] goal=tv_monitor steps=  1 success=0.0 spl=0.00 dtg=3.96m (1.0s)
+[839] goal=bed        steps=100 success=0.0 spl=0.00 dtg=3.78m (93.1s)
+[840] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=8.01m (95.0s)
+[841] goal=plant      steps=  9 success=0.0 spl=0.00 dtg=3.39m (9.3s)
+[842] goal=tv_monitor steps=  2 success=0.0 spl=0.00 dtg=1.22m (1.7s)
+[843] goal=plant      steps=  4 success=0.0 spl=0.00 dtg=2.16m (3.3s)
+[844] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=1.69m (3.8s)
+[845] goal=bed        steps= 37 success=1.0 spl=0.97 dtg=0.90m (33.9s)
+[846] goal=plant      steps=  9 success=0.0 spl=0.00 dtg=2.69m (8.4s)
+[847] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=9.36m (97.7s)
+[848] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=5.96m (93.6s)
+[849] goal=bed        steps=100 success=0.0 spl=0.00 dtg=3.63m (92.2s)
+[850] goal=sofa       steps= 83 success=0.0 spl=0.00 dtg=4.11m (75.5s)
+[851] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=7.18m (96.4s)
+[852] goal=chair      steps=  1 success=0.0 spl=0.00 dtg=3.40m (0.9s)
+[853] goal=bed        steps= 58 success=0.0 spl=0.00 dtg=4.18m (52.4s)
+[854] goal=sofa       steps= 60 success=0.0 spl=0.00 dtg=7.31m (56.0s)
+[855] goal=sofa       steps=  2 success=0.0 spl=0.00 dtg=3.15m (1.8s)
+[856] goal=bed        steps= 52 success=0.0 spl=0.00 dtg=5.79m (47.1s)
+[857] goal=chair      steps=100 success=0.0 spl=0.00 dtg=6.44m (86.8s)
+[858] goal=chair      steps=100 success=0.0 spl=0.00 dtg=6.44m (89.1s)
+[859] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=8.41m (100.4s)
+[860] goal=sofa       steps= 10 success=0.0 spl=0.00 dtg=4.24m (9.2s)
+[861] goal=chair      steps= 28 success=0.0 spl=0.00 dtg=5.50m (27.5s)
+[862] goal=toilet     steps= 33 success=0.0 spl=0.00 dtg=6.87m (31.6s)
+[863] goal=plant      steps= 39 success=0.0 spl=0.00 dtg=1.78m (34.8s)
+[864] goal=tv_monitor steps=  3 success=0.0 spl=0.00 dtg=1.88m (2.6s)
+[865] goal=tv_monitor steps= 14 success=0.0 spl=0.00 dtg=3.42m (12.8s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[866] goal=tv_monitor steps= 15 success=0.0 spl=0.00 dtg=11.58m (12.5s)
+[867] goal=chair      steps=  1 success=0.0 spl=0.00 dtg=1.44m (0.9s)
+[868] goal=sofa       steps=  4 success=0.0 spl=0.00 dtg=3.17m (3.5s)
+[869] goal=plant      steps=100 success=0.0 spl=0.00 dtg=5.39m (94.0s)
+[870] goal=plant      steps=100 success=0.0 spl=0.00 dtg=3.40m (91.4s)
+[871] goal=toilet     steps= 68 success=0.0 spl=0.00 dtg=4.46m (66.9s)
+[872] goal=bed        steps= 20 success=0.0 spl=0.00 dtg=1.93m (19.6s)
+[873] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=8.60m (91.1s)
+[874] goal=toilet     steps=  3 success=0.0 spl=0.00 dtg=4.92m (2.7s)
+[875] goal=tv_monitor steps= 40 success=0.0 spl=0.00 dtg=4.13m (37.5s)
+[876] goal=plant      steps=100 success=0.0 spl=0.00 dtg=4.16m (95.1s)
+[877] goal=plant      steps=100 success=0.0 spl=0.00 dtg=2.44m (92.0s)
+[878] goal=chair      steps=  3 success=0.0 spl=0.00 dtg=3.52m (3.0s)
+[879] goal=plant      steps=100 success=0.0 spl=0.00 dtg=3.40m (97.3s)
+[880] goal=toilet     steps=  4 success=0.0 spl=0.00 dtg=3.38m (3.5s)
+[881] goal=bed        steps= 32 success=0.0 spl=0.00 dtg=1.28m (32.0s)
+[882] goal=bed        steps= 42 success=1.0 spl=0.37 dtg=0.87m (38.4s)
+[883] goal=tv_monitor steps=  2 success=0.0 spl=0.00 dtg=3.32m (1.9s)
+[884] goal=tv_monitor steps=  1 success=0.0 spl=0.00 dtg=3.44m (1.0s)
+[885] goal=chair      steps= 27 success=0.0 spl=0.00 dtg=3.04m (24.8s)
+[886] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=5.45m (2.9s)
+[887] goal=sofa       steps= 12 success=0.0 spl=0.00 dtg=6.92m (12.1s)
+[888] goal=tv_monitor steps= 19 success=0.0 spl=0.00 dtg=10.28m (18.5s)
+[889] goal=bed        steps=  8 success=0.0 spl=0.00 dtg=2.78m (7.8s)
+[890] goal=chair      steps=  3 success=0.0 spl=0.00 dtg=4.10m (2.5s)
+[891] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=4.35m (0.6s)
+[892] goal=chair      steps= 49 success=0.0 spl=0.00 dtg=5.91m (44.4s)
+[893] goal=sofa       steps=  9 success=0.0 spl=0.00 dtg=3.00m (8.8s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[894] goal=chair      steps= 50 success=1.0 spl=0.65 dtg=0.07m (45.3s)
+[895] goal=tv_monitor steps= 11 success=0.0 spl=0.00 dtg=6.93m (10.8s)
+[896] goal=tv_monitor steps= 16 success=0.0 spl=0.00 dtg=6.49m (15.7s)
+[897] goal=toilet     steps=  1 success=0.0 spl=0.00 dtg=11.86m (0.7s)
+[898] goal=sofa       steps= 17 success=0.0 spl=0.00 dtg=11.03m (15.8s)
+[899] goal=sofa       steps= 78 success=1.0 spl=0.19 dtg=0.07m (71.7s)
+[900] goal=plant      steps=100 success=0.0 spl=0.00 dtg=4.76m (90.6s)
+[901] goal=sofa       steps= 51 success=0.0 spl=0.00 dtg=14.98m (46.6s)
+[902] goal=bed        steps= 29 success=0.0 spl=0.00 dtg=2.62m (27.1s)
+[903] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=4.78m (3.4s)
+[904] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=8.99m (98.9s)
+[905] goal=sofa       steps= 67 success=0.0 spl=0.00 dtg=3.53m (64.1s)
+[906] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=1.65m (93.0s)
+[907] goal=toilet     steps=  3 success=0.0 spl=0.00 dtg=3.83m (3.4s)
+[908] goal=bed        steps= 10 success=0.0 spl=0.00 dtg=7.12m (10.1s)
+[909] goal=tv_monitor steps= 10 success=0.0 spl=0.00 dtg=4.44m (9.4s)
+[910] goal=chair      steps= 17 success=0.0 spl=0.00 dtg=2.59m (17.0s)
+[911] goal=chair      steps=100 success=0.0 spl=0.00 dtg=6.82m (89.6s)
+[912] goal=toilet     steps= 23 success=0.0 spl=0.00 dtg=5.91m (23.4s)
+[913] goal=plant      steps=100 success=0.0 spl=0.00 dtg=4.17m (95.8s)
+[914] goal=tv_monitor steps= 18 success=0.0 spl=0.00 dtg=12.97m (16.8s)
+[915] goal=chair      steps= 98 success=1.0 spl=0.30 dtg=0.05m (90.6s)
+[916] goal=bed        steps=100 success=0.0 spl=0.00 dtg=2.28m (92.0s)
+[917] goal=tv_monitor steps=  9 success=0.0 spl=0.00 dtg=14.12m (9.3s)
+[918] goal=plant      steps=100 success=0.0 spl=0.00 dtg=6.79m (92.5s)
+[919] goal=bed        steps= 38 success=0.0 spl=0.00 dtg=4.79m (34.5s)
+[920] goal=chair      steps= 23 success=0.0 spl=0.00 dtg=9.37m (23.1s)
+[921] goal=plant      steps=100 success=0.0 spl=0.00 dtg=5.90m (93.9s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[922] goal=plant      steps=100 success=0.0 spl=0.00 dtg=4.57m (84.1s)
+[923] goal=plant      steps= 68 success=0.0 spl=0.00 dtg=2.55m (60.7s)
+[924] goal=plant      steps= 93 success=0.0 spl=0.00 dtg=1.51m (85.5s)
+[925] goal=plant      steps=  8 success=0.0 spl=0.00 dtg=2.16m (7.7s)
+[926] goal=plant      steps= 12 success=0.0 spl=0.00 dtg=2.05m (11.4s)
+[927] goal=plant      steps=100 success=0.0 spl=0.00 dtg=0.92m (94.2s)
+[928] goal=plant      steps=100 success=0.0 spl=0.00 dtg=1.02m (86.4s)
+[929] goal=chair      steps= 29 success=0.0 spl=0.00 dtg=1.49m (25.5s)
+[930] goal=chair      steps=  3 success=0.0 spl=0.00 dtg=3.66m (3.3s)
+[931] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=4.00m (4.1s)
+[932] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=3.21m (4.0s)
+[933] goal=chair      steps= 26 success=1.0 spl=0.30 dtg=0.42m (23.4s)
+[934] goal=chair      steps= 41 success=0.0 spl=0.00 dtg=5.09m (37.8s)
+[935] goal=chair      steps= 32 success=0.0 spl=0.00 dtg=3.14m (29.4s)
+[936] goal=sofa       steps= 48 success=0.0 spl=0.00 dtg=12.52m (43.4s)
+[937] goal=sofa       steps=100 success=0.0 spl=0.00 dtg=6.80m (93.8s)
+[938] goal=sofa       steps=  5 success=0.0 spl=0.00 dtg=10.02m (4.5s)
+[939] goal=sofa       steps= 30 success=0.0 spl=0.00 dtg=6.97m (26.2s)
+[940] goal=sofa       steps=  9 success=0.0 spl=0.00 dtg=4.21m (7.8s)
+[941] goal=sofa       steps= 19 success=0.0 spl=0.00 dtg=15.79m (18.3s)
+[942] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=5.27m (1.0s)
+[943] goal=tv_monitor steps=  5 success=0.0 spl=0.00 dtg=12.08m (5.0s)
+[944] goal=tv_monitor steps= 15 success=0.0 spl=0.00 dtg=4.83m (14.5s)
+[945] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=9.20m (90.1s)
+[946] goal=tv_monitor steps=  1 success=0.0 spl=0.00 dtg=4.46m (0.9s)
+[947] goal=tv_monitor steps=100 success=0.0 spl=0.00 dtg=2.35m (95.4s)
+[948] goal=tv_monitor steps=  1 success=0.0 spl=0.00 dtg=3.72m (0.9s)
+[949] goal=tv_monitor steps=  7 success=0.0 spl=0.00 dtg=9.14m (6.6s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[950] goal=plant      steps= 96 success=0.0 spl=0.00 dtg=1.69m (90.1s)
+[951] goal=toilet     steps= 11 success=1.0 spl=1.00 dtg=0.17m (10.2s)
+[952] goal=bed        steps= 41 success=0.0 spl=0.00 dtg=3.69m (37.8s)
+[953] goal=tv_monitor steps= 10 success=0.0 spl=0.00 dtg=1.32m (8.4s)
+[954] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=9.54m (2.5s)
+[955] goal=bed        steps= 11 success=0.0 spl=0.00 dtg=5.35m (9.8s)
+[956] goal=tv_monitor steps=  6 success=0.0 spl=0.00 dtg=3.87m (5.1s)
+[957] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=9.93m (99.4s)
+[958] goal=chair      steps= 57 success=1.0 spl=0.55 dtg=0.21m (51.4s)
+[959] goal=tv_monitor steps=  8 success=0.0 spl=0.00 dtg=2.24m (7.6s)
+[960] goal=sofa       steps=  3 success=0.0 spl=0.00 dtg=6.98m (2.4s)
+[961] goal=plant      steps= 22 success=0.0 spl=0.00 dtg=6.92m (21.2s)
+[962] goal=chair      steps= 51 success=0.0 spl=0.00 dtg=6.92m (46.8s)
+[963] goal=chair      steps= 49 success=0.0 spl=0.00 dtg=1.92m (43.8s)
+[964] goal=bed        steps=  8 success=1.0 spl=1.00 dtg=0.85m (7.1s)
+[965] goal=sofa       steps= 21 success=0.0 spl=0.00 dtg=8.32m (19.7s)
+[966] goal=chair      steps= 44 success=0.0 spl=0.00 dtg=6.06m (41.1s)
+[967] goal=bed        steps=  1 success=0.0 spl=0.00 dtg=5.78m (1.1s)
+[968] goal=tv_monitor steps= 20 success=0.0 spl=0.00 dtg=2.03m (19.3s)
+[969] goal=sofa       steps=  4 success=0.0 spl=0.00 dtg=4.35m (3.7s)
+[970] goal=plant      steps=100 success=0.0 spl=0.00 dtg=3.67m (93.0s)
+[971] goal=sofa       steps=  4 success=0.0 spl=0.00 dtg=4.73m (3.4s)
+[972] goal=chair      steps= 12 success=0.0 spl=0.00 dtg=5.80m (11.1s)
+[973] goal=bed        steps= 39 success=0.0 spl=0.00 dtg=3.55m (34.6s)
+[974] goal=toilet     steps= 24 success=0.0 spl=0.00 dtg=5.28m (22.2s)
+[975] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=12.91m (98.7s)
+[976] goal=plant      steps=  9 success=0.0 spl=0.00 dtg=6.54m (8.2s)
+[977] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=12.59m (101.0s)
+PluginManager::Manager: duplicate static plugin StbImageImporter, ignoring
+PluginManager::Manager: duplicate static plugin GltfImporter, ignoring
+PluginManager::Manager: duplicate static plugin BasisImporter, ignoring
+PluginManager::Manager: duplicate static plugin AssimpImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnySceneImporter, ignoring
+PluginManager::Manager: duplicate static plugin AnyImageImporter, ignoring
+Renderer: NVIDIA GeForce RTX 5090/PCIe/SSE2 by NVIDIA Corporation
+OpenGL version: 4.6.0 NVIDIA 595.71.05
+Using optional features:
+    GL_ARB_vertex_array_object
+    GL_ARB_separate_shader_objects
+    GL_ARB_robustness
+    GL_ARB_texture_storage
+    GL_ARB_texture_view
+    GL_ARB_framebuffer_no_attachments
+    GL_ARB_invalidate_subdata
+    GL_ARB_texture_storage_multisample
+    GL_ARB_multi_bind
+    GL_ARB_direct_state_access
+    GL_ARB_get_texture_sub_image
+    GL_ARB_texture_filter_anisotropic
+    GL_KHR_debug
+    GL_KHR_parallel_shader_compile
+    GL_NV_depth_buffer_float
+Using driver workarounds:
+    no-forward-compatible-core-context
+    nv-egl-incorrect-gl11-function-pointers
+    no-layout-qualifiers-on-old-glsl
+    nv-zero-context-profile-mask
+    nv-implementation-color-read-format-dsa-broken
+    nv-cubemap-inconsistent-compressed-image-size
+    nv-cubemap-broken-full-compressed-image-query
+    nv-compressed-block-size-in-bits
+[978] goal=chair      steps=  1 success=0.0 spl=0.00 dtg=4.31m (0.8s)
+[979] goal=bed        steps= 22 success=0.0 spl=0.00 dtg=4.59m (18.8s)
+[980] goal=plant      steps=100 success=0.0 spl=0.00 dtg=5.79m (93.3s)
+[981] goal=bed        steps= 22 success=0.0 spl=0.00 dtg=3.78m (19.9s)
+[982] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=3.76m (1.2s)
+[983] goal=toilet     steps=100 success=0.0 spl=0.00 dtg=7.43m (95.8s)
+[984] goal=chair      steps=  3 success=0.0 spl=0.00 dtg=4.41m (3.5s)
+[985] goal=plant      steps=100 success=0.0 spl=0.00 dtg=7.95m (93.3s)
+[986] goal=sofa       steps=  1 success=0.0 spl=0.00 dtg=4.46m (0.7s)
+[987] goal=chair      steps=  3 success=0.0 spl=0.00 dtg=1.43m (3.0s)
+[988] goal=sofa       steps=  9 success=0.0 spl=0.00 dtg=3.35m (9.2s)
+[989] goal=tv_monitor steps= 25 success=0.0 spl=0.00 dtg=7.45m (23.2s)
+[990] goal=toilet     steps= 53 success=0.0 spl=0.00 dtg=6.96m (51.3s)
+[991] goal=sofa       steps= 14 success=0.0 spl=0.00 dtg=5.44m (12.9s)
+[992] goal=tv_monitor steps=  1 success=0.0 spl=0.00 dtg=7.68m (0.8s)
+[993] goal=bed        steps= 39 success=0.0 spl=0.00 dtg=4.98m (33.4s)
+[994] goal=chair      steps=  4 success=0.0 spl=0.00 dtg=5.58m (3.5s)
+[995] goal=tv_monitor steps=  1 success=0.0 spl=0.00 dtg=3.64m (0.9s)
+[996] goal=sofa       steps= 26 success=0.0 spl=0.00 dtg=3.26m (25.6s)
+[997] goal=plant      steps=100 success=0.0 spl=0.00 dtg=10.13m (90.9s)
+[998] goal=toilet     steps= 62 success=0.0 spl=0.00 dtg=10.28m (60.9s)
+[999] goal=tv_monitor steps= 41 success=0.0 spl=0.00 dtg=6.90m (40.3s)
+
+=== AGGREGATE ===
+{
+  "success": 0.05444444444444444,
+  "spl": 0.03514241097557465,
+  "soft_spl": 0.09513018667060405,
+  "distance_to_goal": 5.427260416108701,
+  "steps": 44.684444444444445,
+  "episodes": 900
+}

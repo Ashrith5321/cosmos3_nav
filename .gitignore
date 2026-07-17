@@ -1,0 +1,17 @@
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# training outputs
+dump/
+
+# eval artifacts too large for git (keep results jsonl/aggregates tracked)
+eval/habitat_1000_h16_out/videos/
+eval/habitat_full1000_out/videos/
+eval/habitat_first100_out/videos/
+eval/*.log
+
+# local checkouts / scratch
+cosmos/
+OpenFrontier/

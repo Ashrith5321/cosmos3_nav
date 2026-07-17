@@ -34,7 +34,6 @@ import longnav.utils.ovon.ovon_nav  # noqa: F401, E402
 DATASET_PATH = "data/datasets/objectnav/hm3d/v2/val/val.json.gz"
 SERVER = "http://127.0.0.1:8399"
 ACTION_IDS = {"stop": 0, "forward": 1, "left": 2, "right": 3}
-HISTORY_FRAMES = 3
 
 
 def build_config(scene):
@@ -76,7 +75,7 @@ def get_goal_name(env):
     return str(env.current_episode.object_category)
 
 
-def run_episode(env, index, max_steps, out_dir, done=frozenset()):
+def run_episode(env, index, max_steps, out_dir, done=frozenset(), history=3):
     obs = env.reset()
     episode = env.current_episode
     key = (Path(episode.scene_id).name.replace(".basis.glb", ""), str(episode.episode_id))
@@ -92,7 +91,7 @@ def run_episode(env, index, max_steps, out_dir, done=frozenset()):
     while steps < max_steps and not env.episode_over:
         resp = requests.post(f"{SERVER}/act", json={
             "goal": goal,
-            "images": frames[-HISTORY_FRAMES:],
+            "images": frames[-history:],
             "past_actions": past_actions,
         }, timeout=120)
         resp.raise_for_status()
@@ -149,6 +148,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--scene", default=None, help="Restrict to one scene (default: all val scenes)")
     p.add_argument("--max-steps", type=int, default=100)
+    p.add_argument("--history", type=int, default=3, help="Number of recent frames sent per step")
     p.add_argument("--limit", type=int, default=None, help="Cap episode count")
     p.add_argument("--skip-results", default=None,
                    help="results.jsonl of a previous run; matching episodes are skipped")
@@ -177,7 +177,7 @@ def main():
     records = []
     for i in range(n):
         try:
-            rec = run_episode(env, i, args.max_steps, out_dir, done=done)
+            rec = run_episode(env, i, args.max_steps, out_dir, done=done, history=args.history)
             if rec is not None:
                 records.append(rec)
         except requests.RequestException as e:

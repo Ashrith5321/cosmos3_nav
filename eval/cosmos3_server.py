@@ -22,7 +22,8 @@ from transformers import AutoModelForImageTextToText, AutoProcessor
 MODEL_ID = "/home/ashed/Documents/Cosmos3-Nano"
 PORT = 8399
 ACTIONS = ["stop", "forward", "left", "right"]
-FRAME_SIZE = (384, 288)  # keep visual tokens low for speed
+FRAME_SIZE = (int(os.environ.get("COSMOS3_FRAME_W", 384)),
+              int(os.environ.get("COSMOS3_FRAME_H", 288)))  # keep visual tokens low for speed
 
 PROMPT = (
     'You are a robot navigating an indoor home to find a: {goal}.\n'
