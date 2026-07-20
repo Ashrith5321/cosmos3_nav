@@ -11,6 +11,7 @@ import io
 import json
 import os
 import re
+import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
@@ -20,7 +21,9 @@ from PIL import Image
 from transformers import AutoModelForImageTextToText, AutoProcessor
 
 MODEL_ID = "/home/ashed/Documents/Cosmos3-Nano"
-PORT = 8399
+# Port: CLI arg wins (also gives each instance a distinct cmdline for the watchdog),
+# else COSMOS3_PORT env, else default. Device is chosen via CUDA_VISIBLE_DEVICES.
+PORT = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get("COSMOS3_PORT", 8399))
 ACTIONS = ["stop", "forward", "left", "right"]
 FRAME_SIZE = (int(os.environ.get("COSMOS3_FRAME_W", 384)),
               int(os.environ.get("COSMOS3_FRAME_H", 288)))  # keep visual tokens low for speed
@@ -44,6 +47,21 @@ MAP_SECTION = (
     "Frontier directions relative to you:\n{frontier_text}\n"
     "Use the map: avoid re-walking your blue path, and head toward frontiers "
     "likely to contain a {goal}."
+)
+
+# planning branch: Cosmos only SELECTS a frontier; an external planner drives to it.
+FRONTIER_PROMPT = (
+    'You are a robot exploring an indoor home to find a: {goal}.\n'
+    "You see your {n} most recent first-person views, oldest to newest (last = CURRENT view), "
+    "and as the FINAL image a top-down map: white = explored floor, black = walls, "
+    "gray = UNEXPLORED, blue = your path, green arrow = you, red regions labeled "
+    "A/B/C... = candidate frontiers (openings into unexplored space).\n"
+    "Frontier directions relative to you:\n{frontier_text}\n"
+    "Choose the SINGLE best frontier to move toward next to find the {goal}: prefer large, "
+    "promising openings and unexplored directions; avoid areas you already searched. "
+    "Choose STOP only if the {goal} is clearly visible and within ~1 meter.\n"
+    "Available choices: {labels}, or STOP.\n"
+    "Briefly reason in 1-2 sentences, then end with exactly: CHOICE: <one of {labels} or STOP>"
 )
 
 print(f"Loading {MODEL_ID} ...", flush=True)
@@ -84,6 +102,40 @@ def pick_action(goal, images, past_actions, map_image=None, frontier_text=""):
     return "forward", text  # unparsable: keep exploring
 
 
+def pick_frontier(goal, images, map_image, frontier_text, labels):
+    """Select which frontier to head toward (or STOP). Returns (choice, text)."""
+    frames = [Image.open(io.BytesIO(base64.b64decode(b))).convert("RGB").resize(FRAME_SIZE)
+              for b in images]
+    content = [{"type": "image", "image": f} for f in frames]
+    lbl = ", ".join(labels) if labels else "(none)"
+    prompt = FRONTIER_PROMPT.format(goal=goal, n=len(frames),
+                                    frontier_text=frontier_text or "(none detected yet)",
+                                    labels=lbl)
+    if map_image is not None:
+        m = Image.open(io.BytesIO(base64.b64decode(map_image))).convert("RGB")
+        m.thumbnail((384, 384))
+        content.append({"type": "image", "image": m})
+    content.append({"type": "text", "text": prompt})
+    inputs = processor.apply_chat_template(
+        [{"role": "user", "content": content}], tokenize=True,
+        add_generation_prompt=True, return_dict=True, return_tensors="pt").to(model.device)
+    with torch.inference_mode():
+        out = model.generate(**inputs, do_sample=False, max_new_tokens=80)
+    text = processor.tokenizer.decode(
+        out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True).strip()
+
+    valid = set(labels) | {"STOP"}
+    m = re.findall(r"CHOICE:\s*([A-Za-z]+)", text)
+    if m and m[-1].upper() in valid:
+        return m[-1].upper(), text
+    if re.search(r"\bstop\b", text, re.IGNORECASE):
+        return "STOP", text
+    for lb in labels:  # fallback: last label mentioned in the text
+        if re.search(rf"\b{lb}\b", text):
+            return lb, text
+    return (labels[0] if labels else "STOP"), text  # unparsable: default to first frontier
+
+
 class Handler(BaseHTTPRequestHandler):
     def log_message(self, *args):
         pass  # silence per-request access logs
@@ -104,11 +156,16 @@ class Handler(BaseHTTPRequestHandler):
             self._send(404, {"error": "not found"})
 
     def do_POST(self):
-        if self.path != "/act":
+        if self.path not in ("/act", "/select_frontier"):
             self._send(404, {"error": "not found"})
             return
         try:
             req = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
+            if self.path == "/select_frontier":
+                choice, text = pick_frontier(req["goal"], req["images"], req.get("map_image"),
+                                             req.get("frontier_text", ""), req.get("labels", []))
+                self._send(200, {"choice": choice, "text": text})
+                return
             action, text = pick_action(req["goal"], req["images"], req.get("past_actions", []),
                                        map_image=req.get("map_image"),
                                        frontier_text=req.get("frontier_text", ""))

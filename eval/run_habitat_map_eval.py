@@ -40,8 +40,8 @@ import longnav.utils.ovon.ovon_nav  # noqa: F401, E402
 from global_map import MultiFloorMap, pose_from_habitat_state  # noqa: E402
 
 DATASET_PATH = "data/datasets/objectnav/hm3d/v2/val/val.json.gz"
-SERVER = "http://127.0.0.1:8399"
-FRONTIERNET_URL = "http://localhost:12186/frontiernet"
+SERVER = os.environ.get("COSMOS3_SERVER", "http://127.0.0.1:8399")
+FRONTIERNET_URL = os.environ.get("FRONTIERNET_URL", "http://localhost:12186/frontiernet")
 ACTION_IDS = {"stop": 0, "forward": 1, "left": 2, "right": 3}
 DEPTH_MAX = 5.0
 FN_COLOR = (255, 0, 255)
@@ -64,7 +64,8 @@ def build_config(scene):
         agent.height = 0.88
         agent.radius = 0.18
         config.habitat.simulator.turn_angle = 30
-        config.habitat.simulator.habitat_sim_v0.gpu_device_id = 0
+        # Render GPU: default 1 (model server owns GPU 0); HABITAT_GPU overrides per worker.
+        config.habitat.simulator.habitat_sim_v0.gpu_device_id = int(os.environ.get("HABITAT_GPU", "1"))
         config.habitat.simulator.habitat_sim_v0.allow_sliding = True
         config.habitat.environment.max_episode_steps = 500
         config.habitat.environment.iterator_options.shuffle = False

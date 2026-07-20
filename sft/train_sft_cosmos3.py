@@ -201,10 +201,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-salloc --account=entr475s100y26_class \
-  --partition=spgpu \
-  --nodes=1 \
-  --gres=gpu:a40:3 \
-  --cpus-per-task=8 \
-  --mem=180G \
-  --time=4-00:00:00

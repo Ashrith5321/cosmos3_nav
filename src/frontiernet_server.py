@@ -27,7 +27,9 @@ from frontier.detector import FrontierDetector
 
 HFOV_DEG = 79.0
 W, H = 640, 480
-PORT = 12186
+import os  # noqa: E402
+# Port: CLI arg wins (distinct cmdline per instance), else FRONTIERNET_PORT env, else default.
+PORT = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get("FRONTIERNET_PORT", 12186))
 
 
 def intrinsics():

@@ -57,7 +57,7 @@ def build_config(scene):
         agent.radius = 0.18
 
         config.habitat.simulator.turn_angle = 30
-        config.habitat.simulator.habitat_sim_v0.gpu_device_id = 0
+        config.habitat.simulator.habitat_sim_v0.gpu_device_id = 1  # render on GPU 1; model server owns GPU 0
         config.habitat.simulator.habitat_sim_v0.allow_sliding = True
         config.habitat.environment.max_episode_steps = 500
         config.habitat.environment.iterator_options.shuffle = False

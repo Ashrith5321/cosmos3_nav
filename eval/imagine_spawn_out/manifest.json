@@ -1,0 +1,73 @@
+{
+  "scene": "6s7QHgap2fW",
+  "episode": "27",
+  "goal": "tv_monitor",
+  "frontiers": [
+    {
+      "label": "A",
+      "key": "6.75,-1.50",
+      "port": 8402,
+      "size": 107,
+      "centroid_world": [
+        7.068224299065424,
+        -1.5990654205607484
+      ],
+      "keyframe": "kf_A.png"
+    },
+    {
+      "label": "B",
+      "key": "1.50,-3.00",
+      "port": 8403,
+      "size": 89,
+      "centroid_world": [
+        1.7719101123595493,
+        -2.68932584269663
+      ],
+      "keyframe": "kf_B.png"
+    },
+    {
+      "label": "C",
+      "key": "5.25,-3.00",
+      "port": 8402,
+      "size": 50,
+      "centroid_world": [
+        5.068000000000001,
+        -3.013
+      ],
+      "keyframe": "kf_C.png"
+    },
+    {
+      "label": "D",
+      "key": "5.25,-1.50",
+      "port": 8403,
+      "size": 27,
+      "centroid_world": [
+        5.4296296296296305,
+        -1.3888888888888886
+      ],
+      "keyframe": "kf_D.png"
+    },
+    {
+      "label": "E",
+      "key": "0.75,-2.25",
+      "port": 8402,
+      "size": 23,
+      "centroid_world": [
+        0.6565217391304344,
+        -2.2065217391304346
+      ],
+      "keyframe": "kf_E.png"
+    },
+    {
+      "label": "F",
+      "key": "6.00,-3.75",
+      "port": 8403,
+      "size": 21,
+      "centroid_world": [
+        5.726190476190476,
+        -3.39047619047619
+      ],
+      "keyframe": "kf_F.png"
+    }
+  ]
+}

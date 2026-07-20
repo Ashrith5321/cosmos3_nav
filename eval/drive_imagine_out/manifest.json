@@ -1,0 +1,97 @@
+{
+  "scene": "LT9Jq6dN3Ea",
+  "episode": "2",
+  "goal": "chair",
+  "steps": [
+    {
+      "step": 0,
+      "action_taken": "forward",
+      "imagine_port": 8402,
+      "key": "step_00"
+    },
+    {
+      "step": 1,
+      "action_taken": "forward",
+      "imagine_port": 8403,
+      "key": "step_01"
+    },
+    {
+      "step": 2,
+      "action_taken": "forward",
+      "imagine_port": 8402,
+      "key": "step_02"
+    },
+    {
+      "step": 3,
+      "action_taken": "forward",
+      "imagine_port": 8403,
+      "key": "step_03"
+    },
+    {
+      "step": 4,
+      "action_taken": "right",
+      "imagine_port": 8402,
+      "key": "step_04"
+    },
+    {
+      "step": 5,
+      "action_taken": "forward",
+      "imagine_port": 8403,
+      "key": "step_05"
+    },
+    {
+      "step": 6,
+      "action_taken": "left",
+      "imagine_port": 8402,
+      "key": "step_06"
+    },
+    {
+      "step": 7,
+      "action_taken": "forward",
+      "imagine_port": 8403,
+      "key": "step_07"
+    },
+    {
+      "step": 8,
+      "action_taken": "right",
+      "imagine_port": 8402,
+      "key": "step_08"
+    },
+    {
+      "step": 9,
+      "action_taken": "forward",
+      "imagine_port": 8403,
+      "key": "step_09"
+    },
+    {
+      "step": 10,
+      "action_taken": "right",
+      "imagine_port": 8402,
+      "key": "step_10"
+    },
+    {
+      "step": 11,
+      "action_taken": "forward",
+      "imagine_port": 8403,
+      "key": "step_11"
+    },
+    {
+      "step": 12,
+      "action_taken": "right",
+      "imagine_port": 8402,
+      "key": "step_12"
+    },
+    {
+      "step": 13,
+      "action_taken": "forward",
+      "imagine_port": 8403,
+      "key": "step_13"
+    },
+    {
+      "step": 14,
+      "action_taken": "forward",
+      "imagine_port": 8402,
+      "key": "step_14"
+    }
+  ]
+}

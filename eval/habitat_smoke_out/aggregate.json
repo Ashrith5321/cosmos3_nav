@@ -1,8 +1,8 @@
 {
-  "success": 0.10714285714285714,
-  "spl": 0.06780017149333036,
-  "soft_spl": 0.10912098105012379,
-  "distance_to_goal": 6.035339047866208,
-  "steps": 40.07142857142857,
-  "episodes": 28
+  "success": 0.0,
+  "spl": 0.0,
+  "soft_spl": 0.0,
+  "distance_to_goal": 5.806212902069092,
+  "steps": 6.0,
+  "episodes": 1
 }

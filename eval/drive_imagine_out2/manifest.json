@@ -1,0 +1,97 @@
+{
+  "scene": "DYehNKdT76V",
+  "episode": "1",
+  "goal": "chair",
+  "steps": [
+    {
+      "step": 0,
+      "action_taken": "forward",
+      "imagine_port": 8402,
+      "key": "DYehNKdT76V_1_step_00"
+    },
+    {
+      "step": 1,
+      "action_taken": "forward",
+      "imagine_port": 8403,
+      "key": "DYehNKdT76V_1_step_01"
+    },
+    {
+      "step": 2,
+      "action_taken": "left",
+      "imagine_port": 8402,
+      "key": "DYehNKdT76V_1_step_02"
+    },
+    {
+      "step": 3,
+      "action_taken": "forward",
+      "imagine_port": 8403,
+      "key": "DYehNKdT76V_1_step_03"
+    },
+    {
+      "step": 4,
+      "action_taken": "right",
+      "imagine_port": 8402,
+      "key": "DYehNKdT76V_1_step_04"
+    },
+    {
+      "step": 5,
+      "action_taken": "forward",
+      "imagine_port": 8403,
+      "key": "DYehNKdT76V_1_step_05"
+    },
+    {
+      "step": 6,
+      "action_taken": "forward",
+      "imagine_port": 8402,
+      "key": "DYehNKdT76V_1_step_06"
+    },
+    {
+      "step": 7,
+      "action_taken": "left",
+      "imagine_port": 8403,
+      "key": "DYehNKdT76V_1_step_07"
+    },
+    {
+      "step": 8,
+      "action_taken": "forward",
+      "imagine_port": 8402,
+      "key": "DYehNKdT76V_1_step_08"
+    },
+    {
+      "step": 9,
+      "action_taken": "forward",
+      "imagine_port": 8403,
+      "key": "DYehNKdT76V_1_step_09"
+    },
+    {
+      "step": 10,
+      "action_taken": "forward",
+      "imagine_port": 8402,
+      "key": "DYehNKdT76V_1_step_10"
+    },
+    {
+      "step": 11,
+      "action_taken": "forward",
+      "imagine_port": 8403,
+      "key": "DYehNKdT76V_1_step_11"
+    },
+    {
+      "step": 12,
+      "action_taken": "right",
+      "imagine_port": 8402,
+      "key": "DYehNKdT76V_1_step_12"
+    },
+    {
+      "step": 13,
+      "action_taken": "forward",
+      "imagine_port": 8403,
+      "key": "DYehNKdT76V_1_step_13"
+    },
+    {
+      "step": 14,
+      "action_taken": "forward",
+      "imagine_port": 8402,
+      "key": "DYehNKdT76V_1_step_14"
+    }
+  ]
+}
