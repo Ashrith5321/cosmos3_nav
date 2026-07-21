@@ -1,46 +1,0 @@
-Loading /home/ashed/Documents/Cosmos3-Nano ...
-Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:  39%|███▉      | 292/750 [00:00<00:00, 2903.54it/s]Loading weights:  78%|███████▊  | 583/750 [00:01<00:00, 357.78it/s] Loading weights:  95%|█████████▌| 716/750 [00:02<00:00, 305.75it/s]Loading weights: 100%|██████████| 750/750 [00:02<00:00, 331.88it/s]
-Model ready.
-Serving on 127.0.0.1:8399
-----------------------------------------
-Exception occurred during processing of request from ('127.0.0.1', 55486)
-Traceback (most recent call last):
-  File "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_server.py", line 115, in do_POST
-    action, text = pick_action(req["goal"], req["images"], req.get("past_actions", []),
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_server.py", line 97, in _send
-    self.send_header("Content-Type", "application/json")
-    ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ashed/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/socketserver.py", line 845, in write
-    self._sock.sendall(b)
-BrokenPipeError: [Errno 32] Broken pipe
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/ashed/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/socketserver.py", line 318, in _handle_request_noblock
-    self.process_request(request, client_address)
-  File "/home/ashed/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/socketserver.py", line 349, in process_request
-    self.finish_request(request, client_address)
-  File "/home/ashed/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/socketserver.py", line 362, in finish_request
-    self.RequestHandlerClass(request, client_address, self)
-  File "/home/ashed/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/socketserver.py", line 766, in __init__
-    self.handle()
-  File "/home/ashed/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/http/server.py", line 440, in handle
-    self.handle_one_request()
-  File "/home/ashed/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/http/server.py", line 428, in handle_one_request
-    method()
-  File "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_server.py", line 117, in do_POST
-    frontier_text=req.get("frontier_text", ""))
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_server.py", line 96, in _send
-    self.send_response(code)
-    ^^^^^^^^^^^^^^^^^^
-  File "/home/ashed/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/http/server.py", line 542, in end_headers
-    self.flush_headers()
-  File "/home/ashed/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/http/server.py", line 546, in flush_headers
-    self.wfile.write(b"".join(self._headers_buffer))
-  File "/home/ashed/.local/share/uv/python/cpython-3.12.13-linux-x86_64-gnu/lib/python3.12/socketserver.py", line 845, in write
-    self._sock.sendall(b)
-BrokenPipeError: [Errno 32] Broken pipe
-----------------------------------------

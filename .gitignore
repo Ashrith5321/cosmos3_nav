@@ -3,15 +3,39 @@ __pycache__/
 *.pyc
 .venv/
 
+# venvs created for OpenFrontier / SAM3 / depth models
+sam3-venv/
+*-venv/
+openfrontier-venv/
+
 # training outputs
 dump/
 
-# eval artifacts too large for git (keep results jsonl/aggregates tracked)
-eval/habitat_1000_h16_out/videos/
-eval/habitat_full1000_out/videos/
-eval/habitat_first100_out/videos/
+# ---- eval outputs & big data (keep eval/*.py scripts + small *.jsonl/*.csv results tracked) ----
+eval/planning_runs/
+eval/runs/
+eval/*_out/
+eval/*_gpu*/
+eval/drive_imagine_out/
+eval/imagine_spawn_out/
+eval/teleop_session*/
+eval/smoke_videos/
+eval/**/videos/
 eval/*.log
 
-# local checkouts / scratch
-# cosmos/
-# OpenFrontier/
+# large binaries anywhere (videos, images, arrays, checkpoints)
+*.mp4
+*.avi
+*.mkv
+*.png
+*.jpg
+*.jpeg
+*.npy
+*.pth
+*.pt
+*.ckpt
+
+# ---- embedded repos: intentionally NOT ignored (tracked separately / as gitlinks) ----
+#   OpenFrontier/
+#   cosmos/
+#   FrontierNet/

@@ -1,36 +1,0 @@
-Loading /home/ashed/Documents/Cosmos3-Nano ...
-Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:  12%|█▏        | 90/750 [00:00<00:00, 878.97it/s]Loading weights:  24%|██▎       | 178/750 [00:00<00:00, 838.76it/s]Loading weights:  35%|███▍      | 262/750 [00:00<00:00, 830.76it/s]Loading weights:  46%|████▌     | 346/750 [00:01<00:01, 228.91it/s]Loading weights:  53%|█████▎    | 401/750 [00:01<00:02, 144.74it/s]Loading weights:  59%|█████▊    | 439/750 [00:02<00:02, 112.77it/s]Loading weights:  62%|██████▏   | 466/750 [00:02<00:02, 95.36it/s] Loading weights:  65%|██████▍   | 486/750 [00:03<00:03, 86.89it/s]Loading weights:  67%|██████▋   | 502/750 [00:03<00:03, 78.21it/s]Loading weights:  69%|██████▊   | 515/750 [00:03<00:03, 76.43it/s]Loading weights:  70%|███████   | 526/750 [00:03<00:02, 74.95it/s]Loading weights:  71%|███████▏  | 536/750 [00:04<00:02, 72.18it/s]Loading weights:  73%|███████▎  | 545/750 [00:04<00:03, 65.27it/s]Loading weights:  74%|███████▍  | 555/750 [00:04<00:02, 66.38it/s]Loading weights:  75%|███████▌  | 563/750 [00:04<00:02, 68.06it/s]Loading weights:  76%|███████▌  | 571/750 [00:04<00:02, 63.34it/s]Loading weights:  77%|███████▋  | 578/750 [00:04<00:03, 57.19it/s]Loading weights:  78%|███████▊  | 588/750 [00:05<00:02, 62.93it/s]Loading weights:  80%|███████▉  | 598/750 [00:05<00:02, 67.10it/s]Loading weights:  81%|████████  | 605/750 [00:05<00:02, 66.08it/s]Loading weights:  82%|████████▏ | 612/750 [00:05<00:02, 58.72it/s]Loading weights:  83%|████████▎ | 621/750 [00:05<00:02, 61.10it/s]Loading weights:  84%|████████▍ | 631/750 [00:05<00:01, 63.16it/s]Loading weights:  87%|████████▋ | 653/750 [00:05<00:00, 98.53it/s]Loading weights:  89%|████████▉ | 671/750 [00:05<00:00, 116.23it/s]Loading weights:  91%|█████████ | 684/750 [00:06<00:00, 106.00it/s]Loading weights:  93%|█████████▎| 696/750 [00:06<00:00, 93.28it/s] Loading weights:  94%|█████████▍| 707/750 [00:06<00:00, 94.16it/s]Loading weights:  97%|█████████▋| 731/750 [00:06<00:00, 129.21it/s]Loading weights:  99%|█████████▉| 746/750 [00:06<00:00, 124.83it/s]Loading weights: 100%|██████████| 750/750 [00:06<00:00, 113.54it/s]
-
-=== episode goal=bed | 38 frames, evaluating steps [0, 6, 12, 18, 24, 30, 36, 37] ===
-[bed step  0] action=MOVE_FORWARD | vram=16.4GB
-  The room contains a recliner, a window, and a wall outlet, but no bed is visible in this view. I will continue searching the rest of the space. ACTION: MOVE_FORWARD
-[bed step  6] action=MOVE_FORWARD | vram=16.4GB
-  I see a wooden chair and part of a tiled floor, but no bed is visible in this area. I need to continue searching other parts of the room. ACTION: MOVE_FORWARD
-[bed step 12] action=MOVE_FORWARD | vram=16.4GB
-  The hallway leads to a bedroom with a bed visible in the distance. I can see the bed partially obscured by a wooden door frame and a wall clock. I will continue moving forward to get a clearer view of the bed. ACTION: MOVE_FORWARD
-[bed step 18] action=MOVE_FORWARD | vram=16.4GB
-  The hallway leads to a room with a wooden door, but no bed is visible in the current view. I will continue moving forward to explore further. ACTION: MOVE_FORWARD
-[bed step 24] action=MOVE_FORWARD | vram=16.4GB
-  I see a hallway with wooden doors and a carpeted floor, leading to another room where a bed is visible in the distance. The bed is partially obscured by the door frame but its presence is clear. I will move forward to get a better view and confirm the bed's location. ACTION: MOVE_FORWARD
-[bed step 30] action=MOVE_FORWARD | vram=16.4GB
-  I see a hallway leading to a bedroom with wooden flooring and a ceiling fan. The bedroom contains a desk, chair, and lamp, but the bed is not visible from this vantage point. I need to move forward to get a better view of the room and locate the bed. ACTION: MOVE_FORWARD
-[bed step 36] action=STOP | vram=16.4GB
-  The bed is visible in the room, positioned against the wall with a wooden frame and covered with a patterned blanket. It is located near the window with curtains and a nightstand beside it. ACTION: STOP
-[bed step 37 FINAL] action=STOP | vram=16.4GB
-  The bed is visible in the center of the room, covered with a patterned comforter and positioned against the wall. It is clearly identifiable by its wooden frame and the arrangement of bedding. ACTION: STOP
-
-=== episode goal=toilet | 18 frames, evaluating steps [0, 6, 12, 17] ===
-[toilet step  0] action=MOVE_FORWARD | vram=16.4GB
-  The image shows a room with a wooden cabinet, framed pictures on the wall, and a window with blinds. There is no toilet visible in this view. I will need to explore further to locate the toilet. ACTION: MOVE_FORWARD
-[toilet step  6] action=MOVE_FORWARD | vram=16.4GB
-  The hallway extends forward with a carpeted floor and wooden doors on both sides, but no toilet is visible in this view. I will continue moving forward to explore further. ACTION: MOVE_FORWARD
-[toilet step 12] action=MOVE_FORWARD | vram=16.4GB
-  The hallway leads to a bathroom with a visible sink and mirror, but the toilet is not in view. I need to continue exploring the space to locate it. ACTION: MOVE_FORWARD
-[toilet step 17 FINAL] action=MOVE_FORWARD | vram=16.4GB
-  The toilet is visible in the bathroom on the right side of the hallway, near the sink and mirror. I can see its white ceramic structure and part of the tank. ACTION: MOVE_FORWARD
-
-========================================
-early frames: 10 | false STOPs: 1
-final frames: 2 | STOP chosen: 1/2
-peak VRAM (torch): 16.48 GB
-saved: /home/ashed/Documents/cosmos3_nav/eval/smoke_results_cosmos3.json

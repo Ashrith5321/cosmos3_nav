@@ -47,6 +47,16 @@ from map_planner import plan_action  # noqa: E402
 DATASET_PATH = "data/datasets/objectnav/hm3d/v2/val/val.json.gz"
 SERVER = os.environ.get("COSMOS3_SERVER", "http://127.0.0.1:8399")
 FRONTIERNET_URL = os.environ.get("FRONTIERNET_URL", "http://localhost:12186/frontiernet")
+DETECTOR_URL = os.environ.get("DETECTOR_URL")            # if set: real-detector goal approach + stop
+DET_EVERY = 2            # run the detector every N exploration steps (every step while approaching)
+DET_MIN_SCORE = 0.40     # min Grounding-DINO score to trust a goal detection (approach)
+DET_CONFIRM = 3          # detections needed before committing to approach (temporal belief)
+DET_LOST = 8             # drop approach after this many consecutive misses
+APPROACH_CAP = 80        # abandon an approach after this many steps (phantom guard)
+STOP_DIST_M = 1.0        # verified STOP when the detected goal is this close
+STOP_SCORE = 0.45        # stricter score required to actually STOP
+STOP_BOX_FRAC = 0.08     # detected box must fill >= this fraction of the view to STOP
+                          # (a goal within 1 m is prominent; filters far false positives)
 ACTION_IDS = {"stop": 0, "forward": 1, "left": 2, "right": 3}
 DEPTH_MAX = 5.0
 FN_COLOR = (255, 0, 255)
@@ -54,6 +64,19 @@ FN_EVERY = 3
 MIN_FRONTIER_CELLS = 25
 REACH_M = 0.6              # frontier considered reached within this distance
 MAX_SUBGOAL_STEPS = 60     # give up on a frontier after this many steps, re-pick
+STOP_GATE = os.environ.get("STOP_GATE", "1") == "1"   # gate STOP behind depth + verify
+STOP_DEPTH_M = 1.5         # central-view depth must be under this to allow STOP
+STOP_COOLDOWN = 4          # suppress STOP for N steps after a rejected stop
+
+
+def central_depth(depth_m, frac=0.25):
+    """Median valid depth in the central patch of the view (meters)."""
+    H, W = depth_m.shape
+    r0, r1 = int(H * (0.5 - frac / 2)), int(H * (0.5 + frac / 2))
+    c0, c1 = int(W * (0.5 - frac / 2)), int(W * (0.5 + frac / 2))
+    patch = depth_m[r0:r1, c0:c1]
+    valid = patch[(patch > 0.1) & (patch < DEPTH_MAX - 1e-3)]
+    return float(np.median(valid)) if valid.size else DEPTH_MAX
 
 
 def build_config(scene):
@@ -111,6 +134,47 @@ class FrontierNetClient:
             return None
 
 
+class DetectorClient:
+    def __init__(self, url):
+        self.url = url
+        self.available = url is not None    # stays True; a transient miss just returns None
+        self.fails = 0
+
+    def detect(self, rgb, goal):
+        if self.url is None:
+            return None
+        payload = {"goal": goal, "rgb_jpg": b64_jpeg_arr(rgb)}
+        for attempt in range(3):            # resilient to connection storms; never permanently disable
+            try:
+                r = requests.post(f"{self.url}/detect", json=payload, timeout=60)
+                r.raise_for_status()
+                self.fails = 0
+                return r.json()
+            except Exception as e:
+                self.fails += 1
+                if self.fails in (1, 50):
+                    print(f"Detector transient error ({e}); retrying", flush=True)
+                time.sleep(0.5 * (attempt + 1))
+        return None                         # this step falls back, but we keep trying next step
+
+
+def object_world_xz(box, depth_m, rays, pose):
+    """Lift a detection box to a world (x,z) position + distance via depth+pose."""
+    H, W = depth_m.shape
+    x0, y0, x1, y1 = box
+    cx = int(np.clip((x0 + x1) / 2, 0, W - 1))
+    cy = int(np.clip((y0 + y1) / 2, 0, H - 1))
+    bx0, bx1 = int(np.clip(x0, 0, W - 1)), int(np.clip(x1, 0, W - 1))
+    by0, by1 = int(np.clip(y0, 0, H - 1)), int(np.clip(y1, 0, H - 1))
+    patch = depth_m[by0:by1 + 1, bx0:bx1 + 1]
+    valid = patch[(patch > 0.1) & (patch < DEPTH_MAX - 1e-3)]
+    d = float(np.median(valid)) if valid.size else float(depth_m[cy, cx])
+    if not (0.1 < d < DEPTH_MAX - 1e-3):
+        return None, None
+    world = rays[cy, cx] * d @ pose[:3, :3].T + pose[:3, 3]
+    return (float(world[0]), float(world[2])), d
+
+
 def project_learned(out, depth_m, pose, gm, fn_points):
     mask = np.array(out["ft_region"], np.uint8)
     gain = np.array(out["info_gain"], np.float32)
@@ -136,7 +200,8 @@ def project_learned(out, depth_m, pose, gm, fn_points):
     lst.extend((float(p[0]), float(p[2]), FN_COLOR) for p in pts)
 
 
-def run_episode(env, index, max_steps, out_dir, fn_client, history=16, done=frozenset()):
+def run_episode(env, index, max_steps, out_dir, fn_client, det_client=None,
+                history=16, done=frozenset()):
     obs = env.reset()
     episode = env.current_episode
     key = (Path(episode.scene_id).name.replace(".basis.glb", ""), str(episode.episode_id))
@@ -151,9 +216,15 @@ def run_episode(env, index, max_steps, out_dir, fn_client, history=16, done=froz
     steps, stopped = 0, False
     n_select = 0                     # how many times Cosmos was queried
     n_greedy = 0                     # steps driven by greedy fallback (no A* path yet)
+    n_stop_rejected = 0              # STOPs blocked by the stop-gate
     subgoal = None                   # (label, (cx, cz))
     subgoal_steps = 0
     no_front_turns = 0
+    stop_cooldown = 0
+    # detector-driven goal approach + verified stop
+    in_approach, obj_xz, obj_depth = False, None, None
+    det_hits, det_lost, approach_dur, approach_cd, close_hits = 0, 0, 0, 0, 0
+    n_detect_stops, n_approach_steps = 0, 0
     started = time.time()
 
     while steps < max_steps and not env.episode_over:
@@ -164,6 +235,60 @@ def run_episode(env, index, max_steps, out_dir, fn_client, history=16, done=froz
             out = fn_client.query(obs["rgb"], depth_m)
             if out is not None:
                 project_learned(out, depth_m, pose, gm, fn_points)
+
+        # ---- real-detector perception: goal approach + verified STOP ----
+        approach_cd = max(0, approach_cd - 1)
+        if (det_client is not None and det_client.available and approach_cd == 0
+                and (in_approach or steps % DET_EVERY == 0)):
+            det = det_client.detect(obs["rgb"], goal)
+            score = det.get("score", 0.0) if det else 0.0
+            seen = bool(det and det.get("found") and score >= DET_MIN_SCORE)
+            box_frac = 0.0
+            if seen:
+                x0, y0, x1, y1 = det["box"]
+                H, W = depth_m.shape
+                box_frac = max(0.0, (x1 - x0) * (y1 - y0)) / float(H * W)
+                oxz, od = object_world_xz(det["box"], depth_m, gm.active._rays, pose)
+                if oxz is not None:
+                    det_hits += 1; det_lost = 0; obj_xz, obj_depth = oxz, od
+                    if det_hits >= DET_CONFIRM:
+                        if not in_approach:
+                            in_approach, approach_dur = True, 0
+                else:
+                    seen = False
+            if not seen:
+                det_hits = 0
+                if in_approach:
+                    det_lost += 1
+                    if det_lost > DET_LOST:
+                        in_approach, obj_xz = False, None
+            # VERIFIED STOP: require several CONSECUTIVE strong close detections
+            # (close + prominent box + high confidence) so a flickering false
+            # positive can't trigger a stop.
+            strong = (in_approach and seen and obj_depth is not None
+                      and obj_depth <= STOP_DIST_M and box_frac >= STOP_BOX_FRAC
+                      and score >= STOP_SCORE)
+            close_hits = close_hits + 1 if strong else 0
+            if close_hits >= 3:
+                obs = env.step(ACTION_IDS["stop"]); steps += 1
+                frames.append(b64_jpeg_arr(obs["rgb"]))
+                stopped = True; n_detect_stops += 1
+                break
+
+        # committed to a detected goal -> drive straight to it, skip exploration
+        if in_approach and obj_xz is not None:
+            approach_dur += 1
+            if approach_dur > APPROACH_CAP:          # phantom / unreachable -> give up, resume search
+                in_approach, obj_xz, approach_cd = False, None, 20
+        if in_approach and obj_xz is not None:
+            plan = plan_action(gm, pose, obj_xz)
+            if not plan["planned"]:
+                n_greedy += 1
+            obs = env.step(ACTION_IDS[plan["action"]]); steps += 1
+            n_approach_steps += 1
+            stop_cooldown = max(0, stop_cooldown - 1)
+            frames.append(b64_jpeg_arr(obs["rgb"]))
+            continue
 
         fronts = gm.frontiers(min_cluster_cells=MIN_FRONTIER_CELLS)
 
@@ -193,21 +318,49 @@ def run_episode(env, index, max_steps, out_dir, fn_client, history=16, done=froz
             map_bgr = gm.render(fronts, agent_pose=pose,
                                 extra_points=fn_points.get(gm.floor_index))
             ftext = gm.frontier_text(pose, fronts)
-            resp = requests.post(f"{SERVER}/select_frontier", json={
+            payload = {
                 "goal": goal,
                 "images": frames[-history:],
                 "map_image": b64_jpeg_arr(cv2.cvtColor(map_bgr, cv2.COLOR_BGR2RGB)),
                 "frontier_text": ftext,
                 "labels": labels,
-            }, timeout=180)
-            resp.raise_for_status()
-            choice = resp.json()["choice"]
+            }
+            choice = None
+            for attempt in range(4):     # resilient to connection storms across 12 workers
+                try:
+                    resp = requests.post(f"{SERVER}/select_frontier", json=payload, timeout=180)
+                    resp.raise_for_status()
+                    choice = resp.json()["choice"]
+                    break
+                except requests.RequestException:
+                    time.sleep(1.0 * (attempt + 1))
+            if choice is None:           # persistent failure -> keep exploring, don't abort
+                choice = labels[0]
             n_select += 1
+            if choice == "STOP" and det_client is not None:
+                # detector owns stopping; ignore Cosmos STOP and keep exploring
+                choice = labels[0]
             if choice == "STOP":
-                obs = env.step(ACTION_IDS["stop"]); steps += 1
-                frames.append(b64_jpeg_arr(obs["rgb"]))
-                stopped = True
-                break
+                # STOP GATE: only stop if (a) something is actually close in front
+                # (depth) and (b) Cosmos re-confirms the goal is visible & within reach.
+                allow = (not STOP_GATE) or (stop_cooldown == 0)
+                if allow and STOP_GATE:
+                    near = central_depth(depth_m) < STOP_DEPTH_M
+                    verified = False
+                    if near:
+                        vr = requests.post(f"{SERVER}/verify_goal",
+                                           json={"goal": goal, "image": frames[-1]}, timeout=60)
+                        verified = bool(vr.json().get("verified", False))
+                    allow = near and verified
+                if allow:
+                    obs = env.step(ACTION_IDS["stop"]); steps += 1
+                    frames.append(b64_jpeg_arr(obs["rgb"]))
+                    stopped = True
+                    break
+                # rejected (or cooling down): keep exploring instead of stopping
+                n_stop_rejected += 1
+                stop_cooldown = STOP_COOLDOWN
+                choice = labels[0]
             idx = ord(choice) - ord("A")
             if not (0 <= idx < len(fronts)):
                 idx = 0
@@ -225,6 +378,7 @@ def run_episode(env, index, max_steps, out_dir, fn_client, history=16, done=froz
         obs = env.step(ACTION_IDS[action])
         steps += 1
         subgoal_steps += 1
+        stop_cooldown = max(0, stop_cooldown - 1)
         frames.append(b64_jpeg_arr(obs["rgb"]))
 
     metrics = env.get_metrics()
@@ -257,6 +411,9 @@ def run_episode(env, index, max_steps, out_dir, fn_client, history=16, done=froz
         "floors_visited": len(gm.main_floors()),
         "n_frontier_selections": n_select,
         "n_greedy_steps": n_greedy,
+        "n_stop_rejected": n_stop_rejected,
+        "n_approach_steps": n_approach_steps,
+        "detector_stop": n_detect_stops > 0,
         "video": str(video_path),
     }
     with open(out_dir / "results.jsonl", "a") as f:
@@ -298,18 +455,23 @@ def main():
     requests.get(f"{SERVER}/health", timeout=10).raise_for_status()
     print("Cosmos3 server is up.", flush=True)
     fn_client = FrontierNetClient()
+    det_client = DetectorClient(DETECTOR_URL) if DETECTOR_URL else None
+    if det_client:
+        requests.get(f"{DETECTOR_URL}/health", timeout=10).raise_for_status()
+        print(f"Detector is up ({DETECTOR_URL}); STOP is detector-verified.", flush=True)
 
     env = habitat.Env(config=build_config(args.scene))
     n = len(env.episodes) if args.limit is None else min(args.limit, len(env.episodes))
     print(f"Scenes: {args.scene or 'all val'}: running first {n}/{len(env.episodes)} episodes, "
-          f"max_steps={args.max_steps}, history={args.history}, PLANNING=ON", flush=True)
+          f"max_steps={args.max_steps}, history={args.history}, "
+          f"PLANNING=ON detector={'ON' if det_client else 'OFF'}", flush=True)
 
     records = []
     try:
         for i in range(n):
             try:
                 rec = run_episode(env, i, args.max_steps, out_dir, fn_client,
-                                  history=args.history, done=done)
+                                  det_client=det_client, history=args.history, done=done)
                 if rec is not None:
                     records.append(rec)
             except requests.RequestException as e:

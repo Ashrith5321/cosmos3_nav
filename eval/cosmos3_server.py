@@ -12,7 +12,8 @@ import json
 import os
 import re
 import sys
-from http.server import BaseHTTPRequestHandler, HTTPServer
+import threading
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
@@ -64,6 +65,18 @@ FRONTIER_PROMPT = (
     "Briefly reason in 1-2 sentences, then end with exactly: CHOICE: <one of {labels} or STOP>"
 )
 
+# stop-gate verification: strict single-image yes/no that the goal is right here
+VERIFY_PROMPT = (
+    "Look carefully at this first-person camera image. Is a {goal} clearly and "
+    "unmistakably visible in the image AND very close to the camera (within about 1 "
+    "meter, close enough to reach out and touch)?\n"
+    "Only answer YES if you are confident a {goal} is right in front of you and nearby. "
+    "If it is far away, only partially visible, or you are unsure, answer NO.\n"
+    "Answer with exactly one word: YES or NO."
+)
+
+GPU_LOCK = threading.Lock()   # serialize GPU generate(); threads only queue on connections
+
 print(f"Loading {MODEL_ID} ...", flush=True)
 model = AutoModelForImageTextToText.from_pretrained(
     MODEL_ID, dtype=torch.bfloat16, attn_implementation="sdpa", device_map={"": 0})
@@ -88,7 +101,7 @@ def pick_action(goal, images, past_actions, map_image=None, frontier_text=""):
     inputs = processor.apply_chat_template(
         [{"role": "user", "content": content}], tokenize=True,
         add_generation_prompt=True, return_dict=True, return_tensors="pt").to(model.device)
-    with torch.inference_mode():
+    with GPU_LOCK, torch.inference_mode():
         out = model.generate(**inputs, do_sample=False, max_new_tokens=80)
     text = processor.tokenizer.decode(
         out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True).strip()
@@ -119,7 +132,7 @@ def pick_frontier(goal, images, map_image, frontier_text, labels):
     inputs = processor.apply_chat_template(
         [{"role": "user", "content": content}], tokenize=True,
         add_generation_prompt=True, return_dict=True, return_tensors="pt").to(model.device)
-    with torch.inference_mode():
+    with GPU_LOCK, torch.inference_mode():
         out = model.generate(**inputs, do_sample=False, max_new_tokens=80)
     text = processor.tokenizer.decode(
         out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True).strip()
@@ -134,6 +147,23 @@ def pick_frontier(goal, images, map_image, frontier_text, labels):
         if re.search(rf"\b{lb}\b", text):
             return lb, text
     return (labels[0] if labels else "STOP"), text  # unparsable: default to first frontier
+
+
+def verify_goal(goal, image):
+    """Stop-gate: strict single-image check that the goal is visible and within reach."""
+    img = Image.open(io.BytesIO(base64.b64decode(image))).convert("RGB").resize(FRAME_SIZE)
+    content = [{"type": "image", "image": img},
+               {"type": "text", "text": VERIFY_PROMPT.format(goal=goal)}]
+    inputs = processor.apply_chat_template(
+        [{"role": "user", "content": content}], tokenize=True,
+        add_generation_prompt=True, return_dict=True, return_tensors="pt").to(model.device)
+    with GPU_LOCK, torch.inference_mode():
+        out = model.generate(**inputs, do_sample=False, max_new_tokens=8)
+    text = processor.tokenizer.decode(
+        out[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True).strip()
+    verified = bool(re.search(r"\byes\b", text, re.IGNORECASE)) and \
+        not bool(re.search(r"\bno\b", text, re.IGNORECASE))
+    return verified, text
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -156,7 +186,7 @@ class Handler(BaseHTTPRequestHandler):
             self._send(404, {"error": "not found"})
 
     def do_POST(self):
-        if self.path not in ("/act", "/select_frontier"):
+        if self.path not in ("/act", "/select_frontier", "/verify_goal"):
             self._send(404, {"error": "not found"})
             return
         try:
@@ -165,6 +195,10 @@ class Handler(BaseHTTPRequestHandler):
                 choice, text = pick_frontier(req["goal"], req["images"], req.get("map_image"),
                                              req.get("frontier_text", ""), req.get("labels", []))
                 self._send(200, {"choice": choice, "text": text})
+                return
+            if self.path == "/verify_goal":
+                verified, text = verify_goal(req["goal"], req["image"])
+                self._send(200, {"verified": verified, "text": text})
                 return
             action, text = pick_action(req["goal"], req["images"], req.get("past_actions", []),
                                        map_image=req.get("map_image"),
@@ -176,4 +210,6 @@ class Handler(BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     print(f"Serving on 127.0.0.1:{PORT}", flush=True)
-    HTTPServer(("127.0.0.1", PORT), Handler).serve_forever()
+    srv = ThreadingHTTPServer(("127.0.0.1", PORT), Handler)
+    srv.request_queue_size = 128   # accept a burst of concurrent worker connections
+    srv.serve_forever()
