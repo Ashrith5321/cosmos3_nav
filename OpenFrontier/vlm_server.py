@@ -5,9 +5,9 @@ import numpy as np
 from PIL import Image
 
 from vlm.models import VLMModel
-from vlm.inference_llava import InferenceLlava
-from vlm.inference_gemma3 import InferenceGemma3
-from vlm.inference_internvl import InferenceInternVL
+# NB: backend modules are imported lazily inside VLMServer.__init__ so that
+# selecting one model (e.g. cosmos3-nano) does not require the others' heavy
+# deps (llava / internvl / gemma) to be installed.
 from utils.server_wrapper import ServerMixin, host_agent
 
 if __name__ == "__main__":
@@ -23,13 +23,20 @@ if __name__ == "__main__":
                 raise ValueError(f"Unsupported VLM model: {model}")
 
             if model.value.lower().startswith("gemma"):
+                from vlm.inference_gemma3 import InferenceGemma3
                 self.model = InferenceGemma3(model.value)
 
             elif model.value.lower().startswith("intern"):
+                from vlm.inference_internvl import InferenceInternVL
                 self.model = InferenceInternVL(model)
-                
+
             elif "llava" in model.value.lower():
+                from vlm.inference_llava import InferenceLlava
                 self.model = InferenceLlava(model.value)
+
+            elif "cosmos3" in model.value.lower():
+                from vlm.inference_cosmos3 import InferenceCosmos3
+                self.model = InferenceCosmos3(model.value)
             else:
                 raise ValueError(f"Unsupported local VLM model: {model.value}")
 
@@ -76,4 +83,5 @@ if __name__ == "__main__":
 
     server = VLMServer(model)
     print(f"{model} loaded!")
-    host_agent(server, name="vlm", port=12185)
+    import os
+    host_agent(server, name="vlm", port=int(os.environ.get("OF_VLM_PORT", "12185")))

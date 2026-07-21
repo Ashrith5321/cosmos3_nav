@@ -77,4 +77,6 @@ if __name__ == "__main__":
 
     server = Sam3Server()
     print("Sam3 loaded!")
-    host_agent(server, name="sam3", port=12184)
+    import os
+    _port = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get("SAM3_PORT", "12184"))
+    host_agent(server, name="sam3", port=_port)

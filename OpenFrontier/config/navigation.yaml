@@ -61,6 +61,6 @@ prob_sharpness: 2.0                        # sharpness factor for probability sc
 
 # See vlm/models.py for options
 segmentation_source: sam3
-probabilities_source: gemini-2.5-flash
-detection_source: gemini-2.5-flash
+probabilities_source: cosmos3-nano
+detection_source: cosmos3-nano
 pointnav_weights_path: model_weights/pointnav_weights.pth

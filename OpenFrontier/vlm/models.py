@@ -25,6 +25,7 @@ class VLMModel(Enum):
     GEMMA_3_12B_API = "gemma-3-12b-it-api"
     GEMMA_3_27B_API = "gemma-3-27b-it-api"
     LLAVA_7B = "llava-v1.6-mistral-7b-hf"
+    COSMOS3_NANO = "cosmos3-nano"
 
 
 def is_google_api(model: VLMModel):

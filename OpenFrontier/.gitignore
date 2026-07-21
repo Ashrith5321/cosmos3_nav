@@ -64,3 +64,12 @@ ompl-1.7.0/*
 topdown*.png
 test.py
 navigation_output/*
+
+# ---- cosmos3-nano benchmark: generated outputs & linked datasets ----
+output/
+data/
+data_scenes/
+
+# heavy vendored embedded repos & weights — do NOT track in the parent repo
+third_party/
+model_weights/

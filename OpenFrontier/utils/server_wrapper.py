@@ -33,7 +33,7 @@ def host_agent(model: Any, name: str, port: int = 5000) -> None:
         result = model.process_payload(payload)
         return jsonify(result)
 
-    app.run(host="localhost", port=port)
+    app.run(host="localhost", port=port, threaded=True)
 
 
 def bool_arr_to_str(arr: np.ndarray) -> str:

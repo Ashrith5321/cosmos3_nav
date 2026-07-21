@@ -1,3 +1,4 @@
+import os
 import json
 import numpy as np
 from typing import Tuple
@@ -85,7 +86,7 @@ def detect_frontier_probabilities(
         response_text = response.text
     else:
         # Send to local VLM server
-        client = VLMClient("vlm", port=12185)
+        client = VLMClient("vlm", port=int(os.environ.get("OF_VLM_PORT","12185")))
         response = client.send_request(image=rgb_image, prompt=prompt)
         response_text = response.get("response", "")
 
@@ -165,7 +166,7 @@ def segment_target_object(
         )
 
     elif segmentation_model == SegmentationModel.SAM3:
-        client = VLMClient("sam3", port=12184)
+        client = VLMClient("sam3", port=int(os.environ.get("OF_SAM3_PORT","12184")))
         image_array = np.array(image)
         response = client.send_request(image=image_array, prompt=target_object)
         if response["result"] != "success":
@@ -265,7 +266,7 @@ def detect_target_object(
 
         response_text = response.text
     else:
-        client = VLMClient("vlm", port=12185)
+        client = VLMClient("vlm", port=int(os.environ.get("OF_VLM_PORT","12185")))
         response = client.send_request(image=rgb, prompt=prompt)
         response_text = response.get("response", "")
 
