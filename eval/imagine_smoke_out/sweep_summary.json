@@ -1,0 +1,38 @@
+[
+  {
+    "name": "s30_256",
+    "hxw": "256x320",
+    "frames": 17,
+    "steps": 30,
+    "seconds": 33.3,
+    "peak_vram_gb": 29.7,
+    "total_wall": 34.1
+  },
+  {
+    "name": "long_256",
+    "hxw": "256x320",
+    "frames": 33,
+    "steps": 20,
+    "seconds": 17.6,
+    "peak_vram_gb": 29.74,
+    "total_wall": 18.4
+  },
+  {
+    "name": "hires_384",
+    "hxw": "384x512",
+    "frames": 17,
+    "steps": 20,
+    "seconds": 18.4,
+    "peak_vram_gb": 29.77,
+    "total_wall": 19.3
+  },
+  {
+    "name": "native_480",
+    "hxw": "480x640",
+    "frames": 17,
+    "steps": 20,
+    "seconds": 20.9,
+    "peak_vram_gb": 29.84,
+    "total_wall": 21.9
+  }
+]
