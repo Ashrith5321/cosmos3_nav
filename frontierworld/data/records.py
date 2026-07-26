@@ -13,12 +13,15 @@ the index stays readable and loadable without pulling gigabytes into memory.
 
 from __future__ import annotations
 
+import hashlib
 import json
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any
 
 import numpy as np
+
+from frontierworld.data.manifests import SCHEMA_VERSION
 
 
 @dataclass
@@ -38,12 +41,42 @@ class RevelationExample:
     current_observation: dict = field(default_factory=dict)
     current_map: dict = field(default_factory=dict)
     observation_history: dict = field(default_factory=dict)
+    # Keys into the group's arrays.npz holding this branch's spatial targets.
+    # Boolean masks are bit-packed; unpack with unpack_mask().
+    target_arrays: dict = field(default_factory=dict)
 
     # Provenance for the privileged components used to produce the labels.
     privileged: dict = field(default_factory=dict)
 
+    # Which detector produced the candidate set. Frozen as "geometric" for the
+    # first dataset version; "frontiernet" and "union" are reserved so a later
+    # dataset can be told apart from this one without guessing.
+    detector_type: str = "geometric"
+
+    # Reproducibility. A record that cannot be traced to the code and config
+    # that made it is not usable evidence.
+    schema_version: str = SCHEMA_VERSION
+    git_commit: str | None = None
+    config_hash: str | None = None
+    collection_policy: str | None = None
+    rng_seed: int | None = None
+    # Hashes of the snapshot every branch in this group started from.
+    snapshot_hash: str | None = None
+    map_hash: str | None = None
+
     def to_dict(self) -> dict:
         return asdict(self)
+
+
+def array_hash(*arrays: np.ndarray) -> str:
+    """Stable hash of one or more arrays, for snapshot verification."""
+    digest = hashlib.sha256()
+    for array in arrays:
+        contiguous = np.ascontiguousarray(array)
+        digest.update(str(contiguous.dtype).encode())
+        digest.update(str(contiguous.shape).encode())
+        digest.update(contiguous.tobytes())
+    return digest.hexdigest()[:16]
 
 
 class RevelationWriter:
@@ -119,6 +152,13 @@ class RevelationWriter:
 
     def __exit__(self, *exc: Any) -> None:
         self.close()
+
+
+def unpack_mask(packed: np.ndarray, shape) -> np.ndarray:
+    """Undo np.packbits for a stored boolean mask."""
+    shape = tuple(int(v) for v in shape)
+    count = int(np.prod(shape))
+    return np.unpackbits(np.asarray(packed, dtype=np.uint8))[:count].reshape(shape).astype(bool)
 
 
 def load_group(group_dir: str | Path) -> dict:

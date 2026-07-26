@@ -1,0 +1,306 @@
+{
+  "name": "pilot_debug",
+  "schema_version": "frontierreveal-1",
+  "pilot": true,
+  "pilot_reason": "HM3D train scene meshes are not downloaded, so this partition is carved out of the HM3D val split. Usable for pipeline development only; NOT for final training or reported evaluation.",
+  "config_hash": "a7a45cd35e4b",
+  "git_commit": "a877614360bc52494b7c686d407768ff4fe5810a",
+  "splits": {
+    "test": [
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00808-y9hTuugGdiq/y9hTuugGdiq.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00814-p53SfW6mjZe/p53SfW6mjZe.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00827-BAbdmeyTvMZ/BAbdmeyTvMZ.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00832-qyAac8rV8Zk/qyAac8rV8Zk.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00839-zt1RVoi7PcG/zt1RVoi7PcG.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00843-DYehNKdT76V/DYehNKdT76V.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00848-ziup5kvtCCR/ziup5kvtCCR.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00861-GLAQ4DNUx5U/GLAQ4DNUx5U.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00862-LT9Jq6dN3Ea/LT9Jq6dN3Ea.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00871-VBzV5z6i1WS/VBzV5z6i1WS.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00873-bxsVRursffK/bxsVRursffK.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00894-HY1NcmCgn3n/HY1NcmCgn3n.basis.glb"
+    ],
+    "train": [
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00802-wcojb4TFT35/wcojb4TFT35.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00803-k1cupFYWXJ6/k1cupFYWXJ6.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00810-CrMo8WxCyVb/CrMo8WxCyVb.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00813-svBbv1Pavdk/svBbv1Pavdk.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00815-h1zeeAwLh9Z/h1zeeAwLh9Z.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00820-mL8ThkuaVTM/mL8ThkuaVTM.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00821-eF36g7L6Z9M/eF36g7L6Z9M.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00824-Dd4bFSTQ8gi/Dd4bFSTQ8gi.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00829-QaLdnwvtxbs/QaLdnwvtxbs.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00831-yr17PDCnDDW/yr17PDCnDDW.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00835-q3zU7Yy5E5s/q3zU7Yy5E5s.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00844-q5QZSEeHe5g/q5QZSEeHe5g.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00847-bCPU9suPUw9/bCPU9suPUw9.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00849-a8BtkwhxdRV/a8BtkwhxdRV.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00853-5cdEh9F2hJL/5cdEh9F2hJL.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00869-MHPLjHsuG27/MHPLjHsuG27.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00876-mv2HUxq3B53/mv2HUxq3B53.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00877-4ok3usBNeis/4ok3usBNeis.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00890-6s7QHgap2fW/6s7QHgap2fW.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00891-cvZr5TUy5C5/cvZr5TUy5C5.basis.glb"
+    ],
+    "val": [
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00800-TEEsavR23oF/TEEsavR23oF.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00823-7MXmsvcQjpJ/7MXmsvcQjpJ.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00878-XB4GS9ShBRE/XB4GS9ShBRE.basis.glb",
+      "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00880-Nfvxx8J5NCo/Nfvxx8J5NCo.basis.glb"
+    ]
+  },
+  "scenes": {
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00800-TEEsavR23oF/TEEsavR23oF.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00800-TEEsavR23oF/TEEsavR23oF.basis.glb",
+      "scene_name": "TEEsavR23oF",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 661
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00802-wcojb4TFT35/wcojb4TFT35.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00802-wcojb4TFT35/wcojb4TFT35.basis.glb",
+      "scene_name": "wcojb4TFT35",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 1059
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00803-k1cupFYWXJ6/k1cupFYWXJ6.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00803-k1cupFYWXJ6/k1cupFYWXJ6.basis.glb",
+      "scene_name": "k1cupFYWXJ6",
+      "split_source": "val",
+      "n_episodes": 27,
+      "n_semantic_instances": 836
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00808-y9hTuugGdiq/y9hTuugGdiq.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00808-y9hTuugGdiq/y9hTuugGdiq.basis.glb",
+      "scene_name": "y9hTuugGdiq",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 832
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00810-CrMo8WxCyVb/CrMo8WxCyVb.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00810-CrMo8WxCyVb/CrMo8WxCyVb.basis.glb",
+      "scene_name": "CrMo8WxCyVb",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 549
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00813-svBbv1Pavdk/svBbv1Pavdk.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00813-svBbv1Pavdk/svBbv1Pavdk.basis.glb",
+      "scene_name": "svBbv1Pavdk",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 395
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00814-p53SfW6mjZe/p53SfW6mjZe.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00814-p53SfW6mjZe/p53SfW6mjZe.basis.glb",
+      "scene_name": "p53SfW6mjZe",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 849
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00815-h1zeeAwLh9Z/h1zeeAwLh9Z.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00815-h1zeeAwLh9Z/h1zeeAwLh9Z.basis.glb",
+      "scene_name": "h1zeeAwLh9Z",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 668
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00820-mL8ThkuaVTM/mL8ThkuaVTM.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00820-mL8ThkuaVTM/mL8ThkuaVTM.basis.glb",
+      "scene_name": "mL8ThkuaVTM",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 402
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00821-eF36g7L6Z9M/eF36g7L6Z9M.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00821-eF36g7L6Z9M/eF36g7L6Z9M.basis.glb",
+      "scene_name": "eF36g7L6Z9M",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 922
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00823-7MXmsvcQjpJ/7MXmsvcQjpJ.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00823-7MXmsvcQjpJ/7MXmsvcQjpJ.basis.glb",
+      "scene_name": "7MXmsvcQjpJ",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 1694
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00824-Dd4bFSTQ8gi/Dd4bFSTQ8gi.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00824-Dd4bFSTQ8gi/Dd4bFSTQ8gi.basis.glb",
+      "scene_name": "Dd4bFSTQ8gi",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 393
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00827-BAbdmeyTvMZ/BAbdmeyTvMZ.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00827-BAbdmeyTvMZ/BAbdmeyTvMZ.basis.glb",
+      "scene_name": "BAbdmeyTvMZ",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 394
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00829-QaLdnwvtxbs/QaLdnwvtxbs.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00829-QaLdnwvtxbs/QaLdnwvtxbs.basis.glb",
+      "scene_name": "QaLdnwvtxbs",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 252
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00831-yr17PDCnDDW/yr17PDCnDDW.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00831-yr17PDCnDDW/yr17PDCnDDW.basis.glb",
+      "scene_name": "yr17PDCnDDW",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 671
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00832-qyAac8rV8Zk/qyAac8rV8Zk.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00832-qyAac8rV8Zk/qyAac8rV8Zk.basis.glb",
+      "scene_name": "qyAac8rV8Zk",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 570
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00835-q3zU7Yy5E5s/q3zU7Yy5E5s.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00835-q3zU7Yy5E5s/q3zU7Yy5E5s.basis.glb",
+      "scene_name": "q3zU7Yy5E5s",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 577
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00839-zt1RVoi7PcG/zt1RVoi7PcG.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00839-zt1RVoi7PcG/zt1RVoi7PcG.basis.glb",
+      "scene_name": "zt1RVoi7PcG",
+      "split_source": "val",
+      "n_episodes": 22,
+      "n_semantic_instances": 826
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00843-DYehNKdT76V/DYehNKdT76V.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00843-DYehNKdT76V/DYehNKdT76V.basis.glb",
+      "scene_name": "DYehNKdT76V",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 352
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00844-q5QZSEeHe5g/q5QZSEeHe5g.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00844-q5QZSEeHe5g/q5QZSEeHe5g.basis.glb",
+      "scene_name": "q5QZSEeHe5g",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 1481
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00847-bCPU9suPUw9/bCPU9suPUw9.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00847-bCPU9suPUw9/bCPU9suPUw9.basis.glb",
+      "scene_name": "bCPU9suPUw9",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 424
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00848-ziup5kvtCCR/ziup5kvtCCR.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00848-ziup5kvtCCR/ziup5kvtCCR.basis.glb",
+      "scene_name": "ziup5kvtCCR",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 348
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00849-a8BtkwhxdRV/a8BtkwhxdRV.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00849-a8BtkwhxdRV/a8BtkwhxdRV.basis.glb",
+      "scene_name": "a8BtkwhxdRV",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 726
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00853-5cdEh9F2hJL/5cdEh9F2hJL.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00853-5cdEh9F2hJL/5cdEh9F2hJL.basis.glb",
+      "scene_name": "5cdEh9F2hJL",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 529
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00861-GLAQ4DNUx5U/GLAQ4DNUx5U.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00861-GLAQ4DNUx5U/GLAQ4DNUx5U.basis.glb",
+      "scene_name": "GLAQ4DNUx5U",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 908
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00862-LT9Jq6dN3Ea/LT9Jq6dN3Ea.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00862-LT9Jq6dN3Ea/LT9Jq6dN3Ea.basis.glb",
+      "scene_name": "LT9Jq6dN3Ea",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 1005
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00869-MHPLjHsuG27/MHPLjHsuG27.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00869-MHPLjHsuG27/MHPLjHsuG27.basis.glb",
+      "scene_name": "MHPLjHsuG27",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 610
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00871-VBzV5z6i1WS/VBzV5z6i1WS.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00871-VBzV5z6i1WS/VBzV5z6i1WS.basis.glb",
+      "scene_name": "VBzV5z6i1WS",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 850
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00873-bxsVRursffK/bxsVRursffK.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00873-bxsVRursffK/bxsVRursffK.basis.glb",
+      "scene_name": "bxsVRursffK",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 454
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00876-mv2HUxq3B53/mv2HUxq3B53.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00876-mv2HUxq3B53/mv2HUxq3B53.basis.glb",
+      "scene_name": "mv2HUxq3B53",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 681
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00877-4ok3usBNeis/4ok3usBNeis.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00877-4ok3usBNeis/4ok3usBNeis.basis.glb",
+      "scene_name": "4ok3usBNeis",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 514
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00878-XB4GS9ShBRE/XB4GS9ShBRE.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00878-XB4GS9ShBRE/XB4GS9ShBRE.basis.glb",
+      "scene_name": "XB4GS9ShBRE",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 428
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00880-Nfvxx8J5NCo/Nfvxx8J5NCo.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00880-Nfvxx8J5NCo/Nfvxx8J5NCo.basis.glb",
+      "scene_name": "Nfvxx8J5NCo",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 361
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00890-6s7QHgap2fW/6s7QHgap2fW.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00890-6s7QHgap2fW/6s7QHgap2fW.basis.glb",
+      "scene_name": "6s7QHgap2fW",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 655
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00891-cvZr5TUy5C5/cvZr5TUy5C5.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00891-cvZr5TUy5C5/cvZr5TUy5C5.basis.glb",
+      "scene_name": "cvZr5TUy5C5",
+      "split_source": "val",
+      "n_episodes": 28,
+      "n_semantic_instances": 899
+    },
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00894-HY1NcmCgn3n/HY1NcmCgn3n.basis.glb": {
+      "scene_id": "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/val/00894-HY1NcmCgn3n/HY1NcmCgn3n.basis.glb",
+      "scene_name": "HY1NcmCgn3n",
+      "split_source": "val",
+      "n_episodes": 27,
+      "n_semantic_instances": 443
+    }
+  }
+}

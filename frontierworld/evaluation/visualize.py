@@ -281,3 +281,91 @@ def contact_sheet(figure_paths: list[Path], output: str | Path, columns: int = 2
     output = Path(output)
     imageio.imwrite(output, sheet)
     return output
+
+
+def visualise_decision_group(
+    path: str | Path,
+    grid_before: np.ndarray,
+    geometry,
+    frontiers,
+    branch_masks: list[np.ndarray],
+    revelations: list,
+    rgb_before: np.ndarray | None,
+    meta: dict,
+    max_panels: int = 8,
+) -> Path:
+    """One figure per decision group: every candidate branch side by side.
+
+    Phase 5 asks for 50 groups to be inspected by hand. Per-branch figures make
+    that a slog and, more importantly, hide the thing worth checking -- whether
+    the candidates from a shared state really do differ in what they reveal.
+    """
+    bounds = crop_bounds(grid_before)
+    r0, r1, c0, c1 = bounds
+
+    def crop(array: np.ndarray) -> np.ndarray:
+        return array[r0:r1, c0:c1]
+
+    n = min(len(revelations), max_panels)
+    columns = min(4, n + 1)
+    rows = int(np.ceil((n + 1) / columns))
+    figure, axes = plt.subplots(
+        rows, columns, figsize=(4.6 * columns, 4.9 * rows), constrained_layout=True
+    )
+    axes = np.atleast_1d(axes).ravel()
+
+    # Panel 0: the shared decision state with every candidate marked.
+    axis = axes[0]
+    axis.imshow(crop(grid_to_rgb(grid_before)), interpolation="nearest")
+    for frontier in frontiers:
+        _plot_frontier(axis, frontier, geometry, bounds, COLOUR_OTHER, 6)
+        row, col = world_to_cell(
+            geometry, frontier.centroid_world[0], frontier.centroid_world[2]
+        )
+        axis.annotate(
+            str(frontier.frontier_id),
+            (col - c0, row - r0),
+            fontsize=8,
+            color="black",
+            weight="bold",
+            ha="center",
+            va="center",
+        )
+    axis.set_title(f"decision state: {len(frontiers)} candidates", fontsize=9)
+    _clean(axis)
+
+    areas = [float(r.newly_observed_area_m2) for r in revelations[:n]]
+    best = int(np.argmax(areas)) if areas else -1
+
+    for index in range(n):
+        axis = axes[index + 1]
+        image = crop(grid_to_rgb(grid_before))
+        image[crop(branch_masks[index])] = COLOUR_REVEALED
+        axis.imshow(image, interpolation="nearest")
+        revelation = revelations[index]
+        marker = "  <= most revealed" if index == best else ""
+        axis.set_title(
+            f"f{revelation.frontier_id}: {revelation.newly_observed_area_m2:.1f} m2{marker}\n"
+            f"crossed={revelation.crossed} coll={revelation.collisions} "
+            f"newF={revelation.n_new_frontiers} tgt={int(revelation.target_became_visible)}",
+            fontsize=8,
+        )
+        _clean(axis)
+
+    for axis in axes[n + 1 :]:
+        axis.axis("off")
+
+    ratio = (max(areas) / max(min(areas), 0.01)) if len(areas) >= 2 else float("nan")
+    figure.suptitle(
+        f"{meta.get('group_id')}   goal={meta.get('navigation_goal')}   "
+        f"t={meta.get('decision_timestep')}   policy={meta.get('collection_policy')}   "
+        f"spread={ratio:.1f}x",
+        fontsize=11,
+        fontfamily="monospace",
+    )
+
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    figure.savefig(path, dpi=85, bbox_inches="tight")
+    plt.close(figure)
+    return path

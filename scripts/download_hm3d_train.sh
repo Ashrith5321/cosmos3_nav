@@ -1,81 +1,89 @@
 #!/usr/bin/env bash
 # Download HM3D train scene meshes + semantic annotations.
 #
-# Needs Matterport credentials from the HM3D EULA form:
-#   https://matterport.com/habitat-matterport-3d-research-dataset
+# Credentials are a Matterport API token (Token ID / Token Secret) from
+# https://matterport.com/habitat-matterport-3d-research-dataset
 #
-# Usage (credentials via environment, so they stay out of your shell history):
-#
-#   read -rp  'Matterport username: ' MATTERPORT_USERNAME
-#   read -rsp 'Matterport password: ' MATTERPORT_PASSWORD; echo
-#   export MATTERPORT_USERNAME MATTERPORT_PASSWORD
+#   read -rp  'Matterport Token ID: '     MP_TOKEN_ID
+#   read -rsp 'Matterport Token Secret: ' MP_TOKEN_SECRET; echo
+#   export MP_TOKEN_ID MP_TOKEN_SECRET
 #   bash scripts/download_hm3d_train.sh
 #
-# Roughly 50 GB for train (~800 scenes), extrapolating from val's 6.0 GB for
-# 100 scenes. Check free space before starting; the tarball is staged before
-# extraction, so peak usage is briefly higher than the final size.
+# NOTE: habitat_sim.utils.datasets_download does NOT work with these tokens.
+# The Matterport endpoint answers with a 307 to a presigned S3 URL, and the
+# habitat downloader writes the resulting "Unauthorized" JSON body into a file
+# named *.tar, which then fails to untar with a confusing ReadError. curl with
+# -L handles the redirect correctly, so this script fetches directly.
+#
+# Sizes: meshes 27.2 GB, semantics 8.1 GB. Downloads resume with curl -C -.
 
 set -euo pipefail
 
-PYTHON="${PYTHON:-/home/ashed/miniconda3/envs/habitat033/bin/python}"
 DATA_ROOT="${DATA_ROOT:-/home/ashed/Documents/spatial_training/data}"
+STAGING="${DATA_ROOT}/_hm3d_download"
 TARGET="${DATA_ROOT}/scene_datasets/hm3d_v0.2"
+BASE="https://api.matterport.com/resources/habitat"
 
-if [[ -z "${MATTERPORT_USERNAME:-}" || -z "${MATTERPORT_PASSWORD:-}" ]]; then
-  echo "ERROR: set MATTERPORT_USERNAME and MATTERPORT_PASSWORD first." >&2
-  echo "       Credentials come from the HM3D EULA form; see the header." >&2
+PACKAGES=(
+  hm3d-train-habitat-v0.2.tar          # .basis.glb meshes and navmeshes
+  hm3d-train-semantic-annots-v0.2.tar  # .semantic.glb / .semantic.txt
+  hm3d-train-semantic-configs-v0.2.tar
+  hm3d-train-configs.tar
+)
+
+if [[ -z "${MP_TOKEN_ID:-}" || -z "${MP_TOKEN_SECRET:-}" ]]; then
+  echo "ERROR: set MP_TOKEN_ID and MP_TOKEN_SECRET first (see header)." >&2
   exit 1
 fi
 
-echo "python    : ${PYTHON}"
-echo "data root : ${DATA_ROOT}"
+mkdir -p "${STAGING}"
+echo "staging   : ${STAGING}"
 echo "target    : ${TARGET}"
 echo "free space: $(df -h "${DATA_ROOT}" | awk 'NR==2 {print $4}')"
 echo
 
-# hm3d_train_habitat_v0.2        the .basis.glb meshes and navmeshes
-# hm3d_train_semantic_annots_v0.2 the .semantic.glb / .semantic.txt annotations
-# hm3d_train_configs_v0.2        the scene_dataset_config for the split
-for UID in hm3d_train_habitat_v0.2 hm3d_train_semantic_annots_v0.2 hm3d_train_configs_v0.2; do
-  echo "=== ${UID} ==="
-  "${PYTHON}" -m habitat_sim.utils.datasets_download \
-    --username "${MATTERPORT_USERNAME}" \
-    --password "${MATTERPORT_PASSWORD}" \
-    --uids "${UID}" \
-    --data-path "${DATA_ROOT}"
-done
+for PKG in "${PACKAGES[@]}"; do
+  echo "=== ${PKG} ==="
+  curl -sSL -u "${MP_TOKEN_ID}:${MP_TOKEN_SECRET}" -C - \
+    -o "${STAGING}/${PKG}" \
+    -w "  HTTP %{http_code}  %{size_download} bytes  %{time_total}s\n" \
+    "${BASE}/${PKG}"
 
-# The downloader writes to scene_datasets/hm3d-0.2/hm3d/train and links
-# scene_datasets/hm3d. This repo's config points at scene_datasets/hm3d_v0.2,
-# whose annotated scene_dataset_config already lists the train scenes -- the
-# meshes just have to be reachable under that directory.
-DOWNLOADED_TRAIN=""
-for CANDIDATE in \
-  "${DATA_ROOT}/scene_datasets/hm3d-0.2/hm3d/train" \
-  "${DATA_ROOT}/scene_datasets/hm3d/train" \
-  "${DATA_ROOT}/scene_datasets/hm3d_v0.2/train"; do
-  if [[ -d "${CANDIDATE}" ]]; then
-    DOWNLOADED_TRAIN="${CANDIDATE}"
-    break
+  # An auth failure arrives as a short JSON body with a .tar name, so check the
+  # archive is real before trusting it.
+  if ! tar tf "${STAGING}/${PKG}" >/dev/null 2>&1; then
+    echo "ERROR: ${PKG} is not a valid tar. First bytes:" >&2
+    head -c 200 "${STAGING}/${PKG}" >&2
+    echo >&2
+    exit 1
   fi
 done
 
-if [[ -z "${DOWNLOADED_TRAIN}" ]]; then
-  echo "WARNING: could not find an extracted train/ directory. Inspect" >&2
-  echo "         ${DATA_ROOT}/scene_datasets and link it to ${TARGET}/train." >&2
+echo
+echo "extracting..."
+for PKG in "${PACKAGES[@]}"; do
+  tar xf "${STAGING}/${PKG}" -C "${STAGING}"
+done
+
+# The archives unpack to hm3d-<version>/hm3d/train. This repo reads
+# scene_datasets/hm3d_v0.2, whose annotated scene_dataset_config already lists
+# the train scenes -- they just have to be reachable under that directory.
+EXTRACTED="$(find "${STAGING}" -maxdepth 4 -type d -name train | head -1)"
+if [[ -z "${EXTRACTED}" ]]; then
+  echo "ERROR: no extracted train/ directory found under ${STAGING}" >&2
   exit 1
 fi
 
-echo
-echo "extracted train scenes: ${DOWNLOADED_TRAIN}"
+echo "extracted train scenes: ${EXTRACTED}"
 if [[ ! -e "${TARGET}/train" ]]; then
-  ln -s "${DOWNLOADED_TRAIN}" "${TARGET}/train"
-  echo "linked ${TARGET}/train -> ${DOWNLOADED_TRAIN}"
+  ln -s "${EXTRACTED}" "${TARGET}/train"
+  echo "linked ${TARGET}/train -> ${EXTRACTED}"
 fi
 
 echo
 echo "train scene dirs: $(ls "${TARGET}/train" | wc -l)"
-echo "size            : $(du -sh "${DOWNLOADED_TRAIN}" | cut -f1)"
+echo "size            : $(du -sh "${EXTRACTED}" | cut -f1)"
 echo
-echo "Verify a train scene loads with semantics:"
-echo "  python scripts/run_episode.py --override data.split=train --override episode.max_steps=20"
+echo "Next:"
+echo "  python scripts/build_manifests.py --name full --override data.split=train"
+echo "  rm -rf ${STAGING}   # once the manifests build cleanly"
