@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Evaluate revelation prediction quality and calibration.
 
-Not implemented yet: this lands in Phase 6, 9-10 of checklist.md. The file
+Not implemented yet: this lands in Phases 8-10 of checklist.md. The file
 exists so the repository layout and the entry-point names are fixed from the
 start, and so nothing downstream has to guess what a script will be called.
 """
@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import sys
 
-PHASE = "6, 9-10"
+PHASE = "8-10"
 
 
 def main() -> int:

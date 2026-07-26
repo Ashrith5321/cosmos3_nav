@@ -125,7 +125,7 @@ task:
 
 goal_detector:
   # PRIVILEGED: ground-truth semantic instance ids for the episode's goals.
-  # Phase 6 replaces this with the predicted target-presence head.
+  # Phase 8 replaces this with the predicted target-presence head.
   enabled: true
   min_pixels: 100
   max_detection_distance_m: 5.0

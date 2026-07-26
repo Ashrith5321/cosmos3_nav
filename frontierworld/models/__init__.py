@@ -1,1 +1,1 @@
-"""Revelation prediction models and heads. Phase 9."""
+"""Revelation prediction models and heads. Phases 8 (structured) and 9 (Cosmos 3)."""

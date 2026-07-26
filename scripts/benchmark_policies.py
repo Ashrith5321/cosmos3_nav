@@ -89,7 +89,7 @@ def summarise(records: list[dict]) -> dict:
         return float(np.mean(values)) if values else float("nan")
 
     def confidence(key: str) -> float:
-        """Half-width of the 95% interval; Phase 12 wants intervals reported."""
+        """Half-width of the 95% interval; Phase 15 wants tighter intervals."""
         values = [float(r[key]) for r in records if r.get(key) is not None]
         if len(values) < 2:
             return float("nan")

@@ -10,10 +10,15 @@ selection?*
 
 ## Status
 
-Phases 1 and 2 are complete: the repository and one-episode gate, then
-occupancy mapping, frontier extraction, the navmesh planner and the four
-baseline frontier policies benchmarked over 50 episodes each.
-Phase 3 (frontier-crossing options) is next.
+Phases 1-4 are complete: the repository and one-episode gate; occupancy
+mapping, frontier extraction, the navmesh planner and four baseline policies
+benchmarked over 50 episodes each; canonical frontier-crossing options with
+verified simulator forking; and the ground-truth revelation definition with
+visual verification.
+
+Phase 5 (the FrontierReveal dataset) is next, but is partly blocked on the
+HM3D training meshes. Phases 6 (lineage graph) and 7 (learning tensors) can
+proceed in parallel on validation data. See `checklist.md`.
 
 ### Privileged information
 
@@ -23,8 +28,11 @@ reported number that depends on them must say so (checklist Phase 15).
 | component | privilege | replaced in |
 | --- | --- | --- |
 | `planning/habitat_planner.py` | habitat navmesh, ground truth for the whole scene including unobserved regions | never -- it isolates frontier choice from control |
-| `planning/goal_detector.py` | ground-truth semantic instance ids for the episode's goals | Phase 6 target-presence head |
+| `planning/goal_detector.py` | ground-truth semantic instance ids for the episode's goals | Phase 8 target-presence head |
 | Phase 5 branch generation | simulator state forking | training/eval labels only, never at deployment |
+
+Room category is **derived**, not ground truth: HM3D-v0.2 ships no room-type
+labels. It is excluded from the workshop dataset.
 
 ## Setup
 
@@ -100,7 +108,7 @@ python scripts/benchmark_policies.py --episodes 50 --policies all --workers 14
 
 Episodes are sharded over worker processes, each with its own simulator, and
 each worker runs every policy over its own shard -- so all policies are scored
-on an identical episode list, as Phase 12 requires. Results append to
+on an identical episode list, as Phase 13 requires. Results append to
 `episodes.jsonl` as they finish, so a run can be watched live:
 
 ```bash
@@ -123,6 +131,26 @@ Note `task.success_distance` in the config: habitat measures success as metres
 to the nearest goal *viewpoint*, and the HM3D benchmark default is 0.1. This
 repository sets 1.0, which loosens success and makes SR/SPL non-comparable to
 published HM3D ObjectNav numbers -- state the value in any reported table.
+
+### Phase 3: counterfactual branches
+
+```bash
+python scripts/demo_branches.py --episodes 5 --branches 3
+```
+
+Executes independent frontier branches from one identical simulator state,
+verifying that each starts from a bitwise-identical agent state and that the
+state and maps are restored afterwards.
+
+### Phase 4: ground-truth revelation
+
+```bash
+python scripts/generate_revelations.py --examples 20
+```
+
+Records what each branch revealed and writes a six-panel verification figure
+per branch (map before, map after with the revealed region, executed
+trajectory, new semantics, RGB before and after) plus a contact sheet.
 
 ### Output layout
 
@@ -177,11 +205,11 @@ frontierworld/
   habitat_env.py  habitat config composition, poses, semantics
   mapping/        occupancy mapping from depth and pose
   frontiers/      frontier extraction                     (Phase 2)
-  lineage/        frontier lineage graph                  (Phase 7)
-  memory/         per-frontier predictive memory          (Phase 8)
-  models/         revelation prediction models            (Phase 9)
-  planning/       options and frontier scoring            (Phases 3, 11)
-  data/           observation recording, FrontierReveal   (Phase 5)
+  lineage/        frontier lineage graph                  (Phase 6)
+  memory/         per-frontier predictive memory          (Phase 11)
+  models/         revelation prediction                   (Phases 8-9)
+  planning/       options, branching, frontier scoring    (Phases 3, 12)
+  data/           recording, revelation, FrontierReveal   (Phases 4-5)
   evaluation/     metrics and experiment tracking
 scripts/          entry points
 tests/

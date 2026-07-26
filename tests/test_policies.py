@@ -2,7 +2,7 @@
 
 The policies are the baselines the revelation model has to beat, so their
 ranking rules need to be exactly right: a nearest policy that quietly ignores
-distance would make the Phase 11 regret comparison meaningless.
+distance would make the Phase 12 regret comparison meaningless.
 """
 
 from __future__ import annotations

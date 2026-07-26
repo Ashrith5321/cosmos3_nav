@@ -5,14 +5,14 @@ no learned detector, so this reads ground-truth semantics: an episode's goal
 objects are known by instance id, and the target counts as seen when enough of
 its pixels are in view.
 
-PRIVILEGED INFORMATION: ground-truth semantic instance ids. Phase 6 replaces
-this with the predicted target-presence head, and Phase 14 counts stopping
+PRIVILEGED INFORMATION: ground-truth semantic instance ids. Phase 8 replaces
+this with the predicted target-presence head, and Phase 15 counts stopping
 failures separately from exploration failures. Any reported number that uses
 this detector must say so.
 
 Detection is deliberately separated from stopping: `detect` answers "is the
 target visible", `target_position` answers "where is it", and the explorer
-decides what to do. Keeping them apart is what lets Phase 14 attribute a
+decides what to do. Keeping them apart is what lets Phase 15 attribute a
 failure to perception rather than to control.
 """
 

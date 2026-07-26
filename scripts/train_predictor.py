@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Train the revelation prediction model.
 
-Not implemented yet: this lands in Phase 9 of checklist.md. The file
+Not implemented yet: this lands in Phase 8 of checklist.md. The file
 exists so the repository layout and the entry-point names are fixed from the
 start, and so nothing downstream has to guess what a script will be called.
 """

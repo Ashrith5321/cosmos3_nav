@@ -1,7 +1,7 @@
 """Frontier extraction from the occupancy map.
 
 A frontier is a connected run of free cells adjacent to unknown space. This is
-the classical geometric definition (Yamauchi 1997); Phase 7 replaces the
+the classical geometric definition (Yamauchi 1997); Phase 6 replaces the
 identity-by-position assumption here with the lineage graph, and the paper's
 FrontierNet variant replaces the detector itself. Everything downstream --
 options, memory, revelation targets -- keys off the fields on Frontier, so
@@ -105,7 +105,7 @@ def information_gain(
     """Unknown area within radius_m of a frontier, in square metres.
 
     The standard geometric proxy for "how much would I learn by going here".
-    Phase 9 replaces this with a predicted revelation; keeping the same units
+    Phase 8 replaces this with a predicted revelation; keeping the same units
     makes the two directly comparable.
     """
     radius_cells = int(np.ceil(radius_m / resolution))

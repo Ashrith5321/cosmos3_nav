@@ -5,8 +5,8 @@ One decision cycle:
     integrate observation -> extract frontiers -> filter reachable
     -> policy picks one -> planner returns actions -> execute -> repeat
 
-This is the closed loop the whole project is about. Phase 11 swaps the policy
-for a prediction-based score and Phase 12 reports the same metrics, so the
+This is the closed loop the whole project is about. Phase 13 swaps the policy
+for a prediction-based score and Phase 13 reports the same metrics, so the
 loop, the counters and the per-decision record are written to survive both.
 """
 
@@ -216,7 +216,7 @@ class FrontierExplorer:
     def _blacklist_key(self, frontier: Frontier) -> tuple[int, int]:
         """Frontiers move slightly between updates; quantise before blacklisting.
 
-        Phase 7 replaces this with real lineage identity. Until then, a
+        Phase 6 replaces this with real lineage identity. Until then, a
         half-metre grid is enough to stop the loop re-selecting a frontier the
         planner has already refused.
         """

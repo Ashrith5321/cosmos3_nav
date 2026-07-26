@@ -141,7 +141,7 @@ def semantic_delta(
 def frontier_delta(frontiers_before, frontiers_after, match_radius_m: float = 0.75) -> dict:
     """Frontiers that appeared during the branch.
 
-    Matched by centroid proximity. Phase 7 replaces this with lineage identity;
+    Matched by centroid proximity. Phase 6 replaces this with lineage identity;
     until then a radius test is enough to tell a genuinely new opening from the
     same frontier having shifted a few cells.
     """

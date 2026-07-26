@@ -2,7 +2,7 @@
 
 These are the non-learning references the revelation model must beat. All four
 score the same candidate set from the same decision state, so the only thing
-that differs between them is the ranking rule -- which is what Phase 11's
+that differs between them is the ranking rule -- which is what Phase 12's
 regret metric measures.
 
 Every policy is seeded: given the same map and the same episode RNG, it makes

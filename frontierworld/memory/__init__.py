@@ -1,1 +1,1 @@
-"""Per-frontier predictive memory under a fixed slot budget. Phase 8."""
+"""Per-frontier predictive memory under a fixed slot budget. Phase 11."""
