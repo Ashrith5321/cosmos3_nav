@@ -603,4 +603,77 @@ frontiers.
 
 \end{thebibliography}
 
+\clearpage
+\appendix
+
+\section{Implementation Progress Log}
+
+Running record of implemented phases and measured results. Not part of the
+submitted paper; kept here so every number in the main text can be traced to a
+run that produced it.
+
+\textbf{Phase 1 (complete).} Repository, conda environment, HM3D wiring, and a
+one-command episode gate that saves RGB, depth, semantics, pose and an
+occupancy map. Determinism verified: two runs at the same seed produce
+identical action sequences, poses and map statistics. HM3D \emph{val} and
+\emph{minival} scenes are available; \emph{train} scene meshes are not yet
+downloaded, so Phase 5 generation is currently limited to val scenes.
+
+\textbf{Phase 2 (complete).} Occupancy mapping from depth and ground-truth
+pose; free--unknown boundary extraction, clustering, per-frontier centroid,
+orientation and geometric information gain; navmesh planning; and the four
+non-learning frontier policies. Table~\ref{tab:phase2} reports 50 episodes per
+policy on HM3D-v2 val.
+
+\begin{table}[h]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{Phase 2 baseline frontier policies. 50 episodes per policy on an
+identical episode list, 500-step budget. Intervals are 95\% confidence
+half-widths. These are measured values, not placeholders; Tables~\ref{tab:ablations}
+and~\ref{tab:lineage} remain to be filled.}
+\label{tab:phase2}
+\begin{tabular}{lcccc}
+\toprule
+Policy & SR \(\uparrow\) & SPL \(\uparrow\) & Det. & Area\\
+       &                 &                  & rate & m\(^2\)\\
+\midrule
+Random               & 0.68\(\pm\)0.13 & 0.33\(\pm\)0.08 & 0.90 & 52.6\\
+Nearest              & 0.72\(\pm\)0.13 & 0.40\(\pm\)0.08 & 0.96 & 47.7\\
+Max information gain & 0.70\(\pm\)0.13 & 0.31\(\pm\)0.08 & 0.94 & 57.4\\
+Gain \(-\) travel cost & 0.64\(\pm\)0.13 & 0.32\(\pm\)0.08 & 0.90 & 54.5\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Conditions.} Three components use privileged simulator information and
+must be labelled wherever these numbers appear. Frontier-crossing actions are
+produced by habitat's navmesh planner, which is ground truth for the whole
+scene including unobserved regions; stopping uses an oracle detector reading
+ground-truth semantic instance ids; and success is scored at
+\(1.0\,\mathrm{m}\) to the nearest goal viewpoint rather than habitat's
+\(0.1\,\mathrm{m}\) default, so SR and SPL here are \emph{not} comparable to
+published HM3D ObjectNav results.
+
+\textbf{Reading of Phase 2.} The four policies are statistically
+indistinguishable at \(n=50\): the confidence intervals overlap completely, so
+the apparent ordering carries no signal. This is the correct baseline floor
+for the paper's claim -- if prediction-based selection does not separate from
+these, it has not earned its complexity. Two artefacts are worth carrying
+forward. Nearest-frontier attains the best SPL while exploring the
+\emph{least} area, because SPL rewards short paths and a loose success radius
+lets most episodes resolve before exploration strategy matters; a tighter
+radius should spread the policies apart. And gain-minus-cost is currently the
+weakest policy, which indicates the travel-cost weight (\(1\,\mathrm{m^2}\)
+per metre) is mistuned rather than that the rule is wrong -- it is the
+baseline Eq.~\eqref{eq:planner} reduces to, so it deserves a sweep before it
+is used as the reference.
+
+\textbf{Known gaps.} Roughly \(15\%\) of episodes detect the target but never
+call STOP: the approach plan fails and the agent resumes exploring. This is a
+controller failure, not an exploration failure, and it caps SR for every
+policy equally. Planner failures occur in 5--7 episodes per policy but are
+always recovered by reselecting another frontier; none terminated an episode.
+
 \end{document}
