@@ -11,6 +11,7 @@
 \usepackage{xcolor}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{graphicx}
 \usepackage[hidelinks]{hyperref}
 
 \setlength{\parindent}{0pt}
@@ -675,5 +676,99 @@ call STOP: the approach plan fails and the agent resumes exploring. This is a
 controller failure, not an exploration failure, and it caps SR for every
 policy equally. Planner failures occur in 5--7 episodes per policy but are
 always recovered by reselecting another frontier; none terminated an episode.
+
+\textbf{Phase 3 (complete).} The canonical option
+\(\Option_i=(\tau_i^{\mathrm{approach}},\tau_i^{\mathrm{cross}},H)\) is fixed
+by frontier geometry and configuration alone, never by execution outcome, so
+every candidate at a decision state is offered the same kind of chance. The
+approach pose is the frontier's back-off point snapped to the navmesh and then
+\emph{required to lie in free space the agent has observed}; the navmesh covers
+the whole scene, so snapping alone can place an approach pose in territory
+never seen, which would smuggle privileged geometry into the option definition
+rather than merely into the controller. Probe distance is \(2.0\,\mathrm{m}\)
+and \(H=12\) actions. Options that cannot be reached before crossing are
+rejected with a recorded reason instead of silently thinning the branch set.
+
+Branch rollouts drive the simulator agent directly rather than through the
+episode stepper, so a counterfactual costs the real episode nothing and cannot
+end it. A snapshot of the agent state and both maps is restored between
+branches, and every branch is checked to begin from the recorded state.
+\emph{Gate}: five decision states each executed three independent branches from
+a bitwise-identical start, with state and maps verified restored and all
+branches ending in distinct places.
+
+\textbf{Phase 4 (complete).} Table~\ref{tab:phase4} reports the ground-truth
+revelation over 27 branches from 7 decision states.
+Figure~\ref{fig:branch} shows the verification view for one branch.
+
+\begin{table}[h]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\caption{Ground-truth revelation, 27 branches from 7 decision states
+(3.9 branches per state). Room category is derived, not ground truth.}
+\label{tab:phase4}
+\begin{tabular}{lccc}
+\toprule
+Revelation channel & mean & sd & max\\
+\midrule
+Newly revealed area \(\Delta M^{\mathrm{occ}}\) (m\(^2\)) & 8.63 & 5.21 & 22.78\\
+\quad of which free space (m\(^2\)) & 6.33 & 4.29 & 19.19\\
+Newly labelled semantics in \(\Delta M^{\mathrm{occ}}\) (m\(^2\)) & 7.44 & 5.11 & 21.45\\
+New frontiers exposed & 2.70 & 2.16 & 8\\
+Collisions during the option & 3.59 & 2.38 & 7\\
+Collision rate (per action) & 0.11 & 0.09 & 0.35\\
+Distance travelled (m) & 5.04 & 1.89 & 8.50\\
+Actions executed & 39.0 & 10.6 & 64\\
+\midrule
+Crossings that reached unknown space & \multicolumn{3}{c}{24 / 27}\\
+Branches where the target became visible & \multicolumn{3}{c}{8 / 27}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/branch_example.png}
+\caption{Verification view for one branch. Left to right, top row: the map
+before crossing with the chosen frontier in red and the other candidates in
+green; the map after, with \(\Delta M^{\mathrm{occ}}\) in blue; the executed
+trajectory, solid for the approach and dashed for the crossing probe. Bottom
+row: semantics newly labelled inside the revealed region; the egocentric view
+at the decision state; and at the end of the crossing. Every quantity in the
+revelation record is checkable against this figure, which is how the two
+labelling defects below were found.}
+\label{fig:branch}
+\end{figure*}
+
+\textbf{Counterfactual spread.} Branches from the same decision state differ
+sharply in what they reveal -- within-state ratios between the best and worst
+candidate range from \(1.6\times\) to \(115\times\)
+(median \(3.1\times\)). This is the premise of the whole paper made
+measurable: if every frontier revealed roughly the same information, there
+would be nothing for a revelation model to predict and no regret to reduce.
+
+\textbf{Two labelling defects found by manual verification.} Both would have
+corrupted the prediction target silently.
+\begin{itemize}
+    \item \(\Delta M^{\mathrm{sem}}\) initially counted every cell that gained
+    a semantic label, including cells already mapped geometrically but never
+    labelled. That ran at \(3.26\times\) the correct figure in \(23/23\)
+    records, and would have trained the model to predict re-labelling of space
+    the agent had already seen. It is now restricted to labels gained inside
+    \(\Delta M^{\mathrm{occ}}\).
+    \item The room label was derived from every instance visible during a
+    branch, including the room the agent started in. It is now derived only
+    from instances the branch newly observed.
+\end{itemize}
+
+\textbf{Room category is the weakest channel.} HM3D-v0.2 ships no room-type
+labels: every region returns a null category and a degenerate bounding box. The
+label is therefore \emph{derived} from each region's object composition and is
+recorded as derived in every stored example. Even after the fix above it skews
+toward one class (kitchen in 13 of 27 branches), and spot checks disagree with
+the egocentric view. Room prediction should either move to MP3D, which ships
+genuine region categories, or be dropped from the reported channels; no number
+in this paper should rest on it as it stands.
 
 \end{document}
