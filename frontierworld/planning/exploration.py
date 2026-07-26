@@ -482,5 +482,5 @@ def _is_forward(action: Any) -> bool:
 
 
 def _wrap_angle(angle: float) -> float:
-    """Wrap to (-pi, pi]."""
+    """Wrap to [-pi, pi). Both bounds denote the same heading."""
     return float((angle + np.pi) % (2 * np.pi) - np.pi)

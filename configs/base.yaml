@@ -99,6 +99,16 @@ planning:
   # Cap on actions returned for one frontier decision.
   max_actions_per_decision: 200
 
+options:
+  # A frontier-crossing option is (tau_approach, tau_cross, H).
+  # How far past the boundary the probe pushes, in metres.
+  probe_distance_m: 2.0
+  # Action budget H for the crossing segment (turns + forward steps).
+  horizon_actions: 12
+  # Reject an option whose approach point moved further than this when snapped
+  # onto the navmesh: a large jump means the point was not really approachable.
+  max_snap_drift_m: 1.0
+
 policy:
   # random | nearest | max_info_gain | info_gain_minus_cost
   name: nearest
