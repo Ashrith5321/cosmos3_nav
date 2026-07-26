@@ -1,0 +1,24 @@
+# Conda environment for FrontierWorld.
+#
+# habitat-sim must come from conda (the aihabitat channel ships prebuilt
+# binaries); pip cannot install it. Create with:
+#
+#   conda env create -f environment.yml
+#   conda activate frontierworld
+#
+# The existing habitat033 environment on this machine already satisfies this
+# spec and can be used directly.
+
+name: frontierworld
+channels:
+  - aihabitat
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.9
+  - habitat-sim=0.3.3=py3.9_headless_bullet_linux_acbe6f4922e68145e401e55c30f9dfea460a3f24
+  - numpy=1.26.4
+  - pip
+  - pip:
+      - -r requirements.txt

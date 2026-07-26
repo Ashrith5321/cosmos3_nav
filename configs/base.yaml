@@ -1,0 +1,97 @@
+# FrontierWorld base experiment configuration.
+#
+# Every field here is read by frontierworld.config.load_config and is echoed
+# into each run directory, so a run can be reproduced from its own log.
+
+experiment:
+  name: phase1_smoke
+  # Root for run directories. Each run gets <output_dir>/<name>/<run_id>/
+  output_dir: outputs
+  notes: "Phase 1 gate: run one HM3D ObjectNav episode and save an episode log."
+
+# Determinism. See frontierworld.seeding.seed_everything.
+seed:
+  value: 0
+  # torch.use_deterministic_algorithms + cudnn.deterministic. Slower, but
+  # required for the seeded-rerun test in tests/test_seeding.py.
+  torch_deterministic: true
+  # Habitat's own RNG (episode shuffling, sim noise models).
+  seed_habitat: true
+
+data:
+  # Paths are resolved relative to the repository root if not absolute.
+  scenes_dir: data/scene_datasets
+  # HM3D scene dataset config. Required for semantic annotations to load;
+  # without it habitat loads the raw .glb stage and semantics come back empty.
+  scene_dataset_config: data/scene_datasets/hm3d_v0.2/hm3d_annotated_basis.scene_dataset_config.json
+  # ObjectNav episode datasets. HM3D v2 is the evaluation split used in the paper.
+  episodes:
+    train: data/datasets/objectnav/hm3d/v2/train/train.json.gz
+    val: data/datasets/objectnav/hm3d/v2/val/val.json.gz
+    val_mini: data/datasets/objectnav/hm3d/v2/val_mini/val_mini.json.gz
+  split: val
+
+simulator:
+  # Sensor resolution and intrinsics. hfov is horizontal, in degrees.
+  width: 640
+  height: 480
+  hfov: 79
+  # Sensor mount height above the agent's base, in metres.
+  sensor_height: 0.88
+  agent_height: 0.88
+  agent_radius: 0.18
+  turn_angle: 30
+  forward_step_size: 0.25
+  # Depth in metres rather than normalised to [0, 1]. The mapper needs metres.
+  normalize_depth: false
+  min_depth: 0.5
+  max_depth: 5.0
+  allow_sliding: false
+  gpu_device_id: 0
+
+episode:
+  max_steps: 200
+  # Which episode of the split to run. null means "first episode as ordered
+  # by the dataset", which is deterministic given seed.value.
+  episode_id: null
+  scene_id: null
+  # Phase 1 placeholder policy. Phase 2 replaces this with frontier policies.
+  policy: forward_biased_random
+
+mapping:
+  # Metres per cell.
+  resolution: 0.05
+  # Square map side length in metres, centred on the agent's start position.
+  size_m: 40.0
+  # Points in this height band above the floor count as obstacles. Below the
+  # lower bound is floor, above the upper bound is ceiling or overhang.
+  obstacle_height_min: 0.20
+  obstacle_height_max: 1.50
+  # Column subsampling stride when projecting depth into the map.
+  column_stride: 2
+  # A cell needs this many hits before it is called free or occupied.
+  min_observations: 1
+
+recording:
+  save_rgb: true
+  save_depth: true
+  save_semantic: true
+  save_pose: true
+  save_map: true
+  # Save every Nth step. 1 saves every step.
+  stride: 1
+  # PNG for previewable modalities, npz for arrays.
+  depth_format: npz
+  semantic_format: npz
+  # Write a top-down preview of the occupancy map at the end of the episode.
+  save_map_preview: true
+
+logging:
+  csv: true
+  jsonl: true
+  # Only used if tensorboard is importable; absent by default in habitat033.
+  tensorboard: false
+  # Not installed by default. Set to true only after `pip install wandb`.
+  wandb: false
+  wandb_project: frontierworld
+  log_every: 10

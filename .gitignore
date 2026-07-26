@@ -1,0 +1,43 @@
+# Data lives outside the repo; data/ holds symlinks into it. Anchored with a
+# leading slash so it does not also match the frontierworld/data package.
+/data/
+
+# Run artefacts: episode observations are large and regenerable.
+/outputs/
+wandb/
+*.log
+
+# LaTeX build products
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.pdf
+paper/*.synctex.gz
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.bbl
+paper/*.blg
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp

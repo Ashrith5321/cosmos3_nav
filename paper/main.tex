@@ -1,0 +1,606 @@
+\documentclass[10pt,twocolumn]{article}
+
+\usepackage[letterpaper,margin=0.65in,columnsep=0.25in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\setlist{nosep,leftmargin=*}
+\renewcommand{\arraystretch}{1.08}
+\microtypesetup{expansion=false}
+
+\newcommand{\History}{\mathcal{H}}
+\newcommand{\Frontiers}{\mathcal{F}}
+\newcommand{\Memory}{\mathcal{M}}
+\newcommand{\Global}{\mathcal{G}}
+\newcommand{\Reveal}{\mathcal{Y}}
+\newcommand{\Option}{\boldsymbol{\omega}}
+\newcommand{\Loss}{\mathcal{L}}
+\newcommand{\Expect}{\mathbb{E}}
+\newcommand{\KL}{D_{\mathrm{KL}}}
+
+\title{\vspace{-1.5cm}
+\textbf{FrontierWorld: Counterfactual Revelation Models and\\
+Lineage-Aware Predictive Memory for Object Navigation}
+\vspace{-0.35cm}
+}
+
+\author{
+Ashrith Edukulla \qquad Behrad Rabiei \qquad Yulun Tian\\
+University of Michigan, Ann Arbor
+}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+\vspace{-0.75cm}
+
+\begin{abstract}
+Object navigation requires an agent to choose among multiple boundaries of its
+known world while reasoning about what each choice may reveal. Existing
+frontier methods largely treat a frontier as a temporary waypoint to score,
+while predictive navigation methods complete a global map or generate a single
+future without preserving a decision-aligned memory for each evolving
+frontier. We propose \textit{FrontierWorld}, a framework that represents every
+frontier as a persistent probabilistic belief over the information that would
+be revealed by crossing it. The framework has three central components.
+First, a frontier lineage graph preserves predictive state through frontier
+birth, update, split, merge, and retirement. Second, a fixed-budget learned
+memory retains observations according to their value for predicting future
+frontier revelations, rather than according to recency alone. Third, an
+action-conditioned stochastic world model predicts the geometry, semantics,
+target evidence, traversability, and new exploration opportunities that would
+be observed under each candidate frontier-crossing option. To train and
+evaluate this model without policy-selection bias, we introduce a
+branch-complete data-generation protocol that forks an HM3D simulator state
+and executes every available frontier option from the same navigation state.
+This permits direct evaluation of prediction calibration, frontier-ranking
+regret, memory efficiency, and closed-loop ObjectNav performance.
+\end{abstract}
+
+\vspace{-0.15cm}
+
+\section{Motivation}
+
+A frontier is the boundary between explored free space and an unresolved
+region. Classical exploration methods treat it as a geometric waypoint
+\cite{yamauchi1997}; recent systems enrich it with learned information gain
+\cite{frontiernet}, visual-language relevance \cite{vlfm,openfrontier}, or
+object and trajectory features \cite{fomnav}. Other methods infer the geometry
+and semantics of unseen space through map completion \cite{foresightnav} or
+predict future egocentric observations along actions \cite{nwm}.
+
+These advances leave a different question unresolved:
+
+\begin{quote}
+\textit{What is the smallest frontier-specific state that an agent should
+remember in order to predict the information that crossing that frontier would
+reveal?}
+\end{quote}
+
+This question is important because a frontier is not a stable object. As new
+observations arrive, a boundary can move, split, merge, or disappear. Moreover,
+the relevant future is not simply a plausible image behind the boundary. The
+agent needs a calibrated distribution over future observations and map
+updates under a concrete action, together with the expected utility and risk
+of acquiring them.
+
+We therefore formulate frontier selection as counterfactual prediction under
+partial observability. The key distinction is that FrontierWorld models
+\emph{future information acquisition}: how the agent's belief will change
+when it executes a frontier-crossing option.
+
+\section{Problem Formulation}
+
+At time \(t\), the agent has observation-action history
+
+\begin{equation}
+\History_t =
+\left(o_1,a_1,\ldots,o_t\right),
+\qquad
+o_t=(I_t,D_t,P_t),
+\end{equation}
+
+where \(I_t\), \(D_t\), and \(P_t\) denote RGB, depth, and pose. A geometric or
+visual frontier detector produces
+
+\begin{equation}
+\Frontiers_t=\{f_1^t,\ldots,f_{N_t}^t\}.
+\end{equation}
+
+For each candidate \(f_i^t\), a planner constructs a macro-action
+
+\begin{equation}
+\Option_i^t =
+\left(\tau_i^{\mathrm{approach}},
+\tau_i^{\mathrm{cross}},
+H\right),
+\end{equation}
+
+consisting of a path to the frontier, a short probing trajectory into unknown
+space, and a prediction horizon \(H\).
+
+We define the \emph{frontier revelation} as
+
+\begin{equation}
+\Reveal_{t,i}^{H}
+=
+\operatorname{Reveal}
+\left(
+s,o_{t+1:t+H}
+\mid
+\operatorname{do}(\Option_i^t)
+\right),
+\label{eq:revelation}
+\end{equation}
+
+where \(s\) is the underlying scene. The intervention notation emphasizes that
+all candidate options begin from the same state. The revelation contains
+
+\begin{equation}
+\Reveal_{t,i}^{H}
+=
+\left(
+\Delta M_i^{\mathrm{occ}},
+\Delta M_i^{\mathrm{sem}},
+r_i,
+y_i^g,
+\chi_i,
+\Frontiers_i^{\mathrm{new}}
+\right),
+\end{equation}
+
+where \(\Delta M_i^{\mathrm{occ}}\) and
+\(\Delta M_i^{\mathrm{sem}}\) are newly revealed occupancy and semantic
+regions, \(r_i\) is room type, \(y_i^g\) indicates target evidence,
+\(\chi_i\) is traversability or collision outcome, and
+\(\Frontiers_i^{\mathrm{new}}\) is the set of newly exposed frontiers.
+
+\section{Frontier Lineage Graph}
+
+Nearest-neighbor matching assumes one frontier at time \(t\) corresponds to
+one frontier at time \(t+1\). This fails when map revelation changes the
+boundary topology. We instead maintain a lineage graph
+
+\begin{equation}
+\mathcal{L}_t=(V_t,E_t),
+\end{equation}
+
+whose nodes are time-indexed frontier observations and whose edges represent
+
+\begin{equation}
+e\in
+\{
+\mathrm{birth},
+\mathrm{update},
+\mathrm{split},
+\mathrm{merge},
+\mathrm{retire}
+\}.
+\end{equation}
+
+Association uses boundary overlap in a common map frame, orientation,
+visibility-ray agreement, appearance, and predicted connection to the same
+unknown region. Let \(A_{ij}\in[0,1]\) be the soft lineage weight from
+\(f_i^t\) to \(f_j^{t+1}\). A child frontier inherits aligned parent memory:
+
+\begin{equation}
+\widetilde m_j^{t+1}
+=
+\sum_{i}
+A_{ij}
+T_{i\rightarrow j}m_i^t,
+\label{eq:inherit}
+\end{equation}
+
+where \(T_{i\rightarrow j}\) transforms spatial tokens into the child's
+frontier-centered coordinate frame. Equation~\eqref{eq:inherit} naturally
+supports one-to-many splits and many-to-one merges.
+
+The graph distinguishes a physical unresolved region from the boundary
+segments through which it is currently visible. Consequently, multiple
+frontiers believed to enter the same latent room can share evidence without
+being collapsed into one waypoint.
+
+\section{Budgeted Predictive Frontier Memory}
+
+Rather than manually storing every image or reusing architecture-dependent raw
+KV entries, each frontier maintains \(B\) learned memory slots:
+
+\begin{equation}
+m_i^t =
+W_{\psi}
+\left(
+\widetilde m_i^t,
+\left\{
+\Pi_i E(o_\tau)
+\right\}_{\tau\leq t}
+\right),
+\qquad
+\lvert m_i^t\rvert\leq B.
+\end{equation}
+
+Here \(E\) is a frozen or lightly adapted visual encoder and \(\Pi_i\) assigns
+pose-grounded observation tokens to frontier \(i\). The writer
+\(W_\psi\) performs fusion, compression, and eviction.
+
+We train the memory as a predictive information bottleneck:
+
+\begin{equation}
+\max_{\psi}
+\;
+I
+\left(
+m_i^t;\Reveal_{t,i}^{H}
+\mid
+\Global_t,\Option_i^t
+\right)
+-
+\beta
+I
+\left(
+m_i^t;\History_t
+\right),
+\label{eq:ib}
+\end{equation}
+
+subject to the slot budget. The first term preserves history that predicts
+future revelation; the second discourages indiscriminate memorization.
+Operationally, Eq.~\eqref{eq:ib} is approximated by multi-task revelation
+losses and a capacity constraint.
+
+The value of a stored token \(x\) can be estimated by its effect on predictive
+loss:
+
+\begin{equation}
+v(x)
+\approx
+\Loss_{\mathrm{pred}}
+\left(m_i^t\setminus x\right)
+-
+\Loss_{\mathrm{pred}}
+\left(m_i^t\right).
+\end{equation}
+
+This provides a learned eviction criterion and permits direct comparison with
+FIFO, most-recent, visual-diversity, and uncertainty-based cache policies.
+
+\section{Counterfactual Revelation World Model}
+
+FrontierWorld predicts a distribution rather than one deterministic future:
+
+\begin{equation}
+p_\theta
+\left(
+\Reveal_{t,i}^{H}
+\mid
+m_i^t,\Global_t,\Option_i^t,g
+\right)
+=
+\sum_{k=1}^{K}
+\pi_{ik}
+p_{\theta,k}
+\left(
+\Reveal_{t,i}^{H}
+\mid
+m_i^t,\Global_t,\Option_i^t,g
+\right).
+\label{eq:mixture}
+\end{equation}
+
+The \(K\) components represent distinct spatial-semantic hypotheses, such as a
+doorway leading to a bedroom, hallway, bathroom, or closet. Predicting multiple
+hypotheses avoids penalizing a calibrated model for representing genuine
+ambiguity in unobserved space.
+
+A practical first implementation uses frontier-centered RGB-D tokens, global
+map tokens, relative-pose tokens describing \(\Option_i^t\), and a compact
+Transformer or Perceiver decoder. The output heads predict:
+
+\begin{itemize}
+    \item local occupancy logits in a frontier-centered bird's-eye view;
+    \item open-vocabulary semantic features or category logits;
+    \item room and goal-presence distributions;
+    \item newly visible area and newly created frontiers;
+    \item traversability, collision risk, and uncertainty.
+\end{itemize}
+
+Future RGB or video is optional. The core model operates in decision-relevant
+geometry and semantic feature space, avoiding the cost and evaluation
+ambiguity of photorealistic generation.
+
+The training objective is
+
+\begin{align}
+\Loss_{\mathrm{pred}}
+={}&
+\lambda_{\mathrm{occ}}\Loss_{\mathrm{occ}}
++
+\lambda_{\mathrm{sem}}\Loss_{\mathrm{sem}}
++
+\lambda_{\mathrm{goal}}\Loss_{\mathrm{goal}}
+\nonumber\\
+&+
+\lambda_{\mathrm{trav}}\Loss_{\mathrm{trav}}
++
+\lambda_{\mathrm{area}}\Loss_{\mathrm{area}}
++
+\lambda_{\mathrm{cal}}\Loss_{\mathrm{cal}},
+\end{align}
+
+where \(\Loss_{\mathrm{cal}}\) is a proper probabilistic loss such as negative
+log-likelihood or Brier loss.
+
+\section{Belief-Consistent Frontier Planning}
+
+For every option, the model estimates goal utility, expected information,
+travel cost, and risk. The next frontier is
+
+\begin{equation}
+\begin{aligned}
+f_t^\star
+=
+\arg\max_{f_i\in\Frontiers_t}
+\big[
+&\Expect_{\,\Reveal_i}U(\Reveal_i,g)
++\eta\,\mathcal{I}_i\\
+&-\lambda C(\Option_i)
+-\rho\,\operatorname{CVaR}_{\alpha}(R_i)
+\big],
+\end{aligned}
+\label{eq:planner}
+\end{equation}
+
+where \(\mathcal{I}_i\) is expected information gain and
+\(\operatorname{CVaR}_{\alpha}\) penalizes high-risk branches. A VLM may provide
+semantic priors, but the final score in Eq.~\eqref{eq:planner} is grounded in
+predicted outcomes rather than an opaque prompt response.
+
+After executing \(f_t^\star\), the realized revelation
+\(\Reveal_{t,\star}^{\mathrm{obs}}\) corrects its belief:
+
+\begin{equation}
+q_{t+1}(z_\star)
+\propto
+p
+\left(
+\Reveal_{t,\star}^{\mathrm{obs}}
+\mid z_\star
+\right)
+q_t(z_\star).
+\end{equation}
+
+Prediction residuals are written to the frontier lineage and propagated to
+frontiers believed to border the same unknown region. Thus, discovering that
+one entrance leads to a target-absent room can reduce the target probability
+of a second entrance into that room.
+
+\section{Branch-Complete FrontierReveal Benchmark}
+
+Standard navigation trajectories observe only the outcome of the selected
+frontier. This prevents supervised comparison of all candidate choices and
+introduces policy-selection bias. We propose a branch-complete simulator
+protocol:
+
+\begin{enumerate}
+    \item run an exploration policy to a frontier decision state;
+    \item save the simulator and agent memory state;
+    \item enumerate all valid frontiers \(f_i\in\Frontiers_t\);
+    \item fork the identical state for each \(f_i\);
+    \item execute the canonical option \(\Option_i^t\);
+    \item record the resulting revelation \(\Reveal_{t,i}^{H}\);
+    \item restore the original state before evaluating the next branch.
+\end{enumerate}
+
+Each training example is
+
+\begin{equation}
+\mathcal{D}_t
+=
+\left\{
+\left(
+\History_t,\Global_t,f_i,\Option_i^t,
+\Reveal_{t,i}^{H}
+\right)
+\right\}_{i=1}^{N_t}.
+\end{equation}
+
+This dataset permits counterfactual evaluation from the same partial
+observation state. It also supplies ground-truth frontier genealogies by
+tracking boundary overlap and revealed free-space connectivity in the
+simulator.
+
+\section{Experimental Plan}
+
+\textbf{Environment.}
+We use HM3D training scenes for data generation and held-out HM3D-v2 scenes
+for evaluation. Candidate histories are collected with geometric,
+information-gain, and semantically guided exploration policies to avoid
+overfitting to one behavior distribution.
+
+\textbf{Prediction metrics.}
+We report occupancy IoU, semantic mIoU or feature similarity, room
+classification, goal-presence AUROC and Brier score, traversability accuracy,
+newly revealed area error, expected calibration error, and best-of-\(K\)
+hypothesis coverage.
+
+\textbf{Decision metrics.}
+For predicted utility \(\widehat U\), frontier-selection regret is
+
+\begin{equation}
+\operatorname{Regret}_t
+=
+U
+\left(
+f_t^{\mathrm{oracle}}
+\right)
+-
+U
+\left(
+f_t^{\mathrm{pred}}
+\right).
+\end{equation}
+
+We additionally report Spearman correlation between predicted and oracle
+frontier rankings and top-\(k\) oracle recall.
+
+\textbf{Memory metrics.}
+At budgets \(B\in\{0,1,4,8,16,32\}\), we measure prediction quality,
+selection regret, memory usage, visual-token count, inference latency, and
+closed-loop navigation.
+
+\textbf{Lineage metrics.}
+We report association precision and recall, IDF1, ID switches, cache
+contamination, and prediction quality separately for stable, split, merge,
+and long-absence frontier events.
+
+\textbf{Navigation metrics.}
+The final system is evaluated using Success Rate, SPL, SoftSPL, distance to
+success, collisions, frontier revisits, oscillation rate, model calls, and
+wall-clock inference cost.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Core ablations. Entries are reported at a common decision state and
+memory budget; no-cache and shuffled-cache conditions control for scene priors
+and additional token count.}
+\label{tab:ablations}
+\begin{tabular}{lcccc}
+\toprule
+Method & Pred. & Cal. & Regret & SPL\\
+& \(\uparrow\) & \(\downarrow\) & \(\downarrow\) & \(\uparrow\)\\
+\midrule
+Current observation only & -- & -- & -- & --\\
+Single frontier keyframe & -- & -- & -- & --\\
+Global temporal memory & -- & -- & -- & --\\
+Frontier FIFO memory & -- & -- & -- & --\\
+Shuffled frontier memory & -- & -- & -- & --\\
+Ours: learned frontier memory & -- & -- & -- & --\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Frontier persistence ablations. Oracle lineage provides an upper
+bound; the shuffled condition measures sensitivity to memory contamination.}
+\label{tab:lineage}
+\begin{tabular}{lccc}
+\toprule
+Association & IDF1 \(\uparrow\) & Pred. \(\uparrow\) & Regret \(\downarrow\)\\
+\midrule
+No persistence & -- & -- & --\\
+Nearest position & -- & -- & --\\
+Position + appearance & -- & -- & --\\
+Ours: lineage graph & -- & -- & --\\
+Oracle lineage & -- & -- & --\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Relation to Prior Work and Claimed Novelty}
+
+Frontier-enhanced Topological Memory predicts features at unvisited but
+already visible ghost-node viewpoints \cite{ftm}; FrontierWorld instead
+predicts the distribution of \emph{new information} revealed after executing a
+frontier-crossing option. ForesightNav completes a global geometric-semantic
+map \cite{foresightnav}; FrontierWorld predicts stochastic, decision-indexed
+branches and evaluates them against branch-complete counterfactual outcomes.
+FOM-Nav encodes hand-designed frontier, object, and path features
+\cite{fomnav}; FrontierWorld learns a bounded frontier memory specifically for
+future-revelation prediction. Navigation World Models generate
+action-conditioned future views \cite{nwm}; FrontierWorld contributes an
+evolving frontier address space, lineage-preserving memory, and explicit
+uncertainty over information acquisition.
+
+The intended contributions are:
+
+\begin{enumerate}
+    \item a formulation of frontier selection as action-conditioned prediction
+    of future information acquisition;
+    \item a lineage graph that preserves predictive belief through frontier
+    birth, split, merge, and retirement;
+    \item a fixed-budget memory trained to retain frontier-specific predictive
+    sufficient statistics;
+    \item a stochastic revelation model used for information-, cost-, and
+    risk-aware planning;
+    \item a branch-complete HM3D protocol for evaluating every available
+    frontier from an identical partial-observation state.
+\end{enumerate}
+
+\section{Workshop Scope}
+
+The initial workshop study will focus on the benchmark, lineage-aware memory,
+and three revelation outputs: occupancy, semantic features, and target
+presence. The principal hypotheses are that (i) learned frontier memory
+outperforms temporal and hand-designed caches under matched budgets,
+(ii) lineage preservation matters most during split and merge events, and
+(iii) lower counterfactual frontier regret translates into improved SPL.
+Photorealistic future generation, large-scale cross-frontier factor graphs,
+and real-robot online adaptation are reserved for the subsequent full study.
+
+\begin{thebibliography}{10}
+\footnotesize
+
+\bibitem{yamauchi1997}
+B.~Yamauchi.
+\newblock A frontier-based approach for autonomous exploration.
+\newblock In \textit{Proc.\ IEEE CIRA}, 1997.
+
+\bibitem{frontiernet}
+B.~Sun, H.~Chen, S.~Leutenegger, C.~Cadena, M.~Pollefeys, and H.~Blum.
+\newblock FrontierNet: Learning visual cues to explore.
+\newblock \textit{IEEE Robotics and Automation Letters}, 2025.
+
+\bibitem{vlfm}
+N.~Yokoyama, S.~Ha, D.~Batra, J.~Wang, and B.~Bucher.
+\newblock VLFM: Vision-language frontier maps for zero-shot semantic
+navigation.
+\newblock In \textit{Proc.\ IEEE ICRA}, 2024.
+
+\bibitem{ftm}
+X.~Cui, Q.~Liu, Z.~Liu, and H.~Wang.
+\newblock Frontier-enhanced topological memory with improved exploration
+awareness for embodied visual navigation.
+\newblock In \textit{Proc.\ ECCV}, 2024.
+
+\bibitem{foresightnav}
+H.~Shah, J.~Xing, N.~Messikommer, B.~Sun, M.~Pollefeys, and D.~Scaramuzza.
+\newblock ForesightNav: Learning scene imagination for efficient exploration.
+\newblock In \textit{CVPR Workshops}, 2025.
+
+\bibitem{nwm}
+A.~Bar, G.~Zhou, D.~Tran, T.~Darrell, and Y.~LeCun.
+\newblock Navigation world models.
+\newblock In \textit{Proc.\ CVPR}, 2025.
+
+\bibitem{fomnav}
+T.~Chabal, S.~Chen, J.~Ponce, and C.~Schmid.
+\newblock FOM-Nav: Frontier-object maps for object goal navigation.
+\newblock \textit{arXiv preprint arXiv:2512.01009}, 2025.
+
+\bibitem{openfrontier}
+E.~Padilla, B.~Sun, M.~Pollefeys, and H.~Blum.
+\newblock OpenFrontier: General navigation with visual-language grounded
+frontiers.
+\newblock \textit{arXiv preprint arXiv:2603.05377}, 2026.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,41 @@
+# FrontierWorld pip dependencies.
+#
+# habitat-sim is NOT here: it is a conda package (see environment.yml). Install
+# it first, then `pip install -r requirements.txt` into the same environment.
+#
+# Versions are pinned to what the habitat033 environment on the lab machine
+# actually runs, so a fresh environment reproduces recorded runs.
+
+# --- core simulation -------------------------------------------------------
+habitat-lab==0.3.320250127
+
+# --- numerics --------------------------------------------------------------
+numpy==1.26.4          # habitat-sim 0.3.3 breaks on numpy>=2
+numpy-quaternion==2023.0.4
+scipy==1.13.1
+numba==0.60.0
+
+# --- config ----------------------------------------------------------------
+omegaconf==2.3.1
+hydra-core==1.3.3
+PyYAML==6.0.3
+
+# --- learning (Phases 8-10) ------------------------------------------------
+torch==2.8.0
+torchvision==0.23.0
+
+# --- io and visualisation --------------------------------------------------
+imageio==2.37.0
+imageio-ffmpeg==0.6.0          # episode videos for Phase 12/14
+opencv-python-headless==4.11.0.86
+matplotlib==3.9.4
+tqdm==4.67.1
+
+# --- testing ---------------------------------------------------------------
+pytest==8.3.4
+
+# --- optional experiment tracking ------------------------------------------
+# CSV and JSONL logging need nothing extra and are always on. Uncomment to
+# enable the corresponding backend in configs/base.yaml.
+# tensorboard==2.19.0
+# wandb==0.19.8
