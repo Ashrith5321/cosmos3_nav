@@ -55,8 +55,12 @@ episode:
   # by the dataset", which is deterministic given seed.value.
   episode_id: null
   scene_id: null
-  # Phase 1 placeholder policy. Phase 2 replaces this with frontier policies.
+  # Phase 1 placeholder policy, used only by scripts/run_episode.py. Phase 2
+  # frontier policies are configured under `policy` below.
   policy: forward_biased_random
+  # Turns in place at episode start, to build a local map before the first
+  # frontier decision. 12 turns at 30 degrees is a full circle.
+  initial_scan_turns: 12
 
 mapping:
   # Metres per cell.
@@ -71,6 +75,53 @@ mapping:
   column_stride: 2
   # A cell needs this many hits before it is called free or occupied.
   min_observations: 1
+
+frontiers:
+  # Minimum boundary run to count as a frontier. 8 cells at 0.05 m is 0.4 m,
+  # roughly a doorway edge; smaller runs are usually mapping noise.
+  min_size_cells: 8
+  # Connectivity for boundary detection and clustering (4 or 8).
+  connectivity: 8
+  # Radius of the disc used for the geometric information-gain proxy.
+  info_gain_radius_m: 2.0
+  # How far back from the boundary to place the approach point, so the target
+  # sits in observed free space rather than on the free/unknown edge.
+  approach_offset_m: 0.25
+  # Frontiers further than this are treated as unreachable.
+  max_travel_distance_m: 30.0
+
+planning:
+  # PRIVILEGED: the navmesh planner is ground truth for the whole scene.
+  # Ported from OpenFrontier planner/habitat_planner.py. Label it in results.
+  planner: habitat_navmesh
+  # GreedyGeodesicFollower goal radius; null uses habitat's default.
+  goal_radius: null
+  # Cap on actions returned for one frontier decision.
+  max_actions_per_decision: 200
+
+policy:
+  # random | nearest | max_info_gain | info_gain_minus_cost
+  name: nearest
+  # Weight on travel distance for info_gain_minus_cost, in m2 per metre.
+  cost_weight: 1.0
+
+task:
+  # Habitat's ObjectNav success threshold, in metres to the nearest goal
+  # VIEWPOINT (not to the object itself; viewpoints already sit within about a
+  # metre of it). The HM3D benchmark default is 0.1. Raising it loosens success
+  # and makes SR/SPL non-comparable to published HM3D ObjectNav results, so
+  # state the value used in any reported table.
+  success_distance: 1.0
+
+goal_detector:
+  # PRIVILEGED: ground-truth semantic instance ids for the episode's goals.
+  # Phase 6 replaces this with the predicted target-presence head.
+  enabled: true
+  min_pixels: 100
+  max_detection_distance_m: 5.0
+  stop_on_detection: true
+  # How close to the detected target the agent must be before calling STOP.
+  stop_distance_m: 1.0
 
 recording:
   save_rgb: true

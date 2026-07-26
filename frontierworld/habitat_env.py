@@ -19,7 +19,7 @@ from frontierworld.config import episode_dataset_path
 BASE_TASK_CONFIG = "benchmark/nav/objectnav/objectnav_hm3d.yaml"
 
 
-def build_habitat_config(cfg: DictConfig) -> Any:
+def build_habitat_config(cfg: DictConfig, gpu_device_id: int | None = None) -> Any:
     """Compose the habitat config for an ObjectNav run."""
     from habitat.config.default import get_config
     from habitat.config.default_structured_configs import (
@@ -28,6 +28,8 @@ def build_habitat_config(cfg: DictConfig) -> Any:
     from habitat.config.read_write import read_write
 
     sim = cfg.simulator
+    if gpu_device_id is None:
+        gpu_device_id = int(sim.gpu_device_id)
     overrides = [
         f"habitat.dataset.scenes_dir={cfg.data.scenes_dir}",
         f"habitat.dataset.data_path={episode_dataset_path(cfg)}",
@@ -35,14 +37,26 @@ def build_habitat_config(cfg: DictConfig) -> Any:
         f"habitat.environment.max_episode_steps={cfg.episode.max_steps}",
         f"habitat.simulator.turn_angle={sim.turn_angle}",
         f"habitat.simulator.forward_step_size={sim.forward_step_size}",
-        f"habitat.simulator.habitat_sim_v0.gpu_device_id={sim.gpu_device_id}",
+        f"habitat.simulator.habitat_sim_v0.gpu_device_id={gpu_device_id}",
         f"habitat.simulator.habitat_sim_v0.allow_sliding={sim.allow_sliding}",
         f"habitat.seed={cfg.seed.value}",
+        # Distance to the nearest goal viewpoint that counts as success.
+        f"habitat.task.measurements.success.success_distance={cfg.task.success_distance}",
     ]
     habitat_cfg = get_config(BASE_TASK_CONFIG, overrides=overrides)
 
     with read_write(habitat_cfg):
         habitat_cfg.habitat.simulator.scene_dataset = str(cfg.data.scene_dataset_config)
+
+        # Deterministic, repeatable episode order. Without this every policy
+        # would be scored on a different episode list, which makes the whole
+        # comparison meaningless.
+        iterator = habitat_cfg.habitat.environment.iterator_options
+        iterator.shuffle = False
+        iterator.group_by_scene = True
+        iterator.cycle = True
+        iterator.max_scene_repeat_steps = -1
+        iterator.max_scene_repeat_episodes = -1
 
         agent = habitat_cfg.habitat.simulator.agents.main_agent
         agent.height = sim.agent_height
@@ -72,11 +86,44 @@ def build_habitat_config(cfg: DictConfig) -> Any:
     return habitat_cfg
 
 
-def make_env(cfg: DictConfig):
+def make_env(cfg: DictConfig, gpu_device_id: int | None = None):
     """Construct a habitat.Env. Caller is responsible for closing it."""
     import habitat
 
-    return habitat.Env(config=build_habitat_config(cfg))
+    return habitat.Env(config=build_habitat_config(cfg, gpu_device_id))
+
+
+def select_episodes(cfg: DictConfig, count: int, shard: int = 0, num_shards: int = 1):
+    """A deterministic episode subset, and a dataset restricted to it.
+
+    Returns (dataset, episode_keys). Episodes are ordered by (scene, id) and
+    sliced round-robin across shards, so every worker gets a disjoint set and
+    every policy is scored on exactly the same episodes.
+    """
+    import habitat
+    from habitat.config.default import get_config
+
+    habitat_cfg = build_habitat_config(cfg)
+    dataset = habitat.datasets.make_dataset(
+        habitat_cfg.habitat.dataset.type, config=habitat_cfg.habitat.dataset
+    )
+
+    episodes = sorted(dataset.episodes, key=lambda e: (str(e.scene_id), int(e.episode_id)))
+    episodes = episodes[: int(count)]
+    if num_shards > 1:
+        episodes = episodes[shard::num_shards]
+
+    # Group by scene so the simulator reloads as rarely as possible.
+    episodes.sort(key=lambda e: (str(e.scene_id), int(e.episode_id)))
+    dataset.episodes = episodes
+    keys = [(str(e.scene_id), str(e.episode_id)) for e in episodes]
+    return dataset, keys
+
+
+def make_env_with_dataset(cfg: DictConfig, dataset, gpu_device_id: int | None = None):
+    import habitat
+
+    return habitat.Env(config=build_habitat_config(cfg, gpu_device_id), dataset=dataset)
 
 
 def agent_pose(sim) -> dict[str, Any]:

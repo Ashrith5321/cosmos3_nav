@@ -10,8 +10,21 @@ selection?*
 
 ## Status
 
-Phase 1 (repository, environment, data, one-episode gate) is complete.
-Phase 2 (occupancy mapping, frontier extraction, baseline policies) is next.
+Phases 1 and 2 are complete: the repository and one-episode gate, then
+occupancy mapping, frontier extraction, the navmesh planner and the four
+baseline frontier policies benchmarked over 50 episodes each.
+Phase 3 (frontier-crossing options) is next.
+
+### Privileged information
+
+Three components use ground truth that is unavailable at deployment. Every
+reported number that depends on them must say so (checklist Phase 15).
+
+| component | privilege | replaced in |
+| --- | --- | --- |
+| `planning/habitat_planner.py` | habitat navmesh, ground truth for the whole scene including unobserved regions | never -- it isolates frontier choice from control |
+| `planning/goal_detector.py` | ground-truth semantic instance ids for the episode's goals | Phase 6 target-presence head |
+| Phase 5 branch generation | simulator state forking | training/eval labels only, never at deployment |
 
 ## Setup
 
@@ -76,6 +89,40 @@ python scripts/run_episode.py --config configs/base.yaml
 Every setting in `configs/base.yaml` can be overridden with `--override
 key.subkey=value`, and the fully resolved config is copied into the run
 directory, so a run is reproducible from its own output.
+
+### Phase 2: frontier policies
+
+Benchmark all four baseline policies in parallel across every GPU:
+
+```bash
+python scripts/benchmark_policies.py --episodes 50 --policies all --workers 14
+```
+
+Episodes are sharded over worker processes, each with its own simulator, and
+each worker runs every policy over its own shard -- so all policies are scored
+on an identical episode list, as Phase 12 requires. Results append to
+`episodes.jsonl` as they finish, so a run can be watched live:
+
+```bash
+tail -f outputs/phase2/<run_id>/episodes.jsonl
+python scripts/benchmark_policies.py --report outputs/phase2/<run_id>
+```
+
+A single policy, single process, with full observation saving:
+
+```bash
+python scripts/run_navigation.py --policy nearest --episodes 10
+```
+
+The policies are `random`, `nearest`, `max_info_gain` and
+`info_gain_minus_cost` (score = information gain − `cost_weight` × geodesic
+distance). The last is the strongest non-learning baseline and the reference
+the revelation model has to beat.
+
+Note `task.success_distance` in the config: habitat measures success as metres
+to the nearest goal *viewpoint*, and the HM3D benchmark default is 0.1. This
+repository sets 1.0, which loosens success and makes SR/SPL non-comparable to
+published HM3D ObjectNav numbers -- state the value in any reported table.
 
 ### Output layout
 
