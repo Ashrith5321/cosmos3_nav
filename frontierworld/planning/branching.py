@@ -32,19 +32,27 @@ class SimulatorSnapshot:
     agent_state: object
     free_counts: np.ndarray
     occupied_counts: np.ndarray
+    semantic_grid: np.ndarray | None = None
 
     @classmethod
-    def capture(cls, sim, occupancy: OccupancyMap) -> "SimulatorSnapshot":
+    def capture(
+        cls, sim, occupancy: OccupancyMap, semantic_map=None
+    ) -> "SimulatorSnapshot":
         return cls(
             agent_state=copy.deepcopy(sim.get_agent(0).get_state()),
             free_counts=occupancy.free_counts.copy(),
             occupied_counts=occupancy.occupied_counts.copy(),
+            semantic_grid=(
+                semantic_map.copy_counts() if semantic_map is not None else None
+            ),
         )
 
-    def restore(self, sim, occupancy: OccupancyMap) -> None:
+    def restore(self, sim, occupancy: OccupancyMap, semantic_map=None) -> None:
         sim.get_agent(0).set_state(copy.deepcopy(self.agent_state))
         occupancy.free_counts[...] = self.free_counts
         occupancy.occupied_counts[...] = self.occupied_counts
+        if semantic_map is not None and self.semantic_grid is not None:
+            semantic_map.restore_counts(self.semantic_grid)
 
     def matches_agent(self, sim, tolerance: float = 0.0) -> bool:
         """Is the live agent state identical to this snapshot?"""
@@ -80,10 +88,21 @@ class BranchResult:
     newly_observed_area_m2: float = 0.0
     newly_free_area_m2: float = 0.0
     final_position: list[float] = field(default_factory=list)
+    # Semantic instances seen anywhere along the branch; the room label and the
+    # target-visibility flag are both derived from these.
+    observed_instances: list[int] = field(default_factory=list)
+    target_seen_at_step: int | None = None
+    target_pixel_count: int = 0
+    # Retained RGB-D for later experiments (checklist Phase 4).
+    rgb_frames: list[np.ndarray] = field(default_factory=list, repr=False)
+    depth_frames: list[np.ndarray] = field(default_factory=list, repr=False)
 
     def to_dict(self) -> dict:
-        payload = {k: v for k, v in self.__dict__.items() if k != "trajectory"}
+        skip = {"trajectory", "rgb_frames", "depth_frames", "observed_instances"}
+        payload = {k: v for k, v in self.__dict__.items() if k not in skip}
         payload["n_trajectory_poses"] = len(self.trajectory)
+        payload["n_observed_instances"] = len(self.observed_instances)
+        payload["n_rgb_frames"] = len(self.rgb_frames)
         return payload
 
 
@@ -110,6 +129,10 @@ def execute_option(
     occupancy: OccupancyMap,
     cfg,
     record_trajectory: bool = True,
+    semantic_map=None,
+    instance_to_category: dict | None = None,
+    target_instance_ids: set | None = None,
+    keep_frames: bool = False,
 ) -> BranchResult:
     """Run one option from the current state, mapping as it goes.
 
@@ -131,16 +154,45 @@ def execute_option(
     start_position = np.asarray(agent.get_state().position, dtype=np.float64)
     previous = start_position
 
-    def integrate() -> None:
+    seen_instances: set[int] = set()
+
+    def integrate(step_index: int) -> None:
+        observations = sim_observations(sim, cfg)
         rotation, translation = sensor_extrinsics(sim, "depth")
+        depth = observations["depth"]
         occupancy.integrate(
-            depth=sim_observations(sim, cfg)["depth"],
+            depth=depth,
             rotation=rotation,
             translation=translation,
             agent_position=np.asarray(agent.get_state().position),
             hfov_deg=float(cfg.simulator.hfov),
             max_depth=float(cfg.simulator.max_depth),
         )
+
+        if keep_frames:
+            result.rgb_frames.append(np.asarray(observations["rgb"])[..., :3].copy())
+            result.depth_frames.append(np.asarray(depth, dtype=np.float32).copy())
+
+        semantic = observations.get("semantic")
+        if semantic is None:
+            return
+        semantic = np.squeeze(np.asarray(semantic)).astype(np.int64)
+
+        if semantic_map is not None and instance_to_category is not None:
+            points, valid = occupancy.unproject(
+                depth, rotation, translation, float(cfg.simulator.hfov)
+            )
+            valid &= depth < (float(cfg.simulator.max_depth) - 1e-3)
+            semantic_map.integrate(semantic, points, valid, instance_to_category)
+
+        seen_instances.update(int(v) for v in np.unique(semantic))
+
+        if target_instance_ids:
+            hits = int(np.isin(semantic, list(target_instance_ids)).sum())
+            if hits > result.target_pixel_count:
+                result.target_pixel_count = hits
+            if hits >= int(cfg.goal_detector.min_pixels) and result.target_seen_at_step is None:
+                result.target_seen_at_step = step_index
 
     n_approach = len(option.approach_actions)
     for index, action in enumerate(option.actions):
@@ -153,7 +205,7 @@ def execute_option(
         result.distance_travelled_m += moved
         previous = position
 
-        integrate()
+        integrate(index)
         result.executed_actions.append(int(action))
         if index < n_approach:
             result.n_approach_executed += 1
@@ -171,6 +223,7 @@ def execute_option(
                 }
             )
 
+    result.observed_instances = sorted(seen_instances)
     final_position = np.asarray(agent.get_state().position, dtype=np.float64)
     result.final_position = [float(v) for v in final_position]
     result.displacement_m = float(np.linalg.norm(final_position - start_position))
@@ -202,6 +255,8 @@ def run_branches(
     occupancy: OccupancyMap,
     cfg,
     verify_identical_start: bool = True,
+    semantic_map=None,
+    **execute_kwargs,
 ) -> tuple[list[BranchResult], SimulatorSnapshot]:
     """Execute every option from the same state, restoring between branches.
 
@@ -209,7 +264,7 @@ def run_branches(
     branch does not begin from the recorded state -- a silent violation here
     would poison every counterfactual comparison built on top of it.
     """
-    snapshot = SimulatorSnapshot.capture(sim, occupancy)
+    snapshot = SimulatorSnapshot.capture(sim, occupancy, semantic_map)
     results: list[BranchResult] = []
 
     for option in options:
@@ -219,9 +274,14 @@ def run_branches(
                 "the recorded state"
             )
         try:
-            results.append(execute_option(sim, option, occupancy, cfg))
+            results.append(
+                execute_option(
+                    sim, option, occupancy, cfg,
+                    semantic_map=semantic_map, **execute_kwargs,
+                )
+            )
         finally:
-            snapshot.restore(sim, occupancy)
+            snapshot.restore(sim, occupancy, semantic_map)
 
     return results, snapshot
 
