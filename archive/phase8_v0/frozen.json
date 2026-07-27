@@ -1,0 +1,24 @@
+{
+  "architecture": {
+    "input_channels": 6,
+    "target_channels": 3,
+    "option_dim": 8,
+    "goal_vocab": 8,
+    "width": 48,
+    "depth": 3,
+    "dropout": 0.0
+  },
+  "loss_weights": {
+    "occ": 1.0,
+    "sem": 0.5,
+    "goal": 1.0,
+    "cross": 0.5,
+    "area": 0.1
+  },
+  "decision_threshold": 0.5,
+  "selection_metric": "free_iou",
+  "frame": {
+    "extent_m": 8.0,
+    "resolution": 0.1
+  }
+}

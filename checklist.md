@@ -7,10 +7,16 @@ Lineage-Aware Predictive Memory for Object Navigation
 exploration action will reveal, and does that prediction improve frontier
 selection?
 
-**Status:** Phases 0–5 and 7 complete. Phase 6 is **frozen**: the
-implementation is correct and branch-isolated, but real-episode association
-accuracy is unmeasured pending human annotation (Phase 6.5), which must finish
-before Phase 11 and Phase 14. Phase 8 (structured predictor) is next.
+**Status:** Phases 0–5 and 7 complete. Phase 6 **frozen** (association
+accuracy unmeasured pending Phase 6.5 annotation). Phase 8 **v0 gate passed
+narrowly; two primary heads unresolved** — see below. Phase 9 infrastructure
+passed; Cosmos worker pending.
+
+> **The v0 test split is CONSUMED.** Its numbers have been read, so any v1
+> design informed by them makes it biased for v1. `manifests/sealed_final_v1.json`
+> reserves 20 HM3D val-split scenes, untouched by any dataset, model or
+> diagnostic, for the single final v1 evaluation. See
+> `manifests/SEALED_DO_NOT_TOUCH.md`.
 
 ---
 
@@ -49,7 +55,8 @@ Phase 12: Offline ranking → Phase 13: Closed-loop navigation
 | 6 Lineage | **frozen** | persist/split/disappear identities, no branch leakage | synthetic gate + 0 isolation violations |
 | 6.5 Annotation | exported | human transition labels | 102 transitions awaiting labels |
 | 7 Tensors | done | batch round-trips to the global map | round-trip 2.7e-15 m, recall 1.000 |
-| 8–16 | not started | | |
+| 8 Predictor | **v0 frozen** | beats strongest baseline on occupancy + a scalar | narrow pass, 2 heads unresolved |
+| 9–16 | not started | | |
 
 **Test suite:** 146 passing.
 **Known blockers:** none. HM3D train meshes downloaded (800 scenes, 145 with

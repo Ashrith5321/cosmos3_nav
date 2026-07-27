@@ -1,0 +1,92 @@
+experiment:
+  name: phase1_smoke
+  output_dir: /home/ashed/Documents/cosmos3_nav/frontierworld/outputs
+  notes: 'Phase 1 gate: run one HM3D ObjectNav episode and save an episode log.'
+seed:
+  value: 0
+  torch_deterministic: true
+  seed_habitat: true
+data:
+  scenes_dir: /home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets
+  scene_dataset_config: /home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/hm3d_annotated_basis.scene_dataset_config.json
+  episodes:
+    train: /home/ashed/Documents/cosmos3_nav/frontierworld/data/datasets/objectnav/hm3d/v2/train/train.json.gz
+    val: /home/ashed/Documents/cosmos3_nav/frontierworld/data/datasets/objectnav/hm3d/v2/val/val.json.gz
+    val_mini: /home/ashed/Documents/cosmos3_nav/frontierworld/data/datasets/objectnav/hm3d/v2/val_mini/val_mini.json.gz
+  split: val
+simulator:
+  width: 640
+  height: 480
+  hfov: 79
+  sensor_height: 0.88
+  agent_height: 0.88
+  agent_radius: 0.18
+  turn_angle: 30
+  forward_step_size: 0.25
+  normalize_depth: false
+  min_depth: 0.5
+  max_depth: 5.0
+  allow_sliding: false
+  gpu_device_id: 0
+episode:
+  max_steps: 200
+  episode_id: null
+  scene_id: null
+  policy: forward_biased_random
+  initial_scan_turns: 12
+mapping:
+  resolution: 0.05
+  size_m: 40.0
+  obstacle_height_min: 0.2
+  obstacle_height_max: 1.5
+  column_stride: 2
+  min_observations: 1
+frontiers:
+  min_size_cells: 8
+  connectivity: 8
+  info_gain_radius_m: 2.0
+  approach_offset_m: 0.25
+  max_travel_distance_m: 30.0
+planning:
+  planner: habitat_navmesh
+  goal_radius: null
+  max_actions_per_decision: 200
+options:
+  probe_distance_m: 2.0
+  horizon_actions: 12
+  max_snap_drift_m: 1.0
+policy:
+  name: nearest
+  cost_weight: 1.0
+dataset:
+  max_frontiers: 8
+  decisions_per_episode: 6
+  min_state_separation_m: 1.0
+  episode_pool: 1000
+  episodes_per_shard: 40
+  episodes_per_scene: 12
+task:
+  success_distance: 1.0
+goal_detector:
+  enabled: true
+  min_pixels: 100
+  max_detection_distance_m: 5.0
+  stop_on_detection: true
+  stop_distance_m: 1.0
+recording:
+  save_rgb: true
+  save_depth: true
+  save_semantic: true
+  save_pose: true
+  save_map: true
+  stride: 1
+  depth_format: npz
+  semantic_format: npz
+  save_map_preview: true
+logging:
+  csv: true
+  jsonl: true
+  tensorboard: false
+  wandb: false
+  wandb_project: frontierworld
+  log_every: 10
