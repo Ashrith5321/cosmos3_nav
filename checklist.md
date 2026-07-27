@@ -1021,6 +1021,27 @@ surface and smears occupied evidence over a 1.5 m band. Without that diagnostic
 row, `+conservative_carving`'s area ratio 0.892 and precision 0.196 would have
 read as progress.
 
+**Bounded claim.** The tested residual-envelope method — conservative carving
+to `d_hat - k_f*sigma` with a soft occupied band over `+/- k_o*sigma` — did not
+improve imperfect-depth mapping and severely degraded clean-depth performance
+at the observed error magnitude. This does **not** establish that every
+uncertainty-aware mapping method must fail, only that this formulation is
+unsuitable when `sigma(d)` is comparable to scene dimensions.
+
+**Sigma provenance** (two figures appear in the record; they are not in
+conflict). The component test reported `sigma(1 m)=0.105`, `sigma(4 m)=0.311`
+from a **synthetic fixture** — `pred = gt + N(0, 0.05*gt)`, 5% relative noise
+imposed by construction to verify that `fit_error_envelope` is monotone and
+range-dependent, 49k samples. The Phase 9C figure of 1.32–2.00 m comes from
+**real** Depth Anything V2 residuals against habitat sensor depth, 272M
+samples, 0.9 quantile, 8 bins over [0, 5] m. Units are metres in both cases.
+First-frame scale is applied **before** fitting, so the envelope describes
+residual error *after* calibration. Consistency: `sigma/d = 1.53/2.0 = 0.77` at
+2 m, i.e. ~77% relative at the 90th percentile, against an independently
+measured mean AbsRel of 0.711 in 9A — a 0.9-quantile envelope must exceed a
+mean relative error, so the two agree. The synthetic fixture was 15x more
+optimistic than reality.
+
 **Interpretation.** The failure is upstream of integration. A residual error of
 that magnitude after scale correction is shape error, consistent with the 9B
 finding that oracle scaling reached only 0.670/0.196. No sensor model can be
