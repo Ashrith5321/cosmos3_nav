@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, fields
 from pathlib import Path
 
 SCHEMA_VERSION = "frontierreveal-1"
@@ -74,8 +74,18 @@ class SplitManifest:
 
     @classmethod
     def load(cls, path: str | Path) -> "SplitManifest":
+        """Load a manifest, ignoring provenance keys this class does not model.
+
+        Manifests carry audit fields that are deliberately not part of the
+        dataclass -- how a split was derived, its scene-set hash, why those
+        scenes. Rejecting them would force provenance to live outside the file
+        it describes, or force frozen manifests to be rewritten whenever the
+        schema grows a field. Unknown keys are dropped on load and preserved on
+        disk, since `save` is never used to rewrite a frozen manifest.
+        """
         payload = json.loads(Path(path).read_text())
-        return cls(**payload)
+        known = {field.name for field in fields(cls)}
+        return cls(**{k: v for k, v in payload.items() if k in known})
 
     def summary(self) -> str:
         lines = [
