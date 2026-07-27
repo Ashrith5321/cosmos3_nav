@@ -1,36 +1,93 @@
 # Phase 9D — Cosmos 3 Nano counterfactual rollouts
 
-**Status: PARTIAL.** Everything up to the point of pressing "generate" is done,
-verified and frozen. Generation itself is blocked on a gated-model credential
-and was not attempted, because the only way past it was to disable a required
-safety component.
+**Status: PARTIAL — generation works, and the Step 7 rollout gate FAILED on action fidelity.**
 
-## The blocker, precisely
+The credential blocker is resolved: the HuggingFace token was supplied, the
+Cosmos-Guardrail1 licence accepted, and **guardrails were enabled for every
+generation run** (`--no-guardrails` was never used). Seven rollouts were
+generated. What they show is a clear negative result, reported below without
+adjusting any threshold to soften it.
 
-`cosmos_framework.auxiliary.guardrail.common.presets` constructs `Blocklist`,
-`Qwen3Guard` and `RetinaFaceFilter`, all of which download from
+## The headline finding
 
-    nvidia/Cosmos-Guardrail1 @ d6d4bfa899a71454a700907664f3e88f503950cf
+Cosmos 3 Nano **does consume** the action conditioning, but **does not follow
+commanded turn direction** at the rotation rates the ObjectNav option requires.
+The cause is quantified and specific.
 
-That repo is `gated=auto` and this machine has no HuggingFace token, so the
-download fails with *"Access to model ... is restricted. Please log in."*
-Cosmos3-Nano itself is public and is already downloaded (33 GB, hash
-`272cb18f94eaa850`).
+### It consumes the action
 
-The framework offers `--no-guardrails`, and that was not used. Guardrails were
-listed as a required safety component, so `scripts/cosmos_worker.py` raises if
-that flag is ever passed through.
+Holding conditioning frame, prompt and seed fixed and varying *only* the action:
 
-**Correction to an earlier note.** During Step 3 I recorded both gated repos as
-"ACCESSIBLE". That check called `HfApi().model_info(...)`, which returns public
-*metadata* for a gated repo and therefore never established file access. The
-accurate status is blocked pending authentication.
+| probe | mean frame difference | mean horizontal flow |
+|---|---|---|
+| `still` (identity) | 2.29 | −0.06 |
+| `forward` (0.25 m/frame) | 2.72 | −0.13 |
+| `turn_left` (+30°/frame) | 31.60 | −17.50 |
+| `turn_right` (−30°/frame) | 39.44 | −17.80 |
 
-**To unblock:** a HuggingFace token whose account has accepted the
-Cosmos-Guardrail1 licence. Nothing else is missing — the GPUs, the checkpoint,
-the environment and all conditioning inputs are in place.
+The action tensor is unambiguously driving the output — rotation probes produce
+an order of magnitude more motion than the `still` control.
+
+### It does not follow the commanded direction
+
+`turn_left` and `turn_right` are opposite commands, yet both pan the camera the
+**same** way (flow −17.50 vs −17.80, separation 0.30). This is not a sign
+convention error: a flipped convention would still yield *opposite* results.
+Repeating at a gentler 7.5°/frame gives −10.10 vs −0.33 — a 30× magnitude
+difference, so the two commands are distinguished, but still not opposite.
+
+Within the smoke rollout itself, commanded yaw correlates with apparent
+horizontal flow at only **0.16** against a preregistered threshold of 0.30. That
+check is recorded as FAIL. The threshold was not lowered.
+
+### Why: rotation is 156× out of distribution
+
+Comparing our option's action tensor against `camera_action_44.json`, the
+reference camera trajectory NVIDIA ships with the model:
+
+| | reference | our option | ratio |
+|---|---|---|---|
+| translation / frame | 0.884 m | 0.584 m | 0.66× |
+| \|yaw\| / frame | **0.264°** (max 0.349°) | **41.25°** (max 120°) | **156×** |
+
+The `camera_pose` embodiment is exercised on near-pure translation with
+sub-degree per-frame rotation. Our translation is comfortably in range; our
+rotation is not remotely. ObjectNav's 30° discrete turn is the problem.
+
+**A missing normalizer is ruled out** as the explanation: no `camera_pose`
+normalizer file exists, and the framework's own inference passes
+`action_normalizer=None`, so raw metric actions are the expected input.
+
+### What this implies
+
+Reaching the reference's ~0.3°/frame would need roughly 100 frames per single
+30° primitive turn — thousands of frames for a 66-action option. Cosmos
+`camera_pose` forward dynamics, as shipped, cannot represent this option space.
+
+Qualitatively the smoke rollout holds coherent indoor geometry for about 12 of
+17 frames and then degrades into smeared texture (see `figures/`).
+
+## Why Steps 8, 10 and 11 were not run
+
+They are gated on Step 7. Converting rollouts through the frozen depth → scale →
+converter path, building a decision group, and running a 10–20 group pilot would
+all measure a generator that cannot express the option's rotation. The
+comparison against the Phase 8 predictor would be uninterpretable, and running it
+anyway would spend substantial compute to produce a foregone negative. Stopping
+at the failed gate is the preregistered behaviour.
+
+## What is NOT claimed
+
+- **Not** that Cosmos action conditioning is broken in general. The failure is
+  specific to rotation rates far outside the shipped reference distribution.
+- **No** comparison against the Phase 8 predictor was made.
+- **No** revelation-quality result of any kind.
+- The 7.5°/frame probe is a single pair of rollouts at one seed; it indicates
+  rather than establishes the low-rate behaviour.
 
 ## What is established
+
+
 
 ### The action interface is real (Step 2)
 
@@ -120,13 +177,12 @@ the check actually discriminates.
 
 ## What is not established
 
-No video has been generated, so **nothing is known about whether Cosmos
-produces useful frontier revelations.** In particular these remain open:
+Still open, and deliberately not attempted after the Step 7 gate failed:
 
-- whether generated frames follow the commanded 9-D pose sequence at all
-- whether the turn direction and forward motion are respected
 - whether generated video survives the frozen depth → scale → converter path
 - whether Cosmos beats the Phase 8 predictor on any decision group
+- whether a lower-rotation option encoding (or a different embodiment) would
+  restore action fidelity
 
 No partial or indicative result is claimed for any of these.
 
@@ -134,7 +190,11 @@ No partial or indicative result is claimed for any of these.
 
 | file | contents |
 |---|---|
-| `FROZEN.json` | per-gate status, blocker, constraints |
+| `FROZEN.json` | per-gate status, findings, constraints |
+| `action_fidelity.json` | probe results and the 156x rotation comparison |
+| `rollout_verification.json` | the 9 smoke-rollout checks with measured values |
+| `sensitivity_report.json` | the four action probes |
+| `figures/` | contact sheets: smoke rollout, turn_left, turn_right |
 | `action_interface_report.md` | Class C determination with source citations |
 | `resource_profile.json` | load timings, RAM, VRAM, device map, topology |
 | `smoke_selection.json` | rule, 1497 candidates, selected branch, runners-up |
@@ -158,5 +218,6 @@ conditioning RGB and depth, nominal poses) and `outputs/phase9d/smoke_request`
         --out outputs/phase9d/smoke_request \
         --checkpoint $CK --checkpoint-hash 272cb18f94eaa850
 
-Adding `--generate` runs the inference CLI with guardrails enabled; that step is
-what the credential unblocks.
+Adding `--generate` runs the inference CLI with guardrails enabled. The action
+probes are reproduced with `scripts/action_sensitivity.py` and the rollout checks
+with `scripts/verify_rollout.py`.

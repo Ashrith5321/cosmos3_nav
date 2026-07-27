@@ -1,0 +1,58 @@
+{
+  "reference_camera_action_44": {
+    "n_steps": 60,
+    "translation_mean_m": 0.8843,
+    "translation_max_m": 1.2212,
+    "abs_yaw_mean_deg": 0.264,
+    "abs_yaw_max_deg": 0.349
+  },
+  "our_smoke_option": {
+    "n_steps": 16,
+    "translation_mean_m": 0.584,
+    "translation_max_m": 1.0,
+    "abs_yaw_mean_deg": 41.25,
+    "abs_yaw_max_deg": 120.0
+  },
+  "ratio_our_to_reference": {
+    "translation": 0.66,
+    "yaw": 156.2
+  },
+  "sensitivity_fast_30deg_per_frame": {
+    "turn_left": {
+      "n_frames": 17,
+      "mean_frame_difference": 31.602,
+      "mean_horizontal_flow": -17.495
+    },
+    "turn_right": {
+      "n_frames": 17,
+      "mean_frame_difference": 39.436,
+      "mean_horizontal_flow": -17.797
+    },
+    "forward": {
+      "n_frames": 17,
+      "mean_frame_difference": 2.718,
+      "mean_horizontal_flow": -0.125
+    },
+    "still": {
+      "n_frames": 17,
+      "mean_frame_difference": 2.289,
+      "mean_horizontal_flow": -0.055
+    }
+  },
+  "sensitivity_fast_verdict": {
+    "left_and_right_have_opposite_sign": false,
+    "left_right_separation": 0.302,
+    "still_is_quietest": true,
+    "model_consumes_action": false
+  },
+  "sensitivity_slow_7p5deg_per_frame": {
+    "slow_left_mean_h_flow": -10.098,
+    "slow_right_mean_h_flow": -0.333,
+    "note": "opposite commands did not produce opposite motion; magnitudes differ ~30x"
+  },
+  "normalizer": {
+    "camera_pose_normalizer_exists": false,
+    "inference_uses": "action_normalizer=None",
+    "conclusion": "raw metric actions are the expected input; a missing normalizer does NOT explain the failure"
+  }
+}

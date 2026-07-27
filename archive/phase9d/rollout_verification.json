@@ -1,0 +1,147 @@
+{
+  "video": "/home/ashed/Documents/cosmos3_nav/frontierworld/outputs/phase9d/smoke_request/generated/5biL7VEkByM_0_t12_max_info_gain_f1/vision.mp4",
+  "checks": {
+    "decodes": {
+      "pass": true,
+      "shape": [
+        17,
+        480,
+        640,
+        3
+      ],
+      "dtype": "uint8"
+    },
+    "frame_count": {
+      "pass": true,
+      "expected": 17,
+      "actual": 17,
+      "note": "num_frames must equal action_chunk_size + 1"
+    },
+    "finite": {
+      "pass": true,
+      "min": 0,
+      "max": 255
+    },
+    "no_frame_collapse": {
+      "pass": true,
+      "min_consecutive_difference": 7.290372371673584,
+      "mean_consecutive_difference": 28.065750122070312,
+      "per_step": [
+        15.401,
+        23.313,
+        14.713,
+        17.121,
+        16.331,
+        31.315,
+        25.927,
+        26.677,
+        27.681,
+        34.044,
+        7.29,
+        50.575,
+        50.67,
+        57.018,
+        25.648,
+        25.328
+      ],
+      "threshold": 1.0
+    },
+    "no_duplicate_frames": {
+      "pass": true,
+      "n_unique": 17
+    },
+    "drifts_from_conditioning_frame": {
+      "pass": true,
+      "distance_from_frame0": [
+        0.0,
+        15.401,
+        27.158,
+        30.555,
+        32.628,
+        34.984,
+        41.489,
+        44.915,
+        47.127,
+        49.076,
+        51.081,
+        50.795,
+        60.318,
+        65.688,
+        67.341,
+        66.696,
+        67.123
+      ]
+    },
+    "conditioning_consistency": {
+      "pass": true,
+      "frame0_vs_conditioning": 6.051,
+      "frameN_vs_conditioning": 67.305
+    },
+    "turn_direction": {
+      "pass": false,
+      "commanded_yaw_per_step": [
+        2.0944,
+        1.0472,
+        -0.0,
+        -1.5708,
+        -0.5236,
+        0.5236,
+        -1.0472,
+        0.0,
+        0.0,
+        -0.5236,
+        -0.0,
+        -0.5236,
+        -0.5236,
+        -2.0944,
+        -1.0472,
+        -0.0
+      ],
+      "mean_horizontal_flow_per_step": [
+        0.159,
+        -1.431,
+        -1.39,
+        -3.364,
+        -2.975,
+        -12.862,
+        -9.741,
+        -9.875,
+        -9.84,
+        -16.149,
+        -0.278,
+        -0.795,
+        -8.799,
+        -2.849,
+        -8.467,
+        -8.59
+      ],
+      "correlation": 0.16,
+      "note": "camera yaw and apparent horizontal flow should be anti-correlated; sign convention is not asserted, magnitude of correlation is"
+    },
+    "forward_motion_tracks_command": {
+      "pass": true,
+      "commanded_translation_per_step_m": [
+        0.0,
+        0.483,
+        0.483,
+        0.25,
+        1.0,
+        0.7273,
+        0.483,
+        1.0,
+        0.483,
+        0.7273,
+        0.483,
+        0.9746,
+        0.75,
+        0.0,
+        0.5,
+        1.0
+      ],
+      "correlation_with_frame_difference": 0.084
+    }
+  },
+  "n_checks_asserted": 9,
+  "n_passed": 8,
+  "all_passed": false
+}

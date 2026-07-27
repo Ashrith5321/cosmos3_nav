@@ -1,30 +1,21 @@
 {
-  "status": "PARTIAL. Phase 9D interface, environment, resource and conditioning work is COMPLETE and frozen. All generation-dependent steps are BLOCKED on gated-model credentials and were not attempted.",
-  "blocker": {
-    "kind": "external_credentials",
-    "repository": "nvidia/Cosmos-Guardrail1",
-    "revision": "d6d4bfa899a71454a700907664f3e88f503950cf",
-    "detail": "Required by cosmos_framework.auxiliary.guardrail.common.presets (Blocklist, Qwen3Guard, RetinaFaceFilter). The repo is gated=auto and no HuggingFace token is configured on this machine, so the checkpoint cannot be fetched.",
-    "why_not_worked_around": "Guardrails are a required safety component. Disabling them via --no-guardrails was explicitly out of scope, and scripts/cosmos_worker.py raises rather than accept that flag.",
-    "note_on_earlier_claim": "A Phase 9D Step 3 note recorded both gated repos as ACCESSIBLE. That check read public model metadata only, which does not establish file access. File download requires authentication; the corrected status is BLOCKED.",
-    "resolution_required": "A HuggingFace token with the Cosmos-Guardrail1 licence accepted. Cosmos3-Nano itself is public and already downloaded.",
-    "affects": ["step_7_generation", "step_8_conversion", "step_10_decision_group", "step_11_pilot"]
-  },
+  "status": "PARTIAL. Generation is UNBLOCKED and working; the Step 7 rollout gate FAILED on action fidelity. Steps 8, 10 and 11 are stopped at that failed gate rather than run on a generator that cannot represent the option's rotation.",
   "gates": {
     "step_1_repo_inspection": "PASS",
     "step_2_action_interface": "PASS",
     "step_3_isolated_environment": "PASS",
-    "step_4_checkpoint_load_and_profile": "PASS (weights load and fit; generation not started)",
+    "step_4_checkpoint_load_and_profile": "PASS",
     "step_5_smoke_branch_selection": "PASS",
     "step_6_conditioning_manifest": "PASS",
-    "step_7_one_generated_rollout": "BLOCKED",
-    "step_8_structured_conversion": "BLOCKED",
+    "step_7_one_generated_rollout": "FAIL (8/9 checks pass; turn direction FAILS)",
+    "step_8_structured_conversion": "NOT RUN (gated on step 7)",
     "step_9_cache_reproducibility": "PASS",
-    "step_10_decision_group": "BLOCKED",
-    "step_11_validation_pilot": "BLOCKED"
+    "step_10_decision_group": "NOT RUN (gated on step 7)",
+    "step_11_validation_pilot": "NOT RUN (gated on step 7)",
+    "step_7b_action_sensitivity": "FAIL (opposite yaw commands do not produce opposite image motion)"
   },
   "action_interface": {
-    "class": "C — model both consumes action conditioning and emits actions",
+    "class": "C \u2014 model both consumes action conditioning and emits actions",
     "conditioning_mode": "forward_dynamics",
     "embodiment": "camera_pose",
     "domain_id": 2,
@@ -89,7 +80,10 @@
     "rot6d_layout_cross_checked": "framework pose_abs_to_rel matches an independent reference implementation to 2.4e-7 on random SE(3); the row-major variant does NOT match, so the check discriminates",
     "tests_total": 221,
     "tests_added_this_phase": 44,
-    "test_files_added": ["tests/test_nominal_poses.py", "tests/test_cosmos_request.py"],
+    "test_files_added": [
+      "tests/test_nominal_poses.py",
+      "tests/test_cosmos_request.py"
+    ],
     "heavyweight_gpu_tests": "none added; every new test runs without a GPU or the 33 GB checkpoint"
   },
   "constraints_respected": {
@@ -102,12 +96,70 @@
     "guardrails_not_disabled": true,
     "no_custom_quantization_or_ddp": true,
     "cosmos_never_imported_in_habitat": true,
-    "phase10_not_started": true
+    "phase10_not_started": true,
+    "no_threshold_weakened_to_pass": true
   },
   "environment": {
     "habitat": "python 3.9 conda env habitat033, unchanged, 221 tests pass",
     "cosmos": "python 3.13.14, torch 2.10.0+cu128, diffusers 0.39.0, isolated uv venv",
     "isolation": "the two environments communicate only through the conditioning directory and generated-output files",
     "lock": "archive/phase9d/cosmos_env_lock.json, archive/phase9d/cosmos_env_packages.txt"
+  },
+  "credentials": {
+    "resolved": true,
+    "repository": "nvidia/Cosmos-Guardrail1",
+    "note": "HuggingFace token supplied and licence accepted; guardrails downloaded and ENABLED for every generation run. --no-guardrails was never used."
+  },
+  "generation": {
+    "rollouts_generated": 7,
+    "smoke_rollout": {
+      "frames": 17,
+      "resolution": [
+        480,
+        640
+      ],
+      "sampler": "UniPC",
+      "num_steps": 30,
+      "shift": 5.0,
+      "guidance": 1.0,
+      "seed": 0,
+      "peak_vram_mb": 33991,
+      "sampling_seconds": 27
+    },
+    "verification": {
+      "passed": 8,
+      "asserted": 9,
+      "passing": [
+        "decodes",
+        "frame_count",
+        "finite",
+        "no_frame_collapse",
+        "no_duplicate_frames",
+        "drifts_from_conditioning_frame",
+        "conditioning_consistency",
+        "forward_motion_tracks_command"
+      ],
+      "failing": [
+        "turn_direction"
+      ],
+      "turn_direction_correlation": 0.16,
+      "threshold": 0.3
+    },
+    "qualitative": "coherent indoor geometry for roughly the first 12 frames, then progressive degradation into smeared texture"
+  },
+  "scientific_conclusion": {
+    "action_conditioning_is_consumed": true,
+    "evidence": "holding conditioning frame, prompt and seed fixed and varying only the action changes the output substantially: still=2.29 and forward=2.72 mean frame difference versus 31.6 and 39.4 for the two turn probes",
+    "commanded_turn_direction_is_followed": false,
+    "evidence_against": "at 30 deg/frame both turn probes pan the camera the same way (mean horizontal flow -17.5 and -17.8); at 7.5 deg/frame the two differ 30x in magnitude (-10.1 versus -0.33) but still do not produce opposite motion",
+    "root_cause_identified": "the ObjectNav discrete action space is far outside the camera_pose training distribution in ROTATION but not in translation",
+    "quantified": "reference camera trajectory shipped with the model averages 0.264 deg/frame of yaw (max 0.349); our option averages 41.25 deg/frame (max 120), a factor of 156. Translation is in range at 0.66x the reference.",
+    "ruled_out": "a missing action normalizer: no camera_pose normalizer exists and the framework's own inference passes action_normalizer=None, so raw metric actions are the expected input",
+    "implication": "Cosmos camera_pose forward dynamics cannot currently represent a 30-degree discrete turn. Spreading one turn over enough frames to reach ~0.3 deg/frame would need ~100 frames per primitive turn, i.e. thousands of frames for a 66-action option.",
+    "not_claimed": [
+      "that Cosmos action conditioning is broken in general",
+      "any comparison against the Phase 8 predictor",
+      "any revelation-quality result"
+    ]
   }
 }
