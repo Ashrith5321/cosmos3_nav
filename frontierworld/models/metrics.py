@@ -175,29 +175,57 @@ def compute_head_metrics(
 
 
 def paired_bootstrap(
-    a: np.ndarray, b: np.ndarray, iterations: int = 2000, seed: int = 0
+    a: np.ndarray,
+    b: np.ndarray,
+    group_ids: np.ndarray,
+    iterations: int = 2000,
+    seed: int = 0,
 ) -> dict:
-    """Paired bootstrap CI on the mean difference a - b.
+    """Paired bootstrap CI on the mean difference a - b, resampling GROUPS.
 
     Paired because every method is scored on identical samples; an unpaired
-    interval would be far wider than the comparison actually warrants.
+    interval would be far wider than the comparison warrants.
+
+    Resampling whole decision groups, not individual branches, is the part that
+    matters. Branches within a group share a map, a goal and a starting state,
+    so their errors are strongly correlated. Treating them as independent
+    samples inflates the effective n by roughly the branch count -- about 5x
+    here -- and produces intervals far too narrow, which is exactly how a
+    difference that is really within noise gets reported as significant.
+
+    `group_ids` must align with `a` and `b` element-wise.
     """
-    a, b = np.asarray(a, dtype=np.float64), np.asarray(b, dtype=np.float64)
+    a = np.asarray(a, dtype=np.float64)
+    b = np.asarray(b, dtype=np.float64)
+    group_ids = np.asarray(group_ids)
+
     finite = np.isfinite(a) & np.isfinite(b)
-    a, b = a[finite], b[finite]
+    a, b, group_ids = a[finite], b[finite], group_ids[finite]
     if a.size == 0:
-        return {"mean_difference": float("nan"), "ci_low": float("nan"),
-                "ci_high": float("nan"), "n": 0, "significant": False}
+        return {
+            "mean_difference": float("nan"), "ci_low": float("nan"),
+            "ci_high": float("nan"), "n_branches": 0, "n_groups": 0,
+            "significant": False, "resampling_unit": "decision_group",
+        }
 
     difference = a - b
+    unique_groups, inverse = np.unique(group_ids, return_inverse=True)
+    by_group = [np.flatnonzero(inverse == index) for index in range(len(unique_groups))]
+
     rng = np.random.default_rng(seed)
-    indices = rng.integers(0, len(difference), size=(iterations, len(difference)))
-    means = difference[indices].mean(axis=1)
+    means = np.empty(iterations, dtype=np.float64)
+    for iteration in range(iterations):
+        picked = rng.integers(0, len(by_group), size=len(by_group))
+        sample = np.concatenate([by_group[index] for index in picked])
+        means[iteration] = difference[sample].mean()
+
     low, high = np.percentile(means, [2.5, 97.5])
     return {
         "mean_difference": float(difference.mean()),
         "ci_low": float(low),
         "ci_high": float(high),
-        "n": int(len(difference)),
+        "n_branches": int(len(difference)),
+        "n_groups": int(len(unique_groups)),
         "significant": bool(low > 0 or high < 0),
+        "resampling_unit": "decision_group",
     }

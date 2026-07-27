@@ -327,3 +327,69 @@ def test_auc_is_one_for_a_perfect_ranking_and_nan_for_one_class():
     assert binary_auc(np.array([0.1, 0.9]), np.array([0, 1])) == pytest.approx(1.0)
     assert binary_auc(np.array([0.9, 0.1]), np.array([0, 1])) == pytest.approx(0.0)
     assert np.isnan(binary_auc(np.array([0.5, 0.7]), np.array([1, 1])))
+
+
+# -- paired bootstrap ------------------------------------------------------
+
+
+def test_bootstrap_resamples_decision_groups_not_branches():
+    """Branches within a group share a map, a goal and a start state, so their
+    errors are correlated. Resampling branches treats them as independent,
+    inflating effective n by roughly the branch count and producing intervals
+    far too narrow -- which is how a difference inside noise gets reported as
+    significant."""
+    from frontierworld.models.metrics import paired_bootstrap
+
+    rng = np.random.default_rng(0)
+    n_groups, per_group = 20, 5
+    group_ids = np.repeat(np.arange(n_groups), per_group)
+
+    # A per-group effect dominates, exactly as it does on real decision groups.
+    effect = rng.normal(0.01, 0.05, n_groups).repeat(per_group)
+    difference = effect + rng.normal(0, 0.002, n_groups * per_group)
+    base = rng.normal(0.5, 0.05, n_groups * per_group)
+
+    grouped = paired_bootstrap(base + difference, base, group_ids)
+    branchwise = paired_bootstrap(
+        base + difference, base, np.arange(n_groups * per_group)
+    )
+
+    grouped_width = grouped["ci_high"] - grouped["ci_low"]
+    branch_width = branchwise["ci_high"] - branchwise["ci_low"]
+    assert grouped_width > branch_width * 1.5, (
+        "group-level resampling must give a materially wider interval"
+    )
+    assert grouped["n_groups"] == n_groups
+    assert grouped["n_branches"] == n_groups * per_group
+    assert grouped["resampling_unit"] == "decision_group"
+
+
+def test_bootstrap_detects_a_real_difference():
+    from frontierworld.models.metrics import paired_bootstrap
+
+    rng = np.random.default_rng(1)
+    group_ids = np.repeat(np.arange(40), 4)
+    base = rng.normal(0.4, 0.02, 160)
+    result = paired_bootstrap(base + 0.2, base, group_ids)
+    assert result["significant"]
+    assert result["mean_difference"] == pytest.approx(0.2, abs=1e-6)
+
+
+def test_bootstrap_reports_no_difference_when_there_is_none():
+    from frontierworld.models.metrics import paired_bootstrap
+
+    rng = np.random.default_rng(2)
+    group_ids = np.repeat(np.arange(30), 4)
+    values = rng.normal(0.5, 0.1, 120)
+    result = paired_bootstrap(values, values.copy(), group_ids)
+    assert not result["significant"] or result["mean_difference"] == pytest.approx(0.0)
+
+
+def test_bootstrap_ignores_non_finite_pairs():
+    from frontierworld.models.metrics import paired_bootstrap
+
+    a = np.array([0.5, np.nan, 0.7, 0.9])
+    b = np.array([0.4, 0.3, np.nan, 0.8])
+    group_ids = np.array(["g0", "g0", "g1", "g1"])
+    result = paired_bootstrap(a, b, group_ids)
+    assert result["n_branches"] == 2
