@@ -903,3 +903,84 @@ The head is worse than the base rate as a probability estimate, and calibration
 is inverted at both ends. Phase 11's ladder — current-only -> keyframe -> FIFO
 -> lineage-aware — now has concrete targets to beat: AUPRC > 0.472 and Brier
 < 0.231 on validation, under a matched token budget.
+
+
+---
+
+## Phase 9 — status and measured results
+
+### 9A/9B: depth estimator and metric-scale anchoring (validation, 16 branches)
+
+Estimator: Depth Anything V2 Metric Indoor (Small). Real branch RGB, real
+converter, no ground-truth scale in the main condition.
+
+| | AbsRel | delta1 | median scale ratio | drift |
+| --- | --- | --- | --- | --- |
+| raw | 0.711 | 0.053 | 0.608 | 0.088 |
+
+| condition | free IoU | occ IoU | occ tolerant | area ratio |
+| --- | --- | --- | --- | --- |
+| `gt_depth` (converter ceiling) | 0.920 | 0.811 | 0.935 | 0.900 |
+| `none` | 0.517 | 0.087 | 0.317 | 1.814 |
+| **`first_frame`** (deployable) | **0.599** | **0.178** | **0.546** | **1.123** |
+| `oracle` (upper bound) | 0.670 | 0.196 | 0.587 | 1.149 |
+
+**First-frame anchoring is sufficient.** It cuts area inflation 1.814 -> 1.123
+using only the already-observed conditioning frame, and oracle scaling adds
+little beyond it (0.670 vs 0.599). Further scale-calibration research is not
+worth the time; the residual is shape error, not scale error.
+
+Three interpretations, stated at the right strength:
+
+1. **Scale is correctable but does not fully explain the error.** A pure 0.608
+   factor would not produce AbsRel 0.711 at delta1 0.053. Post-calibration
+   AbsRel and delta1 are now reported to quantify the residual shape error
+   directly. The map results already imply it is substantial: oracle scaling
+   reaches only 0.670/0.196 against a 0.920/0.811 ceiling.
+2. **The 0.920 -> 0.599 gap is not purely converter brittleness.** It contains
+   estimator shape and boundary-location error *and* the converter's
+   sensitivity to it. A robust converter cannot place a wall the estimator
+   never saw.
+3. **Cosmos headroom is indicative, not established.** 0.599 (validation, 16
+   branches, real RGB) against v0's 0.328 (test, 895 branches) crosses both
+   distribution and sample size. It justifies running the Cosmos experiment; it
+   is not a result.
+
+### 9C: robust converter for predicted depth
+
+Goal, stated precisely: **make map integration degrade gracefully under
+imperfect depth — not recover the ground-truth-depth ceiling.**
+
+Implemented in `mapping/robust_integration.py`:
+
+- [x] Error envelope `sigma(d_hat)` fitted from **real residuals**, depth-binned
+      0.9 quantile, monotone non-decreasing — not a guessed percentage.
+- [x] Conservative free carving to `d_free = max(0, d_hat - k_f*sigma)`.
+- [x] Soft occupied evidence over `[d_hat - k_o*sigma, d_hat + k_o*sigma]` with a
+      **triangular peak at d_hat** — a uniform band would inflate occupied area
+      and destroy precision.
+- [x] Confidence-weighted log-odds, bounded, with predicted depth given less
+      weight per frame than sensor depth.
+- [x] Invalid/extreme rejection, depth-discontinuity rejection, edge-preserving
+      bilateral filter.
+- [ ] Calibration subset and converter-validation subset drawn from
+      `dev_pool_v1`, different scenes, ~100+ branches.
+- [ ] Controlled ablations: current / +first-frame / +conservative carving /
+      +soft band / +confidence weighting / full, each reporting exact free IoU,
+      exact occupied IoU, tolerant occupied IoU, area ratio, occupied precision
+      and recall, **and perfect-depth performance** (so the robust converter
+      cannot win by being so conservative it damages clean input).
+- [ ] Freeze on converter-validation.
+
+**Predeclared selection rule** (registered before the ablation runs):
+require area ratio inside a preset acceptable interval; among survivors
+maximise **exact** occupancy macro-IoU; use tolerant occupied IoU **only** as a
+tie-breaker. This prevents selecting a converter merely because it thickens
+every wall enough to improve the tolerant metric.
+
+**Phase 9C gate.** Freeze the converter if it improves exact occupied recall
+without uncontrolled area inflation, preserves useful free-space IoU, is stable
+across converter-validation scenes, and does not significantly damage the
+ground-truth-depth ceiling.
+
+### 9D: minimal Cosmos environment — after 9C freezes
