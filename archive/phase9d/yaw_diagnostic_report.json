@@ -1,0 +1,77 @@
+{
+  "arms": {
+    "a_zerotrans": {
+      "translation_m_per_frame": 0.0,
+      "yaw_levels_deg": [
+        -0.5,
+        -0.25,
+        0.0,
+        0.25,
+        0.5
+      ],
+      "mean_horizontal_flow": [
+        -0.0564,
+        -0.0539,
+        -0.0554,
+        -0.0548,
+        -0.0557
+      ],
+      "flow_relative_to_zero": [
+        -0.0011,
+        0.0014,
+        0.0,
+        0.0006,
+        -0.0004
+      ],
+      "signal_used": "absolute",
+      "criterion_1_opposite_signs": false,
+      "criterion_2_monotonic": false,
+      "spearman": 0.1,
+      "criterion_3_correlation_gt_0p30": false,
+      "correlation": 0.0898
+    },
+    "b_reftrans": {
+      "translation_m_per_frame": 0.884,
+      "yaw_levels_deg": [
+        -0.5,
+        -0.25,
+        0.0,
+        0.25,
+        0.5
+      ],
+      "mean_horizontal_flow": [
+        -0.9506,
+        -1.0312,
+        -0.9525,
+        -1.0816,
+        -1.2817
+      ],
+      "flow_relative_to_zero": [
+        0.0019,
+        -0.0787,
+        0.0,
+        -0.1291,
+        -0.3292
+      ],
+      "signal_used": "relative_to_zero",
+      "criterion_1_opposite_signs": false,
+      "criterion_2_monotonic": false,
+      "spearman": -0.9,
+      "criterion_3_correlation_gt_0p30": true,
+      "correlation": -0.8285
+    }
+  },
+  "criterion_4_determinism": {
+    "mean_abs_pixel_difference": 0.0,
+    "threshold": 1.0,
+    "pass": true
+  },
+  "per_arm_pass": {
+    "a_zerotrans": false,
+    "b_reftrans": false
+  },
+  "arms_agree": true,
+  "determinism_pass": true,
+  "overall_pass": false,
+  "verdict": "FAIL"
+}

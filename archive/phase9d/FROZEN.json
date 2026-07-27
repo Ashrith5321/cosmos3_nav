@@ -1,5 +1,5 @@
 {
-  "status": "PARTIAL. Generation is UNBLOCKED and working; the Step 7 rollout gate FAILED on action fidelity. Steps 8, 10 and 11 are stopped at that failed gate rather than run on a generator that cannot represent the option's rotation.",
+  "status": "CLOSED \u2014 NEGATIVE RESULT. The preregistered in-distribution yaw diagnostic FAILED in both arms. Cosmos 3 Nano consumes camera-pose actions but fails directional action adherence even within its reference rotational regime. Steps 8, 10 and 11 were not run.",
   "gates": {
     "step_1_repo_inspection": "PASS",
     "step_2_action_interface": "PASS",
@@ -8,11 +8,12 @@
     "step_5_smoke_branch_selection": "PASS",
     "step_6_conditioning_manifest": "PASS",
     "step_7_one_generated_rollout": "FAIL (8/9 checks pass; turn direction FAILS)",
-    "step_8_structured_conversion": "NOT RUN (gated on step 7)",
+    "step_8_structured_conversion": "NOT RUN (predeclared consequence of the failed diagnostic)",
     "step_9_cache_reproducibility": "PASS",
-    "step_10_decision_group": "NOT RUN (gated on step 7)",
-    "step_11_validation_pilot": "NOT RUN (gated on step 7)",
-    "step_7b_action_sensitivity": "FAIL (opposite yaw commands do not produce opposite image motion)"
+    "step_10_decision_group": "NOT RUN (predeclared consequence)",
+    "step_11_validation_pilot": "NOT RUN (predeclared consequence)",
+    "step_7b_action_sensitivity": "FAIL (opposite yaw commands do not produce opposite image motion)",
+    "step_7c_in_distribution_yaw_diagnostic": "FAIL (both arms; preregistered as c61c3da before generation)"
   },
   "action_interface": {
     "class": "C \u2014 model both consumes action conditioning and emits actions",
@@ -160,6 +161,76 @@
       "that Cosmos action conditioning is broken in general",
       "any comparison against the Phase 8 predictor",
       "any revelation-quality result"
+    ],
+    "final": "Cosmos 3 Nano consumes camera-pose actions, but fails directional action adherence even within its reference rotational regime. The action channel carries translation faithfully and rotation essentially not at all.",
+    "not_a_distribution_shift_artefact": true
+  },
+  "final_diagnostic": {
+    "preregistration": "archive/phase9d/prereg_in_distribution_yaw.md, committed c61c3da before any rollout",
+    "n_rollouts": 11,
+    "yaw_levels_deg": [
+      -0.5,
+      -0.25,
+      0.0,
+      0.25,
+      0.5
+    ],
+    "reference_yaw_deg_per_frame": 0.264,
+    "arm_a_zero_translation": {
+      "flow": [
+        -0.0564,
+        -0.0539,
+        -0.0554,
+        -0.0548,
+        -0.0557
+      ],
+      "spread_px": 0.0025,
+      "correlation": 0.0898,
+      "spearman": 0.1,
+      "interpretation": "no response at all; commanded yaw is below the model's effective response threshold"
+    },
+    "arm_b_reference_translation": {
+      "translation_m_per_frame": 0.884,
+      "flow_relative_to_zero": [
+        0.0019,
+        -0.0787,
+        0.0,
+        -0.1291,
+        -0.3292
+      ],
+      "correlation": -0.8285,
+      "spearman": -0.9,
+      "interpretation": "weak magnitude sensitivity, not a sign-respecting rotation; negative and positive yaw both give negative relative flow, and the whole effect is at most 0.33 px"
+    },
+    "criteria": {
+      "1_opposite_signs": false,
+      "2_monotonic": false,
+      "3_correlation_gt_0p30": {
+        "arm_a": false,
+        "arm_b": true
+      },
+      "4_determinism": true
+    },
+    "determinism": {
+      "mean_abs_pixel_difference": 0.0,
+      "note": "identical action and seed reproduced the video exactly, so the null result is not sampling noise"
+    },
+    "arms_agree": true,
+    "verdict": "FAIL",
+    "why_decisive": "the earlier 30 deg/frame failure could be attributed to operating 156x outside the model's rotational distribution; at 0.25-0.50 deg/frame, bracketing the reference's own 0.264, the model still does not turn in the commanded direction"
+  },
+  "disposition": {
+    "phase9": "archived as a negative result",
+    "phase10": "will use the Phase 8 structured-model ensemble (decision recorded; Phase 10 NOT started)",
+    "cosmos_retained_as": "qualitative, non-action-faithful baseline only; not for counterfactual option comparison and no utility or Q-value may be derived from it",
+    "crossing_only_reformulation": "NOT attempted; its precondition was that this diagnostic pass, and pursuing it now would be redefining the task post hoc",
+    "reusable": [
+      "action interface determination",
+      "nominal pose derivation",
+      "conditioning manifest",
+      "cache keys",
+      "two-environment isolation",
+      "resource profile"
     ]
   }
 }

@@ -1,6 +1,20 @@
 # Phase 9D — Cosmos 3 Nano counterfactual rollouts
 
-**Status: PARTIAL — generation works, and the Step 7 rollout gate FAILED on action fidelity.**
+**Status: CLOSED — NEGATIVE RESULT.**
+
+The preregistered in-distribution yaw diagnostic FAILED in both arms. See
+[`PHASE9_CLOSURE.md`](PHASE9_CLOSURE.md) for the decisive experiment and the
+disposition. The sections below record how that conclusion was reached.
+
+> Cosmos 3 Nano consumes camera-pose actions, but fails directional action
+> adherence **even within its reference rotational regime**. At 0.25-0.50 deg
+> per frame, bracketing the reference trajectory's own 0.264 deg/frame, the
+> model still does not turn the camera in the commanded direction; with zero
+> translation it does not turn at all. So the failure is not a distribution-shift
+> artefact of ObjectNav's 30 deg discrete turns.
+
+Steps 8, 10 and 11 were not run. Phase 10 will use the Phase 8 structured-model
+ensemble. Cosmos is retained only as a qualitative, non-action-faithful baseline.
 
 The credential blocker is resolved: the HuggingFace token was supplied, the
 Cosmos-Guardrail1 licence accepted, and **guardrails were enabled for every
@@ -69,12 +83,10 @@ Qualitatively the smoke rollout holds coherent indoor geometry for about 12 of
 
 ## Why Steps 8, 10 and 11 were not run
 
-They are gated on Step 7. Converting rollouts through the frozen depth → scale →
-converter path, building a decision group, and running a 10–20 group pilot would
-all measure a generator that cannot express the option's rotation. The
-comparison against the Phase 8 predictor would be uninterpretable, and running it
-anyway would spend substantial compute to produce a foregone negative. Stopping
-at the failed gate is the preregistered behaviour.
+They were gated on action fidelity, which failed twice: first at the option's
+own 30°/frame, then decisively at the model's own 0.25-0.50°/frame reference
+regime. Both outcomes and their consequences were predeclared. See
+[`PHASE9_CLOSURE.md`](PHASE9_CLOSURE.md).
 
 ## What is NOT claimed
 
@@ -191,6 +203,9 @@ No partial or indicative result is claimed for any of these.
 | file | contents |
 |---|---|
 | `FROZEN.json` | per-gate status, findings, constraints |
+| `PHASE9_CLOSURE.md` | the decisive diagnostic and the closure decision |
+| `prereg_in_distribution_yaw.md` | criteria fixed before the final rollouts |
+| `yaw_diagnostic_report.json` | the 11-rollout in-distribution result |
 | `action_fidelity.json` | probe results and the 156x rotation comparison |
 | `rollout_verification.json` | the 9 smoke-rollout checks with measured values |
 | `sensitivity_report.json` | the four action probes |
