@@ -1,0 +1,84 @@
+{
+  "checkpoint_path": "/home/ashed/.cache/huggingface/hub/models--nvidia--Cosmos3-Nano/snapshots/411f42a8fdfb8c5b2583cb8786e0938f49796eaa",
+  "requested_device": 0,
+  "torch_version": "2.10.0+cu128",
+  "cuda_version": "12.8",
+  "dtype_requested": "bfloat16",
+  "gpus": [
+    {
+      "index": 0,
+      "name": "NVIDIA RTX A6000",
+      "total_mb": 48667.0
+    },
+    {
+      "index": 1,
+      "name": "NVIDIA RTX A6000",
+      "total_mb": 48669.8
+    }
+  ],
+  "checkpoint_hash": "272cb18f94eaa850",
+  "checkpoint_hash_seconds": 0.0,
+  "nvidia_smi_topo": "\u001b[4mGPU0\tGPU1\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tPHB\t0-31\t0\t\tN/A\nGPU1\tPHB\t X \t0-31\t0\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks",
+  "ram_before": {
+    "process_rss_mb": 532.6,
+    "system_used_mb": 4944.0,
+    "system_total_mb": 128713.2
+  },
+  "gpu_before": {
+    "allocated_mb": 0.0,
+    "reserved_mb": 0.0,
+    "peak_allocated_mb": 0.0,
+    "peak_reserved_mb": 0.0
+  },
+  "load_path": "per-component (pipeline constructor needs gated guardrail)",
+  "load_seconds_cpu": {
+    "transformer": 0.1,
+    "vae": 0.0
+  },
+  "ram_after_from_pretrained": {
+    "process_rss_mb": 967.4,
+    "system_used_mb": 5211.8,
+    "system_total_mb": 128713.2
+  },
+  "to_device_seconds": 4.2,
+  "ram_after_to_device": {
+    "process_rss_mb": 935.6,
+    "system_used_mb": 5276.2,
+    "system_total_mb": 128713.2
+  },
+  "gpu_after": {
+    "allocated_mb": 30340.4,
+    "reserved_mb": 30600.0,
+    "peak_allocated_mb": 30340.4,
+    "peak_reserved_mb": 30600.0
+  },
+  "components": {
+    "transformer": {
+      "n_parameters": 15173669120,
+      "dtypes": [
+        "torch.bfloat16",
+        "torch.float32"
+      ],
+      "devices": [
+        "cuda:0"
+      ],
+      "size_mb": 28975.5
+    },
+    "vae": {
+      "n_parameters": 704688668,
+      "dtypes": [
+        "torch.bfloat16"
+      ],
+      "devices": [
+        "cuda:0"
+      ],
+      "size_mb": 1344.1
+    }
+  },
+  "total_parameters": 15878357788,
+  "total_weight_mb": 30319.6,
+  "fits_single_gpu": true,
+  "headroom_mb": 18067.0,
+  "generation_can_begin": false,
+  "generation_blocked_by": "nvidia/Cosmos-Guardrail1 is a gated HuggingFace repo and no HF token is configured. Guardrails are a required safety component and were not disabled."
+}

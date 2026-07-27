@@ -1,0 +1,16 @@
+{
+  "name": "5biL7VEkByM_0_t12_max_info_gain_f1",
+  "model_mode": "forward_dynamics",
+  "domain_name": "camera_pose",
+  "view_point": "ego_view",
+  "action_chunk_size": 16,
+  "action_path": "/home/ashed/Documents/cosmos3_nav/frontierworld/outputs/phase9d/smoke_request/action.json",
+  "vision_path": "/home/ashed/Documents/cosmos3_nav/frontierworld/outputs/phase9d/smoke_conditioning/conditioning_rgb.png",
+  "prompt": "Ego-centric video from a camera moving through an indoor residential space. The camera translates and rotates smoothly; lighting and surfaces stay consistent as new parts of the room come into view.",
+  "seed": 0,
+  "num_steps": 30,
+  "guidance": 1.0,
+  "shift": 5.0,
+  "fps": 30,
+  "image_size": 480
+}

@@ -1,0 +1,20 @@
+{
+  "python": "3.13.14",
+  "platform": "Linux-6.8.0-124-generic-x86_64-with-glibc2.35",
+  "torch": "2.10.0+cu128",
+  "cuda": "12.8",
+  "cudnn": 91002,
+  "gpus": [
+    "NVIDIA RTX A6000",
+    "NVIDIA RTX A6000"
+  ],
+  "driver": "550.144.03",
+  "cosmos_framework_commit": "09f23119ea92c707207bba55565e7a09d16896a2",
+  "diffusers": "0.39.0",
+  "transformers": "4.57.6",
+  "accelerate": "1.13.0",
+  "huggingface-hub": "0.36.2",
+  "numpy": "2.2.6",
+  "scipy": "1.17.1",
+  "safetensors": "0.8.0"
+}
