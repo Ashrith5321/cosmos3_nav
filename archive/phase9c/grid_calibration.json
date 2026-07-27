@@ -1,0 +1,463 @@
+{
+  "tie_break_order": [
+    "inside_interval",
+    "macro_iou",
+    "occupied_iou_tolerant",
+    "params"
+  ],
+  "fallback_used": false,
+  "configurations": [
+    {
+      "params": {
+        "k_free": 0.5,
+        "k_occupied": 0.5,
+        "w_free": 0.5,
+        "tau_free": 0.5,
+        "tau_occ": 0.15
+      },
+      "inside_interval": true,
+      "macro_iou": 0.2239335820261806,
+      "free_iou": 0.33925535258546474,
+      "occupied_iou": 0.10861181146689647,
+      "occupied_iou_tolerant": 0.39231770419938644,
+      "occupied_recall": 0.4456351144076411,
+      "area_ratio": 0.9332025471151988,
+      "area_ratio_median_per_branch": 1.0369959304476508
+    },
+    {
+      "params": {
+        "k_free": 0.5,
+        "k_occupied": 0.5,
+        "w_free": 0.5,
+        "tau_free": 0.5,
+        "tau_occ": 0.3
+      },
+      "inside_interval": false,
+      "macro_iou": 0.24249976953206742,
+      "free_iou": 0.3759650203171492,
+      "occupied_iou": 0.10903451874698568,
+      "occupied_iou_tolerant": 0.3977163627192047,
+      "occupied_recall": 0.3364863592943282,
+      "area_ratio": 0.7441261060930447,
+      "area_ratio_median_per_branch": 0.8486323597589245
+    },
+    {
+      "params": {
+        "k_free": 0.5,
+        "k_occupied": 0.5,
+        "w_free": 0.5,
+        "tau_free": 0.5,
+        "tau_occ": 0.5
+      },
+      "inside_interval": false,
+      "macro_iou": 0.25136669888944974,
+      "free_iou": 0.3984320198910566,
+      "occupied_iou": 0.10430137788784292,
+      "occupied_iou_tolerant": 0.3803284489597985,
+      "occupied_recall": 0.2419690934907831,
+      "area_ratio": 0.6128191934135201,
+      "area_ratio_median_per_branch": 0.7084038353073886
+    },
+    {
+      "params": {
+        "k_free": 0.5,
+        "k_occupied": 0.5,
+        "w_free": 1.0,
+        "tau_free": 0.5,
+        "tau_occ": 0.15
+      },
+      "inside_interval": false,
+      "macro_iou": 0.20667693549275143,
+      "free_iou": 0.3080610620849917,
+      "occupied_iou": 0.10529280890051117,
+      "occupied_iou_tolerant": 0.3799155644855395,
+      "occupied_recall": 0.5208273668301189,
+      "area_ratio": 1.1199358626836597,
+      "area_ratio_median_per_branch": 1.226430298146656
+    },
+    {
+      "params": {
+        "k_free": 0.5,
+        "k_occupied": 0.5,
+        "w_free": 1.0,
+        "tau_free": 0.5,
+        "tau_occ": 0.3
+      },
+      "inside_interval": true,
+      "macro_iou": 0.2239335820261806,
+      "free_iou": 0.33925535258546474,
+      "occupied_iou": 0.10861181146689647,
+      "occupied_iou_tolerant": 0.39231770419938644,
+      "occupied_recall": 0.4456351144076411,
+      "area_ratio": 0.9332025471151988,
+      "area_ratio_median_per_branch": 1.0369959304476508
+    },
+    {
+      "params": {
+        "k_free": 0.5,
+        "k_occupied": 0.5,
+        "w_free": 1.0,
+        "tau_free": 0.5,
+        "tau_occ": 0.5
+      },
+      "inside_interval": false,
+      "macro_iou": 0.2383364192540223,
+      "free_iou": 0.36597403576496595,
+      "occupied_iou": 0.11069880274307865,
+      "occupied_iou_tolerant": 0.3996108422972087,
+      "occupied_recall": 0.370320147694276,
+      "area_ratio": 0.7935109208023596,
+      "area_ratio_median_per_branch": 0.8962210941906373
+    },
+    {
+      "params": {
+        "k_free": 0.5,
+        "k_occupied": 1.0,
+        "w_free": 0.5,
+        "tau_free": 0.5,
+        "tau_occ": 0.15
+      },
+      "inside_interval": true,
+      "macro_iou": 0.18673689627155193,
+      "free_iou": 0.2696672525302496,
+      "occupied_iou": 0.10380654001285426,
+      "occupied_iou_tolerant": 0.365217133928627,
+      "occupied_recall": 0.4954461410919949,
+      "area_ratio": 1.0141965836312006,
+      "area_ratio_median_per_branch": 1.1634933774834437
+    },
+    {
+      "params": {
+        "k_free": 0.5,
+        "k_occupied": 1.0,
+        "w_free": 0.5,
+        "tau_free": 0.5,
+        "tau_occ": 0.3
+      },
+      "inside_interval": false,
+      "macro_iou": 0.22165088584350032,
+      "free_iou": 0.33923526069179155,
+      "occupied_iou": 0.10406651099520908,
+      "occupied_iou_tolerant": 0.3752239167130498,
+      "occupied_recall": 0.3160909777012185,
+      "area_ratio": 0.6980538275643441,
+      "area_ratio_median_per_branch": 0.7706219099661723
+    },
+    {
+      "params": {
+        "k_free": 0.5,
+        "k_occupied": 1.0,
+        "w_free": 0.5,
+        "tau_free": 0.5,
+        "tau_occ": 0.5
+      },
+      "inside_interval": false,
+      "macro_iou": 0.23788170441321058,
+      "free_iou": 0.3843954599666526,
+      "occupied_iou": 0.09136794885976858,
+      "occupied_iou_tolerant": 0.33170841782719596,
+      "occupied_recall": 0.18275119329473855,
+      "area_ratio": 0.5389326374403879,
+      "area_ratio_median_per_branch": 0.6195165622202328
+    },
+    {
+      "params": {
+        "k_free": 0.5,
+        "k_occupied": 1.0,
+        "w_free": 1.0,
+        "tau_free": 0.5,
+        "tau_occ": 0.15
+      },
+      "inside_interval": false,
+      "macro_iou": 0.15357997801184614,
+      "free_iou": 0.21028300613006712,
+      "occupied_iou": 0.09687694989362519,
+      "occupied_iou_tolerant": 0.3396309043730829,
+      "occupied_recall": 0.6170081607426071,
+      "area_ratio": 1.3637954956858924,
+      "area_ratio_median_per_branch": 1.5732758620689655
+    },
+    {
+      "params": {
+        "k_free": 0.5,
+        "k_occupied": 1.0,
+        "w_free": 1.0,
+        "tau_free": 0.5,
+        "tau_occ": 0.3
+      },
+      "inside_interval": true,
+      "macro_iou": 0.18673689627155193,
+      "free_iou": 0.2696672525302496,
+      "occupied_iou": 0.10380654001285426,
+      "occupied_iou_tolerant": 0.365217133928627,
+      "occupied_recall": 0.4954461410919949,
+      "area_ratio": 1.0141965836312006,
+      "area_ratio_median_per_branch": 1.1634933774834437
+    },
+    {
+      "params": {
+        "k_free": 0.5,
+        "k_occupied": 1.0,
+        "w_free": 1.0,
+        "tau_free": 0.5,
+        "tau_occ": 0.5
+      },
+      "inside_interval": false,
+      "macro_iou": 0.21297558773464137,
+      "free_iou": 0.32011348459433986,
+      "occupied_iou": 0.1058376908749429,
+      "occupied_iou_tolerant": 0.37991681820591505,
+      "occupied_recall": 0.3639486340686283,
+      "area_ratio": 0.7729143886280311,
+      "area_ratio_median_per_branch": 0.8778228141285467
+    },
+    {
+      "params": {
+        "k_free": 1.0,
+        "k_occupied": 0.5,
+        "w_free": 0.5,
+        "tau_free": 0.5,
+        "tau_occ": 0.15
+      },
+      "inside_interval": false,
+      "macro_iou": 0.16495953453483309,
+      "free_iou": 0.22130725760276973,
+      "occupied_iou": 0.10861181146689647,
+      "occupied_iou_tolerant": 0.39231770419938644,
+      "occupied_recall": 0.4456351144076411,
+      "area_ratio": 0.7806788631706619,
+      "area_ratio_median_per_branch": 0.8764717236054816
+    },
+    {
+      "params": {
+        "k_free": 1.0,
+        "k_occupied": 0.5,
+        "w_free": 0.5,
+        "tau_free": 0.5,
+        "tau_occ": 0.3
+      },
+      "inside_interval": false,
+      "macro_iou": 0.1757790024164486,
+      "free_iou": 0.24252348608591148,
+      "occupied_iou": 0.10903451874698568,
+      "occupied_iou_tolerant": 0.3977163627192047,
+      "occupied_recall": 0.3364863592943282,
+      "area_ratio": 0.568051714157072,
+      "area_ratio_median_per_branch": 0.6679827035156984
+    },
+    {
+      "params": {
+        "k_free": 1.0,
+        "k_occupied": 0.5,
+        "w_free": 0.5,
+        "tau_free": 0.5,
+        "tau_occ": 0.5
+      },
+      "inside_interval": false,
+      "macro_iou": 0.17940432941141324,
+      "free_iou": 0.25450728093498354,
+      "occupied_iou": 0.10430137788784292,
+      "occupied_iou_tolerant": 0.3803284489597985,
+      "occupied_recall": 0.2419690934907831,
+      "area_ratio": 0.4219004125738543,
+      "area_ratio_median_per_branch": 0.5052714812862416
+    },
+    {
+      "params": {
+        "k_free": 1.0,
+        "k_occupied": 0.5,
+        "w_free": 1.0,
+        "tau_free": 0.5,
+        "tau_occ": 0.15
+      },
+      "inside_interval": true,
+      "macro_iou": 0.15447764850471835,
+      "free_iou": 0.20366248810892554,
+      "occupied_iou": 0.10529280890051117,
+      "occupied_iou_tolerant": 0.3799155644855395,
+      "occupied_recall": 0.5208273668301189,
+      "area_ratio": 0.9862031260050167,
+      "area_ratio_median_per_branch": 1.0614423851732475
+    },
+    {
+      "params": {
+        "k_free": 1.0,
+        "k_occupied": 0.5,
+        "w_free": 1.0,
+        "tau_free": 0.5,
+        "tau_occ": 0.3
+      },
+      "inside_interval": false,
+      "macro_iou": 0.16495953453483309,
+      "free_iou": 0.22130725760276973,
+      "occupied_iou": 0.10861181146689647,
+      "occupied_iou_tolerant": 0.39231770419938644,
+      "occupied_recall": 0.4456351144076411,
+      "area_ratio": 0.7806788631706619,
+      "area_ratio_median_per_branch": 0.8764717236054816
+    },
+    {
+      "params": {
+        "k_free": 1.0,
+        "k_occupied": 0.5,
+        "w_free": 1.0,
+        "tau_free": 0.5,
+        "tau_occ": 0.5
+      },
+      "inside_interval": false,
+      "macro_iou": 0.17368745619395765,
+      "free_iou": 0.23667610964483665,
+      "occupied_iou": 0.11069880274307865,
+      "occupied_iou_tolerant": 0.3996108422972087,
+      "occupied_recall": 0.370320147694276,
+      "area_ratio": 0.6242499701366363,
+      "area_ratio_median_per_branch": 0.719496145892085
+    },
+    {
+      "params": {
+        "k_free": 1.0,
+        "k_occupied": 1.0,
+        "w_free": 0.5,
+        "tau_free": 0.5,
+        "tau_occ": 0.15
+      },
+      "inside_interval": false,
+      "macro_iou": 0.15094392884557853,
+      "free_iou": 0.19808131767830278,
+      "occupied_iou": 0.10380654001285426,
+      "occupied_iou_tolerant": 0.365217133928627,
+      "occupied_recall": 0.4954461410919949,
+      "area_ratio": 0.8924964853118194,
+      "area_ratio_median_per_branch": 1.0259932063210753
+    },
+    {
+      "params": {
+        "k_free": 1.0,
+        "k_occupied": 1.0,
+        "w_free": 0.5,
+        "tau_free": 0.5,
+        "tau_occ": 0.3
+      },
+      "inside_interval": false,
+      "macro_iou": 0.16759121008426464,
+      "free_iou": 0.23111590917332017,
+      "occupied_iou": 0.10406651099520908,
+      "occupied_iou_tolerant": 0.3752239167130498,
+      "occupied_recall": 0.3160909777012185,
+      "area_ratio": 0.5308879067160406,
+      "area_ratio_median_per_branch": 0.6067050657214592
+    },
+    {
+      "params": {
+        "k_free": 1.0,
+        "k_occupied": 1.0,
+        "w_free": 0.5,
+        "tau_free": 0.5,
+        "tau_occ": 0.5
+      },
+      "inside_interval": false,
+      "macro_iou": 0.1718133243142471,
+      "free_iou": 0.2522586997687256,
+      "occupied_iou": 0.09136794885976858,
+      "occupied_iou_tolerant": 0.33170841782719596,
+      "occupied_recall": 0.18275119329473855,
+      "area_ratio": 0.3495024304183627,
+      "area_ratio_median_per_branch": 0.38403313339045986
+    },
+    {
+      "params": {
+        "k_free": 1.0,
+        "k_occupied": 1.0,
+        "w_free": 1.0,
+        "tau_free": 0.5,
+        "tau_occ": 0.15
+      },
+      "inside_interval": false,
+      "macro_iou": 0.13071902155539195,
+      "free_iou": 0.16456109321715867,
+      "occupied_iou": 0.09687694989362519,
+      "occupied_iou_tolerant": 0.3396309043730829,
+      "occupied_recall": 0.6170081607426071,
+      "area_ratio": 1.2726479155372183,
+      "area_ratio_median_per_branch": 1.4731267783749604
+    },
+    {
+      "params": {
+        "k_free": 1.0,
+        "k_occupied": 1.0,
+        "w_free": 1.0,
+        "tau_free": 0.5,
+        "tau_occ": 0.3
+      },
+      "inside_interval": false,
+      "macro_iou": 0.15094392884557853,
+      "free_iou": 0.19808131767830278,
+      "occupied_iou": 0.10380654001285426,
+      "occupied_iou_tolerant": 0.365217133928627,
+      "occupied_recall": 0.4954461410919949,
+      "area_ratio": 0.8924964853118194,
+      "area_ratio_median_per_branch": 1.0259932063210753
+    },
+    {
+      "params": {
+        "k_free": 1.0,
+        "k_occupied": 1.0,
+        "w_free": 1.0,
+        "tau_free": 0.5,
+        "tau_occ": 0.5
+      },
+      "inside_interval": false,
+      "macro_iou": 0.1644113435833062,
+      "free_iou": 0.22298499629166948,
+      "occupied_iou": 0.1058376908749429,
+      "occupied_iou_tolerant": 0.37991681820591505,
+      "occupied_recall": 0.3639486340686283,
+      "area_ratio": 0.6170322248665336,
+      "area_ratio_median_per_branch": 0.7083574599498167
+    }
+  ],
+  "ranking": [
+    {
+      "k_free": 0.5,
+      "k_occupied": 0.5,
+      "w_free": 0.5,
+      "tau_free": 0.5,
+      "tau_occ": 0.15
+    },
+    {
+      "k_free": 0.5,
+      "k_occupied": 0.5,
+      "w_free": 1.0,
+      "tau_free": 0.5,
+      "tau_occ": 0.3
+    },
+    {
+      "k_free": 0.5,
+      "k_occupied": 1.0,
+      "w_free": 0.5,
+      "tau_free": 0.5,
+      "tau_occ": 0.15
+    },
+    {
+      "k_free": 0.5,
+      "k_occupied": 1.0,
+      "w_free": 1.0,
+      "tau_free": 0.5,
+      "tau_occ": 0.3
+    },
+    {
+      "k_free": 1.0,
+      "k_occupied": 0.5,
+      "w_free": 1.0,
+      "tau_free": 0.5,
+      "tau_occ": 0.15
+    }
+  ],
+  "selected": {
+    "k_free": 0.5,
+    "k_occupied": 0.5,
+    "w_free": 0.5,
+    "tau_free": 0.5,
+    "tau_occ": 0.15
+  }
+}

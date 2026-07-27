@@ -984,3 +984,56 @@ across converter-validation scenes, and does not significantly damage the
 ground-truth-depth ceiling.
 
 ### 9D: minimal Cosmos environment — after 9C freezes
+
+
+---
+
+## Phase 9C — COMPLETE, gate FAILED, converter FROZEN
+
+Registered before the run: area interval [0.90, 1.10] as ratio of totals;
+selection by exact macro-IoU with tolerant occupied IoU as tie-breaker only;
+`CLEAN_MACRO_TOLERANCE = 0.05`; `BOOTSTRAP_SEED = 20260727`; deterministic
+tie-break order; branch input hashes.
+
+**Selected**: `k_free=0.5, k_occupied=0.5, w_free=0.5, tau_free=0.5,
+tau_occ=0.15` — 5 of 24 configurations inside the area interval, so the
+fallback did not fire.
+
+| condition | freeIoU | occIoU | macro | occTol | occP | occR | areaR |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| original | 0.327 | 0.092 | 0.210 | 0.338 | 0.107 | 0.462 | 3.008 |
+| +first_frame | 0.354 | 0.138 | **0.246** | 0.428 | 0.151 | **0.605** | 2.161 |
+| +conservative_carving | **0.407** | 0.079 | 0.243 | 0.390 | **0.196** | 0.150 | **0.892** |
+| +soft_occupied | 0.322 | 0.120 | 0.221 | 0.402 | 0.144 | 0.516 | 1.472 |
+| +confidence_weighting | 0.348 | 0.125 | 0.236 | 0.419 | 0.165 | 0.439 | 1.230 |
+| +rejection_filtering | 0.349 | 0.126 | 0.237 | 0.422 | 0.166 | 0.434 | 1.226 |
+| `gt_depth_original` (ceiling) | 0.932 | 0.885 | 0.908 | 0.978 | 1.000 | 0.885 | 0.927 |
+| `gt_depth_robust` (conservatism) | 0.419 | 0.161 | 0.290 | 0.532 | 0.210 | 0.528 | 0.906 |
+
+Paired group bootstrap, full robust vs +first_frame (20 groups, 60 branches):
+occupied IoU −0.012 [−0.030, +0.006] n.s.; free IoU −0.005 [−0.052, +0.048] n.s.
+
+**Gate: 4 of 5 criteria fail.** The decisive one is the conservatism test:
+`gt_depth_robust` reaches macro 0.290 against a 0.908 ceiling, a 68% loss on
+*perfect* input. Fitted `sigma(d)` is 1.32–2.00 m, comparable to room
+dimensions, so the converter carves free space ~0.75 m short of every true
+surface and smears occupied evidence over a 1.5 m band. Without that diagnostic
+row, `+conservative_carving`'s area ratio 0.892 and precision 0.196 would have
+read as progress.
+
+**Interpretation.** The failure is upstream of integration. A residual error of
+that magnitude after scale correction is shape error, consistent with the 9B
+finding that oracle scaling reached only 0.670/0.196. No sensor model can be
+robust to uncertainty comparable to the scene without erasing the signal.
+
+**Decision, frozen in `archive/phase9c/FROZEN.json`:** use **first-frame scale
+anchoring with the ORIGINAL exact-depth converter** for Phase 9D onward. The
+robust converter is retained, recorded and unused. No further converter tuning.
+
+### Remaining Phase 9
+
+- [ ] 9D — separate Python >= 3.10 env, load Cosmos3-Nano, VRAM, one rollout
+- [ ] 9E — one complete decision group; option sensitivity vs seed diversity
+- [ ] 9F — 10-20 group validation pilot
+- [ ] Phase 9 gate: option adherence, automatic pipeline, option sensitivity,
+      interpretable outputs, reproducibility. Cosmos need not beat Phase 8.

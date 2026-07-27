@@ -1,0 +1,83 @@
+{
+  "status": "FROZEN after Phase 9C. Gate FAILED (4 of 5 criteria). Retained as the recorded configuration; no further converter tuning.",
+  "gate": {
+    "area_ok": false,
+    "macro_ok": false,
+    "recall_ok": false,
+    "clean_ok": false,
+    "passed": false
+  },
+  "selected_params": {
+    "k_free": 0.5,
+    "k_occupied": 0.5,
+    "w_free": 0.5,
+    "tau_free": 0.5,
+    "tau_occ": 0.15
+  },
+  "error_envelope": {
+    "bin_edges": [
+      0.0,
+      0.625,
+      1.25,
+      1.875,
+      2.5,
+      3.125,
+      3.75,
+      4.375,
+      5.0
+    ],
+    "sigma": [
+      1.3216757714748386,
+      1.5315206706523896,
+      1.5315206706523896,
+      1.5315206706523896,
+      1.5315206706523896,
+      1.5315206706523896,
+      1.5698564767837526,
+      1.99704909324646
+    ],
+    "quantile": 0.9,
+    "n_samples": 271647685
+  },
+  "registered": {
+    "area_interval": [
+      0.9,
+      1.1
+    ],
+    "aggregation": "ratio_of_totals",
+    "clean_macro_tolerance": 0.05,
+    "bootstrap_seed": 20260727,
+    "tie_break_order": [
+      "inside_interval",
+      "macro_iou",
+      "occupied_iou_tolerant",
+      "params"
+    ],
+    "selection": "max exact macro-IoU inside interval; tolerant occupied IoU tie-breaker only"
+  },
+  "calibration_scenes": [
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/train/00006-HkseAnWCgqk/HkseAnWCgqk.basis.glb",
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/train/00043-Jfyvj3xn2aJ/Jfyvj3xn2aJ.basis.glb",
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/train/00064-gQgtJ9Stk5s/gQgtJ9Stk5s.basis.glb",
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/train/00108-oStKKWkQ1id/oStKKWkQ1id.basis.glb",
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/train/00155-iLDo95ZbDJq/iLDo95ZbDJq.basis.glb"
+  ],
+  "validation_scenes": [
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/train/00166-RaYrxWt5pR1/RaYrxWt5pR1.basis.glb",
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/train/00188-dQrLTxHvLXU/dQrLTxHvLXU.basis.glb",
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/train/00205-NEVASPhcrxR/NEVASPhcrxR.basis.glb",
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/train/00222-g8Xrdbe9fir/g8Xrdbe9fir.basis.glb",
+    "/home/ashed/Documents/cosmos3_nav/frontierworld/data/scene_datasets/hm3d_v0.2/train/00234-nACV8wLu1u5/nACV8wLu1u5.basis.glb"
+  ],
+  "branch_hashes": {
+    "calibration": {
+      "n_branches": 55,
+      "sha256": "de47de674c747accbbbdcfc8e10a86f5"
+    },
+    "validation": {
+      "n_branches": 60,
+      "sha256": "6a2c84ede4934633ea6ade694eef2bdd"
+    }
+  },
+  "decision": "Use first-frame scale anchoring with the ORIGINAL exact-depth converter for Phase 9D onward. The robust converter is not significantly better than first-frame alone on validation (occupied IoU -0.012 [-0.030,+0.006] n.s.) and loses 68% of macro-IoU on perfect input (0.290 vs 0.908 ceiling), because the fitted sigma(d) of 1.32-2.00 m is comparable to room dimensions."
+}
