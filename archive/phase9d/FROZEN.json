@@ -232,5 +232,16 @@
       "two-environment isolation",
       "resource profile"
     ]
+  },
+  "final_status": {
+    "phase9_infrastructure": "PASS \u2014 environment isolation, action interface, manifests, caching, pose derivation and deterministic execution all work and are reusable",
+    "cosmos_as_counterfactual_frontier_predictor": "FAIL \u2014 action-sensitive but not directionally action-faithful",
+    "strongest_conclusion": "Under the released Cosmos3-Nano camera-pose interface, action sensitivity does not imply action adherence. Translation affects the generated future, but signed yaw is not represented faithfully, including at the sub-degree rotational scale found in NVIDIA's reference trajectory.",
+    "stop_condition": "the preregistered stop condition fired; the pilot and the crossing-only reformulation were not run"
+  },
+  "optional_future_control": {
+    "description": "run the same optical-flow estimator on Habitat-rendered known +/-0.25 degree rotations",
+    "purpose": "validate the flow proxy that Arm A's null rests on",
+    "status": "NOT REQUIRED before continuing; would not reopen or modify the Cosmos experiment"
   }
 }
