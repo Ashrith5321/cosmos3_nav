@@ -28,8 +28,17 @@ import torch.nn.functional as F
 from frontierworld.data.tensors import N_INPUT_CHANNELS, N_TARGET_CHANNELS
 
 
-@dataclass
+@dataclass(frozen=True)
 class PredictorConfig:
+    """FROZEN as of Phase 8.
+
+    The implementation and optimisation gates pass; empirical generalisation is
+    still pending the held-out dataset. Tuning width/depth against validation
+    before that table exists would be selecting an architecture on the same
+    scenes used to claim generalisation. Retune only after the held-out
+    evaluation has been run once.
+    """
+
     input_channels: int = N_INPUT_CHANNELS
     target_channels: int = N_TARGET_CHANNELS
     option_dim: int = 8
