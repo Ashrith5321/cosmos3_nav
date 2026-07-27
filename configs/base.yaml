@@ -129,6 +129,9 @@ dataset:
   # walks through looking for acceptable states.
   episode_pool: 1000
   episodes_per_shard: 40
+  # HM3D train carries ~50k episodes per scene. Cap how many are loaded per
+  # scene, or every worker parses millions of episodes it will never run.
+  episodes_per_scene: 12
 
 task:
   # Habitat's ObjectNav success threshold, in metres to the nearest goal

@@ -84,10 +84,14 @@ def worker(task: dict) -> dict:
     seed = int(cfg.seed.value) + shard
     seed_everything(seed, torch_deterministic=False)
 
-    allowed = set(task["scenes"]) if task["scenes"] else None
-    dataset, _ = select_episodes(cfg, task["episode_pool"], shard=0, num_shards=1)
-    if allowed:
-        dataset.episodes = [e for e in dataset.episodes if str(e.scene_id) in allowed]
+    dataset, _ = select_episodes(
+        cfg,
+        task["episode_pool"],
+        shard=0,
+        num_shards=1,
+        scenes=task["scenes"] or None,
+        episodes_per_scene=task.get("episodes_per_scene") or None,
+    )
     dataset.episodes = dataset.episodes[shard :: task["num_shards"]]
     if not dataset.episodes:
         return {"shard": shard, "groups": 0, "branches": 0, "rejected": {}, "error": None}
@@ -480,6 +484,7 @@ def main() -> int:
             "overrides": list(args.override),
             "scenes": scenes,
             "episode_pool": int(cfg.dataset.episode_pool),
+            "episodes_per_scene": int(cfg.dataset.episodes_per_scene),
             "episodes_per_shard": int(cfg.dataset.episodes_per_shard),
             "groups_per_shard": groups_per_shard,
             "out": str(out),

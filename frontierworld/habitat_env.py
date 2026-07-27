@@ -19,7 +19,23 @@ from frontierworld.config import episode_dataset_path
 BASE_TASK_CONFIG = "benchmark/nav/objectnav/objectnav_hm3d.yaml"
 
 
-def build_habitat_config(cfg: DictConfig, gpu_device_id: int | None = None) -> Any:
+def scene_key(scene_id: str) -> str:
+    """Scene name from any scene_id spelling.
+
+    Episode datasets store scene_id RELATIVE to scenes_dir
+    ("hm3d_v0.2/train/00009-vLpv2VX547B/vLpv2VX547B.basis.glb") while manifests
+    built from the filesystem store absolute paths. Comparing the raw strings
+    silently matches nothing, which shows up as a generation run producing zero
+    groups rather than as an error, so all scene comparisons go through here.
+    """
+    return Path(str(scene_id)).name.replace(".basis.glb", "").replace(".glb", "")
+
+
+def build_habitat_config(
+    cfg: DictConfig,
+    gpu_device_id: int | None = None,
+    content_scenes: list[str] | None = None,
+) -> Any:
     """Compose the habitat config for an ObjectNav run."""
     from habitat.config.default import get_config
     from habitat.config.default_structured_configs import (
@@ -58,6 +74,14 @@ def build_habitat_config(cfg: DictConfig, gpu_device_id: int | None = None) -> A
         iterator.max_scene_repeat_steps = -1
         iterator.max_scene_repeat_episodes = -1
 
+        # Restrict which content files are parsed. HM3D train ships roughly
+        # 50k episodes per scene across 145 scenes -- about 7 million episodes,
+        # each carrying hundreds of viewpoints. Loading all of them costs
+        # ~10 minutes and ~7 GB per process, so a sharded run must only read
+        # the scenes it will actually use.
+        if content_scenes:
+            habitat_cfg.habitat.dataset.content_scenes = list(content_scenes)
+
         agent = habitat_cfg.habitat.simulator.agents.main_agent
         agent.height = sim.agent_height
         agent.radius = sim.agent_radius
@@ -93,20 +117,51 @@ def make_env(cfg: DictConfig, gpu_device_id: int | None = None):
     return habitat.Env(config=build_habitat_config(cfg, gpu_device_id))
 
 
-def select_episodes(cfg: DictConfig, count: int, shard: int = 0, num_shards: int = 1):
+def select_episodes(
+    cfg: DictConfig,
+    count: int,
+    shard: int = 0,
+    num_shards: int = 1,
+    scenes: list[str] | None = None,
+    episodes_per_scene: int | None = None,
+):
     """A deterministic episode subset, and a dataset restricted to it.
 
     Returns (dataset, episode_keys). Episodes are ordered by (scene, id) and
     sliced round-robin across shards, so every worker gets a disjoint set and
     every policy is scored on exactly the same episodes.
+
+    `scenes` may be given in any scene_id spelling; matching is by scene name.
+    When given, only those content files are parsed.
     """
     import habitat
-    from habitat.config.default import get_config
 
-    habitat_cfg = build_habitat_config(cfg)
+    wanted = {scene_key(s) for s in scenes} if scenes else None
+    habitat_cfg = build_habitat_config(
+        cfg, content_scenes=sorted(wanted) if wanted else None
+    )
     dataset = habitat.datasets.make_dataset(
         habitat_cfg.habitat.dataset.type, config=habitat_cfg.habitat.dataset
     )
+
+    if wanted:
+        dataset.episodes = [
+            e for e in dataset.episodes if scene_key(e.scene_id) in wanted
+        ]
+    if episodes_per_scene:
+        # HM3D train has ~50k episodes per scene; a handful each is plenty for
+        # collecting decision states and keeps the pool from dominating memory.
+        by_scene: dict = {}
+        kept = []
+        for episode in sorted(
+            dataset.episodes, key=lambda e: (str(e.scene_id), int(e.episode_id))
+        ):
+            key = scene_key(episode.scene_id)
+            if by_scene.get(key, 0) >= episodes_per_scene:
+                continue
+            by_scene[key] = by_scene.get(key, 0) + 1
+            kept.append(episode)
+        dataset.episodes = kept
 
     episodes = sorted(dataset.episodes, key=lambda e: (str(e.scene_id), int(e.episode_id)))
     episodes = episodes[: int(count)]
