@@ -7,8 +7,8 @@ Lineage-Aware Predictive Memory for Object Navigation
 exploration action will reveal, and does that prediction improve frontier
 selection?
 
-**Status:** Phases 0–4 complete. Phase 5 is next but partly blocked on the HM3D
-training meshes; Phases 6 and 7 can proceed in parallel on validation data.
+**Status:** Phases 0–5 complete. Phase 6 (lineage graph) and Phase 7
+(learning tensors) are next and can proceed in parallel.
 
 ---
 
@@ -43,11 +43,12 @@ Phase 12: Offline ranking → Phase 13: Closed-loop navigation
 | 2 Navigation | done | nearest + info-gain complete without planner failures | `d947781` |
 | 3 Options | done | 3 branches from one identical state | `315aa28` |
 | 4 Revelation | done | ≥20 examples visualised and verified | `818c7a2` |
-| 5 Dataset | blocked | dataloader returns all branches of one state | needs train meshes |
+| 5 Dataset | done | dataloader returns all branches of one state | 504 groups, 2421 branches |
 | 6–16 | not started | | |
 
-**Test suite:** 82 passing.
-**Known blockers:** HM3D train scene meshes not downloaded (Phase 5.1).
+**Test suite:** 105 passing.
+**Known blockers:** none. HM3D train meshes downloaded (800 scenes, 145 with
+semantics); `manifests/full.json` is the non-pilot partition (89/26/30).
 
 ---
 
@@ -80,7 +81,7 @@ Phase 12: Offline ranking → Phase 13: Closed-loop navigation
       episode replays identically regardless of what preceded it.
 - [x] Habitat-Sim 0.3.3 and Habitat-Lab 0.3.3 confirmed in `habitat033`.
 - [x] HM3D **validation** and **minival** scenes present.
-- [ ] HM3D **train** scenes — **NOT DOWNLOADED**, see Phase 5.1.
+- [x] HM3D **train** scenes downloaded in Phase 5.1 (800 scenes, 145 annotated).
 - [x] One HM3D ObjectNav episode runs.
 - [x] RGB, depth, pose, semantic annotation and map output saved.
 - [x] Experiment tracking (CSV + JSONL always on; TensorBoard/W&B optional and
@@ -220,80 +221,104 @@ moves to a dataset with trustworthy room labels.
 
 ---
 
-## Phase 5 — Generate the FrontierReveal dataset
+## Phase 5 — Generate the FrontierReveal dataset ✅
 
-### 5.1 Resolve the data blocker
+### 5.1 Resolve the data blocker ✅
 
-- [ ] Download the HM3D training meshes using the staged script
-      (`scripts/download_hm3d_train.sh`) and Matterport credentials.
-- [ ] Verify training scenes load with the annotated scene-dataset config.
-- [ ] Confirm nonzero semantic instances in at least five training scenes.
-- [ ] Create scene-disjoint train / validation / test manifests.
-- [ ] Keep HM3D validation and minival out of the training set.
+- [x] HM3D training meshes downloaded (35.3 GB: 27.2 GB meshes + 8.1 GB
+      semantics). `habitat_sim.utils.datasets_download` does **not** work with
+      Matterport API tokens -- the endpoint answers 307 to presigned S3 and the
+      downloader writes the "Unauthorized" body into a file named `*.tar`, which
+      fails later with a confusing `ReadError`. `scripts/download_hm3d_train.sh`
+      fetches with `curl -L` and validates each archive before extracting.
+- [x] Training scenes load with the annotated scene-dataset config. 800 scene
+      directories extracted; the existing annotated config already referenced
+      all 290 train paths.
+- [x] Nonzero semantic instances confirmed: **145/145 annotated train scenes**
+      (234–1724 instances, mean 664). HM3D-Semantics v0.2 annotates a subset of
+      the 800, and that subset matches the 145 ObjectNav v2 train episode files
+      exactly.
+- [x] Scene-disjoint manifests: `manifests/full.json` — 89 train / 26 val /
+      30 test, `pilot: false`.
+- [x] HM3D validation and minival kept out of the training split.
 
-> Until the train meshes arrive, a `pilot_debug` dataset can be generated from
-> validation scenes to exercise the pipeline. **It cannot be used for final
-> training or reported evaluation.**
+> `manifests/pilot_debug.json` remains as the val-carved pilot partition used
+> before the meshes arrived. It is flagged `pilot: true` and must not be used
+> for reported results.
 
-### 5.2 Freeze the candidate-frontier protocol
+### 5.2 Freeze the candidate-frontier protocol ✅
 
 For the first dataset version, the canonical detector is
 `F_t = GeometricFrontiers(M_t^occ)`.
 
-- [ ] Use the existing Phase 2 geometric frontier extractor.
-- [ ] Save `detector_type=geometric` in every decision group.
-- [ ] Save complete boundary components, not only centroids.
-- [ ] Save centroid, normal, information gain, approach pose and crossing
-      option.
-- [ ] Preserve an interface allowing `frontiernet` and `union` detectors later.
+- [x] Phase 2 geometric frontier extractor used.
+- [x] `detector_type=geometric` saved on every example.
+- [x] Complete boundary components saved (`boundary_cells`), not only centroids.
+- [x] Centroid, normal, information gain, approach pose and crossing option
+      saved.
+- [x] `frontiernet` and `union` reserved as detector values.
 
 ### 5.3 Collect decision states
 
 Run multiple collection policies so the dataset is not shaped by one behaviour
 distribution: nearest, max information gain, random, information gain − cost.
 
-- [ ] Save states only when at least two valid frontier options exist.
-- [ ] Exclude states where the target is already detected.
-- [ ] Avoid nearly identical consecutive states.
-- [ ] Preserve the complete simulator snapshot and map.
-- [ ] Save the observation history leading to the state.
-- [ ] Save RNG state, episode ID, scene ID and configuration hash.
-- [ ] Save raw frontier boundaries at intermediate timesteps, for later lineage
-      construction.
+- [x] States saved only when at least two valid frontier options exist.
+- [x] States where the target is already detected are excluded.
+- [x] Near-duplicate consecutive states rejected (`min_state_separation_m`).
+- [x] Complete simulator snapshot and map preserved, hashed and verified.
+- [x] Observation history saved.
+- [x] RNG seed, episode ID, scene ID and configuration hash saved.
+- [x] Frontier boundaries saved per candidate.
+- [ ] Raw frontier boundaries at *intermediate* timesteps, for lineage
+      construction — deferred to Phase 6, which defines what it needs.
 
-Acceptance rule: `2 ≤ |F_t| ≤ N_max` and `y_t^g = 0`.
+Acceptance rule: `2 ≤ |F_t| ≤ N_max` and `y_t^g = 0`. Rejections are counted,
+not silently dropped. On the pilot: 751 over the frontier cap, 549 target
+already visible, 103 with fewer than two reachable frontiers, 30 near-duplicate,
+14 with fewer than two valid options.
 
 ### 5.4 Execute every branch
 
 For each `f_i ∈ F_t`:
 
-- [ ] Restore the common snapshot `S_t`.
-- [ ] Verify snapshot and map hashes.
-- [ ] Execute `ω_i`.
-- [ ] Record planned and executed trajectories.
-- [ ] Record crossing success, collision count and distance.
-- [ ] Record future RGB, depth, semantics and poses.
-- [ ] Record `ΔM_i^occ`.
-- [ ] Record `ΔM_i^sem`.
-- [ ] Record target revelation `y_i^g`.
-- [ ] Record newly exposed frontiers.
-- [ ] Restore `S_t` before the next branch.
+- [x] Common snapshot `S_t` restored between branches.
+- [x] Snapshot and map hashes verified; a group whose map does not restore
+      identically raises instead of being written.
+- [x] `ω_i` executed.
+- [x] Planned and executed trajectories recorded.
+- [x] Crossing success, collision count and distance recorded.
+- [x] Future RGB-D retained under `--keep-frames`.
+- [x] `ΔM_i^occ` recorded **as a spatial mask**, not only its area. Storing only
+      scalars would have left the occupancy head untrainable; caught before the
+      pilot ran. Masks are bit-packed (80 KB vs 640 KB raw).
+- [x] `ΔM_i^sem` recorded as a mask, restricted to `ΔM_i^occ`.
+- [x] Target revelation `y_i^g` recorded.
+- [x] Newly exposed frontiers recorded.
 
 Store one decision group as
 `D_t = (S_t, H_t, F_t, {f_i, ω_i, Y_i^gt}_{i=1..N_t})`.
 
 ### 5.5 Dataset integrity
 
-- [ ] Verify every branch starts from the same simulator state.
-- [ ] Verify one outcome exists for every valid frontier.
-- [ ] Verify semantic changes are restricted to newly observed cells.
-- [ ] Verify no branch observation appears in another branch's input.
-- [ ] Verify no scene overlaps across splits.
-- [ ] Record schema version and code commit.
-- [ ] Produce summary plots for every dataset channel.
-- [ ] Generate 500 pilot decision groups.
-- [ ] Inspect at least 50 decision groups manually.
-- [ ] Scale to several thousand groups only after all checks pass.
+- [x] Every branch starts from the same simulator state (504 groups checked).
+- [x] One outcome per valid frontier (2421 branches checked).
+- [x] Semantic changes restricted to newly observed cells (2421 checked).
+- [x] No branch observation appears in another branch's input.
+- [x] No scene overlaps across splits.
+- [x] Schema version and code commit recorded on every example.
+- [x] Summary plots for every channel (`channel_summary.png`).
+- [x] 504 pilot decision groups generated (2421 branches, 41.6 min, 18 workers).
+- [x] 50 decision groups rendered and inspected
+      (`scripts/inspect_groups.py`); candidates from a shared state reveal
+      spatially distinct regions adjacent to their own frontiers.
+- [ ] Scale to several thousand groups — next, now that the checks pass and the
+      real train manifest exists.
+
+Pilot statistics: 4.80 branches per group (2–8), target-positive rate 33.5%,
+crossing success 75.4%, mean revealed area 9.81 m² (max 41.6), mean 3.25 new
+frontiers per branch. Within-group revealed-area spread: **median 3.9×, max
+108×**.
 
 > Do **not** include room-category prediction in the workshop dataset unless
 > the project moves to a dataset with trustworthy room labels.

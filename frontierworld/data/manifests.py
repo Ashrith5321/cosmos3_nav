@@ -86,9 +86,10 @@ class SplitManifest:
         for split in sorted(self.splits):
             scenes = self.splits[split]
             episodes = sum(
-                self.scenes.get(s, {}).get("n_episodes", 0) for s in scenes
+                max(0, self.scenes.get(s, {}).get("n_episodes", 0)) for s in scenes
             )
-            lines.append(f"  {split:6s} {len(scenes):3d} scenes  {episodes:5d} episodes")
+            suffix = f"  {episodes:5d} episodes" if episodes else ""
+            lines.append(f"  {split:6s} {len(scenes):3d} scenes{suffix}")
         overlaps = self.check_disjoint()
         lines.append(f"  scene-disjoint: {'yes' if not overlaps else 'NO -- ' + '; '.join(overlaps)}")
         missing = self.scenes_without_semantics()

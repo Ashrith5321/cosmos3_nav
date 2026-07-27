@@ -50,7 +50,57 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--no-audit-semantics", dest="audit_semantics", action="store_false")
     parser.add_argument("--out", default="manifests")
+    parser.add_argument(
+        "--slow",
+        action="store_true",
+        help="load every episode to get exact counts (minutes on HM3D train)",
+    )
     return parser.parse_args()
+
+
+def discover_scenes(cfg, slow: bool = False):
+    """Map scenes to episode counts.
+
+    The fast path reads the split's content/ directory: each file is named
+    <scene>.json.gz and corresponds to exactly one scene, so the scene list
+    comes for free. Instantiating the habitat dataset instead parses every
+    episode -- on HM3D train that is 245 MB of gzipped JSON carrying hundreds
+    of viewpoints per episode, which took over ten minutes and 7 GB of RSS to
+    produce a list of scene names.
+    """
+    from frontierworld.config import episode_dataset_path
+
+    episodes_path = Path(episode_dataset_path(cfg))
+    content = episodes_path.parent / "content"
+    scenes_root = Path(cfg.data.scenes_dir) / "hm3d_v0.2" / str(cfg.data.split)
+
+    if not slow and content.is_dir() and scenes_root.is_dir():
+        by_name = {
+            directory.name.split("-", 1)[-1]: directory
+            for directory in scenes_root.iterdir()
+            if directory.is_dir()
+        }
+        counts: Counter = Counter()
+        for entry in sorted(content.glob("*.json.gz")):
+            name = entry.name.replace(".json.gz", "")
+            directory = by_name.get(name)
+            if directory is None:
+                continue
+            scene_id = str(directory / f"{name}.basis.glb")
+            counts[scene_id] = -1  # not counted on the fast path
+        if counts:
+            return counts, sorted(counts)
+
+    import habitat
+
+    from frontierworld.habitat_env import build_habitat_config
+
+    habitat_cfg = build_habitat_config(cfg)
+    dataset = habitat.datasets.make_dataset(
+        habitat_cfg.habitat.dataset.type, config=habitat_cfg.habitat.dataset
+    )
+    counts = Counter(str(e.scene_id) for e in dataset.episodes)
+    return counts, sorted(counts)
 
 
 def main() -> int:
@@ -62,18 +112,8 @@ def main() -> int:
         name, value = part.split("=")
         fractions[name.strip()] = float(value)
 
-    import habitat
-
-    from frontierworld.habitat_env import build_habitat_config
-
-    habitat_cfg = build_habitat_config(cfg)
-    dataset = habitat.datasets.make_dataset(
-        habitat_cfg.habitat.dataset.type, config=habitat_cfg.habitat.dataset
-    )
-
-    episodes_per_scene = Counter(str(e.scene_id) for e in dataset.episodes)
-    scene_ids = sorted(episodes_per_scene)
-    print(f"scenes: {len(scene_ids)}  episodes: {len(dataset.episodes)}")
+    episodes_per_scene, scene_ids = discover_scenes(cfg, slow=args.slow)
+    print(f"scenes: {len(scene_ids)}")
 
     source_split = str(cfg.data.split)
     pilot = source_split != "train"
