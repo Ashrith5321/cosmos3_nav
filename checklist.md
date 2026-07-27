@@ -9,8 +9,11 @@ selection?
 
 **Status:** Phases 0–5 and 7 complete. Phase 6 **frozen** (association
 accuracy unmeasured pending Phase 6.5 annotation). Phase 8 **v0 gate passed
-narrowly; two primary heads unresolved** — see below. Phase 9 infrastructure
-passed; Cosmos worker pending.
+narrowly; two primary heads unresolved** — see below. Phase 9 **closed as a
+negative result**: the infrastructure passed, but Cosmos 3 Nano is
+action-sensitive without being directionally action-faithful, so it cannot serve
+as a counterfactual frontier predictor. Phase 10 is **in progress**, using the
+three archived Phase 8 seeds as a frozen deep ensemble.
 
 > **The v0 test split is CONSUMED.** Its numbers have been read, so any v1
 > design informed by them makes it biased for v1. `manifests/sealed_final_v1.json`
@@ -27,8 +30,8 @@ Phase 5: FrontierReveal dataset
    ├── Phase 6: Lineage graph ──→ Phase 11: Frontier memory ─┐
    └── Phase 7: Learning tensors                             │
           └── Phase 8: Structured predictor                  │
-                 └── Phase 9: Cosmos 3                       │
-                        └── Phase 10: Uncertainty            │
+                 ├── Phase 9: Cosmos 3  ✗ CLOSED (negative)  │
+                 └── Phase 10: Uncertainty (Phase 8 ensemble)│
                                                              ↓
 Phase 12: Offline ranking → Phase 13: Closed-loop navigation
        → Phase 14: Ablations → Phase 15: Final experiments
@@ -57,11 +60,28 @@ Phase 12: Offline ranking → Phase 13: Closed-loop navigation
 | 7 Tensors | done | batch round-trips to the global map | round-trip 2.7e-15 m, recall 1.000 |
 | 8 Predictor | **v0 frozen** | beats strongest baseline on occupancy + a scalar | narrow pass, 2 heads unresolved |
 | 8.5 v1 design | pending | factorised objective; calibrated target head | diagnosis complete |
-| 9–16 | not started | | |
+| 9A/9B Depth+scale | done | monocular depth characterised | `archive/phase9_depth` |
+| 9C Robust converter | **frozen, gate FAILED** | graceful degradation under predicted depth | 4 of 5 criteria failed; archived negative result |
+| 9D Cosmos rollouts | **CLOSED — NEGATIVE** | action-faithful counterfactual rollouts | infrastructure PASS, generator FAIL (`617b51e`) |
+| 10 Ensemble + calibration | in progress | uncertainty tracks error; calibration beats prior | splits frozen `6cf77b1`; data generated; evaluation running |
+| 11–16 | not started | | |
 
-**Test suite:** 146 passing.
-**Known blockers:** none. HM3D train meshes downloaded (800 scenes, 145 with
-semantics); `manifests/full.json` is the non-pilot partition (89/26/30).
+**Test suite:** 252 passing.
+**Known blockers:** none.
+
+**Phase 9 outcome, in one line.** Under the released Cosmos3-Nano camera-pose
+interface, *action sensitivity does not imply action adherence*: translation
+affects the generated future, but signed yaw is not represented faithfully,
+including at the sub-degree rotational scale found in NVIDIA's own reference
+trajectory. Phase 10 therefore proceeds with the Phase 8 structured-model
+ensemble, and Cosmos is retained only as a qualitative, non-action-faithful
+baseline.
+
+**Scene accounting.** 145 HM3D train scenes carry semantics. 58 are consumed
+(Phase 8 v0 + pipeline development). `dev_pool_v1.json` holds the 103 untouched
+scenes, now split into `phase10_calibration.json` (45) and
+`phase10_validation.json` (45) with 13 reserved for Phase 11.
+`sealed_final_v1.json` (20 HM3D **val**-split scenes) remains unopened.
 
 ---
 
@@ -544,10 +564,43 @@ current-observation baselines on held-out prediction.
 
 ---
 
-## Phase 9 — Integrate Cosmos 3
+## Phase 9 — Integrate Cosmos 3 — **CLOSED, NEGATIVE RESULT**
 
-Cosmos 3 is a prediction backbone or comparison, **not** the only path through
-the project.
+Cosmos 3 was a prediction backbone or comparison, **not** the only path through
+the project. That framing is why closing it does not block anything downstream.
+
+**Two separate outcomes, deliberately not merged:**
+
+| | verdict |
+| --- | --- |
+| Phase 9 **infrastructure** | **PASS** — environment isolation, action interface, manifests, caching, pose derivation, deterministic execution |
+| Cosmos as a **counterfactual frontier predictor** | **FAIL** — action-sensitive but not directionally action-faithful |
+
+The decisive experiment was preregistered (`c61c3da`) before its rollouts
+existed and failed in both arms. Full record:
+`archive/phase9d/PHASE9_CLOSURE.md`.
+
+- Cosmos **does** consume the action: holding image, prompt and seed fixed and
+  varying only the action moves mean frame difference from 2.29 (`still`) to
+  31.6 / 39.4 (opposite turns).
+- Cosmos **does not** follow the commanded direction: those opposite turns pan
+  the camera the *same* way (flow −17.50 vs −17.80).
+- At 0.25–0.50°/frame — bracketing the reference trajectory's own 0.264°/frame
+  — there is still no directional response, and with zero translation no
+  response at all (flow spread 0.0025 px across the whole range).
+- Determinism passed exactly (0.00000 mean pixel difference on a repeat), so
+  the null is not sampling noise.
+
+Steps 8, 10 and 11 of the Phase 9 plan (structured conversion, decision group,
+validation pilot) were **not run**, per the predeclared consequence. The
+crossing-only reformulation was **not attempted**, since its precondition was
+that this diagnostic pass.
+
+**Optional, not required:** run the same optical-flow estimator on
+Habitat-rendered known ±0.25° rotations, to validate the proxy that the null
+rests on. This would not reopen or modify the Cosmos experiment.
+
+*The sub-sections below are the original plan, retained for provenance.*
 
 ### 9.1 Conditioning
 
@@ -593,35 +646,95 @@ Phase 4 ground truth.
 
 ---
 
-## Phase 10 — Add stochastic prediction and calibration
+## Phase 10 — Add stochastic prediction and calibration — **IN PROGRESS**
 
-A single generated future is not sufficient for genuinely unobserved regions.
+A single deterministic prediction is not sufficient for genuinely unobserved
+regions. With Cosmos closed, the mixture comes from the **three archived Phase 8
+seeds treated as a frozen deep ensemble** `{F_θ1, F_θ2, F_θ3}`. They are **not
+retrained** during Phase 10; the only fitted quantities are calibration
+parameters.
 
-### 10.1 Multiple hypotheses
+### 10.1 Freeze calibration and validation scenes ✅ (`6cf77b1`)
 
-`p_θ(Y_i | X_i) = Σ_{k=1..K} π_ik p_{θ,k}(Y_i | X_i)`
+- [x] `manifests/phase10_calibration.json` — 45 scenes, hash `3b053336e442a370`
+- [x] `manifests/phase10_validation.json` — 45 scenes, hash `97045a51ee24d054`
+- [x] scene-disjoint (not group-disjoint: same-scene states share geometry)
+- [x] zero overlap with the 58 consumed scenes
+- [x] sealed set never read — guarded structurally by asserting every path lies
+      under `hm3d_v0.2/train/`, since `sealed_final_v1` is HM3D val-split
+- [x] frozen **before** any result was computed
+- [x] 13 scenes reserved for Phase 11
+- [x] every counterfactual branch kept grouped by decision state
 
-via multiple Cosmos generations, a mixture decoder on the structured model, or
-a small ensemble.
+Dev-pool scenes had no generated data, so a fresh branch-complete dataset was
+built with the *exact* Phase 5 generation config (byte-identical to the
+archived Phase 8 config apart from `split`), so calibration data matches what
+the ensemble was trained on. Result: **calibration 429 groups / 1921 branches,
+validation 494 / 2319**, zero errors.
 
-### 10.2 Train and evaluate uncertainty
+### 10.2 Ensemble predictions ✅ (code `5d9d7e8`)
 
-- [ ] Predict probability of target revelation.
-- [ ] Predict crossing-success probability.
-- [ ] Predict distributions over revealed area.
-- [ ] Compute uncertainty across spatial predictions.
-- [ ] Use proper probabilistic losses.
-- [ ] Calibrate on validation scenes only.
-- [ ] Produce reliability diagrams.
+`Ŷ_i^(s) = F_θs(X_i)`, mean `Ȳ_i = (1/3) Σ_s Ŷ_i^(s)`.
 
-**Report:** NLL, Brier score, expected calibration error, best-of-K coverage,
-diversity versus accuracy, uncertainty versus actual error.
+- [x] store individual logits, probabilities and outputs — not only the mean
 
-> Do not report only best-of-K; it rewards diversity without testing
-> calibration.
+### 10.3 Uncertainty ✅
 
-**Gate:** higher predicted uncertainty corresponds to larger realised error,
-and target/crossing probabilities are measurably calibrated.
+- [x] occupancy: predictive entropy `H(p̄)`, seed variance, and
+      `U_MI = H(p̄) − (1/3) Σ_s H(p_s)`
+- [x] semantics: mean pairwise cosine disagreement
+- [x] target and crossing: variance, entropy, mutual information
+- [x] area: `Ā_i` and `U_i^A = Std_s(Â_i^(s))`
+
+> **Three seeds are insufficient for reliable empirical quantiles.** The
+> seed-wise min/max is *not* a prediction interval and is never reported as
+> coverage. Enforced in code: the helper is named `seed_range`, and all
+> intervals come from the conformal procedure below.
+
+### 10.4 Calibration, fitted on calibration scenes only ✅
+
+Registered before evaluation:
+
+- [x] target presence — temperature **and** Platt scaling
+- [x] crossing — temperature scaling
+- [x] free/occupied logits — separate per-channel temperatures
+- [x] area — split-conformal residual intervals,
+      `r_i = |A_i^gt − Ā_i| / (U_i^A + ε)`, interval
+      `[Ā_i ∓ q_0.9 (U_i^A + ε)]`, with the finite-sample
+      `ceil((n+1)(1−α))/n` quantile
+- [x] constant-prior probabilities as baselines
+- [x] coverage evaluated **only** on Phase 10 validation scenes
+- [x] calibration never touches the sealed split
+
+### 10.5 Evaluation table — running
+
+Compare: constant/dataset prior · each individual Phase 8 seed · uncalibrated
+ensemble mean · calibrated ensemble · oracle-choice-among-seeds (diagnostic
+only).
+
+- [ ] occupancy IoU, Brier, NLL
+- [ ] semantic IoU/cosine and disagreement
+- [ ] target AUROC, AUPRC, Brier, NLL, ECE
+- [ ] crossing AUROC, accuracy, Brier, ECE
+- [ ] area MAE, correlation, 90% interval coverage
+- [ ] uncertainty–error Spearman correlation
+- [ ] risk–coverage curves
+- [ ] candidate-ranking stability across seeds
+- [ ] bootstrap by **decision group**
+
+**Gate** (thresholds fixed in `scripts/phase10_gate.py` before the table
+exists — coverage tolerance 0.05, degradation tolerance 0.02 relative):
+
+1. ensemble uncertainty positively correlates with realised error
+2. low-uncertainty predictions have lower error on risk–coverage curves
+3. calibration improves Brier or NLL over the raw ensemble
+4. calibrated target Brier beats the constant-prior baseline
+5. area intervals achieve approximately their registered coverage
+6. ensemble averaging does not materially degrade the deterministic metrics
+
+> If target calibration still fails, **record it honestly**. Phase 11 visual
+> frontier memory is the mechanism intended to add the missing semantic
+> evidence; Phase 10 cannot calibrate information the inputs do not contain.
 
 ---
 
@@ -1051,10 +1164,37 @@ robust to uncertainty comparable to the scene without erasing the signal.
 anchoring with the ORIGINAL exact-depth converter** for Phase 9D onward. The
 robust converter is retained, recorded and unused. No further converter tuning.
 
-### Remaining Phase 9
+### Phase 9D — CLOSED, gate FAILED, Cosmos archived as a negative result
 
-- [ ] 9D — separate Python >= 3.10 env, load Cosmos3-Nano, VRAM, one rollout
-- [ ] 9E — one complete decision group; option sensitivity vs seed diversity
-- [ ] 9F — 10-20 group validation pilot
-- [ ] Phase 9 gate: option adherence, automatic pipeline, option sensitivity,
-      interpretable outputs, reproducibility. Cosmos need not beat Phase 8.
+- [x] 9D env — isolated Python 3.13 / torch 2.10 venv; Habitat 3.9 untouched.
+      The two environments share only files, never imports.
+- [x] Action interface — **Class C**: Cosmos both consumes and emits actions,
+      selected by `model_mode`. `forward_dynamics` reads a 9-D action file;
+      `policy`/`inverse_dynamics` pass zeros. Embodiment `camera_pose`
+      (domain 2, raw dim 9), `[translation(3), rot6d(6)]`, backward-framewise.
+      No textual action substitution was ever needed.
+- [x] Resources — 15.88 B parameters, 30.3 GB BF16, 30.6 GB reserved on one
+      A6000 with 18.1 GB headroom. No sharding, offload or quantization.
+- [x] One 17-frame rollout generated, guardrails enabled throughout.
+      8 of 9 verification checks passed; **turn direction FAILED** (yaw/flow
+      correlation 0.16 against a preregistered 0.30).
+- [x] Action-sensitivity probes and the preregistered in-distribution yaw
+      diagnostic — **both FAILED**.
+- [ ] ~~9E one complete decision group~~ — not run (predeclared consequence)
+- [ ] ~~9F 10-20 group validation pilot~~ — not run (predeclared consequence)
+
+**Phase 9 gate: FAILED on option adherence.** The pipeline, interpretability
+and reproducibility sub-goals were met (determinism was exact: 0.00000 mean
+pixel difference on an identical-seed repeat), but option adherence is the one
+that matters, and Cosmos does not have it. Cosmos was never required to beat
+Phase 8 — it was required to respond to the option, and it does not.
+
+A useful by-product: the decision-point pose is not stored in the dataset and
+had to be recovered by inverting the first recorded action. Re-rendering at the
+recovered pose reproduces the stored conditioning frame to **0.001/255**, which
+both validates the recovery and confirms the conditioning depth is genuine
+observed sensor depth rather than future information.
+
+**Reusable if an action-faithful generator appears:** the action-interface
+determination, nominal-pose derivation, conditioning manifest, cache keys and
+two-environment isolation all stand.
