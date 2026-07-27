@@ -56,6 +56,7 @@ Phase 12: Offline ranking → Phase 13: Closed-loop navigation
 | 6.5 Annotation | exported | human transition labels | 102 transitions awaiting labels |
 | 7 Tensors | done | batch round-trips to the global map | round-trip 2.7e-15 m, recall 1.000 |
 | 8 Predictor | **v0 frozen** | beats strongest baseline on occupancy + a scalar | narrow pass, 2 heads unresolved |
+| 8.5 v1 design | pending | factorised objective; calibrated target head | diagnosis complete |
 | 9–16 | not started | | |
 
 **Test suite:** 146 passing.
@@ -848,3 +849,57 @@ results**. State the value in every reported table.
 **Determinism.** Per-episode randomness derives from
 `(seed, scene_id, episode_id)`, never from a running stream, so an episode
 replays identically regardless of what preceded it.
+
+
+---
+
+## Phase 8 v1 — design notes from the v0 diagnosis
+
+**Occupied head.** Occupied cells are *not* rare conditional on revelation
+(`p(occupied | revealed) ~ 0.336`), but they are rare under the effective
+full-window loss denominator (`p(revealed and occupied) ~ 0.038`). This is an
+effective class/masking imbalance **created by the loss formulation, not by the
+dataset**. Measured consequence: recall 0.049 at precision 0.458.
+
+v1 correction — a genuinely factorised training objective:
+
+```
+p(free)     = p(reveal) * p(free | reveal)
+p(occupied) = p(reveal) * p(occupied | reveal)
+```
+
+- [ ] Train the reveal head over the complete spatial window.
+- [ ] Train the conditional free/occupied softmax **only over ground-truth
+      revealed cells**.
+- [ ] Optionally add a boundary or distance-transform loss for thin-wall
+      alignment.
+
+**Metric preregistration (before the sealed set is opened).** Exact IoU stays
+**primary**; 2-cell-tolerant IoU is a **secondary diagnostic** only. Registered
+now so the choice cannot be made after seeing a result. On v0 validation these
+read 0.051 exact against 0.179 tolerant.
+
+**Target-presence head.** The defensible statement, and the one to use in the
+paper:
+
+> Under the tested current-geometry representation, target-positive and
+> target-negative frontier outcomes are poorly separable, producing weak
+> discrimination and severely miscalibrated probabilities.
+
+Cohen's d <= 0.11 covers the five tested *scalar* geometric features; it does
+not establish that every spatial pattern in the full geometric tensor is
+uninformative, and AUROC 0.622 indicates some weak ranking signal survives.
+Claiming "no evidence exists" would overstate the measurement.
+
+Evidence for the paper's motivation, stated at the right strength:
+
+| quantity | v0 validation | reference |
+| --- | --- | --- |
+| target AUROC | 0.617 | chance 0.500 |
+| target AUPRC | 0.472 | base rate 0.363 |
+| target Brier | 0.343 | **constant prior 0.231** |
+
+The head is worse than the base rate as a probability estimate, and calibration
+is inverted at both ends. Phase 11's ladder — current-only -> keyframe -> FIFO
+-> lineage-aware — now has concrete targets to beat: AUPRC > 0.472 and Brier
+< 0.231 on validation, under a matched token budget.

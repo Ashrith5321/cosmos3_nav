@@ -165,6 +165,21 @@ def revelation_loss(
     Spatial losses are masked by `target_valid`: cells outside the global map
     carry no ground truth, and averaging over them would let the model reduce
     the loss by being confident about regions nothing was ever observed in.
+
+    KNOWN DEFECT (v0, frozen; fix belongs in v1). Both occupancy channels are
+    averaged against one full-window denominator. Occupied cells are NOT rare
+    conditional on revelation -- p(occupied | revealed) ~ 0.34 -- but they are
+    rare under this denominator, p(revealed and occupied) ~ 0.038. The
+    imbalance is therefore created by the loss formulation, not by the dataset,
+    and near-zero prediction minimises it: measured recall 0.049 at precision
+    0.458 on validation.
+
+    v1 should train a genuinely factorised objective instead:
+        p(free)     = p(reveal) * p(free | reveal)
+        p(occupied) = p(reveal) * p(occupied | reveal)
+    with the reveal head over the whole window and the free/occupied softmax
+    only over ground-truth revealed cells, optionally plus a boundary or
+    distance-transform term for thin-wall alignment.
     """
     weights = weights or {
         "occ": 1.0, "sem": 0.5, "goal": 1.0, "cross": 0.5, "area": 0.1
