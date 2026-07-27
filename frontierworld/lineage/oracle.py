@@ -1,5 +1,25 @@
 """Offline oracle lineage.
 
+STATUS: NOT VALIDATED. Do not report association metrics computed with this.
+
+Two automatic definitions were tried and neither produced a trustworthy
+ground truth:
+
+  v1  identity = the connected unresolved region a frontier borders. Broken:
+      early in an episode the whole unexplored remainder of the house is one
+      connected component, so six of seven physically distinct frontiers
+      collapsed onto a single identity and the "ground truth" chained
+      unrelated frontiers together.
+  v2  identity = clustered revelation footprints in the final map (below).
+      Fixed cache contamination but left association F1 unchanged, and the
+      lineage graph still scored level with nearest-centroid matching.
+
+Three changes with no movement in the metric indicates the yardstick, not the
+matcher. Real-episode association accuracy is therefore treated as UNMEASURED
+pending human transition annotation, which must finish before Phase 11
+(learned memory) and Phase 14 (lineage ablations).
+
+
 The online matcher sees only the map as it stands. The oracle is allowed the
 whole episode: each observation is labelled by the space actually reachable
 through that specific opening in the FINAL map, and observations whose

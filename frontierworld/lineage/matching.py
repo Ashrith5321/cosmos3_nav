@@ -31,13 +31,19 @@ from frontierworld.lineage.graph import (
 )
 
 
-@dataclass
+@dataclass(frozen=True)
 class MatchingConfig:
-    """Weights and thresholds for association.
+    """Weights and thresholds for association. FROZEN as of Phase 6.
 
     Boundary overlap dominates because it is the only cue that directly says
     "this is the same opening"; the rest disambiguate when a boundary has moved
     far enough that overlap alone is silent.
+
+    These values are deliberately not being tuned further. Real-episode
+    association accuracy is currently UNMEASURED -- the automatic oracle used
+    to score it proved untrustworthy (see lineage/oracle.py) -- so tuning
+    against it would be fitting to a broken yardstick. Retune only after the
+    human transition annotations exist; see checklist Phase 6.5.
     """
 
     weight_overlap: float = 0.45

@@ -7,8 +7,10 @@ Lineage-Aware Predictive Memory for Object Navigation
 exploration action will reveal, and does that prediction improve frontier
 selection?
 
-**Status:** Phases 0–5 complete. Phase 6 (lineage graph) and Phase 7
-(learning tensors) are next and can proceed in parallel.
+**Status:** Phases 0–5 and 7 complete. Phase 6 is **frozen**: the
+implementation is correct and branch-isolated, but real-episode association
+accuracy is unmeasured pending human annotation (Phase 6.5), which must finish
+before Phase 11 and Phase 14. Phase 8 (structured predictor) is next.
 
 ---
 
@@ -44,9 +46,12 @@ Phase 12: Offline ranking → Phase 13: Closed-loop navigation
 | 3 Options | done | 3 branches from one identical state | `315aa28` |
 | 4 Revelation | done | ≥20 examples visualised and verified | `818c7a2` |
 | 5 Dataset | done | dataloader returns all branches of one state | 504 groups, 2421 branches |
-| 6–16 | not started | | |
+| 6 Lineage | **frozen** | persist/split/disappear identities, no branch leakage | synthetic gate + 0 isolation violations |
+| 6.5 Annotation | exported | human transition labels | 102 transitions awaiting labels |
+| 7 Tensors | done | batch round-trips to the global map | round-trip 2.7e-15 m, recall 1.000 |
+| 8–16 | not started | | |
 
-**Test suite:** 105 passing.
+**Test suite:** 146 passing.
 **Known blockers:** none. HM3D train meshes downloaded (800 scenes, 145 with
 semantics); `manifests/full.json` is the non-pilot partition (89/26/30).
 
@@ -373,8 +378,55 @@ unknown-region descriptor, status.
 **Report:** association precision and recall, IDF1, ID switches, split/merge
 detection, cache-contamination rate.
 
-**Gate:** a frontier that persists, splits and later disappears maintains
-correct parent–child identities without leaking branch information.
+**Gate: PASSED**, by 18 synthetic tests over sequences whose correct
+identities are known by construction, plus 0 branch-isolation violations on
+real episodes.
+
+**FROZEN.** `MatchingConfig` is a frozen dataclass and is not to be retuned
+until Phase 6.5 annotations exist — tuning against the current automatic oracle
+would be fitting to a broken yardstick.
+
+**Real-episode association accuracy is INVALID / UNMEASURED.** Against the
+automatic oracle the lineage graph scores level with nearest-centroid matching
+(F1 0.085 vs 0.090, IDF1 0.272 vs 0.288). Two oracle definitions were tried and
+a third change (per-step rather than per-decision tracking) made it worse:
+
+- *Oracle v1*, identity = the connected unresolved region a frontier borders.
+  Broken: early in an episode the whole unexplored remainder of the house is
+  one component, so six of seven distinct frontiers collapsed onto one id.
+- *Oracle v2*, identity = clustered revelation footprints in the final map.
+  Fixed contamination (0.086 → 0.000, beating the baseline's 0.059) but left F1
+  unchanged.
+
+Three changes with no movement points at the yardstick, not the matcher. These
+numbers must not be reported.
+
+## Phase 6.5 — Human lineage validation
+
+Must finish **before Phase 11 (learned memory) and Phase 14 (lineage
+ablations)**. Can run in parallel with Phase 8 training.
+
+Label consecutive transition relations, not global identities:
+`R_ij^{t→t+1} ∈ {none, update, split-child, merge-parent}`. Labelling
+transitions is far less ambiguous than assigning one identity across a whole
+episode.
+
+> **Annotation rule.** Two frontier observations belong to the same lineage
+> when they represent the same physical access boundary into unresolved space.
+> Separate doorways remain separate even if they enter the same room.
+
+- [x] Export sequences with before/after maps, numbered boundary components and
+      RGB (`scripts/export_lineage_annotation.py`). 102 transitions exported.
+- [ ] Broaden coverage: the current export spans 5 episodes but only **1
+      scene**, because the episode iterator groups by scene. Re-export across
+      scenes before labelling.
+- [ ] Reduce the labelling burden: 2631 raw pairs across 102 transitions. Add a
+      geometric prefilter so only plausibly-related pairs need a label.
+- [ ] Label the correspondence matrices.
+- [ ] Have a second person label a subset; adjudicate disagreements.
+- [ ] Measure edge precision/recall/F1 by event type.
+- [ ] Derive IDF1 only after the transition labels are validated.
+- [ ] Retune `MatchingConfig` against the validated labels, then unfreeze.
 
 > Current placeholder: `exploration.py` quantises frontier centroids to a
 > half-metre grid for blacklisting, and `revelation.frontier_delta` matches new
@@ -383,46 +435,65 @@ correct parent–child identities without leaking branch information.
 
 ---
 
-## Phase 7 — Build learning-ready representations
+## Phase 7 — Build learning-ready representations ✅
 
 ### 7.1 Model input
 
 `X_{t,i} = (M_{t,i}^local, O_{t,i}^frontier, ω_i, g, G_t, m_i^t)`
 
-- [ ] Frontier-centred occupancy patch.
-- [ ] Observed / free / occupied / unknown masks.
-- [ ] Frontier boundary and crossing direction.
-- [ ] Selected RGB-D observations.
-- [ ] Relative camera poses.
-- [ ] Encoded approach and crossing trajectories.
-- [ ] Path cost and probe horizon.
-- [ ] Goal category.
-- [ ] Optional global-map context.
-- [ ] Frontier lineage ID and memory mask.
+- [x] Frontier-centred occupancy patch (8 m window at 0.1 m/cell, 80×80).
+- [x] Observed-free / occupied / unknown channels.
+- [x] Frontier boundary channel; crossing direction is +v by construction.
+- [x] Agent position and crossing-trajectory channels.
+- [x] Encoded option: approach and crossing action counts, probe distance,
+      horizon, travel cost, information gain, boundary length, world yaw.
+- [x] Path cost and probe horizon in the option encoding.
+- [x] Goal category carried per group.
+- [ ] Selected RGB-D observations and relative camera poses — deferred to
+      Phase 9, which defines what Cosmos needs.
+- [ ] Frontier lineage ID and memory mask — deferred to Phase 11, and gated on
+      Phase 6.5.
 
 ### 7.2 Targets
 
 Workshop targets are `Y_{t,i}^gt = (ΔM_i^occ, ΔM_i^sem, y_i^g)`, with
 traversability and revealed area as auxiliary heads.
 
-- [ ] Express outputs in a frontier-centred coordinate frame.
-- [ ] Fixed metric extent and resolution.
-- [ ] Mask cells outside the valid target region.
-- [ ] Distinguish newly revealed free from occupied space.
-- [ ] Define semantics only over newly revealed cells.
-- [ ] Define target presence consistently from semantic instances.
+- [x] Outputs in a frontier-centred frame: origin at the centroid, +v along
+      the crossing normal, so "beyond the boundary" is the same direction in
+      every example.
+- [x] Fixed metric extent and resolution.
+- [x] Validity mask for cells outside the global map — no evidence there, so
+      they are excluded from the loss rather than labelled unknown-but-observed.
+- [x] Revealed-free and revealed-occupied are separate channels.
+- [x] Semantics restricted to newly revealed cells.
+- [x] Target presence and crossing success as scalar labels.
 
 ### 7.3 Dataloader
 
-- [ ] Return complete decision groups, not independently shuffled branches.
-- [ ] Pad variable frontier counts with masks.
-- [ ] Preserve branch membership.
-- [ ] Support current-only, single-view and full-history inputs.
-- [ ] Prevent future observations from entering input tensors.
-- [ ] Visualisation functions that invert every transformation.
+- [x] Complete decision groups returned, never independently shuffled branches.
+- [x] Variable frontier counts padded with a candidate mask; padded slots are
+      zero and masked.
+- [x] Branch membership preserved.
+- [x] Future observations cannot enter the input tensors — asserted per branch
+      and per batch.
+- [x] Visualisation inverts every transformation back to the global map.
+- [ ] current-only / single-view / full-history input modes — deferred to
+      Phase 11, where the memory ablation defines them.
 
-**Gate:** one batch can be transformed to model coordinates and reconstructed
-into the original map frame without alignment errors.
+**Gate: PASSED.** `scripts/check_tensors.py`:
+
+| check | result |
+| --- | --- |
+| transform round-trip max error | 2.665e-15 m |
+| boundary reprojection recall | 1.000 |
+| target reprojection recall | 0.917 |
+| future-leakage problems | 0 |
+| padded slots zero | yes |
+
+Target recall is 0.917 rather than 1.0 because roughly 8% of revealed area
+falls outside the 8 m window. That is a truncation, not a misalignment —
+`extent_m` is the knob if the occupancy head needs more context.
 
 ---
 
