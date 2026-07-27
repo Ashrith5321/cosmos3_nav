@@ -33,10 +33,15 @@ class SimulatorSnapshot:
     free_counts: np.ndarray
     occupied_counts: np.ndarray
     semantic_grid: np.ndarray | None = None
+    # Phase 6: the lineage graph is agent state too. Observations made inside
+    # one branch must never reach another, or the memory Phase 11 attaches to a
+    # lineage id would be built from futures that never happened.
+    lineage: object | None = None
+    lineage_fingerprint: str | None = None
 
     @classmethod
     def capture(
-        cls, sim, occupancy: OccupancyMap, semantic_map=None
+        cls, sim, occupancy: OccupancyMap, semantic_map=None, lineage=None
     ) -> "SimulatorSnapshot":
         return cls(
             agent_state=copy.deepcopy(sim.get_agent(0).get_state()),
@@ -45,14 +50,27 @@ class SimulatorSnapshot:
             semantic_grid=(
                 semantic_map.copy_counts() if semantic_map is not None else None
             ),
+            lineage=lineage.copy() if lineage is not None else None,
+            lineage_fingerprint=(
+                lineage.fingerprint() if lineage is not None else None
+            ),
         )
 
-    def restore(self, sim, occupancy: OccupancyMap, semantic_map=None) -> None:
+    def restore(self, sim, occupancy: OccupancyMap, semantic_map=None, lineage=None):
         sim.get_agent(0).set_state(copy.deepcopy(self.agent_state))
         occupancy.free_counts[...] = self.free_counts
         occupancy.occupied_counts[...] = self.occupied_counts
         if semantic_map is not None and self.semantic_grid is not None:
             semantic_map.restore_counts(self.semantic_grid)
+        if lineage is not None and self.lineage is not None:
+            restored = self.lineage.copy()
+            lineage.nodes = restored.nodes
+            lineage.edges = restored.edges
+            lineage.active = restored.active
+            lineage.next_lineage_id = restored.next_lineage_id
+            lineage.timestep = restored.timestep
+            lineage.event_counts = restored.event_counts
+        return lineage
 
     def matches_agent(self, sim, tolerance: float = 0.0) -> bool:
         """Is the live agent state identical to this snapshot?"""
