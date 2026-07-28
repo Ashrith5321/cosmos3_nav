@@ -12,8 +12,9 @@ accuracy unmeasured pending Phase 6.5 annotation). Phase 8 **v0 gate passed
 narrowly; two primary heads unresolved** — see below. Phase 9 **closed as a
 negative result**: the infrastructure passed, but Cosmos 3 Nano is
 action-sensitive without being directionally action-faithful, so it cannot serve
-as a counterfactual frontier predictor. Phase 10 is **in progress**, using the
-three archived Phase 8 seeds as a frozen deep ensemble.
+as a counterfactual frontier predictor. Phase 10 **complete, gate 3 of 6**:
+ensemble uncertainty tracks error and area intervals are calibrated, but target
+presence remains uncalibratable at chance-level AUROC.
 
 > **The v0 test split is CONSUMED.** Its numbers have been read, so any v1
 > design informed by them makes it biased for v1. `manifests/sealed_final_v1.json`
@@ -63,7 +64,7 @@ Phase 12: Offline ranking → Phase 13: Closed-loop navigation
 | 9A/9B Depth+scale | done | monocular depth characterised | `archive/phase9_depth` |
 | 9C Robust converter | **frozen, gate FAILED** | graceful degradation under predicted depth | 4 of 5 criteria failed; archived negative result |
 | 9D Cosmos rollouts | **CLOSED — NEGATIVE** | action-faithful counterfactual rollouts | infrastructure PASS, generator FAIL (`617b51e`) |
-| 10 Ensemble + calibration | in progress | uncertainty tracks error; calibration beats prior | splits frozen `6cf77b1`; data generated; evaluation running |
+| 10 Ensemble + calibration | **gate 3/6** | uncertainty tracks error; calibration beats prior | uncertainty + area PASS; target uncalibratable |
 | 11–16 | not started | | |
 
 **Test suite:** 252 passing.
@@ -80,7 +81,8 @@ baseline.
 **Scene accounting.** 145 HM3D train scenes carry semantics. 58 are consumed
 (Phase 8 v0 + pipeline development). `dev_pool_v1.json` holds the 103 untouched
 scenes, now split into `phase10_calibration.json` (45) and
-`phase10_validation.json` (45) with 13 reserved for Phase 11.
+`phase10_validation.json` (45) with 13 reserved for Phase 11. Generation hit its
+group target before exhausting them, so **22 scenes per split** are realised.
 `sealed_final_v1.json` (20 HM3D **val**-split scenes) remains unopened.
 
 ---
@@ -706,21 +708,21 @@ Registered before evaluation:
 - [x] coverage evaluated **only** on Phase 10 validation scenes
 - [x] calibration never touches the sealed split
 
-### 10.5 Evaluation table — running
+### 10.5 Evaluation table ✅ — **gate 3 of 6**
 
 Compare: constant/dataset prior · each individual Phase 8 seed · uncalibrated
 ensemble mean · calibrated ensemble · oracle-choice-among-seeds (diagnostic
 only).
 
-- [ ] occupancy IoU, Brier, NLL
-- [ ] semantic IoU/cosine and disagreement
-- [ ] target AUROC, AUPRC, Brier, NLL, ECE
-- [ ] crossing AUROC, accuracy, Brier, ECE
-- [ ] area MAE, correlation, 90% interval coverage
-- [ ] uncertainty–error Spearman correlation
-- [ ] risk–coverage curves
-- [ ] candidate-ranking stability across seeds
-- [ ] bootstrap by **decision group**
+- [x] occupancy IoU, Brier, NLL — free 0.341 / occupied 0.028 / semantic 0.318
+- [x] semantic cosine disagreement — 0.117 mean
+- [x] target AUROC 0.544, Brier 0.225 calibrated, ECE 0.318 -> 0.137
+- [x] crossing AUROC 0.968, accuracy 0.910, Brier 0.067, NLL 0.239
+- [x] area MAE 3.94 m2 (prior 5.88), Pearson 0.720, coverage 0.870 vs 0.900
+- [x] uncertainty-error Spearman — positive on every head, crossing MI +0.921
+- [x] risk-coverage curves — beat random ordering on the majority of heads
+- [x] ranking stability — **top-1 agreement 0.619**, Kendall tau 0.743
+- [x] bootstrap by decision group
 
 **Gate** (thresholds fixed in `scripts/phase10_gate.py` before the table
 exists — coverage tolerance 0.05, degradation tolerance 0.02 relative):
@@ -735,6 +737,41 @@ exists — coverage tolerance 0.05, degradation tolerance 0.02 relative):
 > If target calibration still fails, **record it honestly**. Phase 11 visual
 > frontier memory is the mechanism intended to add the missing semantic
 > evidence; Phase 10 cannot calibrate information the inputs do not contain.
+
+**Result: gate 3 of 6.** PASS on 1 (uncertainty tracks error), 2 (risk-coverage)
+and 5 (area coverage 0.870 vs 0.900). FAIL on 3, 4 and 6. Full record:
+`archive/phase10/README.md`.
+
+**Target calibration failed, as anticipated.** Ensemble target AUROC is 0.544 —
+chance. Platt scaling fits a slope of 0.060, i.e. it collapses the head onto the
+base rate, and the resulting Brier margin over the constant prior is +0.00028
+with a 95% group-bootstrap CI of [-0.0049, +0.0044]. Temperature scaling is
+significantly *worse* than the prior. Calibration only stops the head being
+confidently wrong (ECE 0.318 -> 0.137); it adds no discrimination. The
+registered criterion did not specify a significance test, so it passes on the
+point estimate; that literal result is preserved in `gate.json` and the
+criterion is recorded FAIL on substance, because a gate passable by 0.00028
+Brier is not a gate.
+
+**The other two failures are diagnostic of Phase 8 v0, not of ensembling.**
+Occupied-channel IoU collapses 0.0497 -> 0.0276 because the v0 loss formulation
+leaves `p(revealed and occupied) ~ 0.038`, so averaging seeds pushes more mass
+under the 0.5 threshold — the probabilities are better calibrated after
+averaging (ECE 0.0072), it is the hard threshold that fails. Criterion 3 fails
+on a majority rule while the two scalar heads improve substantially (target NLL
+1.712 -> 0.691); the three spatial channels were already calibrated (ECE
+0.007-0.020, fitted temperatures ~1.0) so there was nothing to fix.
+
+**Caveat.** The manifests allocate 45 scenes per split but generation hit its
+500-group target first, so only **22 scenes per split** are realised. Splits stay
+disjoint and frozen; scene-sampling uncertainty is larger than the branch counts
+suggest. Target base rate also shifts between splits (0.432 calibration vs 0.284
+validation), which mis-specifies both the calibrator and the prior baseline.
+
+**Most actionable finding, outside the registered gate.** Seed **top-1 ranking
+agreement is 0.619** over 494 decision groups: the three seeds disagree about
+which frontier is best in ~38% of cases. Any Phase 12 planner built on a single
+seed inherits that arbitrariness.
 
 ---
 

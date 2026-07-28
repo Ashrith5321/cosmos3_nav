@@ -1,0 +1,206 @@
+{
+  "1_uncertainty_tracks_error": {
+    "criterion": "uncertainty positively correlates with realised error",
+    "measured_spearman": {
+      "occupancy_free_mi": 0.3698501380011619,
+      "occupancy_occupied_mi": 0.47536478732417703,
+      "occupancy_semantic_mi": 0.40400046140872925,
+      "target_mi": 0.1564232719583002,
+      "crossing_mi": 0.9211053415989184,
+      "area_seed_std": 0.16437158194105972
+    },
+    "n_positive": 6,
+    "n_total": 6,
+    "pass": true,
+    "note": "majority of heads must show positive rank correlation"
+  },
+  "2_risk_coverage": {
+    "criterion": "risk-coverage: selective prediction beats random ordering",
+    "comparisons": {
+      "occupancy_free": {
+        "aurc": 0.03942010695107501,
+        "random": 0.05441975678183842
+      },
+      "occupancy_occupied": {
+        "aurc": 0.021300553428224317,
+        "random": 0.03144113136457654
+      },
+      "occupancy_semantic": {
+        "aurc": 0.052006898792867705,
+        "random": 0.0715026631595284
+      },
+      "target": {
+        "aurc": 0.4040010397227967,
+        "random": 0.44629281678094174
+      },
+      "crossing": {
+        "aurc": 0.03696057034089048,
+        "random": 0.09894075640554441
+      },
+      "area": {
+        "aurc": 3.4951804780191686,
+        "random": 3.9435790039409384
+      }
+    },
+    "n_better": 6,
+    "n_total": 6,
+    "pass": true
+  },
+  "3_calibration_improves": {
+    "criterion": "calibration improves Brier or NLL over the raw ensemble",
+    "per_head": {
+      "target": {
+        "brier_raw": 0.34845481224781993,
+        "brier_calibrated": 0.24891433822011622,
+        "nll_raw": 1.711551463121401,
+        "nll_calibrated": 0.6913859187447523,
+        "improved": true
+      },
+      "crossing": {
+        "brier_raw": 0.07180215179492416,
+        "brier_calibrated": 0.06725857530482209,
+        "nll_raw": 0.35906884113096293,
+        "nll_calibrated": 0.23943162762564837,
+        "improved": true
+      },
+      "occupancy_free": {
+        "brier_raw": 0.05441975678183848,
+        "brier_calibrated": 0.05459834937917322,
+        "nll_raw": 0.18927046376801765,
+        "nll_calibrated": 0.1901282173836814,
+        "improved": false
+      },
+      "occupancy_occupied": {
+        "brier_raw": 0.03144113136457655,
+        "brier_calibrated": 0.031456935538951125,
+        "nll_raw": 0.12435546927953946,
+        "nll_calibrated": 0.12447608453745777,
+        "improved": false
+      },
+      "occupancy_semantic": {
+        "brier_raw": 0.07150266315952841,
+        "brier_calibrated": 0.0716732059300602,
+        "nll_raw": 0.23810991707090057,
+        "nll_calibrated": 0.23895636556545236,
+        "improved": false
+      }
+    },
+    "n_improved": 2,
+    "n_total": 5,
+    "pass": false
+  },
+  "4_target_beats_prior": {
+    "criterion": "calibrated target Brier beats the constant prior",
+    "constant_prior_brier": 0.22529139353859748,
+    "temperature_brier": 0.24891433822011622,
+    "platt_brier": 0.2250301971003825,
+    "best_calibrated_brier": 0.2250301971003825,
+    "margin": 0.0002611964382149834,
+    "bootstrap_calibrated_minus_raw": {
+      "mean_difference": -0.0995404740277037,
+      "ci_low": -0.11588739621231288,
+      "ci_high": -0.08360600561405787,
+      "n_branches": 2319,
+      "n_groups": 494,
+      "significant": true,
+      "resampling_unit": "decision_group"
+    },
+    "pass": false,
+    "registered_criterion_literal_verdict": "PASS on the point estimate (0.22529 -> 0.22502)",
+    "bootstrap_by_decision_group": {
+      "platt_margin_over_prior": 0.00028,
+      "platt_ci": [
+        -0.00494,
+        0.00437
+      ],
+      "platt_significant": false,
+      "temperature_margin_over_prior": -0.02388,
+      "temperature_ci": [
+        0.0178,
+        0.0301
+      ],
+      "temperature_significantly_WORSE_than_prior": true,
+      "source": "archive/phase10/target_check.json, 5000 resamples of decision groups"
+    },
+    "substantive_verdict": "FAIL \u2014 the calibrated target head does NOT significantly beat the constant prior",
+    "note": "The registered criterion did not specify a significance test, so the literal point-estimate comparison passes by 0.00028 Brier. That margin's 95% CI straddles zero. Reporting this as a pass would be misleading, so the substantive verdict is recorded as FAIL and the gate summary uses it. The registered wording is preserved above rather than rewritten after the fact."
+  },
+  "5_area_coverage": {
+    "criterion": "conformal area intervals achieve nominal coverage",
+    "empirical_coverage": 0.8702026735661923,
+    "target_coverage": 0.9,
+    "deviation": 0.029797326433807725,
+    "tolerance": 0.05,
+    "mean_width_m2": 15.38250564529217,
+    "pass": true
+  },
+  "6_no_degradation": {
+    "criterion": "ensemble averaging does not materially degrade deterministic metrics",
+    "comparisons": {
+      "occupancy_free_iou": {
+        "best_seed": 0.3370025746231424,
+        "mean_seed": 0.3308382553393436,
+        "ensemble": 0.3406925447823702,
+        "relative_loss": -0.010949382696420472,
+        "ok": true
+      },
+      "occupancy_occupied_iou": {
+        "best_seed": 0.04973980458793543,
+        "mean_seed": 0.03591605058459123,
+        "ensemble": 0.027623279950063816,
+        "relative_loss": 0.444644381317816,
+        "ok": false
+      },
+      "occupancy_semantic_iou": {
+        "best_seed": 0.3108641785175061,
+        "mean_seed": 0.30804064199476117,
+        "ensemble": 0.3177070239165133,
+        "relative_loss": -0.022012331660857004,
+        "ok": true
+      },
+      "target_auroc": {
+        "best_seed": 0.5606532350951606,
+        "mean_seed": 0.5388028593889976,
+        "ensemble": 0.5436961807777392,
+        "relative_loss": 0.030245173408378352,
+        "ok": false
+      },
+      "crossing_auroc": {
+        "best_seed": 0.9608536440003986,
+        "mean_seed": 0.9602345374808584,
+        "ensemble": 0.9676908466680606,
+        "relative_loss": -0.00711575869057029,
+        "ok": true
+      },
+      "area_mae": {
+        "best_seed": 3.9385242462158203,
+        "mean_seed": 4.054936806360881,
+        "ensemble": 3.9435790039409384,
+        "relative_loss": 0.0012834141442634934,
+        "ok": true
+      }
+    },
+    "tolerance": 0.02,
+    "failing": [
+      "occupancy_occupied_iou",
+      "target_auroc"
+    ],
+    "pass": false
+  },
+  "summary": {
+    "n_passed": 3,
+    "n_total": 6,
+    "passed": [
+      "1_uncertainty_tracks_error",
+      "2_risk_coverage",
+      "5_area_coverage"
+    ],
+    "failed": [
+      "3_calibration_improves",
+      "4_target_beats_prior",
+      "6_no_degradation"
+    ],
+    "overall_pass": false,
+    "note": "criterion 4 reclassified FAIL on the bootstrap; see its substantive_verdict"
+  }
+}

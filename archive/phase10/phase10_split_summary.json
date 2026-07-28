@@ -1,0 +1,32 @@
+{
+  "pool_scenes": 103,
+  "n_calibration": 45,
+  "n_validation": 45,
+  "n_reserve": 13,
+  "reserve_note": "held for Phase 11; not used in Phase 10",
+  "scene_disjoint": true,
+  "overlap_with_consumed": 0,
+  "sealed_guard": "all paths under hm3d_v0.2/train/; sealed_final_v1 is HM3D val-split and was not read",
+  "shuffle_seed": 10,
+  "calibration_hash": "3b053336e442a370",
+  "validation_hash": "97045a51ee24d054",
+  "reserve_scenes": [
+    "9h5JJxM6E5S",
+    "DNWbUAJYsPy",
+    "GsQBY83r3hb",
+    "HfMobPm86Xn",
+    "Jfyvj3xn2aJ",
+    "LVgQNuK8vtv",
+    "ZNanfzgCdm3",
+    "bdp1XNEdvmW",
+    "iKFn6fzyRqs",
+    "iLDo95ZbDJq",
+    "nS8T59Aw3sf",
+    "u9rPN5cHWBg",
+    "zUG6FL9TYeR"
+  ],
+  "written": [
+    "manifests/phase10_calibration.json",
+    "manifests/phase10_validation.json"
+  ]
+}
