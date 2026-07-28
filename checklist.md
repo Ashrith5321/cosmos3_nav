@@ -64,7 +64,7 @@ Phase 12: Offline ranking → Phase 13: Closed-loop navigation
 | 9A/9B Depth+scale | done | monocular depth characterised | `archive/phase9_depth` |
 | 9C Robust converter | **frozen, gate FAILED** | graceful degradation under predicted depth | 4 of 5 criteria failed; archived negative result |
 | 9D Cosmos rollouts | **CLOSED — NEGATIVE** | action-faithful counterfactual rollouts | infrastructure PASS, generator FAIL (`617b51e`) |
-| 10 Ensemble + calibration | **gate 3/6** | uncertainty tracks error; calibration beats prior | uncertainty + area PASS; target uncalibratable |
+| 10 Ensemble + calibration | **FROZEN** — prereg 4/6, robust 3/6 | uncertainty tracks error; calibration beats prior | uncertainty + area supported; target uncalibratable |
 | 11–16 | not started | | |
 
 **Test suite:** 252 passing.
@@ -738,29 +738,36 @@ exists — coverage tolerance 0.05, degradation tolerance 0.02 relative):
 > frontier memory is the mechanism intended to add the missing semantic
 > evidence; Phase 10 cannot calibrate information the inputs do not contain.
 
-**Result: gate 3 of 6.** PASS on 1 (uncertainty tracks error), 2 (risk-coverage)
-and 5 (area coverage 0.870 vs 0.900). FAIL on 3, 4 and 6. Full record:
-`archive/phase10/README.md`.
+**Result: preregistered mechanical gate 4 of 6; robust scientific assessment
+3 of 6 supported.** Recorded separately on purpose — criterion 4 as registered
+required only a lower point-estimate Brier, so it passes mechanically, and
+adding a significance requirement after seeing the table would itself be
+post-hoc. Supported: 1 (uncertainty tracks error), 2 (risk-coverage), 5 (area
+coverage 0.870 vs 0.900). Genuine failures: 3 and 6. Full record:
+`archive/phase10/README.md`, frozen in `archive/phase10/FROZEN.json`.
 
-**Target calibration failed, as anticipated.** Ensemble target AUROC is 0.544 —
-chance. Platt scaling fits a slope of 0.060, i.e. it collapses the head onto the
-base rate, and the resulting Brier margin over the constant prior is +0.00028
-with a 95% group-bootstrap CI of [-0.0049, +0.0044]. Temperature scaling is
-significantly *worse* than the prior. Calibration only stops the head being
-confidently wrong (ECE 0.318 -> 0.137); it adds no discrimination. The
-registered criterion did not specify a significance test, so it passes on the
-point estimate; that literal result is preserved in `gate.json` and the
-criterion is recorded FAIL on substance, because a gate passable by 0.00028
-Brier is not a gate.
+**Target calibration is nominally passing but statistically unsupported.**
+Ensemble target AUROC is 0.544 — chance. Platt fits a slope of 0.060, i.e. it
+collapses the head onto the base rate, giving a Brier margin over the prior of
++0.00028 with a group CI of [-0.0049, +0.0044] and a scene CI of
+[-0.0119, +0.0139]; zero is inside both. Temperature scaling is significantly
+*worse* than the prior. Calibration only stops the head being confidently wrong
+(ECE 0.318 -> 0.137); it adds no discrimination.
 
-**The other two failures are diagnostic of Phase 8 v0, not of ensembling.**
-Occupied-channel IoU collapses 0.0497 -> 0.0276 because the v0 loss formulation
-leaves `p(revealed and occupied) ~ 0.038`, so averaging seeds pushes more mass
-under the 0.5 threshold — the probabilities are better calibrated after
-averaging (ECE 0.0072), it is the hard threshold that fails. Criterion 3 fails
-on a majority rule while the two scalar heads improve substantially (target NLL
-1.712 -> 0.691); the three spatial channels were already calibrated (ECE
-0.007-0.020, fitted temperatures ~1.0) so there was nothing to fix.
+**Criteria 3 and 6 are genuine failures of ensembling this model.** They
+originate in known Phase 8 v0 head pathologies — the occupied channel collapses
+0.0497 -> 0.0276 IoU because the v0 loss leaves `p(revealed and occupied) ~
+0.038` so averaging pushes mass under the 0.5 threshold, and the three spatial
+channels were already calibrated (fitted temperatures ~1.0) so calibration had
+nothing to fix. **The explanation does not negate the observed degradation.** A
+v1 head with the factorised loss is required before either criterion can be
+re-attempted.
+
+**Scene-level bootstrap sensitivity.** With 494 groups from only 22 scenes, the
+registered group bootstrap treats correlated units as independent. Resampling
+whole scenes (with all their groups) widens every interval by **1.7x to 2.8x**
+and **changes no conclusion** — crossing still beats the prior, target still
+does not. Reported alongside the registered bootstrap, never in place of it.
 
 **Caveat.** The manifests allocate 45 scenes per split but generation hit its
 500-group target first, so only **22 scenes per split** are realised. Splits stay

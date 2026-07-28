@@ -13,7 +13,7 @@
       "nll": 0.6919398943688368,
       "ece": 0.20819551152475663,
       "brier_margin_over_prior": -0.023879296332318167,
-      "bootstrap_calibrated_minus_prior": {
+      "bootstrap_by_group_REGISTERED": {
         "mean_difference": 0.02387929633231818,
         "ci_low": 0.017803086602748448,
         "ci_high": 0.030096600518305882,
@@ -22,14 +22,24 @@
         "significant": true,
         "resampling_unit": "decision_group"
       },
-      "beats_prior_significantly": false
+      "bootstrap_by_scene_SENSITIVITY": {
+        "mean_difference": 0.023879296332318167,
+        "ci_low": 0.005372424789048329,
+        "ci_high": 0.04453827484378912,
+        "n_units": 2319,
+        "n_scenes": 22,
+        "significant": true,
+        "resampling_unit": "scene"
+      },
+      "beats_prior_significantly_by_group": false,
+      "beats_prior_significantly_by_scene": false
     },
     "platt": {
       "brier": 0.22501607888828712,
       "nll": 0.641625270317339,
       "ece": 0.13669418451218093,
       "brier_margin_over_prior": 0.00027531465031035984,
-      "bootstrap_calibrated_minus_prior": {
+      "bootstrap_by_group_REGISTERED": {
         "mean_difference": -0.0002753146503103337,
         "ci_low": -0.004936271529657745,
         "ci_high": 0.004374847137693322,
@@ -38,9 +48,20 @@
         "significant": false,
         "resampling_unit": "decision_group"
       },
-      "beats_prior_significantly": false
+      "bootstrap_by_scene_SENSITIVITY": {
+        "mean_difference": -0.00027531465031035984,
+        "ci_low": -0.01190596901428738,
+        "ci_high": 0.013873068416678494,
+        "n_units": 2319,
+        "n_scenes": 22,
+        "significant": false,
+        "resampling_unit": "scene"
+      },
+      "beats_prior_significantly_by_group": false,
+      "beats_prior_significantly_by_scene": false
     },
-    "verdict": "does NOT significantly beat the constant prior"
+    "verdict_by_group_REGISTERED": "does NOT significantly beat the constant prior",
+    "verdict_by_scene_SENSITIVITY": "does NOT significantly beat the constant prior"
   },
   "crossing": {
     "calibration_base_rate": 0.7605413794517517,
@@ -56,7 +77,7 @@
       "nll": 0.24472847450100374,
       "ece": 0.06142175755668159,
       "brier_margin_over_prior": 0.12171518401913259,
-      "bootstrap_calibrated_minus_prior": {
+      "bootstrap_by_group_REGISTERED": {
         "mean_difference": -0.12171518401913257,
         "ci_low": -0.13455200439782866,
         "ci_high": -0.10889781014586872,
@@ -65,14 +86,24 @@
         "significant": true,
         "resampling_unit": "decision_group"
       },
-      "beats_prior_significantly": true
+      "bootstrap_by_scene_SENSITIVITY": {
+        "mean_difference": -0.12171518401913259,
+        "ci_low": -0.14457818930609326,
+        "ci_high": -0.10040669589324976,
+        "n_units": 2319,
+        "n_scenes": 22,
+        "significant": true,
+        "resampling_unit": "scene"
+      },
+      "beats_prior_significantly_by_group": true,
+      "beats_prior_significantly_by_scene": true
     },
     "platt": {
       "brier": 0.06305488275043691,
       "nll": 0.2162704607618488,
       "ece": 0.04174833156552449,
       "brier_margin_over_prior": 0.127533532693341,
-      "bootstrap_calibrated_minus_prior": {
+      "bootstrap_by_group_REGISTERED": {
         "mean_difference": -0.127533532693341,
         "ci_low": -0.13958288796602505,
         "ci_high": -0.11525186654550083,
@@ -81,8 +112,19 @@
         "significant": true,
         "resampling_unit": "decision_group"
       },
-      "beats_prior_significantly": true
+      "bootstrap_by_scene_SENSITIVITY": {
+        "mean_difference": -0.127533532693341,
+        "ci_low": -0.14923923655355545,
+        "ci_high": -0.10614296505092614,
+        "n_units": 2319,
+        "n_scenes": 22,
+        "significant": true,
+        "resampling_unit": "scene"
+      },
+      "beats_prior_significantly_by_group": true,
+      "beats_prior_significantly_by_scene": true
     },
-    "verdict": "beats prior"
+    "verdict_by_group_REGISTERED": "beats prior",
+    "verdict_by_scene_SENSITIVITY": "beats prior"
   }
 }

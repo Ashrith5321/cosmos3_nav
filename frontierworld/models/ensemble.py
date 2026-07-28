@@ -357,6 +357,54 @@ def ranking_stability(seed_scores: np.ndarray, group_ids: np.ndarray) -> dict:
     }
 
 
+def scene_bootstrap(
+    a: np.ndarray,
+    b: np.ndarray,
+    scene_ids: np.ndarray,
+    iterations: int = 5000,
+    seed: int = 0,
+) -> dict:
+    """Paired bootstrap resampling whole SCENES, not decision groups.
+
+    Decision groups within one scene are not independent: they share geometry,
+    layout and semantics, and often overlap in observed map. Resampling groups
+    therefore treats correlated units as independent and understates the
+    interval -- the more so here, where 494 groups come from only 22 scenes.
+
+    Resampling scenes with replacement, and taking *every* group from each
+    sampled scene, respects that clustering. It is strictly a sensitivity
+    analysis: the registered group-level bootstrap stands as the primary
+    result, and this is reported beside it, never in place of it.
+    """
+    a = np.asarray(a, dtype=np.float64).ravel()
+    b = np.asarray(b, dtype=np.float64).ravel()
+    scene_ids = np.asarray(scene_ids).ravel()
+    if a.shape != b.shape or a.shape != scene_ids.shape:
+        raise ValueError("a, b and scene_ids must align element-wise")
+
+    unique = np.unique(scene_ids)
+    index_by_scene = {scene: np.flatnonzero(scene_ids == scene) for scene in unique}
+    observed = float(np.mean(a) - np.mean(b))
+
+    rng = np.random.default_rng(seed)
+    differences = np.empty(iterations, dtype=np.float64)
+    for iteration in range(iterations):
+        chosen = rng.choice(unique, size=len(unique), replace=True)
+        index = np.concatenate([index_by_scene[scene] for scene in chosen])
+        differences[iteration] = np.mean(a[index]) - np.mean(b[index])
+
+    low, high = np.percentile(differences, [2.5, 97.5])
+    return {
+        "mean_difference": observed,
+        "ci_low": float(low),
+        "ci_high": float(high),
+        "n_units": int(len(a)),
+        "n_scenes": int(len(unique)),
+        "significant": bool(low > 0 or high < 0),
+        "resampling_unit": "scene",
+    }
+
+
 def _kendall_tau(a: np.ndarray, b: np.ndarray) -> float:
     n = len(a)
     concordant = discordant = 0

@@ -25,6 +25,7 @@ from frontierworld.models.ensemble import (
     expected_calibration_error,
     negative_log_likelihood,
 )
+from frontierworld.models.ensemble import scene_bootstrap
 from frontierworld.models.metrics import auroc, paired_bootstrap
 
 import sys
@@ -56,6 +57,7 @@ def main() -> int:
         validation_logits = ensemble_mean(validation[key])
         labels = validation["truth"][head]
         groups = validation["group_ids"]
+        scenes = validation["scene_ids"]
 
         temperature = TemperatureScaler().fit(calibration_logits, calibration_labels)
         platt = PlattScaler().fit(calibration_logits, calibration_labels)
@@ -90,20 +92,36 @@ def main() -> int:
                 iterations=args.bootstrap,
                 seed=args.seed,
             )
+            by_scene = scene_bootstrap(
+                (probability - labels) ** 2,
+                (prior - labels) ** 2,
+                scenes,
+                iterations=args.bootstrap,
+                seed=args.seed,
+            )
             entry[name] = {
                 "brier": brier(probability, labels),
                 "nll": negative_log_likelihood(probability, labels),
                 "ece": expected_calibration_error(probability, labels),
                 "brier_margin_over_prior": entry["constant_prior"]["brier"] - brier(probability, labels),
-                "bootstrap_calibrated_minus_prior": comparison,
-                "beats_prior_significantly": bool(
+                "bootstrap_by_group_REGISTERED": comparison,
+                "bootstrap_by_scene_SENSITIVITY": by_scene,
+                "beats_prior_significantly_by_group": bool(
                     comparison["significant"] and comparison["mean_difference"] < 0
+                ),
+                "beats_prior_significantly_by_scene": bool(
+                    by_scene["significant"] and by_scene["mean_difference"] < 0
                 ),
             }
 
-        entry["verdict"] = (
+        entry["verdict_by_group_REGISTERED"] = (
             "beats prior"
-            if any(entry[n]["beats_prior_significantly"] for n in candidates)
+            if any(entry[n]["beats_prior_significantly_by_group"] for n in candidates)
+            else "does NOT significantly beat the constant prior"
+        )
+        entry["verdict_by_scene_SENSITIVITY"] = (
+            "beats prior"
+            if any(entry[n]["beats_prior_significantly_by_scene"] for n in candidates)
             else "does NOT significantly beat the constant prior"
         )
         report[head] = entry
@@ -115,12 +133,15 @@ def main() -> int:
         print(f"  constant prior Brier {entry['constant_prior']['brier']:.5f}")
         for name in ("temperature", "platt"):
             block = entry[name]
-            ci = block["bootstrap_calibrated_minus_prior"]
+            g_ci = block["bootstrap_by_group_REGISTERED"]
+            s_ci = block["bootstrap_by_scene_SENSITIVITY"]
             print(
-                f"  {name:12s} Brier {block['brier']:.5f}  margin {block['brier_margin_over_prior']:+.5f}  "
-                f"CI [{ci['ci_low']:+.5f}, {ci['ci_high']:+.5f}]  significant={ci['significant']}"
+                f"  {name:12s} Brier {block['brier']:.5f}  margin {block['brier_margin_over_prior']:+.5f}\n"
+                f"               group CI [{g_ci['ci_low']:+.5f}, {g_ci['ci_high']:+.5f}] sig={g_ci['significant']}\n"
+                f"               scene CI [{s_ci['ci_low']:+.5f}, {s_ci['ci_high']:+.5f}] sig={s_ci['significant']}"
             )
-        print(f"  verdict: {entry['verdict']}")
+        print(f"  verdict (group, registered): {entry['verdict_by_group_REGISTERED']}")
+        print(f"  verdict (scene, sensitivity): {entry['verdict_by_scene_SENSITIVITY']}")
     return 0
 
 

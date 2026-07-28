@@ -87,7 +87,8 @@
     },
     "n_improved": 2,
     "n_total": 5,
-    "pass": false
+    "pass": false,
+    "interpretation": "Genuine failure. The degradation traces to known Phase 8 v0 head pathologies (the spatial channels were already calibrated, fitted temperatures ~1.0, so there was nothing to fix), but it remains a real failure of calibrating THIS ensemble: the explanation does not negate the observed degradation."
   },
   "4_target_beats_prior": {
     "criterion": "calibrated target Brier beats the constant prior",
@@ -105,7 +106,7 @@
       "significant": true,
       "resampling_unit": "decision_group"
     },
-    "pass": false,
+    "pass": true,
     "registered_criterion_literal_verdict": "PASS on the point estimate (0.22529 -> 0.22502)",
     "bootstrap_by_decision_group": {
       "platt_margin_over_prior": 0.00028,
@@ -122,8 +123,9 @@
       "temperature_significantly_WORSE_than_prior": true,
       "source": "archive/phase10/target_check.json, 5000 resamples of decision groups"
     },
-    "substantive_verdict": "FAIL \u2014 the calibrated target head does NOT significantly beat the constant prior",
-    "note": "The registered criterion did not specify a significance test, so the literal point-estimate comparison passes by 0.00028 Brier. That margin's 95% CI straddles zero. Reporting this as a pass would be misleading, so the substantive verdict is recorded as FAIL and the gate summary uses it. The registered wording is preserved above rather than rewritten after the fact."
+    "note": "Criterion 4 as registered required only a lower point-estimate Brier, so it PASSES mechanically. Adding a significance requirement after seeing the table would itself be post-hoc, so the registered verdict stands and the statistical evidence is recorded alongside it rather than substituted for it. Evidence: Platt margin +0.00028, CI [-0.00494, +0.00437]; fitted slope 0.060 (collapses to the base rate); temperature scaling significantly WORSE than the prior; ensemble target AUROC 0.544, i.e. chance.",
+    "preregistered_verdict": "PASS \u2014 the registered criterion required only a lower point-estimate Brier (0.22529 -> 0.22502), and that holds.",
+    "robust_assessment": "NOT SUPPORTED \u2014 the margin's 95% group-bootstrap CI includes zero and the calibrator collapses to the prior."
   },
   "5_area_coverage": {
     "criterion": "conformal area intervals achieve nominal coverage",
@@ -185,22 +187,23 @@
       "occupancy_occupied_iou",
       "target_auroc"
     ],
-    "pass": false
+    "pass": false,
+    "interpretation": "Genuine failure. The occupied-channel collapse is driven by the v0 loss formulation interacting with a hard 0.5 threshold, and the target AUROC drop occurs on a chance-level head, but both remain real degradations caused by ensembling this model. The explanation is a diagnosis, not an exemption."
   },
   "summary": {
-    "n_passed": 3,
-    "n_total": 6,
-    "passed": [
+    "preregistered_mechanical_gate": "4/6",
+    "preregistered_passed": [
       "1_uncertainty_tracks_error",
       "2_risk_coverage",
+      "4_target_beats_prior",
       "5_area_coverage"
     ],
-    "failed": [
+    "preregistered_failed": [
       "3_calibration_improves",
-      "4_target_beats_prior",
       "6_no_degradation"
     ],
-    "overall_pass": false,
-    "note": "criterion 4 reclassified FAIL on the bootstrap; see its substantive_verdict"
+    "robust_scientific_assessment": "3/6 supported",
+    "robust_note": "Criterion 4 passes mechanically but is statistically unsupported: CI includes zero and the calibrator collapses to the prior. Criteria 1, 2 and 5 are supported. Criteria 3 and 6 are genuine failures.",
+    "overall_pass": false
   }
 }

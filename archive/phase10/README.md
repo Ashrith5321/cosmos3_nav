@@ -1,9 +1,18 @@
 # Phase 10 — frozen deep ensemble, uncertainty and calibration
 
-**Gate: 3 of 6.** Uncertainty is genuinely informative and area intervals are
-calibrated. Target presence remains uncalibratable, exactly as the Phase 8 v0
-diagnosis predicted, and two criteria fail for reasons that are diagnostic of
-Phase 8 v0 rather than of ensembling.
+**Preregistered mechanical gate: 4 of 6. Robust scientific assessment: 3 of 6
+supported.**
+
+The two are recorded separately on purpose. Criterion 4 as registered required
+only a lower point-estimate Brier, and that holds — so it PASSES mechanically.
+Reversing it by adding a significance requirement after seeing the table would
+itself be post-hoc, so the registered verdict stands and the statistical
+evidence is reported beside it, not substituted for it.
+
+Uncertainty is genuinely informative and area intervals are calibrated. Target
+presence remains uncalibratable. Criteria 3 and 6 are genuine failures of
+ensembling this model; the Phase 8 v0 pathologies explain them but do not
+excuse them.
 
 The three archived Phase 8 seeds were used unchanged. Nothing was retrained.
 The only fitted quantities are calibration parameters, fitted on calibration
@@ -27,14 +36,14 @@ widens the honest uncertainty on every number below.
 
 ## Gate
 
-| # | criterion | verdict |
-|---|---|---|
-| 1 | uncertainty positively correlates with realised error | **PASS** |
-| 2 | risk–coverage beats random ordering | **PASS** |
-| 3 | calibration improves Brier or NLL | **FAIL** |
-| 4 | calibrated target Brier beats the constant prior | **FAIL** (see below) |
-| 5 | area intervals achieve registered coverage | **PASS** |
-| 6 | ensemble does not degrade deterministic metrics | **FAIL** |
+| # | criterion | preregistered | robust |
+|---|---|---|---|
+| 1 | uncertainty positively correlates with realised error | **PASS** | supported |
+| 2 | risk–coverage beats random ordering | **PASS** | supported |
+| 3 | calibration improves Brier or NLL | **FAIL** | genuine failure |
+| 4 | calibrated target Brier beats the constant prior | **PASS** (nominal) | **NOT supported** |
+| 5 | area intervals achieve registered coverage | **PASS** | supported |
+| 6 | ensemble does not degrade deterministic metrics | **FAIL** | genuine failure |
 
 ## What passed
 
@@ -73,17 +82,17 @@ AUROC **0.968**, accuracy 0.910, Brier 0.072 → 0.067 calibrated, NLL 0.359 →
 
 ## What failed
 
-### Criterion 4 — target presence is not calibratable
+### Criterion 4 — nominal PASS, statistically unsupported
 
-This is the substantive result, and it needs care because the registered
-criterion passes on the point estimate while the effect does not survive
-resampling.
+The registered criterion required only a lower point-estimate Brier, and Platt
+delivers one. It therefore **passes as registered**. What it does not do is
+survive resampling.
 
-| | Brier | margin over prior | 95% CI (group bootstrap) |
-|---|---|---|---|
-| constant prior | 0.22529 | — | — |
-| temperature | 0.24917 | **−0.02388** | [+0.0178, +0.0301] — significantly **worse** |
-| Platt | 0.22502 | +0.00028 | [−0.0049, +0.0044] — **straddles zero** |
+| | Brier | margin over prior | group CI (registered) | scene CI (sensitivity) |
+|---|---|---|---|---|
+| constant prior | 0.22529 | — | — | — |
+| temperature | 0.24917 | **−0.02388** | [+0.0178, +0.0301] **worse** | [+0.0054, +0.0445] **worse** |
+| Platt | 0.22502 | +0.00028 | [−0.0049, +0.0044] zero inside | [−0.0119, +0.0139] zero inside |
 
 Platt's fitted slope is **0.060** with intercept −0.297: the calibrator has
 essentially learned to emit a constant near the base rate. Ensemble target
@@ -92,11 +101,15 @@ AUROC is **0.544** — barely above chance.
 So calibration's only achievement is to stop the head being *confidently*
 wrong: ECE 0.318 → 0.137, NLL 1.712 → 0.642. It adds no discrimination.
 
-**The registered criterion did not specify a significance test.** Rather than
-rewrite it after seeing the table, the literal point-estimate result is
-preserved in `gate.json` and the criterion is recorded as FAIL on the
-substantive verdict, with the bootstrap attached. A gate passable by 0.00028
-Brier is not a gate.
+**How this is recorded.** The registered criterion did not specify a
+significance test, so it is kept as a **PASS** in `gate.json` — adding the
+requirement now would be post-hoc. The robust assessment is recorded separately
+as *not supported*. Both appear in the summary; neither overwrites the other.
+
+The scientific reading is unambiguous even though the mechanical gate passes:
+the calibrator collapses to the prior, the margin's CI includes zero under both
+resampling schemes, and temperature scaling is significantly *worse* than doing
+nothing. Target presence is not calibratable from these inputs.
 
 A contributing confound: target base rate is **0.432 on calibration** and
 **0.284 on validation**. A calibrator fitted to the first prevalence is
@@ -114,12 +127,13 @@ scene-sampling artefact rather than a property of the task.
 | occupancy occupied | 0.03144 → 0.03146 | 0.12436 → 0.12448 | no |
 | occupancy semantic | 0.07150 → 0.07167 | 0.23811 → 0.23896 | no |
 
-2 of 5 improved, so the majority rule fails. But the substance is milder than
-that sounds: the three spatial channels were *already* calibrated (ECE 0.007,
-0.013, 0.020) and their fitted temperatures came out at 1.07, 1.01 and 1.05 —
-essentially no-ops. The degradations are in the fourth decimal place, i.e. a
-calibration-set adjustment that did not transfer. Nothing was learned there
-because there was nothing to fix.
+2 of 5 improved, so the majority rule fails. **This is a genuine failure.** The
+three spatial channels were already calibrated (ECE 0.007, 0.013, 0.020) with
+fitted temperatures of 1.07, 1.01 and 1.05 — near no-ops — and the degradations
+are in the fourth decimal place. That explains *why* calibration did not help,
+and it originates in known Phase 8 v0 head behaviour, but the observed
+degradation stands: calibrating this ensemble did not improve these channels.
+The diagnosis is not an exemption.
 
 ### Criterion 6 — ensembling hurts the occupied channel and the target head
 
@@ -132,16 +146,41 @@ because there was nothing to fix.
 | crossing AUROC | 0.9609 | 0.9677 | −0.007 (better) |
 | area MAE | 3.939 | 3.944 | +0.001 |
 
-The occupied collapse is a thresholding artefact on an already-broken head, not
-a property of ensembling. This is the known Phase 8 v0 defect: both occupancy
-channels are averaged against one full-window denominator, so
-`p(revealed ∧ occupied) ≈ 0.038` and predictions sit just under the 0.5
-threshold. Averaging three seeds pulls more mass below it and IoU collapses.
-The underlying probabilities are *better* calibrated after averaging (Brier
-0.0314, ECE 0.0072); it is the hard threshold that fails.
+**These are genuine failures of ensembling this model.** The occupied collapse
+originates in the known Phase 8 v0 defect — both occupancy channels are averaged
+against one full-window denominator, so `p(revealed ∧ occupied) ≈ 0.038` and
+predictions sit just under the 0.5 threshold, and averaging three seeds pulls
+more mass below it. The underlying probabilities are *better* calibrated after
+averaging (Brier 0.0314, ECE 0.0072); it is the hard threshold that fails. But
+the degradation is real and was caused by ensembling: a v1 head that fixes the
+loss formulation is required before this criterion can be re-attempted, and
+until then the ensemble genuinely costs 44% of occupied IoU.
 
 The target AUROC drop is a 0.017 movement on a head operating at chance, where
-seed-to-seed ordering is close to arbitrary.
+seed-to-seed ordering is close to arbitrary — again an explanation, not an
+exemption.
+
+## Scene-level bootstrap sensitivity
+
+494 groups come from only **22 scenes**, and groups within a scene share
+geometry, layout and semantics. Resampling groups therefore treats correlated
+units as independent and understates the interval. The registered group
+bootstrap is preserved as primary; scene-level resampling — drawing whole scenes
+with replacement and taking *every* group from each — is reported alongside it.
+
+| comparison | group CI | scene CI | width ratio | conclusion |
+|---|---|---|---|---|
+| target, Platt vs prior | [−0.0049, +0.0044] | [−0.0119, +0.0139] | **2.8×** | unchanged: zero inside |
+| target, temperature vs prior | [+0.0178, +0.0301] | [+0.0054, +0.0445] | 2.3× | unchanged: worse |
+| crossing, Platt vs prior | [−0.1396, −0.1153] | [−0.1492, −0.1061] | 1.8× | unchanged: beats prior |
+| crossing, temperature vs prior | [−0.1346, −0.1089] | [−0.1446, −0.1004] | 1.7× | unchanged: beats prior |
+
+Scene resampling widens every interval by 1.7–2.8×, confirming the clustering
+concern is real. **No conclusion changes**, which makes the surviving claims
+stronger rather than weaker: the crossing head beats the prior even under the
+conservative scheme, and the target head fails under both.
+
+This is a sensitivity analysis only. It does not rewrite the registered gate.
 
 ## Ranking stability — the number that matters for Phase 12
 

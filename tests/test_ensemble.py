@@ -269,3 +269,50 @@ def test_ranking_stability_ignores_singleton_groups():
     scores = np.array([[1.0], [2.0], [3.0]])
     result = ranking_stability(scores, np.array(["only"]))
     assert result["n_groups"] == 0
+
+
+# -- scene-level bootstrap -------------------------------------------------
+
+
+def test_scene_bootstrap_is_wider_than_group_bootstrap_under_clustering():
+    """The whole point: when groups within a scene are correlated, resampling
+    groups understates the interval. Scene resampling must be wider."""
+    from frontierworld.models.ensemble import scene_bootstrap
+    from frontierworld.models.metrics import paired_bootstrap
+
+    rng = np.random.default_rng(11)
+    scenes, groups, a_vals, b_vals = [], [], [], []
+    for scene in range(12):
+        # A per-scene offset makes groups within a scene correlated.
+        offset = rng.normal(0, 1.0)
+        for group in range(20):
+            scenes.append(f"s{scene}")
+            groups.append(f"s{scene}_g{group}")
+            a_vals.append(offset + rng.normal(0, 0.05))
+            b_vals.append(rng.normal(0, 0.05))
+
+    a, b = np.array(a_vals), np.array(b_vals)
+    by_group = paired_bootstrap(a, b, np.array(groups), iterations=1000, seed=0)
+    by_scene = scene_bootstrap(a, b, np.array(scenes), iterations=1000, seed=0)
+
+    group_width = by_group["ci_high"] - by_group["ci_low"]
+    scene_width = by_scene["ci_high"] - by_scene["ci_low"]
+    assert scene_width > group_width
+
+
+def test_scene_bootstrap_preserves_the_point_estimate():
+    from frontierworld.models.ensemble import scene_bootstrap
+
+    a = np.array([1.0, 2.0, 3.0, 4.0])
+    b = np.array([0.0, 0.0, 0.0, 0.0])
+    result = scene_bootstrap(a, b, np.array(["x", "x", "y", "y"]), iterations=200, seed=0)
+    assert result["mean_difference"] == pytest.approx(2.5)
+    assert result["n_scenes"] == 2
+    assert result["resampling_unit"] == "scene"
+
+
+def test_scene_bootstrap_rejects_misaligned_inputs():
+    from frontierworld.models.ensemble import scene_bootstrap
+
+    with pytest.raises(ValueError):
+        scene_bootstrap(np.zeros(4), np.zeros(4), np.array(["a", "b"]), iterations=10)

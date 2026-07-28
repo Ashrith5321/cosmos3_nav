@@ -1,0 +1,65 @@
+{
+  "status": "FROZEN. Phase 10 complete. Preregistered mechanical gate 4/6; robust scientific assessment 3/6 supported.",
+  "gate": {
+    "preregistered": "4/6",
+    "robust": "3/6 supported",
+    "criterion_4": "nominal PASS (registered criterion required only a lower point-estimate Brier); statistically UNSUPPORTED (CI includes zero under both group and scene resampling; calibrator collapses to the prior; AUROC 0.544)",
+    "criteria_3_and_6": "genuine failures of ensembling this model. They originate in known Phase 8 v0 head pathologies, but the explanation does not negate the observed degradation."
+  },
+  "ensemble": {
+    "seeds": 3,
+    "source": "archive/phase8_v0/checkpoint_seed{0,1,2}.pt",
+    "retrained": false
+  },
+  "data": {
+    "calibration_groups": 429,
+    "calibration_branches": 1921,
+    "calibration_scenes": 22,
+    "validation_groups": 494,
+    "validation_branches": 2319,
+    "validation_scenes": 22,
+    "caveat": "manifests allocate 45 scenes per split; generation hit its 500-group target first, so 22 are realised"
+  },
+  "headline_results": {
+    "uncertainty_error_spearman_entropy": {
+      "free": 0.749,
+      "occupied": 0.698,
+      "semantic": 0.78
+    },
+    "crossing_auroc": 0.9677,
+    "crossing_beats_prior_scene_ci": [
+      -0.1492,
+      -0.1061
+    ],
+    "target_auroc": 0.5437,
+    "target_platt_margin": 0.00028,
+    "target_platt_scene_ci": [
+      -0.0119,
+      0.0139
+    ],
+    "area_mae": 3.944,
+    "area_prior_mae": 5.884,
+    "area_conformal_coverage": 0.87,
+    "seed_top1_ranking_agreement": 0.619
+  },
+  "bootstrap": {
+    "registered": "decision group",
+    "sensitivity": "scene-level, whole scenes resampled with all their groups",
+    "scene_widens_intervals_by": "1.7x to 2.8x",
+    "conclusions_changed": "none"
+  },
+  "constraints": {
+    "sealed_final_v1_unopened": true,
+    "phase8_checkpoints_unmodified": true,
+    "splits_frozen_before_results": true,
+    "calibration_never_saw_validation": true
+  },
+  "git_commit": "1ef74b79dab6c4649ca40a0e70eb5f5562849db7",
+  "file_hashes": {
+    "README.md": "dcd289f39e937ce9",
+    "gate.json": "18f20cd845289072",
+    "phase10_split_summary.json": "8a16a647cbdfbd91",
+    "results.json": "7498b179d6c7ff8d",
+    "target_check.json": "36f9cc429b372ef9"
+  }
+}
