@@ -779,6 +779,7 @@ class NavigationAgent:
 
                         else:
                             response = None
+                            attempts += 1
                             self.log(
                                 "info",
                                 self.logging_file,

@@ -98,7 +98,17 @@ def get_args():
         nargs=2,
         help="Split number for evaluation in the format #subset_index #total_subsets",
     )
-    
+
+    p.add_argument(
+        "--ep-shard",
+        type=int,
+        default=(0, 1),
+        nargs=2,
+        help="Episode-level shard within a scene: #shard_index #total_shards. "
+        "Each shard evaluates episodes where i %% total == index and writes to "
+        "metrics/<scene>.shard<i>of<n>.csv (merge afterwards). Default (0,1)=no sharding.",
+    )
+
     p.add_argument(
         "--output-path",
         type=str,
@@ -193,34 +203,52 @@ if __name__ == "__main__":
         scene_dir = Path.joinpath(output_dir, scene)
         scene_dir.mkdir(parents=True, exist_ok=True)
 
-        metrics_dir = Path.joinpath(output_dir, "metrics/%s.csv" % scene)
+        ep_shard_idx, ep_shard_tot = int(args.ep_shard[0]), int(args.ep_shard[1])
+        main_metrics_path = Path.joinpath(output_dir, "metrics/%s.csv" % scene)
+        if ep_shard_tot > 1:
+            metrics_dir = Path.joinpath(
+                output_dir,
+                "metrics/%s.shard%dof%d.csv" % (scene, ep_shard_idx, ep_shard_tot),
+            )
+        else:
+            metrics_dir = main_metrics_path
         metrics_dir.parent.mkdir(parents=True, exist_ok=True)
 
-        evaluation_metrics = []
+        def _load_metrics_csv(pth):
+            out = []
+            if pth.exists():
+                with open(pth, mode="r") as csv_file:
+                    for row in csv.DictReader(csv_file):
+                        out.append(
+                            {
+                                "episode": int(row["episode"]),
+                                "success": float(row["success"]),
+                                "spl": float(row["spl"]),
+                                "distance_to_goal": float(row["distance_to_goal"]),
+                                "object_goal": row["object_goal"],
+                                "termination_reason": row["termination_reason"],
+                            }
+                        )
+            return out
 
-        # Load existing metrics
-        if metrics_dir.exists():
-            with open(metrics_dir, mode="r") as csv_file:
-                reader = csv.DictReader(csv_file)
-                for row in reader:
-                    evaluation_metrics.append(
-                        {
-                            "episode": int(row["episode"]),
-                            "success": float(row["success"]),
-                            "spl": float(row["spl"]),
-                            "distance_to_goal": float(row["distance_to_goal"]),
-                            "object_goal": row["object_goal"],
-                            "termination_reason": row["termination_reason"],
-                        }
-                    )
+        # evaluation_metrics = only what THIS shard owns (its own shard file);
+        # already_done = every episode index to skip (this shard's file + when
+        # sharding, the shared main csv so we never recompute a good episode).
+        evaluation_metrics = _load_metrics_csv(metrics_dir)
+        already_done = {m["episode"] for m in evaluation_metrics}
+        if ep_shard_tot > 1:
+            already_done |= {m["episode"] for m in _load_metrics_csv(main_metrics_path)}
 
-        # check how many episodes have been evaluated for this scene
-        evaluated_episodes = len(evaluation_metrics)
-        
-        if evaluated_episodes >= num_episodes:
+        # episodes assigned to THIS shard
+        shard_episode_ids = [
+            i for i in range(num_episodes) if i % ep_shard_tot == ep_shard_idx
+        ]
+        shard_done = len([i for i in shard_episode_ids if i in already_done])
+
+        if shard_done >= len(shard_episode_ids):
             print(
-                "All %d episodes for scene %s have already been evaluated. Skipping..."
-                % (num_episodes, scene)
+                "All %d shard episodes for scene %s (shard %d/%d) already evaluated. Skipping..."
+                % (len(shard_episode_ids), scene, ep_shard_idx, ep_shard_tot)
             )
             habitat_env.close()
             continue
@@ -240,11 +268,12 @@ if __name__ == "__main__":
             path = scene_dir / folder_name
             make_dir = Path(path)
 
-            if any(m["episode"] == i for m in evaluation_metrics):
-                print(
-                    "Episode %d for scene %s has already been evaluated. Skipping..."
-                    % (i, scene)
-                )
+            if (i % ep_shard_tot != ep_shard_idx) or (i in already_done):
+                if i in already_done:
+                    print(
+                        "Episode %d for scene %s has already been evaluated. Skipping..."
+                        % (i, scene)
+                    )
                 continue
 
             episode = habitat_env.current_episode
