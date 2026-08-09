@@ -39,3 +39,20 @@ eval/*.log
 #   OpenFrontier/
 #   cosmos/
 #   FrontierNet/
+
+# big meshes
+*.glb
+*.ply
+*.obj
+
+# vendored third-party repos: exclude their heavy/generated dirs
+OpenFrontier/third_party/
+OpenFrontier/output/
+OpenFrontier/data/
+OpenFrontier/data_scenes/
+OpenFrontier/model_weights/
+FrontierNet/model_weights/
+FrontierNet/assets/
+FrontierNet/examples/
+cosmos/**/checkpoints/
+cosmos/**/*.safetensors
