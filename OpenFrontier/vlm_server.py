@@ -37,6 +37,10 @@ if __name__ == "__main__":
             elif "cosmos3" in model.value.lower():
                 from vlm.inference_cosmos3 import InferenceCosmos3
                 self.model = InferenceCosmos3(model.value)
+
+            elif model.value.lower().startswith("qwen3"):
+                from vlm.inference_qwen3vl import InferenceQwen3VL
+                self.model = InferenceQwen3VL(model.value)
             else:
                 raise ValueError(f"Unsupported local VLM model: {model.value}")
 

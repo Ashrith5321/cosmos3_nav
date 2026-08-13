@@ -1,0 +1,38 @@
+{
+  "scene": "00800-TEEsavR23oF",
+  "scene_glb": "/home/ashed/Documents/spatial_training/data/scene_datasets/hm3d_v0.2/val/00800-TEEsavR23oF/TEEsavR23oF.basis.glb",
+  "split": "val",
+  "seed": 0,
+  "start_position": [
+    -9.448946952819824,
+    0.16337794065475464,
+    -1.1829249858856201
+  ],
+  "goal_position": [
+    -6.28571891784668,
+    0.16337794065475464,
+    -1.9289066791534424
+  ],
+  "yaw_scan_deg": 309.3489930703824,
+  "turn_to_frontier_deg": -26.079424563171173,
+  "turn_sign_check_px": {
+    "neg": 10.0,
+    "pos": 170.0
+  },
+  "frontier_free_depth_m": 7.531,
+  "advance_m": 3.25,
+  "observation": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/habitat/observation.png",
+  "ground_truth": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/habitat/ground_truth.png",
+  "start_view": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/habitat/start_view.png",
+  "sensor": {
+    "width": 640,
+    "height": 480,
+    "hfov": 79.0,
+    "height_m": 0.88
+  },
+  "timings": {
+    "sim_load_s": 2.616,
+    "frontier_scan_s": 0.186,
+    "render_s": 0.001
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "task": "judge",
+  "load_s": 3.231,
+  "verdicts": {
+    "text2image": {
+      "raw": "{\"predicted_space_type\": \"kitchen\", \"real_space_type\": \"dining room\", \"space_type_match\": false, \"layout_similarity_0_to_10\": 3, \"appearance_similarity_0_to_10\": 4, \"verdict\": \"The left image depicts a kitchen while the right one shows a dining area; they are different spaces.\", \"shared_objects\": [\"refrigerator\", \"cabinets\", \"chandelier\", \"wooden floor\", \"American flag hanging on wall\", \"tablecloth covering table\", \"chair back visible near foreground\", \"window letting light into room\", \"clock mounted on far-left wall (left image only)\"], \"objects_only_in_prediction\": [], \"objects_only_in_reality\": []}",
+      "parsed": {
+        "predicted_space_type": "kitchen",
+        "real_space_type": "dining room",
+        "space_type_match": false,
+        "layout_similarity_0_to_10": 3,
+        "appearance_similarity_0_to_10": 4,
+        "verdict": "The left image depicts a kitchen while the right one shows a dining area; they are different spaces.",
+        "shared_objects": [
+          "refrigerator",
+          "cabinets",
+          "chandelier",
+          "wooden floor",
+          "American flag hanging on wall",
+          "tablecloth covering table",
+          "chair back visible near foreground",
+          "window letting light into room",
+          "clock mounted on far-left wall (left image only)"
+        ],
+        "objects_only_in_prediction": [],
+        "objects_only_in_reality": []
+      },
+      "compare_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224724/reason/compare_text2image.png",
+      "evaluate_s": 5.443
+    },
+    "image2image": {
+      "raw": "{\n  \"predicted_space_type\": \"kitchen\",\n  \"real_space_type\": \"dining room\",\n  \"space_type_match\": false,\n  \"layout_similarity_0_to_10\": 3,\n  \"appearance_similarity_0_to_10\": 4,\n  \"verdict\": \"The left image depicts a kitchen while the right one shows a dining area; they are different rooms.\",\n  \"shared_objects\": [\n    \"wooden floor\"\n  ],\n  \"objects_only_in_prediction\": [\n    \"dark wood cabinets\",\n    \"island counter\",\n    \"refrigerator\",\n    \"chandelier\"\n  ],\n  \"objects_only_in_reality\": [\n    \"American flag on wall\",\n    \"tablecloth-covered table\",\n    \"dining chairs\"\n  ]\n}",
+      "parsed": {
+        "predicted_space_type": "kitchen",
+        "real_space_type": "dining room",
+        "space_type_match": false,
+        "layout_similarity_0_to_10": 3,
+        "appearance_similarity_0_to_10": 4,
+        "verdict": "The left image depicts a kitchen while the right one shows a dining area; they are different rooms.",
+        "shared_objects": [
+          "wooden floor"
+        ],
+        "objects_only_in_prediction": [
+          "dark wood cabinets",
+          "island counter",
+          "refrigerator",
+          "chandelier"
+        ],
+        "objects_only_in_reality": [
+          "American flag on wall",
+          "tablecloth-covered table",
+          "dining chairs"
+        ]
+      },
+      "compare_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224724/reason/compare_image2image.png",
+      "evaluate_s": 5.076
+    }
+  },
+  "peak_gpu_mb": 17039.0
+}

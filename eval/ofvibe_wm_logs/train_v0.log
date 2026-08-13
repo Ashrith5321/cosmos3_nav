@@ -1,0 +1,76 @@
+INFO:__main__:Loading 67 dataset files
+INFO:__main__:Total samples: 3103
+/home/ashed/miniconda3/envs/openfrontier/lib/python3.9/site-packages/torch/nn/modules/transformer.py:392: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+/home/ashed/Documents/cosmos3_nav/OpenFrontier_vibe/worldmodel/train.py:167: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:835.)
+  train_losses.append(float(losses["total"]))
+INFO:__main__:epoch 000 train 2.1682 val 1.6772
+INFO:__main__:saved checkpoint to checkpoints/frontier_wm_v0.pth (val 1.6772)
+INFO:__main__:epoch 001 train 1.5407 val 1.3005
+INFO:__main__:saved checkpoint to checkpoints/frontier_wm_v0.pth (val 1.3005)
+INFO:__main__:epoch 002 train 1.1843 val 1.0118
+INFO:__main__:saved checkpoint to checkpoints/frontier_wm_v0.pth (val 1.0118)
+INFO:__main__:epoch 003 train 1.0576 val 0.9661
+INFO:__main__:saved checkpoint to checkpoints/frontier_wm_v0.pth (val 0.9661)
+INFO:__main__:epoch 004 train 0.9486 val 0.8852
+INFO:__main__:saved checkpoint to checkpoints/frontier_wm_v0.pth (val 0.8852)
+INFO:__main__:epoch 005 train 0.8620 val 0.8288
+INFO:__main__:saved checkpoint to checkpoints/frontier_wm_v0.pth (val 0.8288)
+INFO:__main__:epoch 006 train 0.8135 val 0.8031
+INFO:__main__:saved checkpoint to checkpoints/frontier_wm_v0.pth (val 0.8031)
+INFO:__main__:epoch 007 train 0.7600 val 0.8492
+INFO:__main__:epoch 008 train 0.7099 val 0.8196
+INFO:__main__:epoch 009 train 0.6652 val 0.7960
+INFO:__main__:saved checkpoint to checkpoints/frontier_wm_v0.pth (val 0.7960)
+INFO:__main__:epoch 010 train 0.6331 val 0.8028
+INFO:__main__:epoch 011 train 0.6085 val 0.8123
+INFO:__main__:epoch 012 train 0.5656 val 0.8408
+INFO:__main__:epoch 013 train 0.5537 val 0.8250
+INFO:__main__:epoch 014 train 0.5053 val 0.8807
+INFO:__main__:epoch 015 train 0.4813 val 0.8962
+INFO:__main__:epoch 016 train 0.4668 val 0.9182
+INFO:__main__:epoch 017 train 0.4558 val 0.8830
+INFO:__main__:epoch 018 train 0.4263 val 0.9692
+INFO:__main__:epoch 019 train 0.4215 val 0.9588
+INFO:__main__:epoch 020 train 0.3986 val 0.9855
+INFO:__main__:epoch 021 train 0.3912 val 1.0013
+INFO:__main__:epoch 022 train 0.3677 val 1.0586
+INFO:__main__:epoch 023 train 0.3687 val 1.1001
+INFO:__main__:epoch 024 train 0.3766 val 1.1123
+INFO:__main__:epoch 025 train 0.3680 val 1.1157
+INFO:__main__:epoch 026 train 0.3354 val 1.1878
+INFO:__main__:epoch 027 train 0.3390 val 1.1753
+INFO:__main__:epoch 028 train 0.3433 val 1.2961
+INFO:__main__:epoch 029 train 0.3093 val 1.1810
+INFO:__main__:epoch 030 train 0.3160 val 1.1068
+INFO:__main__:epoch 031 train 0.3117 val 1.2123
+INFO:__main__:epoch 032 train 0.3084 val 1.2352
+INFO:__main__:epoch 033 train 0.2977 val 1.2739
+INFO:__main__:epoch 034 train 0.3076 val 1.2853
+INFO:__main__:epoch 035 train 0.3092 val 1.2657
+INFO:__main__:epoch 036 train 0.2868 val 1.2018
+INFO:__main__:epoch 037 train 0.2724 val 1.2288
+INFO:__main__:epoch 038 train 0.2827 val 1.2595
+INFO:__main__:epoch 039 train 0.3002 val 1.2072
+INFO:__main__:epoch 040 train 0.2842 val 1.3326
+INFO:__main__:epoch 041 train 0.2680 val 1.3095
+INFO:__main__:epoch 042 train 0.2685 val 1.3309
+INFO:__main__:epoch 043 train 0.2742 val 1.2625
+INFO:__main__:epoch 044 train 0.2774 val 1.3196
+INFO:__main__:epoch 045 train 0.2689 val 1.3345
+INFO:__main__:epoch 046 train 0.2681 val 1.5449
+INFO:__main__:epoch 047 train 0.2784 val 1.3361
+INFO:__main__:epoch 048 train 0.2598 val 1.4565
+INFO:__main__:epoch 049 train 0.2565 val 1.4373
+INFO:__main__:epoch 050 train 0.2559 val 1.3348
+INFO:__main__:epoch 051 train 0.2461 val 1.2788
+INFO:__main__:epoch 052 train 0.2373 val 1.4181
+INFO:__main__:epoch 053 train 0.2495 val 1.3756
+INFO:__main__:epoch 054 train 0.2347 val 1.3977
+INFO:__main__:epoch 055 train 0.2436 val 1.3986
+INFO:__main__:epoch 056 train 0.2329 val 1.3466
+INFO:__main__:epoch 057 train 0.2360 val 1.3399
+INFO:__main__:epoch 058 train 0.2202 val 1.3459
+INFO:__main__:epoch 059 train 0.2186 val 1.4908
+INFO:__main__:done; best val 0.7960

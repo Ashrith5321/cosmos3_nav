@@ -1,0 +1,688 @@
+{
+  "run_dir": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249",
+  "habitat": {
+    "scene": "00800-TEEsavR23oF",
+    "scene_glb": "/home/ashed/Documents/spatial_training/data/scene_datasets/hm3d_v0.2/val/00800-TEEsavR23oF/TEEsavR23oF.basis.glb",
+    "split": "val",
+    "seed": 0,
+    "frontier_source": "frontiernet",
+    "start_position": [
+      -9.448946952819824,
+      0.16337794065475464,
+      -1.1829249858856201
+    ],
+    "goal_position": [
+      0.9529991149902344,
+      0.16337794065475464,
+      -3.7228803634643555
+    ],
+    "yaw_scan_deg": 309.3489930703824,
+    "turn_to_frontier_deg": -28.15,
+    "turn_sign_check_px": {
+      "neg": 10.0,
+      "pos": 170.0
+    },
+    "frontier_free_depth_m": 6.417,
+    "target_advance_m": 11.45,
+    "advance_m": 10.708,
+    "reached_frontier": true,
+    "stopped_by": "navmesh path",
+    "navigation": {
+      "used": true,
+      "straight_line_blocked_at_m": 3.25,
+      "euclidean_m": 10.71,
+      "geodesic_m": 10.74,
+      "requested_m": 11.45
+    },
+    "sweep": [
+      {
+        "distance_m": 0.0,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_00.00.png"
+      },
+      {
+        "distance_m": 0.25,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_00.25.png"
+      },
+      {
+        "distance_m": 0.5,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_00.50.png"
+      },
+      {
+        "distance_m": 0.75,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_00.75.png"
+      },
+      {
+        "distance_m": 1.0,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_01.00.png"
+      },
+      {
+        "distance_m": 1.25,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_01.25.png"
+      },
+      {
+        "distance_m": 1.5,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_01.50.png"
+      },
+      {
+        "distance_m": 1.75,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_01.75.png"
+      },
+      {
+        "distance_m": 2.0,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_02.00.png"
+      },
+      {
+        "distance_m": 2.25,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_02.25.png"
+      },
+      {
+        "distance_m": 2.5,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_02.50.png"
+      },
+      {
+        "distance_m": 2.75,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_02.75.png"
+      },
+      {
+        "distance_m": 3.0,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_03.00.png"
+      },
+      {
+        "distance_m": 3.25,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_03.25.png"
+      },
+      {
+        "distance_m": 10.71,
+        "image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/sweep/d_10.71.png",
+        "reached_by": "navmesh path"
+      }
+    ],
+    "observation": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/observation.png",
+    "ground_truth": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/ground_truth.png",
+    "start_view": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/start_view.png",
+    "sensor": {
+      "width": 640,
+      "height": 480,
+      "hfov": 79.0,
+      "height_m": 0.88
+    },
+    "timings": {
+      "sim_load_s": 2.677,
+      "pose_scan_s": 0.19,
+      "sweep_render_s": 0.608
+    }
+  },
+  "frontiernet": {
+    "config": "hm3d.yaml",
+    "weights": "/home/ashed/Documents/cosmos3_nav/FrontierNet/model_weights/rgbd_11cls.pth",
+    "intrinsics_fx": 388.19,
+    "n_frontiers": 10,
+    "frontiers": [
+      {
+        "id": 9,
+        "gain_m3": 12.248,
+        "pixel": [
+          527.2,
+          198.1
+        ],
+        "pixel_normalised": [
+          0.944,
+          0.409
+        ],
+        "turn_deg": -28.15,
+        "depth_at_pixel_m": 10.45,
+        "direction_angle_rad": 3.133,
+        "pos3d_camera": [
+          7.914,
+          -4.226,
+          0.851
+        ],
+        "view_direction": [
+          -0.0,
+          -1.0,
+          0.009
+        ]
+      },
+      {
+        "id": 6,
+        "gain_m3": 12.248,
+        "pixel": [
+          474.8,
+          221.4
+        ],
+        "pixel_normalised": [
+          0.831,
+          0.459
+        ],
+        "turn_deg": -21.8,
+        "depth_at_pixel_m": 7.1,
+        "direction_angle_rad": -0.027,
+        "pos3d_camera": [
+          8.853,
+          -3.532,
+          0.42
+        ],
+        "view_direction": [
+          -0.0,
+          1.0,
+          -0.027
+        ]
+      },
+      {
+        "id": 0,
+        "gain_m3": 12.248,
+        "pixel": [
+          270.9,
+          263.6
+        ],
+        "pixel_normalised": [
+          0.394,
+          0.55
+        ],
+        "turn_deg": 7.14,
+        "depth_at_pixel_m": 4.774,
+        "direction_angle_rad": -0.174,
+        "pos3d_camera": [
+          3.638,
+          0.459,
+          -0.223
+        ],
+        "view_direction": [
+          -0.0,
+          0.985,
+          -0.173
+        ]
+      },
+      {
+        "id": 5,
+        "gain_m3": 5.81,
+        "pixel": [
+          482.0,
+          284.0
+        ],
+        "pixel_normalised": [
+          0.847,
+          0.594
+        ],
+        "turn_deg": -22.72,
+        "depth_at_pixel_m": 8.67,
+        "direction_angle_rad": 3.086,
+        "pos3d_camera": [
+          7.744,
+          -3.235,
+          -0.882
+        ],
+        "view_direction": [
+          -0.0,
+          -0.998,
+          0.055
+        ]
+      },
+      {
+        "id": 7,
+        "gain_m3": 5.81,
+        "pixel": [
+          476.2,
+          279.6
+        ],
+        "pixel_normalised": [
+          0.834,
+          0.584
+        ],
+        "turn_deg": -21.98,
+        "depth_at_pixel_m": 7.173,
+        "direction_angle_rad": -0.017,
+        "pos3d_camera": [
+          8.147,
+          -3.281,
+          -0.836
+        ],
+        "view_direction": [
+          -0.0,
+          1.0,
+          -0.017
+        ]
+      },
+      {
+        "id": 3,
+        "gain_m3": 5.81,
+        "pixel": [
+          425.2,
+          185.0
+        ],
+        "pixel_normalised": [
+          0.725,
+          0.381
+        ],
+        "turn_deg": -15.24,
+        "depth_at_pixel_m": 5.453,
+        "direction_angle_rad": -0.035,
+        "pos3d_camera": [
+          5.998,
+          -1.628,
+          0.847
+        ],
+        "view_direction": [
+          -0.0,
+          0.999,
+          -0.035
+        ]
+      },
+      {
+        "id": 8,
+        "gain_m3": 3.674,
+        "pixel": [
+          502.4,
+          249.0
+        ],
+        "pixel_normalised": [
+          0.891,
+          0.519
+        ],
+        "turn_deg": -25.23,
+        "depth_at_pixel_m": 4.057,
+        "direction_angle_rad": -1.658,
+        "pos3d_camera": [
+          6.958,
+          -3.272,
+          -0.166
+        ],
+        "view_direction": [
+          -0.0,
+          -0.087,
+          -0.996
+        ]
+      },
+      {
+        "id": 4,
+        "gain_m3": 2.122,
+        "pixel": [
+          499.5,
+          190.8
+        ],
+        "pixel_normalised": [
+          0.884,
+          0.394
+        ],
+        "turn_deg": -24.88,
+        "depth_at_pixel_m": 7.875,
+        "direction_angle_rad": 1.504,
+        "pos3d_camera": [
+          9.177,
+          -4.246,
+          1.159
+        ],
+        "view_direction": [
+          -0.0,
+          0.067,
+          0.998
+        ]
+      },
+      {
+        "id": 2,
+        "gain_m3": 2.122,
+        "pixel": [
+          308.7,
+          227.2
+        ],
+        "pixel_normalised": [
+          0.475,
+          0.472
+        ],
+        "turn_deg": 1.59,
+        "depth_at_pixel_m": 5.916,
+        "direction_angle_rad": -3.133,
+        "pos3d_camera": [
+          5.09,
+          0.146,
+          0.165
+        ],
+        "view_direction": [
+          -0.0,
+          -1.0,
+          -0.009
+        ]
+      },
+      {
+        "id": 1,
+        "gain_m3": 0.868,
+        "pixel": [
+          300.0,
+          155.8
+        ],
+        "pixel_normalised": [
+          0.456,
+          0.319
+        ],
+        "turn_deg": 2.88,
+        "depth_at_pixel_m": 4.569,
+        "direction_angle_rad": 1.467,
+        "pos3d_camera": [
+          5.211,
+          0.267,
+          1.127
+        ],
+        "view_direction": [
+          -0.0,
+          0.104,
+          0.995
+        ]
+      }
+    ],
+    "chosen": {
+      "id": 9,
+      "gain_m3": 12.248,
+      "pixel": [
+        527.2,
+        198.1
+      ],
+      "pixel_normalised": [
+        0.944,
+        0.409
+      ],
+      "turn_deg": -28.15,
+      "depth_at_pixel_m": 10.45,
+      "direction_angle_rad": 3.133,
+      "pos3d_camera": [
+        7.914,
+        -4.226,
+        0.851
+      ],
+      "view_direction": [
+        -0.0,
+        -1.0,
+        0.009
+      ]
+    },
+    "info_gain_max_raw": 1224.766,
+    "frontier_pixels": 1386,
+    "overlay": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/habitat/frontiers.png",
+    "timings": {
+      "load_s": 0.502,
+      "detect_s": 0.199,
+      "anchor_s": 0.171
+    }
+  },
+  "travel": {
+    "asked_for_m": 10.708,
+    "per_mode": {
+      "text2image": {
+        "best_match_by_mae_m": 0.75,
+        "best_match_by_ncc_m": 1.0,
+        "ncc_at_0m": 0.3345,
+        "ncc_at_target": 0.1578,
+        "curve": [
+          {
+            "distance_m": 0.0,
+            "mae": 0.1983,
+            "ncc": 0.3345
+          },
+          {
+            "distance_m": 0.25,
+            "mae": 0.1954,
+            "ncc": 0.3533
+          },
+          {
+            "distance_m": 0.5,
+            "mae": 0.1975,
+            "ncc": 0.3397
+          },
+          {
+            "distance_m": 0.75,
+            "mae": 0.1942,
+            "ncc": 0.3797
+          },
+          {
+            "distance_m": 1.0,
+            "mae": 0.197,
+            "ncc": 0.3868
+          },
+          {
+            "distance_m": 1.25,
+            "mae": 0.2031,
+            "ncc": 0.3657
+          },
+          {
+            "distance_m": 1.5,
+            "mae": 0.2104,
+            "ncc": 0.3439
+          },
+          {
+            "distance_m": 1.75,
+            "mae": 0.2197,
+            "ncc": 0.3322
+          },
+          {
+            "distance_m": 2.0,
+            "mae": 0.2323,
+            "ncc": 0.2848
+          },
+          {
+            "distance_m": 2.25,
+            "mae": 0.2382,
+            "ncc": 0.2698
+          },
+          {
+            "distance_m": 2.5,
+            "mae": 0.2445,
+            "ncc": 0.2383
+          },
+          {
+            "distance_m": 2.75,
+            "mae": 0.2529,
+            "ncc": 0.1639
+          },
+          {
+            "distance_m": 3.0,
+            "mae": 0.2569,
+            "ncc": 0.0752
+          },
+          {
+            "distance_m": 3.25,
+            "mae": 0.2296,
+            "ncc": 0.0428
+          },
+          {
+            "distance_m": 10.71,
+            "mae": 0.2547,
+            "ncc": 0.1578
+          }
+        ]
+      },
+      "image2image": {
+        "best_match_by_mae_m": 0.0,
+        "best_match_by_ncc_m": 0.0,
+        "ncc_at_0m": 0.9847,
+        "ncc_at_target": -0.1624,
+        "curve": [
+          {
+            "distance_m": 0.0,
+            "mae": 0.0808,
+            "ncc": 0.9847
+          },
+          {
+            "distance_m": 0.25,
+            "mae": 0.1305,
+            "ncc": 0.7739
+          },
+          {
+            "distance_m": 0.5,
+            "mae": 0.1623,
+            "ncc": 0.6459
+          },
+          {
+            "distance_m": 0.75,
+            "mae": 0.1794,
+            "ncc": 0.5865
+          },
+          {
+            "distance_m": 1.0,
+            "mae": 0.1911,
+            "ncc": 0.5517
+          },
+          {
+            "distance_m": 1.25,
+            "mae": 0.1977,
+            "ncc": 0.5423
+          },
+          {
+            "distance_m": 1.5,
+            "mae": 0.2082,
+            "ncc": 0.5079
+          },
+          {
+            "distance_m": 1.75,
+            "mae": 0.2284,
+            "ncc": 0.4244
+          },
+          {
+            "distance_m": 2.0,
+            "mae": 0.2377,
+            "ncc": 0.394
+          },
+          {
+            "distance_m": 2.25,
+            "mae": 0.243,
+            "ncc": 0.3672
+          },
+          {
+            "distance_m": 2.5,
+            "mae": 0.2512,
+            "ncc": 0.324
+          },
+          {
+            "distance_m": 2.75,
+            "mae": 0.2643,
+            "ncc": 0.2236
+          },
+          {
+            "distance_m": 3.0,
+            "mae": 0.2801,
+            "ncc": 0.0785
+          },
+          {
+            "distance_m": 3.25,
+            "mae": 0.2484,
+            "ncc": 0.1374
+          },
+          {
+            "distance_m": 10.71,
+            "mae": 0.3305,
+            "ncc": -0.1624
+          }
+        ]
+      }
+    }
+  },
+  "reasoner": {
+    "task": "caption",
+    "load_s": 3.387,
+    "frontier_note": "A frontier detector has labelled the unexplored boundaries in this view and the robot is aimed at the most promising one: frontier #9 of 10, predicted information gain 12.2 m^3 (the largest in view), now centred in the frame with about 6.4 m of free space behind it.",
+    "caption": "The robot enters a spacious, open-plan living area with light beige walls and a polished hardwood floor that extends throughout the space. The ceiling is white with recessed lighting, and a large, dark wooden dining table with matching chairs is positioned centrally, surrounded by a few decorative items and a small potted plant. To the left, a hallway leads to a bedroom with a visible doorway and a framed picture on the wall. On the right, a kitchen area features dark wooden cabinets, a stainless steel refrigerator, and a central island with a sink and bar stools. A window above the sink allows natural light to enter, and a small rug is placed near the kitchen entrance. The overall atmosphere is warm and inviting, with a mix of modern and traditional furnishings.",
+    "caption_chars": 773,
+    "generate_s": 5.332,
+    "peak_gpu_mb": 16914.2
+  },
+  "cosmos": {
+    "load_peak_gpu_mb": 32473.4,
+    "generate_text2image_peak_gpu_mb": 33835.1,
+    "generate_text2image_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/cosmos/gen_text2image/vision.jpg",
+    "generate_image2image_peak_gpu_mb": 33832.1,
+    "generate_image2image_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/cosmos/gen_image2image/vision.jpg",
+    "generated": {
+      "text2image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/cosmos/gen_text2image/vision.jpg",
+      "image2image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/cosmos/gen_image2image/vision.jpg"
+    },
+    "timings": {
+      "model_load_s": 21.009,
+      "generate_text2image_s": 9.195,
+      "generate_image2image_s": 15.142
+    },
+    "checkpoint": "/home/ashed/.cache/huggingface/hub/models--nvidia--Cosmos3-Nano/snapshots/411f42a8fdfb8c5b2583cb8786e0938f49796eaa",
+    "num_steps": 35,
+    "torch_compile": false,
+    "resolution": "480p 4,3"
+  },
+  "judge": {
+    "task": "judge",
+    "load_s": 3.234,
+    "verdicts": {
+      "text2image": {
+        "raw": "{\"predicted_space_type\": \"dining room\", \"real_space_type\": \"living room\", \"space_type_match\": false, \"layout_similarity_0_to_10\": 2, \"appearance_similarity_0_to_10\": 3, \"verdict\": \"The left image depicts a dining area with hardwood floors and kitchen elements, while the right image shows a living space featuring a window with blinds and wooden furniture.\", \"shared_objects\": [], \"objects_only_in_prediction\": [\"hardwood floor\", \"kitchen island\", \"refrigerator\", \"cabinets\", \"chairs\", \"table\", \"painting on wall\", \"ceiling lights\", \"window above sink\"], \"objects_only_in_reality\": [\"window with white horizontal blinds\", \"dark wood cabinet or chest\", \"green plant on top of furniture\"]}",
+        "parsed": {
+          "predicted_space_type": "dining room",
+          "real_space_type": "living room",
+          "space_type_match": false,
+          "layout_similarity_0_to_10": 2,
+          "appearance_similarity_0_to_10": 3,
+          "verdict": "The left image depicts a dining area with hardwood floors and kitchen elements, while the right image shows a living space featuring a window with blinds and wooden furniture.",
+          "shared_objects": [],
+          "objects_only_in_prediction": [
+            "hardwood floor",
+            "kitchen island",
+            "refrigerator",
+            "cabinets",
+            "chairs",
+            "table",
+            "painting on wall",
+            "ceiling lights",
+            "window above sink"
+          ],
+          "objects_only_in_reality": [
+            "window with white horizontal blinds",
+            "dark wood cabinet or chest",
+            "green plant on top of furniture"
+          ]
+        },
+        "compare_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/reason/compare_text2image.png",
+        "evaluate_s": 5.924
+      },
+      "image2image": {
+        "raw": "{\"predicted_space_type\": \"kitchen\", \"real_space_type\": \"living room\", \"space_type_match\": false, \"layout_similarity_0_to_10\": 2, \"appearance_similarity_0_to_10\": 3, \"verdict\": \"The left image depicts a kitchen while the right one shows a living room; they are completely different spaces.\", \"shared_objects\": [], \"objects_only_in_prediction\": [\"refrigerator\", \"cabinets\", \"island counter\", \"chairs\", \"ceiling lights\", \"clock on wall\", \"wooden floor\", \"stove\", \"sink\", \"countertop appliances\", \"overhead cabinets\", \"microwave oven\", \"pendant light fixture\", \"wall decor\", \"doorway to another room\", \"window blinds (implied)\"], \"objects_only_in_reality\": [\"piano or large wooden furniture piece\", \"green plant on top of furniture\", \"white window blinds covering a window\", \"neutral-colored walls\", \"small table or chair partially visible\"]}",
+        "parsed": {
+          "predicted_space_type": "kitchen",
+          "real_space_type": "living room",
+          "space_type_match": false,
+          "layout_similarity_0_to_10": 2,
+          "appearance_similarity_0_to_10": 3,
+          "verdict": "The left image depicts a kitchen while the right one shows a living room; they are completely different spaces.",
+          "shared_objects": [],
+          "objects_only_in_prediction": [
+            "refrigerator",
+            "cabinets",
+            "island counter",
+            "chairs",
+            "ceiling lights",
+            "clock on wall",
+            "wooden floor",
+            "stove",
+            "sink",
+            "countertop appliances",
+            "overhead cabinets",
+            "microwave oven",
+            "pendant light fixture",
+            "wall decor",
+            "doorway to another room",
+            "window blinds (implied)"
+          ],
+          "objects_only_in_reality": [
+            "piano or large wooden furniture piece",
+            "green plant on top of furniture",
+            "white window blinds covering a window",
+            "neutral-colored walls",
+            "small table or chair partially visible"
+          ]
+        },
+        "compare_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/reason/compare_image2image.png",
+        "evaluate_s": 7.052
+      }
+    },
+    "peak_gpu_mb": 17039.0
+  },
+  "wall_clock": {
+    "habitat_wall_s": 5.091,
+    "frontiernet_wall_s": 4.306,
+    "reasoner_wall_s": 20.932,
+    "generator_wall_s": 53.444
+  }
+}

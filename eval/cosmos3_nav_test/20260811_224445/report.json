@@ -1,0 +1,220 @@
+{
+  "run_dir": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445",
+  "habitat": {
+    "scene": "00800-TEEsavR23oF",
+    "scene_glb": "/home/ashed/Documents/spatial_training/data/scene_datasets/hm3d_v0.2/val/00800-TEEsavR23oF/TEEsavR23oF.basis.glb",
+    "split": "val",
+    "seed": 0,
+    "start_position": [
+      -9.448946952819824,
+      0.16337794065475464,
+      -1.1829249858856201
+    ],
+    "goal_position": [
+      -6.28571891784668,
+      0.16337794065475464,
+      -1.9289066791534424
+    ],
+    "yaw_scan_deg": 309.3489930703824,
+    "turn_to_frontier_deg": -26.079424563171173,
+    "turn_sign_check_px": {
+      "neg": 10.0,
+      "pos": 170.0
+    },
+    "frontier_free_depth_m": 7.531,
+    "advance_m": 3.25,
+    "observation": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/habitat/observation.png",
+    "ground_truth": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/habitat/ground_truth.png",
+    "start_view": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/habitat/start_view.png",
+    "sensor": {
+      "width": 640,
+      "height": 480,
+      "hfov": 79.0,
+      "height_m": 0.88
+    },
+    "timings": {
+      "sim_load_s": 2.616,
+      "frontier_scan_s": 0.186,
+      "render_s": 0.001
+    }
+  },
+  "reasoner": {
+    "task": "caption",
+    "load_s": 3.203,
+    "caption": "The image captures a spacious kitchen with a warm, inviting ambiance. The room features light beige walls and a polished hardwood floor that extends throughout the space. A large, dark wooden island with a smooth countertop dominates the center of the kitchen, surrounded by matching dark wood cabinets and drawers. Above the island, a modern chandelier with multiple glass shades hangs from the ceiling, casting a soft glow. To the left, a dining area is visible, furnished with a wooden table and chairs, while a decorative clock adorns the wall nearby. The kitchen is well-equipped with stainless steel appliances, including a refrigerator and an oven, and a window above the sink allows natural light to filter in. The overall layout is open and functional, blending comfort with style.",
+    "caption_chars": 790,
+    "generate_s": 5.075,
+    "peak_gpu_mb": 16892.9
+  },
+  "cosmos": {
+    "load_peak_gpu_mb": 32473.4,
+    "generate_text2image_peak_gpu_mb": 33835.1,
+    "generate_text2image_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/cosmos/gen_text2image/vision.jpg",
+    "generate_image2image_peak_gpu_mb": 33832.1,
+    "generate_image2image_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/cosmos/gen_image2image/vision.jpg",
+    "generated": {
+      "text2image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/cosmos/gen_text2image/vision.jpg",
+      "image2image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/cosmos/gen_image2image/vision.jpg"
+    },
+    "timings": {
+      "model_load_s": 15.206,
+      "generate_text2image_s": 8.705,
+      "generate_image2image_s": 14.906
+    },
+    "checkpoint": "/home/ashed/.cache/huggingface/hub/models--nvidia--Cosmos3-Nano/snapshots/411f42a8fdfb8c5b2583cb8786e0938f49796eaa",
+    "num_steps": 35,
+    "torch_compile": false,
+    "resolution": "480p 4,3"
+  },
+  "judge": {
+    "task": "judge",
+    "load_s": 3.175,
+    "verdicts": {
+      "text2image": {
+        "raw": "{\"predicted_space_type\": \"kitchen\", \"real_space_type\": \"kitchen\", \"space_type_match\": true, \"shared_objects\": [\"refrigerator\", \"cabinets\", \"island\", \"chandelier\", \"american flag\", \"dining table\", \"wooden floor\", \"window\", \"stove\", \"sink\", \"countertop\", \"clock\", \"pendant light\", \"wall outlet\", \"arched doorway\", \"chairs\", \"tablecloth\", \"fridge\", \"ceiling light\", \"microwave\", \"pantry door\", \"range hood\", \"linoleum floor\", \"wooden chairs\", \"wooden counter\", \"wooden cabinets\", \"wooden dining set\", \"wooden island\", \"wooden refrigerator\", \"wooden ceiling\", \"wooden walls\", \"wooden floorboards\", \"wooden table\", \"wooden chairs\", \"wooden counter\", \"wooden cabinets\", \"wooden dining set\", \"wooden island\", \"wooden refrigerator\", \"wooden ceiling\", \"wooden walls\", \"wooden floorboards\", \"wooden table\", \"wooden chairs\", \"wooden counter\", \"wooden cabinets\", \"wooden dining set\", \"wooden island\", \"wooden refrigerator\", \"wooden ceiling\", \"wooden walls\", \"wooden floorboards\", \"wooden table\", \"wooden chairs\", \"wooden counter\", \"wooden cabinets\", \"wooden dining set\", \"wooden island\", \"wooden refrigerator\", \"wooden ceiling\", \"wooden walls\", \"wooden floorboards\", \"wooden table\", \"wooden chairs\", \"wooden counter\", \"wooden cabinets\", \"wooden dining set\", \"wooden island\", \"wooden refrigerator\", \"wooden ceiling\", \"wooden walls\", \"wooden floorboards\", \"wooden table\", \"wooden chairs\", \"wooden counter\", \"wooden cabinets\", \"wooden dining set\", \"wooden island\", \"wooden refrigerator\", \"wooden ceiling\", \"wooden walls\", \"wooden floorboards\", \"wooden table\", \"wooden chairs\", \"wooden counter\", \"wooden cabinets\", \"wooden dining set\", \"wooden island\", \"wooden refrigerator\", \"wooden ceiling\", \"wooden walls\", \"wooden floorboards\", \"wooden table\", \"wooden chairs\", \"wooden counter\", \"wooden cabinets\", \"wooden dining",
+        "parsed": {
+          "predicted_space_type": "kitchen",
+          "real_space_type": "kitchen",
+          "space_type_match": true,
+          "shared_objects": [
+            "refrigerator",
+            "cabinets",
+            "island",
+            "chandelier",
+            "american flag",
+            "dining table",
+            "wooden floor",
+            "window",
+            "stove",
+            "sink",
+            "countertop",
+            "clock",
+            "pendant light",
+            "wall outlet",
+            "arched doorway",
+            "chairs",
+            "tablecloth",
+            "fridge",
+            "ceiling light",
+            "microwave",
+            "pantry door",
+            "range hood",
+            "linoleum floor",
+            "wooden chairs",
+            "wooden counter",
+            "wooden cabinets",
+            "wooden dining set",
+            "wooden island",
+            "wooden refrigerator",
+            "wooden ceiling",
+            "wooden walls",
+            "wooden floorboards",
+            "wooden table",
+            "wooden chairs",
+            "wooden counter",
+            "wooden cabinets",
+            "wooden dining set",
+            "wooden island",
+            "wooden refrigerator",
+            "wooden ceiling",
+            "wooden walls",
+            "wooden floorboards",
+            "wooden table",
+            "wooden chairs",
+            "wooden counter",
+            "wooden cabinets",
+            "wooden dining set",
+            "wooden island",
+            "wooden refrigerator",
+            "wooden ceiling",
+            "wooden walls",
+            "wooden floorboards",
+            "wooden table",
+            "wooden chairs",
+            "wooden counter",
+            "wooden cabinets",
+            "wooden dining set",
+            "wooden island",
+            "wooden refrigerator",
+            "wooden ceiling",
+            "wooden walls",
+            "wooden floorboards",
+            "wooden table",
+            "wooden chairs",
+            "wooden counter",
+            "wooden cabinets",
+            "wooden dining set",
+            "wooden island",
+            "wooden refrigerator",
+            "wooden ceiling",
+            "wooden walls",
+            "wooden floorboards",
+            "wooden table",
+            "wooden chairs",
+            "wooden counter",
+            "wooden cabinets",
+            "wooden dining set",
+            "wooden island",
+            "wooden refrigerator",
+            "wooden ceiling",
+            "wooden walls",
+            "wooden floorboards",
+            "wooden table",
+            "wooden chairs",
+            "wooden counter",
+            "wooden cabinets",
+            "wooden dining set",
+            "wooden island",
+            "wooden refrigerator",
+            "wooden ceiling",
+            "wooden walls",
+            "wooden floorboards",
+            "wooden table",
+            "wooden chairs",
+            "wooden counter",
+            "wooden cabinets"
+          ]
+        },
+        "compare_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/reason/compare_text2image.png",
+        "evaluate_s": 16.076
+      },
+      "image2image": {
+        "raw": "{\n  \"predicted_space_type\": \"kitchen\",\n  \"real_space_type\": \"dining room\",\n  \"space_type_match\": false,\n  \"shared_objects\": [\n    \"wooden dining table\",\n    \"chairs\",\n    \"refrigerator\",\n    \"cabinets\",\n    \"american flag\"\n  ],\n  \"objects_only_in_prediction\": [\n    \"island counter\",\n    \"dark wood cabinets\",\n    \"stove\",\n    \"clock on wall\"\n  ],\n  \"objects_only_in_reality\": [\n    \"stone fireplace\",\n    \"light switch\",\n    \"pendant light fixture\"\n  ],\n  \"layout_similarity_0_to_10\": 6,\n  \"appearance_similarity_0_to_10\": 4,\n  \"verdict\": \"The imagined kitchen has a more open layout with an island counter, while the real dining room features a stone fireplace and pendant lighting.\"\n}",
+        "parsed": {
+          "predicted_space_type": "kitchen",
+          "real_space_type": "dining room",
+          "space_type_match": false,
+          "shared_objects": [
+            "wooden dining table",
+            "chairs",
+            "refrigerator",
+            "cabinets",
+            "american flag"
+          ],
+          "objects_only_in_prediction": [
+            "island counter",
+            "dark wood cabinets",
+            "stove",
+            "clock on wall"
+          ],
+          "objects_only_in_reality": [
+            "stone fireplace",
+            "light switch",
+            "pendant light fixture"
+          ],
+          "layout_similarity_0_to_10": 6,
+          "appearance_similarity_0_to_10": 4,
+          "verdict": "The imagined kitchen has a more open layout with an island counter, while the real dining room features a stone fireplace and pendant lighting."
+        },
+        "compare_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/reason/compare_image2image.png",
+        "evaluate_s": 6.111
+      }
+    },
+    "peak_gpu_mb": 17032.9
+  },
+  "wall_clock": {
+    "habitat_wall_s": 4.605,
+    "reasoner_wall_s": 29.902,
+    "generator_wall_s": 46.631
+  }
+}

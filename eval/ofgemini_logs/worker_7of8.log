@@ -1,0 +1,27 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/home/ashed/miniconda3/envs/openfrontier/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/home/ashed/miniconda3/envs/openfrontier/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+2026-08-11 20:36:28,076 Initializing dataset ObjectNav-v1
+2026-08-11 20:36:28,087 initializing sim Sim-v0
+2026-08-11 20:36:30,955 Initializing task ObjectNav-v1
+2026-08-11 20:36:31,123 Initializing dataset ObjectNav-v1
+2026-08-11 20:36:31,138 initializing sim Sim-v0
+2026-08-11 20:36:34,426 Initializing task ObjectNav-v1
+2026-08-11 20:36:34,870 Initializing dataset ObjectNav-v1
+2026-08-11 20:36:34,889 initializing sim Sim-v0
+2026-08-11 20:36:38,586 Initializing task ObjectNav-v1
+2026-08-11 20:36:38,760 Initializing dataset ObjectNav-v1
+2026-08-11 20:36:38,778 initializing sim Sim-v0
+2026-08-11 20:36:40,943 Initializing task ObjectNav-v1
+Evaluating Scene: DYehNKdT76V
+All 28 shard episodes for scene DYehNKdT76V (shard 0/1) already evaluated. Skipping...
+Evaluating Scene: TEEsavR23oF
+All 28 shard episodes for scene TEEsavR23oF (shard 0/1) already evaluated. Skipping...
+Evaluating Scene: h1zeeAwLh9Z
+All 28 shard episodes for scene h1zeeAwLh9Z (shard 0/1) already evaluated. Skipping...
+Evaluating Scene: svBbv1Pavdk
+All 28 shard episodes for scene svBbv1Pavdk (shard 0/1) already evaluated. Skipping...

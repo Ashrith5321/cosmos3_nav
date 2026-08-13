@@ -1,0 +1,44 @@
+[
+  {
+    "name": "a4_fps30",
+    "n_actions": 4,
+    "fps": 30,
+    "duration_s": 0.17,
+    "commanded_speed_mps": 64.25,
+    "frames": 5,
+    "video": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/fd_sweep/a4_fps30/vision.mp4",
+    "last_frame": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/fd_sweep/a4_fps30_last.jpg",
+    "consecutive_diff_mean": 1.58,
+    "first_vs_last_diff": 3.8,
+    "generate_s": 6.1,
+    "peak_gpu_mb": 35373.8
+  },
+  {
+    "name": "a8_fps30",
+    "n_actions": 8,
+    "fps": 30,
+    "duration_s": 0.3,
+    "commanded_speed_mps": 35.69,
+    "frames": 9,
+    "video": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/fd_sweep/a8_fps30/vision.mp4",
+    "last_frame": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/fd_sweep/a8_fps30_last.jpg",
+    "consecutive_diff_mean": 1.23,
+    "first_vs_last_diff": 3.7,
+    "generate_s": 6.7,
+    "peak_gpu_mb": 35699.7
+  },
+  {
+    "name": "a4_fps8",
+    "n_actions": 4,
+    "fps": 8,
+    "duration_s": 0.62,
+    "commanded_speed_mps": 17.13,
+    "frames": 5,
+    "video": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/fd_sweep/a4_fps8/vision.mp4",
+    "last_frame": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/fd_sweep/a4_fps8_last.jpg",
+    "consecutive_diff_mean": 1.59,
+    "first_vs_last_diff": 3.48,
+    "generate_s": 4.3,
+    "peak_gpu_mb": 35373.8
+  }
+]

@@ -1,0 +1,1432 @@
+/home/ashed/miniconda3/envs/openfrontier/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/home/ashed/miniconda3/envs/openfrontier/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+2026-08-11 23:37:39,719 Initializing dataset ObjectNav-v1
+2026-08-11 23:37:39,730 initializing sim Sim-v0
+2026-08-11 23:37:42,032 Initializing task ObjectNav-v1
+ASM: enabled (categories=['chair', 'bed', 'potted plant', 'toilet', 'tv', 'sofa'], res=0.05 m, segment_every=8)
+Evaluating Scene: 4ok3usBNeis
+  0%|          | 0/1 [00:00<?, ?it/s] frontier.base - INFO - FrontierManager initialized
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:45]	[AGENT]	[-1]	[INFO]	ASM: attached, writing to output/asmint_sam3_gemini_gemini/4ok3usBNeis/episode-0-chair/asm
+Loaded: model_weights/pointnav_weights.pth
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:45]	[AGENT]	[-1]	[INFO]	Saved camera intrinsics to output/asmint_sam3_gemini_gemini/4ok3usBNeis/episode-0-chair/camera_intrinsics.json
+WaveMapper initialized with parameters:
+min_cell_width: 0.05
+width: 640
+height: 480
+fx: 388.1910413097385
+fy: 388.1910413097385
+cx: 319.5
+cy: 239.5
+min_range: 0.05
+max_range: 3.5
+resolution: 0.1
+Logger initialized with level: INFO
+Logger initialized with level: INFO
+Logger initialized with level: INFO
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:46]	[AGENT]	[-1]	[INFO]	Initial mapping round started.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:46]	[AGENT]	[0]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:54]	[AGENT]	[0]	[INFO]	Frontier probabilities: {
+  "B": [0.25, "Frontier B is located in a bedroom next to a bed, which is an area less likely to contain chairs compared to living rooms or study areas."]
+}
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:54]	[AGENT]	[0]	[INFO]	1 frontiers detected. 1 with probabilities.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:54]	[AGENT]	[0]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:54]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.29, theta: -0.32, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:54]	[AGENT]	[0]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:54]	[AGENT]	[0]	[INFO]	 -------Current navigation step: 0 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:54]	[AGENT]	[1]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:54]	[AGENT]	[1]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:54]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.05, theta: -0.36, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:54]	[AGENT]	[1]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:54]	[AGENT]	[1]	[INFO]	 -------Current navigation step: 1 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:55]	[AGENT]	[2]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:55]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.82, theta: -0.41, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:55]	[AGENT]	[2]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:55]	[AGENT]	[2]	[INFO]	 -------Current navigation step: 2 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:55]	[AGENT]	[3]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:55]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.59, theta: -0.47, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:55]	[AGENT]	[3]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:55]	[AGENT]	[3]	[INFO]	 -------Current navigation step: 3 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:55]	[AGENT]	[4]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:55]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.37, theta: -0.55, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:55]	[AGENT]	[4]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:55]	[AGENT]	[4]	[INFO]	 -------Current navigation step: 4 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:56]	[AGENT]	[5]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:57]	[AGENT]	[5]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:57]	[PLANNER]	[INFO]	Planned actions: 2, rho: 1.18, theta: -0.68, forward heat: 1 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:57]	[AGENT]	[5]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:57]	[AGENT]	[5]	[INFO]	 -------Current navigation step: 5 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:57]	[AGENT]	[6]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:57]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.18, theta: -1.20, forward heat: 1 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:57]	[AGENT]	[6]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:57]	[AGENT]	[6]	[INFO]	 -------Current navigation step: 6 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:57]	[AGENT]	[7]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:57]	[AGENT]	[7]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:57]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.11, theta: -1.42, forward heat: 2 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:57]	[AGENT]	[7]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:57]	[AGENT]	[7]	[INFO]	 -------Current navigation step: 7 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:58]	[AGENT]	[8]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:58]	[PLANNER]	[INFO]	Planned actions: 3, rho: 1.10, theta: -1.64, forward heat: 3 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:58]	[AGENT]	[8]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:58]	[AGENT]	[8]	[INFO]	 -------Current navigation step: 8 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:58]	[AGENT]	[9]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:58]	[PLANNER]	[INFO]	Planned actions: 3, rho: 1.10, theta: -1.12, forward heat: 3 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:58]	[AGENT]	[9]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:58]	[AGENT]	[9]	[INFO]	 -------Current navigation step: 9 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:58]	[AGENT]	[10]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:58]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.10, theta: -0.59, forward heat: 3 rotation heat: 2
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:58]	[AGENT]	[10]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:37:58]	[AGENT]	[10]	[INFO]	 -------Current navigation step: 10 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:00]	[AGENT]	[11]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:01]	[AGENT]	[11]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:01]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.91, theta: -0.75, forward heat: 4 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:01]	[AGENT]	[11]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:01]	[AGENT]	[11]	[INFO]	 -------Current navigation step: 11 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:01]	[AGENT]	[12]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:01]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.91, theta: -0.23, forward heat: 4 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:01]	[AGENT]	[12]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:01]	[AGENT]	[12]	[INFO]	 -------Current navigation step: 12 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:01]	[AGENT]	[13]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:08]	[AGENT]	[13]	[INFO]	Frontier probabilities: {
+  "B": [
+    0.5,
+    "The frontier leads into an unexplored area behind or adjacent to a bed, which is an ambiguous environment with no clear visual indicators of a chair."
+  ]
+}
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:08]	[AGENT]	[13]	[INFO]	1 frontiers detected. 1 with probabilities.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:08]	[AGENT]	[13]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:08]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.65, theta: -0.40, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:08]	[AGENT]	[13]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:08]	[AGENT]	[13]	[INFO]	 -------Current navigation step: 13 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:08]	[AGENT]	[14]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:08]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.65, theta: 0.13, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:08]	[AGENT]	[14]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:08]	[AGENT]	[14]	[INFO]	 -------Current navigation step: 14 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:09]	[AGENT]	[15]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:09]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.46, theta: 0.14, forward heat: 1 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:09]	[AGENT]	[15]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:09]	[AGENT]	[15]	[INFO]	 -------Current navigation step: 15 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:09]	[AGENT]	[16]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:09]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.46, theta: 0.66, forward heat: 1 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:09]	[AGENT]	[16]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:09]	[AGENT]	[16]	[INFO]	 -------Current navigation step: 16 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:11]	[AGENT]	[17]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:11]	[AGENT]	[17]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:11]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.57, theta: 0.77, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:11]	[AGENT]	[17]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:11]	[AGENT]	[17]	[INFO]	 -------Current navigation step: 17 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:12]	[AGENT]	[18]	[INFO]	No frontiers, adding rotation frontiers...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:12]	[AGENT]	[18]	[INFO]	Still no frontiers, rotating...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:12]	[AGENT]	[18]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:12]	[MANAGER]	[ERROR]	No goal frontier available for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:12]	[MANAGER]	[ERROR]	Failed to obtain goal pose for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:12]	[AGENT]	[19]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[AGENT]	[19]	[INFO]	No frontiers, adding rotation frontiers...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[AGENT]	[19]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.00, theta: 1.57, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[AGENT]	[19]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[AGENT]	[19]	[INFO]	 -------Current navigation step: 19 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[AGENT]	[20]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[AGENT]	[20]	[INFO]	Frontiers found, ending emergency rotation.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[AGENT]	[20]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.00, theta: -3.42, forward heat: 0 rotation heat: 2
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[AGENT]	[20]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[AGENT]	[20]	[INFO]	 -------Current navigation step: 20 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[AGENT]	[21]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.00, theta: -2.89, forward heat: 0 rotation heat: 3
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[AGENT]	[21]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:13]	[AGENT]	[21]	[INFO]	 -------Current navigation step: 21 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:14]	[AGENT]	[22]	[INFO]	No frontiers, adding rotation frontiers...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:14]	[AGENT]	[22]	[INFO]	Still no frontiers, rotating...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:14]	[AGENT]	[22]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:14]	[MANAGER]	[ERROR]	No goal frontier available for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:14]	[MANAGER]	[ERROR]	Failed to obtain goal pose for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:15]	[AGENT]	[23]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:15]	[AGENT]	[23]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:15]	[AGENT]	[23]	[INFO]	No frontiers, adding rotation frontiers...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:15]	[AGENT]	[23]	[INFO]	Still no frontiers, rotating...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:15]	[AGENT]	[23]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:15]	[MANAGER]	[ERROR]	No goal frontier available for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:15]	[MANAGER]	[ERROR]	Failed to obtain goal pose for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:16]	[AGENT]	[24]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:16]	[AGENT]	[24]	[INFO]	No frontiers, adding rotation frontiers...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:16]	[AGENT]	[24]	[INFO]	Still no frontiers, rotating...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:16]	[AGENT]	[24]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:16]	[MANAGER]	[ERROR]	No goal frontier available for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:16]	[MANAGER]	[ERROR]	Failed to obtain goal pose for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:16]	[AGENT]	[25]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:17]	[AGENT]	[25]	[INFO]	No frontiers, adding rotation frontiers...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:17]	[AGENT]	[25]	[INFO]	Still no frontiers, rotating...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:17]	[AGENT]	[25]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:17]	[MANAGER]	[ERROR]	No goal frontier available for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:17]	[MANAGER]	[ERROR]	Failed to obtain goal pose for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:17]	[AGENT]	[26]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:17]	[AGENT]	[26]	[INFO]	No frontiers, adding rotation frontiers...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:17]	[AGENT]	[26]	[INFO]	Still no frontiers, rotating...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:18]	[AGENT]	[26]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:18]	[MANAGER]	[ERROR]	No goal frontier available for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:18]	[MANAGER]	[ERROR]	Failed to obtain goal pose for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:18]	[AGENT]	[27]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:18]	[AGENT]	[27]	[INFO]	No frontiers, adding rotation frontiers...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:18]	[AGENT]	[27]	[INFO]	Still no frontiers, rotating...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:18]	[AGENT]	[27]	[INFO]	Replanning...
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:18]	[MANAGER]	[ERROR]	No goal frontier available for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:18]	[MANAGER]	[ERROR]	Failed to obtain goal pose for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:19]	[AGENT]	[28]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:19]	[AGENT]	[28]	[INFO]	No frontiers, adding rotation frontiers...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:19]	[AGENT]	[28]	[INFO]	Still no frontiers, rotating...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:19]	[AGENT]	[28]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:19]	[MANAGER]	[ERROR]	No goal frontier available for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:19]	[MANAGER]	[ERROR]	Failed to obtain goal pose for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:20]	[AGENT]	[29]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:20]	[AGENT]	[29]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:30]	[AGENT]	[29]	[INFO]	Frontier probabilities: [
+  {
+    "A": [0.4, "The frontier A is located near an object that resembles furniture, specifically the corner of a bed or chair. Moving towards it provides a high probability of further exploring this furniture-heavy space."]
+  }
+]
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:30]	[AGENT]	[29]	[INFO]	1 frontiers detected. 1 with probabilities.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[29]	[INFO]	Frontiers found, ending emergency rotation.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[29]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.45, theta: -0.49, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[29]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[29]	[INFO]	 -------Current navigation step: 29 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[30]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.45, theta: 0.03, forward heat: 0 rotation heat: 2
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[30]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[30]	[INFO]	 -------Current navigation step: 30 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[31]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[31]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.45, theta: 0.03, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[31]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[31]	[INFO]	 -------Current navigation step: 31 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[32]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.45, theta: 0.55, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[32]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[32]	[INFO]	 -------Current navigation step: 32 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[33]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.45, theta: 0.55, forward heat: 1 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[33]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:31]	[AGENT]	[33]	[INFO]	 -------Current navigation step: 33 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:32]	[AGENT]	[34]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:32]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.45, theta: 1.08, forward heat: 1 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:32]	[AGENT]	[34]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:32]	[AGENT]	[34]	[INFO]	 -------Current navigation step: 34 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:32]	[AGENT]	[34]	[INFO]	Robot frozen for 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:33]	[AGENT]	[35]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:35]	[AGENT]	[35]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:35]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.45, theta: -4.68, forward heat: 2 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:35]	[AGENT]	[35]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:35]	[AGENT]	[35]	[INFO]	 -------Current navigation step: 35 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:35]	[AGENT]	[36]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:35]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.45, theta: 1.08, forward heat: 2 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:35]	[AGENT]	[36]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:35]	[AGENT]	[36]	[INFO]	 -------Current navigation step: 36 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:35]	[AGENT]	[37]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:35]	[AGENT]	[37]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:35]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.45, theta: 0.55, forward heat: 2 rotation heat: 2
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:35]	[AGENT]	[37]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:35]	[AGENT]	[37]	[INFO]	 -------Current navigation step: 37 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:36]	[AGENT]	[38]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:36]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.45, theta: 0.55, forward heat: 3 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:36]	[AGENT]	[38]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:36]	[AGENT]	[38]	[INFO]	 -------Current navigation step: 38 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:36]	[AGENT]	[39]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:36]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.45, theta: 0.03, forward heat: 3 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:36]	[AGENT]	[39]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:36]	[AGENT]	[39]	[INFO]	 -------Current navigation step: 39 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:36]	[AGENT]	[40]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:36]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.45, theta: -0.49, forward heat: 3 rotation heat: 2
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:36]	[AGENT]	[40]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:36]	[AGENT]	[40]	[INFO]	 -------Current navigation step: 40 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:38]	[AGENT]	[41]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:39]	[AGENT]	[41]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:39]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.45, theta: -1.02, forward heat: 3 rotation heat: 3
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:39]	[AGENT]	[41]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:39]	[AGENT]	[41]	[INFO]	 -------Current navigation step: 41 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:39]	[AGENT]	[42]	[INFO]	Replanning...
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:39]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.45, theta: -1.54, forward heat: 3 rotation heat: 4
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:39]	[AGENT]	[42]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:39]	[AGENT]	[42]	[INFO]	 -------Current navigation step: 42 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:39]	[AGENT]	[43]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:39]	[AGENT]	[43]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:39]	[PLANNER]	[INFO]	Planned actions: None, rho: 0.45, theta: -2.06, forward heat: 3 rotation heat: 5
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:39]	[MANAGER]	[ERROR]	Reached goal, deleting frontier.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:39]	[AGENT]	[44]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:40]	[AGENT]	[44]	[INFO]	No frontiers, adding rotation frontiers...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:40]	[AGENT]	[44]	[INFO]	Still no frontiers, rotating...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:40]	[AGENT]	[44]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:40]	[MANAGER]	[ERROR]	No goal frontier available for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:40]	[MANAGER]	[ERROR]	Failed to obtain goal pose for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:40]	[AGENT]	[45]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:41]	[AGENT]	[45]	[INFO]	No frontiers, adding rotation frontiers...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:41]	[AGENT]	[45]	[INFO]	Still no frontiers, rotating...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:41]	[AGENT]	[45]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:41]	[MANAGER]	[ERROR]	No goal frontier available for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:41]	[MANAGER]	[ERROR]	Failed to obtain goal pose for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:41]	[AGENT]	[46]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:41]	[AGENT]	[46]	[INFO]	No frontiers, adding rotation frontiers...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:41]	[AGENT]	[46]	[INFO]	Still no frontiers, rotating...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:41]	[AGENT]	[46]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:41]	[MANAGER]	[ERROR]	No goal frontier available for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:41]	[MANAGER]	[ERROR]	Failed to obtain goal pose for path planning.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:43]	[AGENT]	[47]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:43]	[AGENT]	[47]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:52]	[AGENT]	[47]	[INFO]	Frontier probabilities: {
+  "A": [
+    0.35,
+    "Frontier A leads into a corner area near a piece of furniture that is partially visible, which could potentially be a chair or bed; exploration is warranted to confirm."
+  ]
+}
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:52]	[AGENT]	[47]	[INFO]	1 frontiers detected. 1 with probabilities.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:52]	[AGENT]	[47]	[INFO]	Frontiers found, ending emergency rotation.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:52]	[AGENT]	[47]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:52]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.45, theta: -0.49, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:52]	[AGENT]	[47]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:52]	[AGENT]	[47]	[INFO]	 -------Current navigation step: 47 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[48]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.45, theta: 0.03, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[48]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[48]	[INFO]	 -------Current navigation step: 48 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[49]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[49]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.45, theta: 0.03, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[49]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[49]	[INFO]	 -------Current navigation step: 49 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[50]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.45, theta: 0.55, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[50]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[50]	[INFO]	 -------Current navigation step: 50 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[51]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.45, theta: 0.55, forward heat: 1 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[51]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[51]	[INFO]	 -------Current navigation step: 51 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[52]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.45, theta: 1.08, forward heat: 1 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[52]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:53]	[AGENT]	[52]	[INFO]	 -------Current navigation step: 52 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:55]	[AGENT]	[53]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:55]	[AGENT]	[53]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:55]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.45, theta: 1.08, forward heat: 2 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:55]	[AGENT]	[53]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:55]	[AGENT]	[53]	[INFO]	 -------Current navigation step: 53 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:55]	[AGENT]	[54]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:55]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.45, theta: -4.68, forward heat: 2 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:55]	[AGENT]	[54]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:55]	[AGENT]	[54]	[INFO]	 -------Current navigation step: 54 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:55]	[AGENT]	[54]	[INFO]	Robot frozen for 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:38:56]	[AGENT]	[55]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[AGENT]	[55]	[INFO]	Frontier probabilities: [
+  {
+    "A": [
+      0.3,
+      "Frontier A leads into a dark, narrow area, possibly a closet or utility space, which is unlikely to contain furniture like a chair."
+    ],
+    "B": [
+      0.4,
+      "Frontier B leads into a roomier area beyond the doorway, offering more space for typical furniture, slightly increasing the likelihood of finding a chair."
+    ]
+  }
+]
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[AGENT]	[55]	[INFO]	2 frontiers detected. 2 with probabilities.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[AGENT]	[55]	[INFO]	Replanning...
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.45, theta: -4.16, forward heat: 3 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[AGENT]	[55]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[AGENT]	[55]	[INFO]	 -------Current navigation step: 55 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[AGENT]	[56]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.45, theta: -3.63, forward heat: 3 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[AGENT]	[56]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[AGENT]	[56]	[INFO]	 -------Current navigation step: 56 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[AGENT]	[57]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.45, theta: -3.11, forward heat: 3 rotation heat: 2
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[AGENT]	[57]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[AGENT]	[57]	[INFO]	 -------Current navigation step: 57 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[AGENT]	[58]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.45, theta: -2.59, forward heat: 3 rotation heat: 3
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[AGENT]	[58]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:00]	[AGENT]	[58]	[INFO]	 -------Current navigation step: 58 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:01]	[AGENT]	[59]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:02]	[AGENT]	[59]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:02]	[PLANNER]	[INFO]	Planned actions: None, rho: 0.45, theta: -2.06, forward heat: 3 rotation heat: 4
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:02]	[MANAGER]	[ERROR]	Reached goal, deleting frontier.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:02]	[AGENT]	[59]	[INFO]	Robot frozen for 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:02]	[AGENT]	[60]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:02]	[AGENT]	[60]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:02]	[PLANNER]	[INFO]	Planned actions: 3, rho: 4.92, theta: -3.20, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:02]	[AGENT]	[60]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:02]	[AGENT]	[60]	[INFO]	 -------Current navigation step: 60 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:02]	[AGENT]	[61]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:03]	[AGENT]	[61]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:03]	[PLANNER]	[INFO]	Planned actions: 3, rho: 4.92, theta: -2.68, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:03]	[AGENT]	[61]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:03]	[AGENT]	[61]	[INFO]	 -------Current navigation step: 61 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:03]	[AGENT]	[62]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:03]	[PLANNER]	[INFO]	Planned actions: 3, rho: 4.92, theta: -2.16, forward heat: 0 rotation heat: 2
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:03]	[AGENT]	[62]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:03]	[AGENT]	[62]	[INFO]	 -------Current navigation step: 62 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:04]	[AGENT]	[63]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:04]	[PLANNER]	[INFO]	Planned actions: 3, rho: 4.92, theta: -1.63, forward heat: 0 rotation heat: 3
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:04]	[AGENT]	[63]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:04]	[AGENT]	[63]	[INFO]	 -------Current navigation step: 63 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:04]	[AGENT]	[64]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:04]	[PLANNER]	[INFO]	Planned actions: 3, rho: 4.92, theta: -1.11, forward heat: 0 rotation heat: 4
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:04]	[AGENT]	[64]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:04]	[AGENT]	[64]	[INFO]	 -------Current navigation step: 64 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:05]	[AGENT]	[65]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:07]	[AGENT]	[65]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:07]	[PLANNER]	[INFO]	Planned actions: 3, rho: 4.92, theta: -0.59, forward heat: 0 rotation heat: 5
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:07]	[AGENT]	[65]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:07]	[AGENT]	[65]	[INFO]	 -------Current navigation step: 65 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:07]	[AGENT]	[66]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:07]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.92, theta: -0.06, forward heat: 0 rotation heat: 6
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:07]	[AGENT]	[66]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:07]	[AGENT]	[66]	[INFO]	 -------Current navigation step: 66 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:07]	[AGENT]	[67]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:16]	[AGENT]	[67]	[INFO]	Frontier probabilities: [
+  {
+    "C": [
+      0.35,
+      "Frontier C leads into a corridor that likely connects to other residential rooms. While chairs are common in living or bedrooms, there is no direct visual evidence or strong contextual cue suggesting one is immediately ahead, leading to a conservative estimate."
+    ]
+  }
+]
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:16]	[AGENT]	[67]	[INFO]	1 frontiers detected. 1 with probabilities.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:16]	[MANAGER]	[INFO]	Merged frontiers into current goal 56.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:16]	[AGENT]	[67]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:16]	[PLANNER]	[INFO]	Planned actions: 2, rho: 4.92, theta: -0.06, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:16]	[AGENT]	[67]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:16]	[AGENT]	[67]	[INFO]	 -------Current navigation step: 67 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:16]	[AGENT]	[68]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:16]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.92, theta: -0.59, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:16]	[AGENT]	[68]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:16]	[AGENT]	[68]	[INFO]	 -------Current navigation step: 68 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:16]	[AGENT]	[69]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:17]	[PLANNER]	[INFO]	Planned actions: 2, rho: 4.92, theta: -0.59, forward heat: 1 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:17]	[AGENT]	[69]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:17]	[AGENT]	[69]	[INFO]	 -------Current navigation step: 69 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:17]	[AGENT]	[70]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:17]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.92, theta: -1.11, forward heat: 1 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:17]	[AGENT]	[70]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:17]	[AGENT]	[70]	[INFO]	 -------Current navigation step: 70 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:18]	[AGENT]	[71]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:18]	[AGENT]	[71]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:18]	[PLANNER]	[INFO]	Planned actions: 2, rho: 4.92, theta: -1.11, forward heat: 2 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:18]	[AGENT]	[71]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:18]	[AGENT]	[71]	[INFO]	 -------Current navigation step: 71 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:18]	[AGENT]	[72]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:18]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.92, theta: -1.63, forward heat: 2 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:18]	[AGENT]	[72]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:18]	[AGENT]	[72]	[INFO]	 -------Current navigation step: 72 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:18]	[AGENT]	[73]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:19]	[AGENT]	[73]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:19]	[PLANNER]	[INFO]	Planned actions: 2, rho: 4.92, theta: -1.63, forward heat: 3 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:19]	[AGENT]	[73]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:19]	[AGENT]	[73]	[INFO]	 -------Current navigation step: 73 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:19]	[AGENT]	[74]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:19]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.92, theta: -2.16, forward heat: 3 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:19]	[AGENT]	[74]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:19]	[AGENT]	[74]	[INFO]	 -------Current navigation step: 74 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:19]	[AGENT]	[74]	[INFO]	Robot frozen for 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:19]	[AGENT]	[75]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:19]	[PLANNER]	[INFO]	Planned actions: 2, rho: 4.92, theta: -1.63, forward heat: 4 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:19]	[AGENT]	[75]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:19]	[AGENT]	[75]	[INFO]	 -------Current navigation step: 75 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:20]	[AGENT]	[76]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:20]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.92, theta: -2.16, forward heat: 4 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:20]	[AGENT]	[76]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:20]	[AGENT]	[76]	[INFO]	 -------Current navigation step: 76 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:21]	[AGENT]	[77]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:21]	[AGENT]	[77]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:22]	[PLANNER]	[INFO]	Planned actions: 3, rho: 4.92, theta: -2.16, forward heat: 5 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:22]	[AGENT]	[77]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:22]	[AGENT]	[77]	[INFO]	 -------Current navigation step: 77 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:22]	[AGENT]	[78]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:22]	[PLANNER]	[INFO]	Planned actions: 3, rho: 4.92, theta: -1.63, forward heat: 5 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:22]	[AGENT]	[78]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:22]	[AGENT]	[78]	[INFO]	 -------Current navigation step: 78 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:22]	[AGENT]	[79]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:23]	[AGENT]	[79]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:23]	[PLANNER]	[INFO]	Planned actions: 3, rho: 4.92, theta: -1.11, forward heat: 5 rotation heat: 2
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:23]	[AGENT]	[79]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:23]	[AGENT]	[79]	[INFO]	 -------Current navigation step: 79 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:23]	[AGENT]	[80]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:23]	[PLANNER]	[INFO]	Planned actions: 3, rho: 4.92, theta: -0.59, forward heat: 5 rotation heat: 3
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:23]	[AGENT]	[80]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:23]	[AGENT]	[80]	[INFO]	 -------Current navigation step: 80 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:24]	[AGENT]	[81]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:24]	[PLANNER]	[INFO]	Planned actions: 3, rho: 4.92, theta: -0.06, forward heat: 5 rotation heat: 4
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:24]	[AGENT]	[81]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:24]	[AGENT]	[81]	[INFO]	 -------Current navigation step: 81 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:24]	[AGENT]	[82]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:24]	[PLANNER]	[INFO]	Planned actions: 3, rho: 4.92, theta: 0.46, forward heat: 5 rotation heat: 5
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:24]	[AGENT]	[82]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:24]	[AGENT]	[82]	[INFO]	 -------Current navigation step: 82 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:25]	[AGENT]	[83]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:26]	[AGENT]	[83]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:26]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.92, theta: 0.99, forward heat: 5 rotation heat: 6
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:26]	[AGENT]	[83]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:26]	[AGENT]	[83]	[INFO]	 -------Current navigation step: 83 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:26]	[AGENT]	[84]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:26]	[PLANNER]	[INFO]	Planned actions: 2, rho: 4.79, theta: 1.03, forward heat: 6 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:26]	[AGENT]	[84]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:26]	[AGENT]	[84]	[INFO]	 -------Current navigation step: 84 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:27]	[AGENT]	[85]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:27]	[AGENT]	[85]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:27]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.79, theta: 0.51, forward heat: 6 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:27]	[AGENT]	[85]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:27]	[AGENT]	[85]	[INFO]	 -------Current navigation step: 85 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:27]	[AGENT]	[86]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:27]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.57, theta: 0.53, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:27]	[AGENT]	[86]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:28]	[AGENT]	[86]	[INFO]	 -------Current navigation step: 86 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:28]	[AGENT]	[87]	[INFO]	Replanning...
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:28]	[PLANNER]	[INFO]	Planned actions: 2, rho: 4.36, theta: 0.56, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:28]	[AGENT]	[87]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:28]	[AGENT]	[87]	[INFO]	 -------Current navigation step: 87 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:28]	[AGENT]	[88]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:28]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.36, theta: 0.04, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:28]	[AGENT]	[88]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:28]	[AGENT]	[88]	[INFO]	 -------Current navigation step: 88 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:30]	[AGENT]	[89]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:31]	[AGENT]	[89]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:31]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.11, theta: 0.04, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:31]	[AGENT]	[89]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:31]	[AGENT]	[89]	[INFO]	 -------Current navigation step: 89 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:31]	[AGENT]	[90]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:31]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.86, theta: 0.04, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:31]	[AGENT]	[90]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:31]	[AGENT]	[90]	[INFO]	 -------Current navigation step: 90 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:31]	[AGENT]	[91]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:38]	[AGENT]	[91]	[INFO]	Frontier probabilities: [
+  {
+    "A": [
+      0.3,
+      "This frontier leads to a doorway. While it could open into a room containing furniture, it appears to be a smaller transition or utility space, decreasing the likelihood of a chair."
+    ],
+    "C": [
+      0.2,
+      "This frontier leads into a laundry or utility room with visible appliances. This functional space type is less likely to contain a chair compared to living or bedroom areas."
+    ]
+  }
+]
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:38]	[AGENT]	[91]	[INFO]	2 frontiers detected. 2 with probabilities.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:38]	[MANAGER]	[INFO]	Merged frontiers into current goal 56.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:38]	[AGENT]	[91]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:38]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.60, theta: -0.23, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:38]	[AGENT]	[91]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:38]	[AGENT]	[91]	[INFO]	 -------Current navigation step: 91 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:38]	[AGENT]	[92]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:38]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.36, theta: -0.25, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:38]	[AGENT]	[92]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:38]	[AGENT]	[92]	[INFO]	 -------Current navigation step: 92 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:39]	[AGENT]	[93]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:39]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.12, theta: -0.28, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:39]	[AGENT]	[93]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:39]	[AGENT]	[93]	[INFO]	 -------Current navigation step: 93 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:39]	[AGENT]	[94]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:39]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.88, theta: -0.32, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:39]	[AGENT]	[94]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:39]	[AGENT]	[94]	[INFO]	 -------Current navigation step: 94 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:40]	[AGENT]	[95]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:42]	[AGENT]	[95]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:42]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.65, theta: -0.37, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:42]	[AGENT]	[95]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:42]	[AGENT]	[95]	[INFO]	 -------Current navigation step: 95 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:42]	[AGENT]	[96]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:42]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.42, theta: -0.43, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:42]	[AGENT]	[96]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:42]	[AGENT]	[96]	[INFO]	 -------Current navigation step: 96 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:42]	[AGENT]	[97]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:49]	[AGENT]	[97]	[INFO]	Frontier probabilities: {
+  "B": [0.1, "This frontier leads into a utility/laundry space where large appliances are visible, making it unlikely to contain a chair."],
+  "C": [0.2, "This leads to the upper area of the utility space, which is cluttered and unlikely to be a seating area."],
+  "D": [0.15, "This area is directly tied to the utility room configuration, which does not appear to be a living space containing chairs."]
+}
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:49]	[AGENT]	[97]	[INFO]	3 frontiers detected. 3 with probabilities.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:49]	[AGENT]	[97]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:49]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.19, theta: -0.52, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:49]	[AGENT]	[97]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:49]	[AGENT]	[97]	[INFO]	 -------Current navigation step: 97 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:49]	[AGENT]	[98]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:49]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.98, theta: -0.65, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:49]	[AGENT]	[98]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:49]	[AGENT]	[98]	[INFO]	 -------Current navigation step: 98 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:50]	[AGENT]	[99]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:50]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.98, theta: -0.12, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:50]	[AGENT]	[99]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:50]	[AGENT]	[99]	[INFO]	 -------Current navigation step: 99 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:50]	[AGENT]	[100]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:50]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.74, theta: -0.16, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:50]	[AGENT]	[100]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:50]	[AGENT]	[100]	[INFO]	 -------Current navigation step: 100 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:51]	[AGENT]	[101]	[INFO]	No masks returned.
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:52]	[AGENT]	[101]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:52]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.49, theta: -0.25, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:52]	[AGENT]	[101]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:52]	[AGENT]	[101]	[INFO]	 -------Current navigation step: 101 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:53]	[AGENT]	[102]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:53]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.26, theta: -0.49, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:53]	[AGENT]	[102]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:53]	[AGENT]	[102]	[INFO]	 -------Current navigation step: 102 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:39:53]	[AGENT]	[103]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[AGENT]	[103]	[INFO]	Frontier probabilities: [
+  {
+    "B": [
+      0.3,
+      "This frontier leads to a narrow hallway or corner, which is less likely to contain a furniture arrangement typical of a chair."
+    ],
+    "C": [
+      0.5,
+      "This leads into a larger room that is mostly obscured, making the probability neutral until more of the space is revealed."
+    ],
+    "E": [
+      0.5,
+      "This frontier is adjacent to C and leads into the same room; it also presents a neutral probability as the interior is not yet visible."
+    ]
+  }
+]
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[AGENT]	[103]	[INFO]	3 frontiers detected. 3 with probabilities.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[AGENT]	[103]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.13, theta: -0.12, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[AGENT]	[103]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[AGENT]	[103]	[INFO]	 -------Current navigation step: 103 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[AGENT]	[104]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.88, theta: -0.12, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[AGENT]	[104]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[AGENT]	[104]	[INFO]	 -------Current navigation step: 104 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[AGENT]	[105]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.63, theta: -0.13, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[AGENT]	[105]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[AGENT]	[105]	[INFO]	 -------Current navigation step: 105 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[AGENT]	[106]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.38, theta: -0.14, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[AGENT]	[106]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:01]	[AGENT]	[106]	[INFO]	 -------Current navigation step: 106 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:03]	[AGENT]	[107]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:03]	[AGENT]	[107]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:03]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.14, theta: -0.15, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:03]	[AGENT]	[107]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:03]	[AGENT]	[107]	[INFO]	 -------Current navigation step: 107 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:03]	[AGENT]	[108]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:03]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.89, theta: -0.15, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:03]	[AGENT]	[108]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:03]	[AGENT]	[108]	[INFO]	 -------Current navigation step: 108 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:04]	[AGENT]	[109]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:13]	[AGENT]	[109]	[INFO]	Frontier probabilities: [
+  {
+    "A": [
+      0.35,
+      "This frontier represents a passage into an adjacent room; while possible, there is no direct visual evidence of furniture like chairs from this narrow angle."
+    ],
+    "E": [
+      0.4,
+      "Located in the same doorway, this frontier offers a slightly better view of the interior, slightly increasing the likelihood of encountering furniture or common living area objects."
+    ]
+  }
+]
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:13]	[AGENT]	[109]	[INFO]	2 frontiers detected. 2 with probabilities.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:13]	[MANAGER]	[INFO]	Merged frontiers into current goal 78.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:13]	[AGENT]	[109]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:13]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.71, theta: -0.16, forward heat: 1 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:13]	[AGENT]	[109]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:13]	[AGENT]	[109]	[INFO]	 -------Current navigation step: 109 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:13]	[AGENT]	[110]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:13]	[PLANNER]	[INFO]	Planned actions: 3, rho: 3.71, theta: -0.16, forward heat: 2 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:13]	[AGENT]	[110]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:13]	[AGENT]	[110]	[INFO]	 -------Current navigation step: 110 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:13]	[AGENT]	[111]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:13]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.71, theta: 0.36, forward heat: 2 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:13]	[AGENT]	[111]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:14]	[AGENT]	[111]	[INFO]	 -------Current navigation step: 111 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:14]	[AGENT]	[112]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:14]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.47, theta: 0.39, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:14]	[AGENT]	[112]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:14]	[AGENT]	[112]	[INFO]	 -------Current navigation step: 112 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:15]	[AGENT]	[113]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:15]	[AGENT]	[113]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:15]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.24, theta: 0.42, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:15]	[AGENT]	[113]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:15]	[AGENT]	[113]	[INFO]	 -------Current navigation step: 113 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:16]	[AGENT]	[114]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:16]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.02, theta: 0.45, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:16]	[AGENT]	[114]	[INFO]	Path to goal found with 1 steps.
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:16]	[AGENT]	[114]	[INFO]	 -------Current navigation step: 114 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:16]	[AGENT]	[115]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[AGENT]	[115]	[INFO]	Frontier probabilities: [
+  {
+    "A": [
+      0.4,
+      "Frontier A leads into a room that appears to be a living or recreational area, which has a moderate likelihood of containing furniture like chairs."
+    ],
+    "B": [
+      0.35,
+      "Frontier B leads further into the same room; it is a continuation of the same space as A but offers a different perspective of the area, slightly less direct for finding specific furniture."
+    ]
+  }
+]
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[AGENT]	[115]	[INFO]	2 frontiers detected. 2 with probabilities.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[MANAGER]	[INFO]	Merged frontiers into current goal 78.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[AGENT]	[115]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.79, theta: 0.49, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[AGENT]	[115]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[AGENT]	[115]	[INFO]	 -------Current navigation step: 115 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[AGENT]	[116]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.58, theta: 0.53, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[AGENT]	[116]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[AGENT]	[116]	[INFO]	 -------Current navigation step: 116 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[AGENT]	[117]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[PLANNER]	[INFO]	Planned actions: 2, rho: 2.36, theta: 0.59, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[AGENT]	[117]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:23]	[AGENT]	[117]	[INFO]	 -------Current navigation step: 117 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:24]	[AGENT]	[118]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:24]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.36, theta: 0.06, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:24]	[AGENT]	[118]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:24]	[AGENT]	[118]	[INFO]	 -------Current navigation step: 118 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:26]	[AGENT]	[119]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:26]	[AGENT]	[119]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:26]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.11, theta: 0.07, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:26]	[AGENT]	[119]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:26]	[AGENT]	[119]	[INFO]	 -------Current navigation step: 119 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:27]	[AGENT]	[120]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:27]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.87, theta: 0.08, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:27]	[AGENT]	[120]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:27]	[AGENT]	[120]	[INFO]	 -------Current navigation step: 120 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:27]	[AGENT]	[121]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[AGENT]	[121]	[INFO]	Frontier probabilities: [
+  {
+    "A": [
+      "0.3",
+      "Frontier A leads into a narrow or blocked corner area near a wall, making it unlikely to contain a chair compared to open spaces."
+    ],
+    "B": [
+      "0.3",
+      "Frontier B is in a similar location to A, appearing to be a transition point into an unclear space against the wall, offering little evidence of seating."
+    ]
+  }
+]
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[AGENT]	[121]	[INFO]	2 frontiers detected. 2 with probabilities.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[MANAGER]	[INFO]	Merged frontiers into current goal 78.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[AGENT]	[121]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.62, theta: 0.09, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[AGENT]	[121]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[AGENT]	[121]	[INFO]	 -------Current navigation step: 121 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[AGENT]	[122]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.37, theta: 0.11, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[AGENT]	[122]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[AGENT]	[122]	[INFO]	 -------Current navigation step: 122 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[AGENT]	[123]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.12, theta: 0.14, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[AGENT]	[123]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:34]	[AGENT]	[123]	[INFO]	 -------Current navigation step: 123 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:35]	[AGENT]	[124]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:35]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.87, theta: 0.17, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:35]	[AGENT]	[124]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:35]	[AGENT]	[124]	[INFO]	 -------Current navigation step: 124 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:36]	[AGENT]	[125]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:36]	[AGENT]	[125]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:36]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.63, theta: 0.24, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:36]	[AGENT]	[125]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:36]	[AGENT]	[125]	[INFO]	 -------Current navigation step: 125 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:37]	[AGENT]	[126]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:37]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.39, theta: 0.40, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:37]	[AGENT]	[126]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:37]	[AGENT]	[126]	[INFO]	 -------Current navigation step: 126 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:37]	[AGENT]	[127]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:38]	[AGENT]	[127]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:38]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.39, theta: -0.13, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:38]	[AGENT]	[127]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:38]	[AGENT]	[127]	[INFO]	 -------Current navigation step: 127 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:38]	[AGENT]	[128]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:38]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.14, theta: -0.34, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:38]	[AGENT]	[128]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:38]	[AGENT]	[128]	[INFO]	 -------Current navigation step: 128 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:38]	[AGENT]	[129]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:38]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.14, theta: -0.87, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:38]	[AGENT]	[129]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:38]	[AGENT]	[129]	[INFO]	 -------Current navigation step: 129 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:39]	[AGENT]	[130]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:39]	[PLANNER]	[INFO]	Planned actions: None, rho: 0.14, theta: -1.39, forward heat: 0 rotation heat: 2
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:39]	[MANAGER]	[ERROR]	Reached goal, deleting frontier.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:40]	[AGENT]	[131]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:40]	[AGENT]	[131]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:41]	[AGENT]	[131]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.80, theta: -3.22, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[AGENT]	[131]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[AGENT]	[131]	[INFO]	 -------Current navigation step: 131 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[AGENT]	[132]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[PLANNER]	[INFO]	Planned actions: 3, rho: 1.05, theta: -3.20, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[AGENT]	[132]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[AGENT]	[132]	[INFO]	 -------Current navigation step: 132 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[AGENT]	[133]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[AGENT]	[133]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[PLANNER]	[INFO]	Planned actions: 3, rho: 1.05, theta: -2.68, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[AGENT]	[133]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[AGENT]	[133]	[INFO]	 -------Current navigation step: 133 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[AGENT]	[134]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[PLANNER]	[INFO]	Planned actions: 3, rho: 1.05, theta: -2.15, forward heat: 0 rotation heat: 2
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[AGENT]	[134]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:42]	[AGENT]	[134]	[INFO]	 -------Current navigation step: 134 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:43]	[AGENT]	[135]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:43]	[PLANNER]	[INFO]	Planned actions: 3, rho: 1.05, theta: -1.63, forward heat: 0 rotation heat: 3
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:43]	[AGENT]	[135]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:43]	[AGENT]	[135]	[INFO]	 -------Current navigation step: 135 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:43]	[AGENT]	[136]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:43]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.05, theta: -1.11, forward heat: 0 rotation heat: 4
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:43]	[AGENT]	[136]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:43]	[AGENT]	[136]	[INFO]	 -------Current navigation step: 136 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:45]	[AGENT]	[137]	[INFO]	No masks returned.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:46]	[AGENT]	[137]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:46]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.97, theta: -1.34, forward heat: 1 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:46]	[AGENT]	[137]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:46]	[AGENT]	[137]	[INFO]	 -------Current navigation step: 137 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:46]	[AGENT]	[138]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:46]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.97, theta: -0.82, forward heat: 1 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:46]	[AGENT]	[138]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:46]	[AGENT]	[138]	[INFO]	 -------Current navigation step: 138 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:46]	[AGENT]	[139]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:47]	[AGENT]	[139]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:47]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.97, theta: -0.29, forward heat: 1 rotation heat: 2
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:47]	[AGENT]	[139]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:47]	[AGENT]	[139]	[INFO]	 -------Current navigation step: 139 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:47]	[AGENT]	[140]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:47]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.73, theta: -0.39, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:47]	[AGENT]	[140]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:47]	[AGENT]	[140]	[INFO]	 -------Current navigation step: 140 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:47]	[AGENT]	[141]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:47]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.73, theta: 0.13, forward heat: 0 rotation heat: 1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:47]	[AGENT]	[141]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:48]	[AGENT]	[141]	[INFO]	 -------Current navigation step: 141 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:48]	[AGENT]	[142]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:48]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.48, theta: 0.20, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:48]	[AGENT]	[142]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:48]	[AGENT]	[142]	[INFO]	 -------Current navigation step: 142 -------
+Detected Object: {'label': 'chair', 'image_index': 1, 'box_2d': [124, 509, 164, 555]}
+Detected Object: {'label': 'chair', 'image_index': 5, 'box_2d': [365, 714, 414, 771]}
+Detected Object: {'label': 'chair', 'image_index': 2, 'box_2d': [124, 831, 167, 880]}
+Detected Object: {'label': 'chair', 'image_index': 4, 'box_2d': [365, 400, 410, 453]}
+Detected Object: {'label': 'chair', 'image_index': 5, 'box_2d': [357, 801, 409, 833]}
+Detected Object: {'label': 'chair', 'image_index': 4, 'box_2d': [357, 481, 406, 511]}
+Detected Object: {'label': 'chair', 'image_index': 3, 'box_2d': [357, 161, 403, 189]}
+Detected Object: {'label': 'chair', 'image_index': 3, 'box_2d': [364, 86, 407, 134]}
+Detected Object: {'label': 'chair', 'image_index': 1, 'box_2d': [117, 586, 168, 625]}
+Detected Object: {'label': 'chair', 'image_index': 2, 'box_2d': [117, 915, 173, 958]}
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:50]	[AGENT]	[143]	[INFO]	Target object detection - masks obtained: 10. Detected objects so far: 2
+ imageio_ffmpeg - WARNING - IMAGEIO FFMPEG_WRITER WARNING: input image is not divisible by macro_block_size=16, resizing from (2046, 1024) to (2048, 1024) to ensure video compatibility with most codecs and players. To prevent resizing, make your input image divisible by the macro_block_size or set the macro_block_size to 1 (risking incompatibility).
+100%|██████████| 1/1 [03:16<00:00, 196.41s/it]100%|██████████| 1/1 [03:16<00:00, 196.41s/it]
+2026-08-11 23:40:58,827 Initializing dataset ObjectNav-v1
+2026-08-11 23:40:58,850 initializing sim Sim-v0
+2026-08-11 23:41:02,869 Initializing task ObjectNav-v1
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:51]	[AGENT]	[143]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:51]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.34, theta: 0.05, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:51]	[AGENT]	[143]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:51]	[AGENT]	[143]	[INFO]	Approaching object viewpoint. Trans diff: 3.38 m, Rot diff: 0.15
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:51]	[AGENT]	[143]	[INFO]	 -------Current navigation step: 143 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:52]	[AGENT]	[144]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:52]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.09, theta: 0.06, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:52]	[AGENT]	[144]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:52]	[AGENT]	[144]	[INFO]	Approaching object viewpoint. Trans diff: 3.14 m, Rot diff: 0.15
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:52]	[AGENT]	[144]	[INFO]	 -------Current navigation step: 144 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:52]	[AGENT]	[145]	[INFO]	Updating frontiers.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[145]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.84, theta: 0.06, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[145]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[145]	[INFO]	Approaching object viewpoint. Trans diff: 2.89 m, Rot diff: 0.15
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[145]	[INFO]	 -------Current navigation step: 145 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[146]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.59, theta: 0.07, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[146]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[146]	[INFO]	Approaching object viewpoint. Trans diff: 2.65 m, Rot diff: 0.15
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[146]	[INFO]	 -------Current navigation step: 146 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[147]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.34, theta: 0.07, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[147]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[147]	[INFO]	Approaching object viewpoint. Trans diff: 2.40 m, Rot diff: 0.15
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[147]	[INFO]	 -------Current navigation step: 147 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[148]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.10, theta: 0.08, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[148]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:53]	[AGENT]	[148]	[INFO]	Approaching object viewpoint. Trans diff: 2.16 m, Rot diff: 0.15
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:54]	[AGENT]	[148]	[INFO]	 -------Current navigation step: 148 -------
+Detected Object: {'label': 'chair', 'image_index': 2, 'box_2d': [117, 802, 183, 843]}
+Detected Object: {'label': 'chair', 'image_index': 0, 'box_2d': [126, 68, 179, 129]}
+Detected Object: {'label': 'chair', 'image_index': 4, 'box_2d': [368, 341, 447, 436]}
+Detected Object: {'label': 'chair', 'image_index': 5, 'box_2d': [355, 803, 445, 859]}
+Detected Object: {'label': 'chair', 'image_index': 3, 'box_2d': [367, 37, 438, 119]}
+Detected Object: {'label': 'chair', 'image_index': 3, 'box_2d': [356, 162, 429, 207]}
+Detected Object: {'label': 'chair', 'image_index': 0, 'box_2d': [117, 161, 173, 198]}
+Detected Object: {'label': 'chair', 'image_index': 2, 'box_2d': [127, 689, 190, 762]}
+Detected Object: {'label': 'chair', 'image_index': 1, 'box_2d': [126, 379, 184, 445]}
+Detected Object: {'label': 'chair', 'image_index': 4, 'box_2d': [356, 482, 437, 530]}
+Detected Object: {'label': 'chair', 'image_index': 5, 'box_2d': [369, 641, 459, 749]}
+Detected Object: {'label': 'chair', 'image_index': 1, 'box_2d': [117, 482, 177, 519]}
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:55]	[AGENT]	[149]	[INFO]	Target object detection - masks obtained: 12. Detected objects so far: 2
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:56]	[MANAGER]	[INFO]	Merged frontiers into current goal 99.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:56]	[AGENT]	[149]	[INFO]	Replanning...
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:56]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.85, theta: 0.09, forward heat: 0 rotation heat: 0
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:56]	[AGENT]	[149]	[INFO]	Path to goal found with 1 steps.
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:56]	[AGENT]	[149]	[INFO]	Approaching object viewpoint. Trans diff: 1.92 m, Rot diff: 0.15
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:56]	[AGENT]	[149]	[INFO]	 -------Current navigation step: 149 -------
+[4ok3usBNeis/episode-0-chair]	[2026-08-11 23:40:56]	[AGENT]	[150]	[INFO]	Maximum steps reached, navigation finished.
+Closed environment for scene: 4ok3usBNeis
+Evaluating Scene: zt1RVoi7PcG
+  0%|          | 0/1 [00:00<?, ?it/s] root - INFO - Loading model from: model_weights/rgbd_11cls.pth
+ root - INFO - Using device cuda
+ root - INFO - Model loaded! Num classes: 11
+ frontier.base - INFO - FrontierManager initialized
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:03]	[AGENT]	[-1]	[INFO]	ASM: attached, writing to output/asmint_sam3_gemini_gemini/zt1RVoi7PcG/episode-0-tv_monitor/asm
+Loaded: model_weights/pointnav_weights.pth
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:03]	[AGENT]	[-1]	[INFO]	Saved camera intrinsics to output/asmint_sam3_gemini_gemini/zt1RVoi7PcG/episode-0-tv_monitor/camera_intrinsics.json
+WaveMapper initialized with parameters:
+min_cell_width: 0.05
+width: 640
+height: 480
+fx: 388.1910413097385
+fy: 388.1910413097385
+cx: 319.5
+cy: 239.5
+min_range: 0.05
+max_range: 3.5
+resolution: 0.1
+Logger initialized with level: INFO
+Logger initialized with level: INFO
+Logger initialized with level: INFO
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:04]	[AGENT]	[-1]	[INFO]	Initial mapping round started.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:05]	[AGENT]	[0]	[INFO]	Updating frontiers.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:09]	[AGENT]	[0]	[INFO]	Frontier probabilities: [
+  {
+    "C": [
+      0.05,
+      "The frontier leads into a bathroom area, which is highly unlikely to contain a television."
+    ],
+    "D": [
+      0.05,
+      "The frontier leads into a bathroom area, which is highly unlikely to contain a television."
+    ],
+    "E": [
+      0.05,
+      "The frontier leads into a bathroom area, which is highly unlikely to contain a television."
+    ],
+    "F": [
+      0.05,
+      "The frontier leads into a bathroom area, which is highly unlikely to contain a television."
+    ],
+    "G": [
+      0.05,
+      "The frontier leads into a bathroom area, which is highly unlikely to contain a television."
+    ]
+  }
+]
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:09]	[AGENT]	[0]	[INFO]	5 frontiers detected. 5 with probabilities.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:09]	[AGENT]	[0]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:09]	[PLANNER]	[INFO]	Planned actions: 2, rho: 3.93, theta: 0.30, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:09]	[AGENT]	[0]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:09]	[AGENT]	[0]	[INFO]	 -------Current navigation step: 0 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:09]	[AGENT]	[1]	[INFO]	Updating frontiers.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[AGENT]	[1]	[INFO]	Frontier probabilities: [
+  {
+    "B": [0.05, "This frontier is inside a bathroom, which is unlikely to contain a television screen."],
+    "C": [0.05, "This frontier is inside a bathroom, which is unlikely to contain a television screen."],
+    "E": [0.05, "This frontier is inside a bathroom, which is unlikely to contain a television screen."],
+    "F": [0.3, "This frontier leads into a living room or shared space where a television screen is more likely to be found."],
+    "G": [0.3, "This frontier leads into a living room or shared space where a television screen is more likely to be found."],
+    "H": [0.05, "This frontier is inside a bathroom, which is unlikely to contain a television screen."],
+    "I": [0.5, "This frontier is unseen or obscured, making the probability neutral."],
+    "J": [0.3, "This frontier leads into a living room or shared space where a television screen is more likely to be found."],
+    "K": [0.3, "This frontier leads into a living room or shared space where a television screen is more likely to be found."],
+    "M": [0.05, "This frontier is inside a bathroom, which is unlikely to contain a television screen."]
+  }
+]
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[AGENT]	[1]	[INFO]	10 frontiers detected. 10 with probabilities.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[MANAGER]	[INFO]	Merged frontiers into current goal 2.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[AGENT]	[1]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[PLANNER]	[INFO]	Planned actions: 2, rho: 6.20, theta: 0.26, forward heat: 0 rotation heat: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[AGENT]	[1]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[AGENT]	[1]	[INFO]	 -------Current navigation step: 1 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[AGENT]	[2]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[PLANNER]	[INFO]	Planned actions: 1, rho: 6.20, theta: -0.27, forward heat: 0 rotation heat: 2
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[AGENT]	[2]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[AGENT]	[2]	[INFO]	 -------Current navigation step: 2 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[AGENT]	[3]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.96, theta: -0.28, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[AGENT]	[3]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[AGENT]	[3]	[INFO]	 -------Current navigation step: 3 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[AGENT]	[4]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.72, theta: -0.29, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[AGENT]	[4]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:18]	[AGENT]	[4]	[INFO]	 -------Current navigation step: 4 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:19]	[AGENT]	[5]	[INFO]	No masks returned.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:20]	[AGENT]	[5]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:20]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.48, theta: -0.30, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:20]	[AGENT]	[5]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:20]	[AGENT]	[5]	[INFO]	 -------Current navigation step: 5 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:20]	[AGENT]	[6]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:20]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.24, theta: -0.32, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:20]	[AGENT]	[6]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:20]	[AGENT]	[6]	[INFO]	 -------Current navigation step: 6 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:20]	[AGENT]	[7]	[INFO]	Updating frontiers.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[AGENT]	[7]	[INFO]	Frontier probabilities: {
+  "D": [0.1, "This frontier leads to an exterior space visible through a glass door, which is unlikely to contain a television screen."],
+  "E": [0.1, "This frontier corresponds to the same glass door exit, meaning it likely leads outside."],
+  "G": [0.1, "This frontier is also situated on the glass door leading outside, making the presence of a television screen highly improbable."],
+  "I": [0.5, "This label is not visible in the provided image, so it is assigned a neutral probability."]
+}
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[AGENT]	[7]	[INFO]	4 frontiers detected. 4 with probabilities.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[AGENT]	[7]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.00, theta: -0.33, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[AGENT]	[7]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[AGENT]	[7]	[INFO]	 -------Current navigation step: 7 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[AGENT]	[8]	[INFO]	Replanning...
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.77, theta: -0.35, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[AGENT]	[8]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[AGENT]	[8]	[INFO]	 -------Current navigation step: 8 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[AGENT]	[9]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.53, theta: -0.37, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[AGENT]	[9]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[AGENT]	[9]	[INFO]	 -------Current navigation step: 9 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[AGENT]	[10]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.30, theta: -0.39, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[AGENT]	[10]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:29]	[AGENT]	[10]	[INFO]	 -------Current navigation step: 10 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:31]	[AGENT]	[11]	[INFO]	No masks returned.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:31]	[AGENT]	[11]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:31]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.07, theta: -0.41, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:31]	[AGENT]	[11]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:31]	[AGENT]	[11]	[INFO]	 -------Current navigation step: 11 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:31]	[AGENT]	[12]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:31]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.84, theta: -0.44, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:31]	[AGENT]	[12]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:31]	[AGENT]	[12]	[INFO]	 -------Current navigation step: 12 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:31]	[AGENT]	[13]	[INFO]	Updating frontiers.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[AGENT]	[13]	[INFO]	Frontier probabilities: [
+  {
+    "A": [
+      0.1,
+      "Frontier A is a sliding glass door leading to an outdoor area, making it very unlikely to contain an indoor object like a television."
+    ],
+    "D": [
+      0.1,
+      "Frontier D is a window, which is an unlikely location for a television screen, as it usually faces the outdoors."
+    ]
+  }
+]
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[AGENT]	[13]	[INFO]	2 frontiers detected. 2 with probabilities.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[AGENT]	[13]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.62, theta: -0.47, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[AGENT]	[13]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[AGENT]	[13]	[INFO]	 -------Current navigation step: 13 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[AGENT]	[14]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.40, theta: -0.50, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[AGENT]	[14]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[AGENT]	[14]	[INFO]	 -------Current navigation step: 14 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[AGENT]	[15]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.18, theta: -0.54, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[AGENT]	[15]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[AGENT]	[15]	[INFO]	 -------Current navigation step: 15 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[AGENT]	[16]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[PLANNER]	[INFO]	Planned actions: 3, rho: 2.97, theta: -0.59, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[AGENT]	[16]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:40]	[AGENT]	[16]	[INFO]	 -------Current navigation step: 16 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:42]	[AGENT]	[17]	[INFO]	No masks returned.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:43]	[AGENT]	[17]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:43]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.74, theta: 0.97, forward heat: 0 rotation heat: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:43]	[AGENT]	[17]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:43]	[AGENT]	[17]	[INFO]	 -------Current navigation step: 17 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:43]	[AGENT]	[18]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:43]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.74, theta: 0.45, forward heat: 0 rotation heat: 2
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:43]	[AGENT]	[18]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:43]	[AGENT]	[18]	[INFO]	 -------Current navigation step: 18 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:43]	[AGENT]	[19]	[INFO]	Updating frontiers.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[AGENT]	[19]	[INFO]	Frontier probabilities: {
+  "D": [0.1, "Frontier D leads to a doorway, which likely opens to an exterior area or another room, making it an unlikely location for a television screen."]
+}
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[AGENT]	[19]	[INFO]	1 frontiers detected. 1 with probabilities.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[AGENT]	[19]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.62, theta: 0.55, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[AGENT]	[19]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[AGENT]	[19]	[INFO]	 -------Current navigation step: 19 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[AGENT]	[20]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.62, theta: 0.03, forward heat: 0 rotation heat: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[AGENT]	[20]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[AGENT]	[20]	[INFO]	 -------Current navigation step: 20 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[AGENT]	[21]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.37, theta: 0.04, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[AGENT]	[21]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[AGENT]	[21]	[INFO]	 -------Current navigation step: 21 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[AGENT]	[22]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.12, theta: 0.06, forward heat: 0 rotation heat: 0
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[AGENT]	[22]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:51]	[AGENT]	[22]	[INFO]	 -------Current navigation step: 22 -------
+Detected Object: {'label': 'television_screen', 'image_index': 5, 'box_2d': [339, 693, 366, 741]}
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:53]	[AGENT]	[23]	[INFO]	Target object detection - masks obtained: 1. Detected objects so far: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[23]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[PLANNER]	[INFO]	Planned actions: 2, rho: 5.66, theta: 0.40, forward heat: 0 rotation heat: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[23]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[23]	[INFO]	Approaching object viewpoint. Trans diff: 5.66 m, Rot diff: 0.40
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[23]	[INFO]	 -------Current navigation step: 23 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[24]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[PLANNER]	[INFO]	Planned actions: 3, rho: 5.66, theta: -0.12, forward heat: 0 rotation heat: 2
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[24]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[24]	[INFO]	Approaching object viewpoint. Trans diff: 5.66 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[24]	[INFO]	 -------Current navigation step: 24 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[25]	[INFO]	Updating frontiers.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[25]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[PLANNER]	[INFO]	Planned actions: 3, rho: 5.66, theta: 0.40, forward heat: 0 rotation heat: 3
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[25]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[25]	[INFO]	Approaching object viewpoint. Trans diff: 5.66 m, Rot diff: 0.40
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[25]	[INFO]	 -------Current navigation step: 25 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[26]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[PLANNER]	[INFO]	Planned actions: 3, rho: 5.66, theta: 0.93, forward heat: 0 rotation heat: 4
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[26]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[26]	[INFO]	Approaching object viewpoint. Trans diff: 5.66 m, Rot diff: 0.93
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:54]	[AGENT]	[26]	[INFO]	 -------Current navigation step: 26 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:55]	[AGENT]	[27]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:55]	[PLANNER]	[INFO]	Planned actions: 3, rho: 5.66, theta: 1.45, forward heat: 0 rotation heat: 5
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:55]	[AGENT]	[27]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:55]	[AGENT]	[27]	[INFO]	Approaching object viewpoint. Trans diff: 5.66 m, Rot diff: 1.45
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:55]	[AGENT]	[27]	[INFO]	 -------Current navigation step: 27 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:55]	[AGENT]	[28]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:55]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.66, theta: -4.31, forward heat: 0 rotation heat: 6
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:55]	[AGENT]	[28]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:55]	[AGENT]	[28]	[INFO]	Approaching object viewpoint. Trans diff: 5.66 m, Rot diff: 1.97
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:55]	[AGENT]	[28]	[INFO]	 -------Current navigation step: 28 -------
+Detected Object: {'label': 'television_screen', 'image_index': 0, 'box_2d': [101, 163, 126, 205]}
+Detected Object: {'label': 'television_screen', 'image_index': 1, 'box_2d': [99, 373, 126, 421]}
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:56]	[AGENT]	[29]	[INFO]	Target object detection - masks obtained: 2. Detected objects so far: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:57]	[MANAGER]	[INFO]	Merged frontiers into current goal 54.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:57]	[AGENT]	[29]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:57]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.76, theta: -4.27, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:57]	[AGENT]	[29]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:57]	[AGENT]	[29]	[INFO]	Approaching object viewpoint. Trans diff: 5.76 m, Rot diff: 1.97
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:57]	[AGENT]	[29]	[INFO]	 -------Current navigation step: 29 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:57]	[AGENT]	[30]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:57]	[PLANNER]	[INFO]	Planned actions: 2, rho: 5.87, theta: -4.23, forward heat: 1 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:57]	[AGENT]	[30]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:57]	[AGENT]	[30]	[INFO]	Approaching object viewpoint. Trans diff: 5.87 m, Rot diff: 1.97
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:57]	[AGENT]	[30]	[INFO]	 -------Current navigation step: 30 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:41:57]	[AGENT]	[31]	[INFO]	Updating frontiers.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:08]	[AGENT]	[31]	[INFO]	Frontier probabilities: [
+  {
+    "A": [
+      0.15,
+      "Frontier A leads to a doorway or transition area, likely to another room. Since no media center or living room features are visible here, the probability is low."
+    ]
+  }
+]
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:08]	[AGENT]	[31]	[INFO]	1 frontiers detected. 1 with probabilities.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:08]	[AGENT]	[31]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:08]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.87, theta: 1.53, forward heat: 1 rotation heat: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:08]	[AGENT]	[31]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:08]	[AGENT]	[31]	[INFO]	Approaching object viewpoint. Trans diff: 5.87 m, Rot diff: 1.45
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:08]	[AGENT]	[31]	[INFO]	 -------Current navigation step: 31 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[AGENT]	[32]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.87, theta: 1.57, forward heat: 2 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[AGENT]	[32]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[AGENT]	[32]	[INFO]	Approaching object viewpoint. Trans diff: 5.87 m, Rot diff: 1.45
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[AGENT]	[32]	[INFO]	 -------Current navigation step: 32 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[AGENT]	[33]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[PLANNER]	[INFO]	Planned actions: 2, rho: 5.87, theta: -4.67, forward heat: 3 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[AGENT]	[33]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[AGENT]	[33]	[INFO]	Approaching object viewpoint. Trans diff: 5.87 m, Rot diff: 1.45
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[AGENT]	[33]	[INFO]	 -------Current navigation step: 33 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[AGENT]	[34]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.87, theta: 1.09, forward heat: 3 rotation heat: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[AGENT]	[34]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[AGENT]	[34]	[INFO]	Approaching object viewpoint. Trans diff: 5.87 m, Rot diff: 0.93
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:09]	[AGENT]	[34]	[INFO]	 -------Current navigation step: 34 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:10]	[AGENT]	[35]	[INFO]	No masks returned.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:10]	[AGENT]	[35]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:10]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.76, theta: 1.13, forward heat: 4 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:10]	[AGENT]	[35]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:10]	[AGENT]	[35]	[INFO]	Approaching object viewpoint. Trans diff: 5.76 m, Rot diff: 0.93
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:10]	[AGENT]	[35]	[INFO]	 -------Current navigation step: 35 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:10]	[AGENT]	[36]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:10]	[PLANNER]	[INFO]	Planned actions: 2, rho: 5.74, theta: 1.14, forward heat: 5 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:10]	[AGENT]	[36]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:10]	[AGENT]	[36]	[INFO]	Approaching object viewpoint. Trans diff: 5.74 m, Rot diff: 0.93
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:10]	[AGENT]	[36]	[INFO]	 -------Current navigation step: 36 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[37]	[INFO]	Updating frontiers.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[37]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.74, theta: 0.61, forward heat: 5 rotation heat: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[37]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[37]	[INFO]	Approaching object viewpoint. Trans diff: 5.74 m, Rot diff: 0.40
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[37]	[INFO]	 -------Current navigation step: 37 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[38]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[PLANNER]	[INFO]	Planned actions: 2, rho: 5.74, theta: 0.61, forward heat: 6 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[38]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[38]	[INFO]	Approaching object viewpoint. Trans diff: 5.74 m, Rot diff: 0.40
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[38]	[INFO]	 -------Current navigation step: 38 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[39]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.74, theta: 0.09, forward heat: 6 rotation heat: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[39]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[39]	[INFO]	Approaching object viewpoint. Trans diff: 5.74 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[39]	[INFO]	 -------Current navigation step: 39 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[40]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.49, theta: 0.09, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[40]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[40]	[INFO]	Approaching object viewpoint. Trans diff: 5.49 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:11]	[AGENT]	[40]	[INFO]	 -------Current navigation step: 40 -------
+Detected Object: {'label': 'television_screen', 'image_index': 5, 'box_2d': [340, 764, 366, 809]}
+Detected Object: {'label': 'television_screen', 'image_index': 3, 'box_2d': [341, 127, 365, 168]}
+Detected Object: {'label': 'television_screen', 'image_index': 2, 'box_2d': [98, 641, 127, 699]}
+Detected Object: {'label': 'television_screen', 'image_index': 1, 'box_2d': [98, 321, 127, 379]}
+Detected Object: {'label': 'television_screen', 'image_index': 4, 'box_2d': [341, 446, 366, 488]}
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:13]	[AGENT]	[41]	[INFO]	Target object detection - masks obtained: 5. Detected objects so far: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[MANAGER]	[INFO]	Merged frontiers into current goal 54.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[41]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[PLANNER]	[INFO]	Planned actions: 1, rho: 5.24, theta: 0.10, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[41]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[41]	[INFO]	Approaching object viewpoint. Trans diff: 5.24 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[41]	[INFO]	 -------Current navigation step: 41 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[42]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.99, theta: 0.10, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[42]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[42]	[INFO]	Approaching object viewpoint. Trans diff: 4.99 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[42]	[INFO]	 -------Current navigation step: 42 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[43]	[INFO]	Updating frontiers.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[43]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.74, theta: 0.11, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[43]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[43]	[INFO]	Approaching object viewpoint. Trans diff: 4.74 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[43]	[INFO]	 -------Current navigation step: 43 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[44]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.49, theta: 0.12, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[44]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[44]	[INFO]	Approaching object viewpoint. Trans diff: 4.50 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:14]	[AGENT]	[44]	[INFO]	 -------Current navigation step: 44 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:15]	[AGENT]	[45]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:15]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.24, theta: 0.12, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:15]	[AGENT]	[45]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:15]	[AGENT]	[45]	[INFO]	Approaching object viewpoint. Trans diff: 4.25 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:15]	[AGENT]	[45]	[INFO]	 -------Current navigation step: 45 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:15]	[AGENT]	[46]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:15]	[PLANNER]	[INFO]	Planned actions: 1, rho: 4.00, theta: 0.13, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:15]	[AGENT]	[46]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:15]	[AGENT]	[46]	[INFO]	Approaching object viewpoint. Trans diff: 4.00 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:15]	[AGENT]	[46]	[INFO]	 -------Current navigation step: 46 -------
+Detected Object: {'label': 'television_screen', 'image_index': 5, 'box_2d': [333, 753, 369, 811]}
+Detected Object: {'label': 'television_screen', 'image_index': 3, 'box_2d': [336, 118, 368, 170]}
+Detected Object: {'label': 'television_screen', 'image_index': 0, 'box_2d': [99, 123, 127, 170]}
+Detected Object: {'label': 'television_screen', 'image_index': 2, 'box_2d': [97, 760, 127, 810]}
+Detected Object: {'label': 'television_screen', 'image_index': 4, 'box_2d': [335, 436, 368, 491]}
+Detected Object: {'label': 'television_screen', 'image_index': 1, 'box_2d': [98, 442, 127, 490]}
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:16]	[AGENT]	[47]	[INFO]	Target object detection - masks obtained: 6. Detected objects so far: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:17]	[MANAGER]	[INFO]	Merged frontiers into current goal 54.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:17]	[AGENT]	[47]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:17]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.61, theta: 0.15, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:17]	[AGENT]	[47]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:17]	[AGENT]	[47]	[INFO]	Approaching object viewpoint. Trans diff: 3.75 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:17]	[AGENT]	[47]	[INFO]	 -------Current navigation step: 47 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:17]	[AGENT]	[48]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:17]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.36, theta: 0.16, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:17]	[AGENT]	[48]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:17]	[AGENT]	[48]	[INFO]	Approaching object viewpoint. Trans diff: 3.51 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:17]	[AGENT]	[48]	[INFO]	 -------Current navigation step: 48 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:17]	[AGENT]	[49]	[INFO]	Updating frontiers.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[49]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[PLANNER]	[INFO]	Planned actions: 1, rho: 3.11, theta: 0.17, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[49]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[49]	[INFO]	Approaching object viewpoint. Trans diff: 3.26 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[49]	[INFO]	 -------Current navigation step: 49 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[50]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.87, theta: 0.19, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[50]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[50]	[INFO]	Approaching object viewpoint. Trans diff: 3.01 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[50]	[INFO]	 -------Current navigation step: 50 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[51]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.62, theta: 0.21, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[51]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[51]	[INFO]	Approaching object viewpoint. Trans diff: 2.77 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[51]	[INFO]	 -------Current navigation step: 51 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[52]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.38, theta: 0.23, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[52]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[52]	[INFO]	Approaching object viewpoint. Trans diff: 2.52 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:18]	[AGENT]	[52]	[INFO]	 -------Current navigation step: 52 -------
+Detected Object: {'label': 'television_screen', 'image_index': 5, 'box_2d': [320, 730, 373, 817]}
+Detected Object: {'label': 'television_screen', 'image_index': 3, 'box_2d': [326, 100, 371, 175]}
+Detected Object: {'label': 'television_screen', 'image_index': 0, 'box_2d': [92, 111, 129, 172]}
+Detected Object: {'label': 'television_screen', 'image_index': 2, 'box_2d': [88, 744, 131, 814]}
+Detected Object: {'label': 'television_screen', 'image_index': 4, 'box_2d': [323, 416, 372, 496]}
+Detected Object: {'label': 'television_screen', 'image_index': 1, 'box_2d': [90, 428, 130, 493]}
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:20]	[AGENT]	[53]	[INFO]	Target object detection - masks obtained: 6. Detected objects so far: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:21]	[MANAGER]	[INFO]	Merged frontiers into current goal 54.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:21]	[AGENT]	[53]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:21]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.27, theta: 0.23, forward heat: 1 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:21]	[AGENT]	[53]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:21]	[AGENT]	[53]	[INFO]	Approaching object viewpoint. Trans diff: 2.28 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:21]	[AGENT]	[53]	[INFO]	 -------Current navigation step: 53 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:21]	[AGENT]	[54]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:21]	[PLANNER]	[INFO]	Planned actions: 1, rho: 2.03, theta: 0.26, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:21]	[AGENT]	[54]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:21]	[AGENT]	[54]	[INFO]	Approaching object viewpoint. Trans diff: 2.04 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:21]	[AGENT]	[54]	[INFO]	 -------Current navigation step: 54 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:21]	[AGENT]	[55]	[INFO]	Updating frontiers.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[55]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.79, theta: 0.29, forward heat: 0 rotation heat: 0
+ google_genai.models - INFO - AFC is enabled with max remote calls: 10.
+ httpx - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent "HTTP/1.1 200 OK"
+ google_genai.types - WARNING - Warning: there are non-text parts in the response: ['thought_signature'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+100%|██████████| 1/1 [01:38<00:00, 98.31s/it]100%|██████████| 1/1 [01:38<00:00, 98.31s/it]
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[55]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[55]	[INFO]	Approaching object viewpoint. Trans diff: 1.80 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[55]	[INFO]	 -------Current navigation step: 55 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[56]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.55, theta: 0.34, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[56]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[56]	[INFO]	Approaching object viewpoint. Trans diff: 1.56 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[56]	[INFO]	 -------Current navigation step: 56 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[57]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[PLANNER]	[INFO]	Planned actions: 1, rho: 1.22, theta: 0.40, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[57]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[57]	[INFO]	Approaching object viewpoint. Trans diff: 1.33 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[57]	[INFO]	 -------Current navigation step: 57 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[58]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[PLANNER]	[INFO]	Planned actions: 2, rho: 0.99, theta: 0.49, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[58]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[58]	[INFO]	Approaching object viewpoint. Trans diff: 1.11 m, Rot diff: 0.13
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:22]	[AGENT]	[58]	[INFO]	 -------Current navigation step: 58 -------
+Detected Object: {'label': 'television_screen', 'image_index': 5, 'box_2d': [271, 795, 389, 958]}
+Detected Object: {'label': 'television_screen', 'image_index': 3, 'box_2d': [299, 56, 381, 188]}
+Detected Object: {'label': 'television_screen', 'image_index': 0, 'box_2d': [76, 84, 135, 180]}
+Detected Object: {'label': 'television_screen', 'image_index': 2, 'box_2d': [66, 708, 138, 824]}
+Detected Object: {'label': 'television_screen', 'image_index': 4, 'box_2d': [289, 361, 384, 512]}
+Detected Object: {'label': 'television_screen', 'image_index': 1, 'box_2d': [72, 396, 137, 502]}
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:24]	[AGENT]	[59]	[INFO]	Target object detection - masks obtained: 6. Detected objects so far: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:24]	[MANAGER]	[INFO]	Merged frontiers into current goal 54.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:24]	[AGENT]	[59]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:24]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.99, theta: -0.03, forward heat: 0 rotation heat: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:24]	[AGENT]	[59]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:24]	[AGENT]	[59]	[INFO]	Approaching object viewpoint. Trans diff: 1.11 m, Rot diff: 0.65
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:24]	[AGENT]	[59]	[INFO]	 -------Current navigation step: 59 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:25]	[AGENT]	[60]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:25]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.74, theta: -0.04, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:25]	[AGENT]	[60]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:25]	[AGENT]	[60]	[INFO]	Approaching object viewpoint. Trans diff: 0.86 m, Rot diff: 0.65
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:25]	[AGENT]	[60]	[INFO]	 -------Current navigation step: 60 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:25]	[AGENT]	[61]	[INFO]	Updating frontiers.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:25]	[AGENT]	[61]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:25]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.49, theta: -0.06, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:25]	[AGENT]	[61]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:25]	[AGENT]	[61]	[INFO]	Approaching object viewpoint. Trans diff: 0.62 m, Rot diff: 0.65
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:25]	[AGENT]	[61]	[INFO]	 -------Current navigation step: 61 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:25]	[AGENT]	[62]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:26]	[PLANNER]	[INFO]	Planned actions: 1, rho: 0.24, theta: -0.10, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:26]	[AGENT]	[62]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:26]	[AGENT]	[62]	[INFO]	Approaching object viewpoint. Trans diff: 0.39 m, Rot diff: 0.65
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:26]	[AGENT]	[62]	[INFO]	 -------Current navigation step: 62 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:26]	[AGENT]	[63]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:26]	[PLANNER]	[INFO]	Planned actions: 3, rho: 0.10, theta: -0.34, forward heat: 1 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:26]	[AGENT]	[63]	[INFO]	Path to goal found with 1 steps.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:26]	[AGENT]	[63]	[INFO]	Approaching object viewpoint. Trans diff: 0.21 m, Rot diff: 0.65
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:26]	[AGENT]	[63]	[INFO]	 -------Current navigation step: 63 -------
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:26]	[AGENT]	[64]	[INFO]	Replanning...
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:26]	[PLANNER]	[INFO]	Planned actions: None, rho: 0.10, theta: 0.18, forward heat: 1 rotation heat: 1
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:26]	[MANAGER]	[ERROR]	Reached goal, deleting frontier.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:26]	[AGENT]	[64]	[INFO]	Reached object viewpoint, performing target object detection.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:39]	[AGENT]	[64]	[INFO]	Target detection: [
+  {"probability": 1, "reason": "The image clearly shows a large television mounted on the wall in the center of the frame, which is easily reachable and fully visible."}
+]
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:39]	[AGENT]	[64]	[INFO]	Target object detection - Probability: 1, Reason: The image clearly shows a large television mounted on the wall in the center of the frame, which is easily reachable and fully visible.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:39]	[AGENT]	[64]	[INFO]	Object found with probability 1. Approaching object.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:39]	[PLANNER]	[INFO]	Planned actions: None, rho: 0.04, theta: -0.11, forward heat: 0 rotation heat: 0
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:39]	[MANAGER]	[ERROR]	Reached goal, deleting frontier.
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:39]	[AGENT]	[64]	[INFO]	Approaching locked-in object. Distance to object center: 0.81 m
+[zt1RVoi7PcG/episode-0-tv_monitor]	[2026-08-11 23:42:39]	[AGENT]	[64]	[INFO]	Reached object, navigation finished successfully.
+Closed environment for scene: zt1RVoi7PcG
+nanobind: leaked 16 instances!
+ - leaked instance 0x766f0c38a210 of type "pywavemap._pywavemap_bindings.Pose"
+ - leaked instance 0x766e64447210 of type "pywavemap._pywavemap_bindings.Pose"
+ - leaked instance 0x766f010b5288 of type "pywavemap._pywavemap_bindings.Pipeline"
+ - leaked instance 0x766e6c44a108 of type "pywavemap._pywavemap_bindings.Image"
+ - leaked instance 0x766f000c01f8 of type "pywavemap._pywavemap_bindings.Pipeline"
+ - leaked instance 0x5d4640221dd0 of type "pywavemap._pywavemap_bindings.HashedChunkedWaveletOctree"
+ - leaked instance 0x766e8592b7c8 of type "pywavemap._pywavemap_bindings.Image"
+ - leaked instance 0x766e7c682888 of type "pywavemap._pywavemap_bindings.Image"
+ - leaked instance 0x766e8592bfd0 of type "pywavemap._pywavemap_bindings.Pose"
+ - leaked instance 0x766f0b721988 of type "pywavemap._pywavemap_bindings.Image"
+ - leaked instance 0x766e7c717fd0 of type "pywavemap._pywavemap_bindings.Pose"
+ - leaked instance 0x766e7c682550 of type "pywavemap._pywavemap_bindings.Pose"
+ - leaked instance 0x5d46ce8cd040 of type "pywavemap._pywavemap_bindings.HashedChunkedWaveletOctree"
+ - leaked instance 0x766e7c717788 of type "pywavemap._pywavemap_bindings.Image"
+ - leaked instance 0x766f0115d8d0 of type "pywavemap._pywavemap_bindings.Pose"
+ - leaked instance 0x766ebe136248 of type "pywavemap._pywavemap_bindings.Image"
+nanobind: leaked 2 keep_alive records!
+nanobind: leaked 6 types!
+ - leaked type "pywavemap._pywavemap_bindings.HashedChunkedWaveletOctree"
+ - leaked type "InterpolationMode"
+ - leaked type "pywavemap._pywavemap_bindings.Image"
+ - leaked type "pywavemap._pywavemap_bindings.Map"
+ - leaked type "pywavemap._pywavemap_bindings.Pipeline"
+ - leaked type "pywavemap._pywavemap_bindings.Pose"
+nanobind: leaked 37 functions!
+ - leaked function ""
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function "interpolate"
+ - leaked function "prune_smart"
+ - leaked function "run_integrators"
+ - leaked function "get_cell_values"
+ - leaked function "clear_operations"
+ - leaked function ""
+ - leaked function "clear"
+ - ... skipped remainder
+nanobind: this is likely caused by a reference counting issue in the binding code.
+See https://nanobind.readthedocs.io/en/latest/refleaks.html

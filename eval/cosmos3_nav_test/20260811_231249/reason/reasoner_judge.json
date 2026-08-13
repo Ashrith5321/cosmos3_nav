@@ -1,0 +1,76 @@
+{
+  "task": "judge",
+  "load_s": 3.234,
+  "verdicts": {
+    "text2image": {
+      "raw": "{\"predicted_space_type\": \"dining room\", \"real_space_type\": \"living room\", \"space_type_match\": false, \"layout_similarity_0_to_10\": 2, \"appearance_similarity_0_to_10\": 3, \"verdict\": \"The left image depicts a dining area with hardwood floors and kitchen elements, while the right image shows a living space featuring a window with blinds and wooden furniture.\", \"shared_objects\": [], \"objects_only_in_prediction\": [\"hardwood floor\", \"kitchen island\", \"refrigerator\", \"cabinets\", \"chairs\", \"table\", \"painting on wall\", \"ceiling lights\", \"window above sink\"], \"objects_only_in_reality\": [\"window with white horizontal blinds\", \"dark wood cabinet or chest\", \"green plant on top of furniture\"]}",
+      "parsed": {
+        "predicted_space_type": "dining room",
+        "real_space_type": "living room",
+        "space_type_match": false,
+        "layout_similarity_0_to_10": 2,
+        "appearance_similarity_0_to_10": 3,
+        "verdict": "The left image depicts a dining area with hardwood floors and kitchen elements, while the right image shows a living space featuring a window with blinds and wooden furniture.",
+        "shared_objects": [],
+        "objects_only_in_prediction": [
+          "hardwood floor",
+          "kitchen island",
+          "refrigerator",
+          "cabinets",
+          "chairs",
+          "table",
+          "painting on wall",
+          "ceiling lights",
+          "window above sink"
+        ],
+        "objects_only_in_reality": [
+          "window with white horizontal blinds",
+          "dark wood cabinet or chest",
+          "green plant on top of furniture"
+        ]
+      },
+      "compare_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/reason/compare_text2image.png",
+      "evaluate_s": 5.924
+    },
+    "image2image": {
+      "raw": "{\"predicted_space_type\": \"kitchen\", \"real_space_type\": \"living room\", \"space_type_match\": false, \"layout_similarity_0_to_10\": 2, \"appearance_similarity_0_to_10\": 3, \"verdict\": \"The left image depicts a kitchen while the right one shows a living room; they are completely different spaces.\", \"shared_objects\": [], \"objects_only_in_prediction\": [\"refrigerator\", \"cabinets\", \"island counter\", \"chairs\", \"ceiling lights\", \"clock on wall\", \"wooden floor\", \"stove\", \"sink\", \"countertop appliances\", \"overhead cabinets\", \"microwave oven\", \"pendant light fixture\", \"wall decor\", \"doorway to another room\", \"window blinds (implied)\"], \"objects_only_in_reality\": [\"piano or large wooden furniture piece\", \"green plant on top of furniture\", \"white window blinds covering a window\", \"neutral-colored walls\", \"small table or chair partially visible\"]}",
+      "parsed": {
+        "predicted_space_type": "kitchen",
+        "real_space_type": "living room",
+        "space_type_match": false,
+        "layout_similarity_0_to_10": 2,
+        "appearance_similarity_0_to_10": 3,
+        "verdict": "The left image depicts a kitchen while the right one shows a living room; they are completely different spaces.",
+        "shared_objects": [],
+        "objects_only_in_prediction": [
+          "refrigerator",
+          "cabinets",
+          "island counter",
+          "chairs",
+          "ceiling lights",
+          "clock on wall",
+          "wooden floor",
+          "stove",
+          "sink",
+          "countertop appliances",
+          "overhead cabinets",
+          "microwave oven",
+          "pendant light fixture",
+          "wall decor",
+          "doorway to another room",
+          "window blinds (implied)"
+        ],
+        "objects_only_in_reality": [
+          "piano or large wooden furniture piece",
+          "green plant on top of furniture",
+          "white window blinds covering a window",
+          "neutral-colored walls",
+          "small table or chair partially visible"
+        ]
+      },
+      "compare_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_231249/reason/compare_image2image.png",
+      "evaluate_s": 7.052
+    }
+  },
+  "peak_gpu_mb": 17039.0
+}

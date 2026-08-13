@@ -1,0 +1,20 @@
+{
+  "load_peak_gpu_mb": 32473.4,
+  "generate_text2image_peak_gpu_mb": 33835.1,
+  "generate_text2image_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/cosmos/gen_text2image/vision.jpg",
+  "generate_image2image_peak_gpu_mb": 33832.1,
+  "generate_image2image_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/cosmos/gen_image2image/vision.jpg",
+  "generated": {
+    "text2image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/cosmos/gen_text2image/vision.jpg",
+    "image2image": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_224445/cosmos/gen_image2image/vision.jpg"
+  },
+  "timings": {
+    "model_load_s": 15.206,
+    "generate_text2image_s": 8.705,
+    "generate_image2image_s": 14.906
+  },
+  "checkpoint": "/home/ashed/.cache/huggingface/hub/models--nvidia--Cosmos3-Nano/snapshots/411f42a8fdfb8c5b2583cb8786e0938f49796eaa",
+  "num_steps": 35,
+  "torch_compile": false,
+  "resolution": "480p 4,3"
+}

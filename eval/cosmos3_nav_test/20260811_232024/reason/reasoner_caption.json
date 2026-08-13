@@ -1,0 +1,9 @@
+{
+  "task": "caption",
+  "load_s": 3.22,
+  "frontier_note": "A frontier detector has labelled the unexplored boundaries in this view and the robot is aimed at the most promising one: frontier #9 of 10, predicted information gain 12.2 m^3 (the largest in view), now centred in the frame with about 6.4 m of free space behind it.",
+  "caption": "The robot enters a spacious, open-plan living area with light beige walls and a polished hardwood floor that extends throughout the space. The ceiling is white with recessed lighting, and a large, dark wooden dining table with matching chairs is positioned centrally, surrounded by a few decorative items and a small potted plant. To the left, a hallway leads to a bedroom with a visible doorway and a framed picture on the wall. On the right, a kitchen area features dark wooden cabinets, a stainless steel refrigerator, and a central island with a sink and bar stools. A window above the sink allows natural light to enter, and a small rug is placed near the kitchen entrance. The overall atmosphere is warm and inviting, with a mix of modern and traditional furnishings.",
+  "caption_chars": 773,
+  "generate_s": 4.968,
+  "peak_gpu_mb": 16914.2
+}

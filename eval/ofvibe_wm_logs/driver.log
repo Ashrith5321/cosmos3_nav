@@ -1,0 +1,11 @@
+== preflight: VLM (12185) and SAM3 (12184/12190) ==
+   VLM OK: {"ok": true}
+== launching 4 workers over 36 scenes ==
+   worker 1/4 -> GPU 0, SAM3 12184, pid 3889334
+   worker 2/4 -> GPU 0, SAM3 12184, pid 3889342
+   worker 3/4 -> GPU 0, SAM3 12184, pid 3889354
+   worker 4/4 -> GPU 0, SAM3 12184, pid 3889369
+
+logs:     /home/ashed/Documents/cosmos3_nav/eval/ofvibe_wm_logs/worker_*.log
+metrics:  /home/ashed/Documents/cosmos3_nav/OpenFrontier_vibe/output/ofvibewm_sam3_cosmos3_cosmos3/metrics/
+ranking:  python scripts/analyze_wm_ranking.py '/home/ashed/Documents/cosmos3_nav/OpenFrontier_vibe/output/ofvibewm_*/**/wm_state.jsonl'

@@ -1,0 +1,85 @@
+{
+  "task": "judge",
+  "load_s": 3.318,
+  "verdicts": {
+    "text2image": {
+      "raw": "```json\n{\n  \"predicted_space_type\": \"kitchen\",\n  \"real_space_type\": \"dining room\",\n  \"space_type_match\": false,\n  \"layout_similarity_0_to_10\": 3,\n  \"appearance_similarity_0_to_10\": 4,\n  \"verdict\": \"The left image depicts a kitchen while the right one shows a dining area; they are different rooms.\",\n  \"shared_objects\": [\n    \"refrigerator\"\n  ],\n  \"objects_only_in_prediction\": [\n    \"clock on wall\",\n    \"island counter\",\n    \"wooden cabinets\",\n    \"stove\",\n    \"sink\"\n  ],\n  \"objects_only_in_reality\": [\n    \"American flag hanging on wall\",\n    \"chandelier above table\",\n    \"tablecloth covering table\",\n    \"chair backs visible at table\"\n  ]\n}\n```",
+      "parsed": {
+        "predicted_space_type": "kitchen",
+        "real_space_type": "dining room",
+        "space_type_match": false,
+        "layout_similarity_0_to_10": 3,
+        "appearance_similarity_0_to_10": 4,
+        "verdict": "The left image depicts a kitchen while the right one shows a dining area; they are different rooms.",
+        "shared_objects": [
+          "refrigerator"
+        ],
+        "objects_only_in_prediction": [
+          "clock on wall",
+          "island counter",
+          "wooden cabinets",
+          "stove",
+          "sink"
+        ],
+        "objects_only_in_reality": [
+          "American flag hanging on wall",
+          "chandelier above table",
+          "tablecloth covering table",
+          "chair backs visible at table"
+        ]
+      },
+      "compare_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_230326/reason/compare_text2image.png",
+      "evaluate_s": 6.053
+    },
+    "image2image": {
+      "raw": "{\"predicted_space_type\": \"kitchen\", \"real_space_type\": \"dining room\", \"space_type_match\": false, \"layout_similarity_0_to_10\": 3, \"appearance_similarity_0_to_10\": 4, \"verdict\": \"The left image depicts a kitchen while the right one shows a dining area; they are different spaces.\", \"shared_objects\": [\"refrigerator\", \"cabinets\", \"chairs\", \"tablecloth\", \"American flag\", \"ceiling light fixture\", \"wall clock\", \"stove\", \"island counter\", \"flooring\", \"doorway to pantry\", \"window blinds\", \"countertop appliances\", \"pendant lights\", \"wooden chairs\", \"beige walls\", \"dark wood cabinets\", \"light-colored ceiling\", \"white baseboards\", \"brown hardwood floor\", \"black trash bin\", \"green decorative item on table\", \"red gift bag on table\", \"silver refrigerator\", \"dark brown wooden chairs\", \"yellow patterned tablecloth\", \"small American flag hanging on wall\", \"open doorway leading to another room\", \"shelf filled with items visible through open door\", \"large stainless steel fridge\", \"dark wood cabinetry above sink\", \"two-tone flooring (hardwood near kitchen, carpet elsewhere)\"], \"objects_only_in_prediction\": [], \"objects_only_in_reality\": []}",
+      "parsed": {
+        "predicted_space_type": "kitchen",
+        "real_space_type": "dining room",
+        "space_type_match": false,
+        "layout_similarity_0_to_10": 3,
+        "appearance_similarity_0_to_10": 4,
+        "verdict": "The left image depicts a kitchen while the right one shows a dining area; they are different spaces.",
+        "shared_objects": [
+          "refrigerator",
+          "cabinets",
+          "chairs",
+          "tablecloth",
+          "American flag",
+          "ceiling light fixture",
+          "wall clock",
+          "stove",
+          "island counter",
+          "flooring",
+          "doorway to pantry",
+          "window blinds",
+          "countertop appliances",
+          "pendant lights",
+          "wooden chairs",
+          "beige walls",
+          "dark wood cabinets",
+          "light-colored ceiling",
+          "white baseboards",
+          "brown hardwood floor",
+          "black trash bin",
+          "green decorative item on table",
+          "red gift bag on table",
+          "silver refrigerator",
+          "dark brown wooden chairs",
+          "yellow patterned tablecloth",
+          "small American flag hanging on wall",
+          "open doorway leading to another room",
+          "shelf filled with items visible through open door",
+          "large stainless steel fridge",
+          "dark wood cabinetry above sink",
+          "two-tone flooring (hardwood near kitchen, carpet elsewhere)"
+        ],
+        "objects_only_in_prediction": [],
+        "objects_only_in_reality": []
+      },
+      "compare_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_230326/reason/compare_image2image.png",
+      "evaluate_s": 8.919
+    }
+  },
+  "peak_gpu_mb": 17039.0
+}

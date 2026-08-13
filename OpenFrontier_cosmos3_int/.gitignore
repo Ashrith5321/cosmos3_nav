@@ -1,0 +1,75 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# vscode
+*.vscode*
+
+# build folder
+build/
+Release/
+
+# pycache
+__pycache__/
+
+cmake_example
+data/
+
+# logging
+*.log
+*.npz
+
+# files
+output_*/
+output/
+model_weights/
+
+.env
+api_keys.py
+/sam3/
+lockfiles
+
+ovon/*
+ompl-1.7.0/*
+
+topdown*.png
+test.py
+navigation_output/*
+
+# ---- cosmos3-nano benchmark: generated outputs & linked datasets ----
+output/
+data/
+data_scenes/
+
+# heavy vendored embedded repos & weights — do NOT track in the parent repo
+third_party/
+model_weights/

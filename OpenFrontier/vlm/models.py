@@ -10,6 +10,11 @@ class VLMModel(Enum):
     GEMINI_2_5_FLASH = "gemini-2.5-flash"
     GEMINI_2_5_LITE = "gemini-2.5-flash-lite"
     GEMINI_ROBOTICS_PREVIEW = "gemini-robotics-er-1.5-preview"
+    # gemini-2.5-flash (the paper's model) is retired for new API users, so
+    # Table I is no longer reproducible as published. This is the nearest
+    # available 3.1 flash-tier vision model; plain "gemini-3.1-flash" does
+    # not exist.
+    GEMINI_3_1_FLASH_LITE = "gemini-3.1-flash-lite"
     INTERNVL3_5_2B = "InternVL3_5-2B"
     INTERNVL3_5_4B = "InternVL3_5-4B"
     INTERNVL3_5_8B = "InternVL3_5-8B"
@@ -26,6 +31,8 @@ class VLMModel(Enum):
     GEMMA_3_27B_API = "gemma-3-27b-it-api"
     LLAVA_7B = "llava-v1.6-mistral-7b-hf"
     COSMOS3_NANO = "cosmos3-nano"
+    # Locally fine-tuned Qwen3-VL 2B checkpoint; path via QWEN3_MODEL_ID.
+    QWEN3_VL_SFT_LOCAL = "qwen3-vl-sft-local"
 
 
 def is_google_api(model: VLMModel):
@@ -33,6 +40,7 @@ def is_google_api(model: VLMModel):
         VLMModel.GEMINI_2_5_FLASH,
         VLMModel.GEMINI_2_5_LITE,
         VLMModel.GEMINI_ROBOTICS_PREVIEW,
+        VLMModel.GEMINI_3_1_FLASH_LITE,
         VLMModel.GEMMA_3_4B_API,
         VLMModel.GEMMA_3_12B_API,
         VLMModel.GEMMA_3_27B_API,

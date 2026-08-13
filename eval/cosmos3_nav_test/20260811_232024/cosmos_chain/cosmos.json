@@ -1,0 +1,64 @@
+{
+  "load_peak_gpu_mb": 32473.4,
+  "forward_dynamics_actions": {
+    "n_actions": 16,
+    "action_dim": 9,
+    "step_translation_m": 0.6692,
+    "total_path_m": 10.708
+  },
+  "gen_forward_dynamics_chunk0_peak_gpu_mb": 35751.5,
+  "gen_forward_dynamics_chunk1_peak_gpu_mb": 35751.5,
+  "gen_forward_dynamics_chunk2_peak_gpu_mb": 35751.5,
+  "gen_forward_dynamics_chunk3_peak_gpu_mb": 35751.5,
+  "gen_forward_dynamics_chunk4_peak_gpu_mb": 35751.5,
+  "gen_forward_dynamics_chunk5_peak_gpu_mb": 35751.5,
+  "generate_forward_dynamics_file": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk5/vision_last.jpg",
+  "generate_forward_dynamics_chunks": [
+    {
+      "chunk": 0,
+      "video": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk0/vision.mp4",
+      "last_frame": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk0/vision_last.jpg"
+    },
+    {
+      "chunk": 1,
+      "video": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk1/vision.mp4",
+      "last_frame": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk1/vision_last.jpg"
+    },
+    {
+      "chunk": 2,
+      "video": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk2/vision.mp4",
+      "last_frame": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk2/vision_last.jpg"
+    },
+    {
+      "chunk": 3,
+      "video": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk3/vision.mp4",
+      "last_frame": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk3/vision_last.jpg"
+    },
+    {
+      "chunk": 4,
+      "video": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk4/vision.mp4",
+      "last_frame": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk4/vision_last.jpg"
+    },
+    {
+      "chunk": 5,
+      "video": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk5/vision.mp4",
+      "last_frame": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk5/vision_last.jpg"
+    }
+  ],
+  "generated": {
+    "forward_dynamics": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk5/vision_last.jpg"
+  },
+  "timings": {
+    "model_load_s": 24.747,
+    "generate_forward_dynamics_chunk0_s": 11.482,
+    "generate_forward_dynamics_chunk1_s": 10.113,
+    "generate_forward_dynamics_chunk2_s": 10.157,
+    "generate_forward_dynamics_chunk3_s": 10.236,
+    "generate_forward_dynamics_chunk4_s": 10.274,
+    "generate_forward_dynamics_chunk5_s": 10.327
+  },
+  "checkpoint": "/home/ashed/.cache/huggingface/hub/models--nvidia--Cosmos3-Nano/snapshots/411f42a8fdfb8c5b2583cb8786e0938f49796eaa",
+  "num_steps": 35,
+  "torch_compile": false,
+  "resolution": "480p 4,3"
+}

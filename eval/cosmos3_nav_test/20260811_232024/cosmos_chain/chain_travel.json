@@ -1,0 +1,35 @@
+{
+  "chunks": [
+    {
+      "chunk": 0,
+      "best_real_m": 0.25,
+      "last_frame": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk0/vision_last.jpg"
+    },
+    {
+      "chunk": 1,
+      "best_real_m": 0.25,
+      "last_frame": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk1/vision_last.jpg"
+    },
+    {
+      "chunk": 2,
+      "best_real_m": 0.25,
+      "last_frame": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk2/vision_last.jpg"
+    },
+    {
+      "chunk": 3,
+      "best_real_m": 0.25,
+      "last_frame": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk3/vision_last.jpg"
+    },
+    {
+      "chunk": 4,
+      "best_real_m": 0.25,
+      "last_frame": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk4/vision_last.jpg"
+    },
+    {
+      "chunk": 5,
+      "best_real_m": 0.25,
+      "last_frame": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/cosmos_chain/gen_forward_dynamics_chunk5/vision_last.jpg"
+    }
+  ],
+  "commanded_total_m": 64.248
+}

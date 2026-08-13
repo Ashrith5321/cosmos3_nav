@@ -1,0 +1,106 @@
+{
+  "scene": "00800-TEEsavR23oF",
+  "scene_glb": "/home/ashed/Documents/spatial_training/data/scene_datasets/hm3d_v0.2/val/00800-TEEsavR23oF/TEEsavR23oF.basis.glb",
+  "split": "val",
+  "seed": 0,
+  "frontier_source": "frontiernet",
+  "start_position": [
+    -9.448946952819824,
+    0.16337794065475464,
+    -1.1829249858856201
+  ],
+  "goal_position": [
+    -6.260831832885742,
+    0.16337794065475464,
+    -1.8141305446624756
+  ],
+  "yaw_scan_deg": 309.3489930703824,
+  "turn_to_frontier_deg": -28.15,
+  "turn_sign_check_px": {
+    "neg": 10.0,
+    "pos": 170.0
+  },
+  "frontier_free_depth_m": 6.417,
+  "target_advance_m": 3.25,
+  "advance_m": 3.25,
+  "reached_frontier": true,
+  "stopped_by": "target",
+  "navigation": {
+    "used": false
+  },
+  "camera_poses": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/camera_poses.npy",
+  "camera_poses_n": 17,
+  "camera_poses_step_m": 0.203,
+  "sweep": [
+    {
+      "distance_m": 0.0,
+      "image": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/sweep/d_00.00.png"
+    },
+    {
+      "distance_m": 0.25,
+      "image": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/sweep/d_00.25.png"
+    },
+    {
+      "distance_m": 0.5,
+      "image": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/sweep/d_00.50.png"
+    },
+    {
+      "distance_m": 0.75,
+      "image": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/sweep/d_00.75.png"
+    },
+    {
+      "distance_m": 1.0,
+      "image": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/sweep/d_01.00.png"
+    },
+    {
+      "distance_m": 1.25,
+      "image": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/sweep/d_01.25.png"
+    },
+    {
+      "distance_m": 1.5,
+      "image": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/sweep/d_01.50.png"
+    },
+    {
+      "distance_m": 1.75,
+      "image": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/sweep/d_01.75.png"
+    },
+    {
+      "distance_m": 2.0,
+      "image": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/sweep/d_02.00.png"
+    },
+    {
+      "distance_m": 2.25,
+      "image": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/sweep/d_02.25.png"
+    },
+    {
+      "distance_m": 2.5,
+      "image": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/sweep/d_02.50.png"
+    },
+    {
+      "distance_m": 2.75,
+      "image": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/sweep/d_02.75.png"
+    },
+    {
+      "distance_m": 3.0,
+      "image": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/sweep/d_03.00.png"
+    },
+    {
+      "distance_m": 3.25,
+      "image": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/sweep/d_03.25.png"
+    }
+  ],
+  "observation": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/observation.png",
+  "ground_truth": "/tmp/claude-995200228/-home-ashed-Documents-cosmos3-nav/d43ae068-b0e5-44cc-ba2c-b7068e5c545c/scratchpad/short/ground_truth.png",
+  "start_view": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_232024/habitat/start_view.png",
+  "sensor": {
+    "width": 640,
+    "height": 480,
+    "hfov": 79.0,
+    "height_m": 0.88
+  },
+  "timings": {
+    "sim_load_s": 2.683,
+    "pose_scan_s": 0.193,
+    "sweep_render_s": 0.604
+  }
+}

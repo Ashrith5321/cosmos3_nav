@@ -1,0 +1,291 @@
+{
+  "config": "hm3d.yaml",
+  "weights": "/home/ashed/Documents/cosmos3_nav/FrontierNet/model_weights/rgbd_11cls.pth",
+  "intrinsics_fx": 388.19,
+  "n_frontiers": 10,
+  "frontiers": [
+    {
+      "id": 9,
+      "gain_m3": 12.248,
+      "pixel": [
+        527.2,
+        198.1
+      ],
+      "pixel_normalised": [
+        0.944,
+        0.409
+      ],
+      "turn_deg": -28.15,
+      "depth_at_pixel_m": 10.45,
+      "direction_angle_rad": 3.133,
+      "pos3d_camera": [
+        7.914,
+        -4.226,
+        0.851
+      ],
+      "view_direction": [
+        -0.0,
+        -1.0,
+        0.009
+      ]
+    },
+    {
+      "id": 6,
+      "gain_m3": 12.248,
+      "pixel": [
+        474.8,
+        221.4
+      ],
+      "pixel_normalised": [
+        0.831,
+        0.459
+      ],
+      "turn_deg": -21.8,
+      "depth_at_pixel_m": 7.1,
+      "direction_angle_rad": -0.027,
+      "pos3d_camera": [
+        8.853,
+        -3.532,
+        0.42
+      ],
+      "view_direction": [
+        -0.0,
+        1.0,
+        -0.027
+      ]
+    },
+    {
+      "id": 0,
+      "gain_m3": 12.248,
+      "pixel": [
+        270.9,
+        263.6
+      ],
+      "pixel_normalised": [
+        0.394,
+        0.55
+      ],
+      "turn_deg": 7.14,
+      "depth_at_pixel_m": 4.774,
+      "direction_angle_rad": -0.174,
+      "pos3d_camera": [
+        3.638,
+        0.459,
+        -0.223
+      ],
+      "view_direction": [
+        -0.0,
+        0.985,
+        -0.173
+      ]
+    },
+    {
+      "id": 5,
+      "gain_m3": 5.81,
+      "pixel": [
+        482.0,
+        284.0
+      ],
+      "pixel_normalised": [
+        0.847,
+        0.594
+      ],
+      "turn_deg": -22.72,
+      "depth_at_pixel_m": 8.67,
+      "direction_angle_rad": 3.086,
+      "pos3d_camera": [
+        7.744,
+        -3.235,
+        -0.882
+      ],
+      "view_direction": [
+        -0.0,
+        -0.998,
+        0.055
+      ]
+    },
+    {
+      "id": 7,
+      "gain_m3": 5.81,
+      "pixel": [
+        476.2,
+        279.6
+      ],
+      "pixel_normalised": [
+        0.834,
+        0.584
+      ],
+      "turn_deg": -21.98,
+      "depth_at_pixel_m": 7.173,
+      "direction_angle_rad": -0.017,
+      "pos3d_camera": [
+        8.147,
+        -3.281,
+        -0.836
+      ],
+      "view_direction": [
+        -0.0,
+        1.0,
+        -0.017
+      ]
+    },
+    {
+      "id": 3,
+      "gain_m3": 5.81,
+      "pixel": [
+        425.2,
+        185.0
+      ],
+      "pixel_normalised": [
+        0.725,
+        0.381
+      ],
+      "turn_deg": -15.24,
+      "depth_at_pixel_m": 5.453,
+      "direction_angle_rad": -0.035,
+      "pos3d_camera": [
+        5.998,
+        -1.628,
+        0.847
+      ],
+      "view_direction": [
+        -0.0,
+        0.999,
+        -0.035
+      ]
+    },
+    {
+      "id": 8,
+      "gain_m3": 3.674,
+      "pixel": [
+        502.4,
+        249.0
+      ],
+      "pixel_normalised": [
+        0.891,
+        0.519
+      ],
+      "turn_deg": -25.23,
+      "depth_at_pixel_m": 4.057,
+      "direction_angle_rad": -1.658,
+      "pos3d_camera": [
+        6.958,
+        -3.272,
+        -0.166
+      ],
+      "view_direction": [
+        -0.0,
+        -0.087,
+        -0.996
+      ]
+    },
+    {
+      "id": 4,
+      "gain_m3": 2.122,
+      "pixel": [
+        499.5,
+        190.8
+      ],
+      "pixel_normalised": [
+        0.884,
+        0.394
+      ],
+      "turn_deg": -24.88,
+      "depth_at_pixel_m": 7.875,
+      "direction_angle_rad": 1.504,
+      "pos3d_camera": [
+        9.177,
+        -4.246,
+        1.159
+      ],
+      "view_direction": [
+        -0.0,
+        0.067,
+        0.998
+      ]
+    },
+    {
+      "id": 2,
+      "gain_m3": 2.122,
+      "pixel": [
+        308.7,
+        227.2
+      ],
+      "pixel_normalised": [
+        0.475,
+        0.472
+      ],
+      "turn_deg": 1.59,
+      "depth_at_pixel_m": 5.916,
+      "direction_angle_rad": -3.133,
+      "pos3d_camera": [
+        5.09,
+        0.146,
+        0.165
+      ],
+      "view_direction": [
+        -0.0,
+        -1.0,
+        -0.009
+      ]
+    },
+    {
+      "id": 1,
+      "gain_m3": 0.868,
+      "pixel": [
+        300.0,
+        155.8
+      ],
+      "pixel_normalised": [
+        0.456,
+        0.319
+      ],
+      "turn_deg": 2.88,
+      "depth_at_pixel_m": 4.569,
+      "direction_angle_rad": 1.467,
+      "pos3d_camera": [
+        5.211,
+        0.267,
+        1.127
+      ],
+      "view_direction": [
+        -0.0,
+        0.104,
+        0.995
+      ]
+    }
+  ],
+  "chosen": {
+    "id": 9,
+    "gain_m3": 12.248,
+    "pixel": [
+      527.2,
+      198.1
+    ],
+    "pixel_normalised": [
+      0.944,
+      0.409
+    ],
+    "turn_deg": -28.15,
+    "depth_at_pixel_m": 10.45,
+    "direction_angle_rad": 3.133,
+    "pos3d_camera": [
+      7.914,
+      -4.226,
+      0.851
+    ],
+    "view_direction": [
+      -0.0,
+      -1.0,
+      0.009
+    ]
+  },
+  "info_gain_max_raw": 1224.766,
+  "frontier_pixels": 1386,
+  "overlay": "/home/ashed/Documents/cosmos3_nav/eval/cosmos3_nav_test/20260811_230326/habitat/frontiers.png",
+  "timings": {
+    "load_s": 0.523,
+    "detect_s": 0.211,
+    "anchor_s": 0.172
+  }
+}
