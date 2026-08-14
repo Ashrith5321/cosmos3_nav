@@ -56,3 +56,9 @@ FrontierNet/assets/
 FrontierNet/examples/
 cosmos/**/checkpoints/
 cosmos/**/*.safetensors
+eval/ofvibe_wm_logs/
+eval/ofgemini_logs/
+eval/qwen3_logs/
+eval/asm_logs/
+OpenFrontier_vibe/output/
+OpenFrontier_vibe/checkpoints/*.pth
