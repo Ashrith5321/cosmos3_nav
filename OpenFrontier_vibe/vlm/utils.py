@@ -239,8 +239,15 @@ def detect_target_object(
         addition += ", do not consider purple flowers on top of a golden table"
 
     prompt = (
-        f"Based on this image, estimate the probability that a {target_object} is in the field of view of the camera, in-frame and within a distance of five meters{addition}."
-        f" If the {target_object} is a photo or painting, reflected on a mirror, behind a glass window or door, overally unreachable, barely visible or mostly occluded it should not be considered present."
+        f"This image may be a grid of several separate camera views from a robot; "
+        f"examine every view independently - the {target_object} counts as present if it "
+        f"appears in ANY single view."
+        f" Estimate the probability that a {target_object} is in the field of view, "
+        f"in-frame and within a distance of five meters{addition}."
+        f" Look carefully for small, distant or partially visible instances: a partially "
+        f"visible but clearly identifiable {target_object} counts as present."
+        f" If the {target_object} is only a photo or painting, reflected in a mirror, "
+        f"behind a glass window or door, or unreachable, it should not be considered present."
         f" Keep probabilities either close to 0 for absent or close to 1 for present. "
         f" Add one sentence of reasoning. "
         f"Return a JSON list with one dictionary. Format: "
