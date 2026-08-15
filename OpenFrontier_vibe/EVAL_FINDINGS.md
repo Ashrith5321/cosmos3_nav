@@ -367,3 +367,47 @@ The agent has enough pixels and enough looks. It is standing in front of a real
 object and assigning it the wrong category with confidence. That is a semantic
 failure, and neither more evidence nor a second opinion from a correlated model
 addresses it.
+
+## 11. The detector is maximally confident when it is wrong
+
+Forced-choice discrimination — asking the model to *commit* to one category out
+of a confusable set rather than confirm a handed hypothesis — is the best
+discriminator found (`forced_choice.py`): it names something other than the goal
+on **70%** of false positives against 17.5% of successes, 4.0:1, versus 21.9%
+/ 7.0% for a stricter yes/no prompt. The information needed to catch these stops
+is accessible to the same model; only the question format changes.
+
+It still loses at the ~90:870 base rate (-33.9 eps/1000). The obvious escape is
+to run the verifier only where errors concentrate, so the pool it sees is
+enriched. Measuring the detection probability **the agent actually acted on**
+(parsed from `navigation_log.txt`, not recomputed offline):
+
+```
+false positives  mean=0.930   share at exactly 1.0: 90%
+successes        mean=1.000   share at exactly 1.0: 100%
+```
+
+There is nothing to gate on. The detector saturates at 1.0 on 90% of its own
+false positives.
+
+| gate: verify when conf < | FP pool | TP pool | FP rej | TP rej | net/1000 |
+|---:|---:|---:|---:|---:|---:|
+| ungated | 100% | 100% | 62% | 23% | -60.8 |
+| 0.999 | 10% | 0% | 83% | 0% | +4.1 |
+
+The +4.1 rests entirely on TP pool = 0% — zero of 60 successes fell below 0.999.
+By the rule of three that is consistent with a true rate up to ~5%, which turns
++4.1 into -0.4. The interval straddles zero, so this is not shippable evidence.
+
+**Why every verification approach failed, in one line.** Each needs an axis along
+which errors concentrate. Distance is uninformative (the agent believes it is
+0.8-1.0 m from its target in nearly every false positive). Independent models
+are correlated (CLIP 1.7:1). Resolution is irrelevant (the failure is semantic).
+And confidence is degenerate (1.0 on both classes). The false-positive mode is
+irreducible under this architecture without instance-level grounding — knowing
+*which* chair is the episode's goal, not merely that a chair is present.
+
+**Caveat.** An earlier note in this file cited a 0.70-vs-0.94 confidence
+separation between the classes. That came from recomputing the loose prompt
+offline on the final frame, not from the values the agent acted on, and it does
+not survive contact with the logs.
