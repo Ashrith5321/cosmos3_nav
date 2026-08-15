@@ -1,20 +1,19 @@
  worldmodel.encoder - INFO - Loading CLIP encoder openai/clip-vit-base-patch32 on cuda
 Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
 Logger initialized with level: INFO
-harvesting 80 scenes (shard 6/10)
- worldmodel.dataset - INFO - WMDataRecorder: wrote 68 samples to output/wm_harvest_gt/00005-yPKGKBCyYx8/beyond_frontier.npz
-[done] {"scene": "00005-yPKGKBCyYx8", "trajectories": 3, "frontiers_recorded": 82, "dataset": "output/wm_harvest_gt/00005-yPKGKBCyYx8/beyond_frontier.npz"}
- worldmodel.dataset - INFO - WMDataRecorder: wrote 120 samples to output/wm_harvest_gt/00015-LPwS1aEGXBb/beyond_frontier.npz
-[done] {"scene": "00015-LPwS1aEGXBb", "trajectories": 3, "frontiers_recorded": 139, "dataset": "output/wm_harvest_gt/00015-LPwS1aEGXBb/beyond_frontier.npz"}
- worldmodel.dataset - INFO - WMDataRecorder: wrote 38 samples to output/wm_harvest_gt/00025-ixTj1aTMup2/beyond_frontier.npz
-[done] {"scene": "00025-ixTj1aTMup2", "trajectories": 3, "frontiers_recorded": 44, "dataset": "output/wm_harvest_gt/00025-ixTj1aTMup2/beyond_frontier.npz"}
- worldmodel.dataset - INFO - WMDataRecorder: wrote 47 samples to output/wm_harvest_gt/00035-3XYAD64HpDr/beyond_frontier.npz
-[done] {"scene": "00035-3XYAD64HpDr", "trajectories": 3, "frontiers_recorded": 51, "dataset": "output/wm_harvest_gt/00035-3XYAD64HpDr/beyond_frontier.npz"}
- worldmodel.dataset - INFO - WMDataRecorder: wrote 63 samples to output/wm_harvest_gt/00045-mt5PhMmTk5m/beyond_frontier.npz
-[done] {"scene": "00045-mt5PhMmTk5m", "trajectories": 3, "frontiers_recorded": 69, "dataset": "output/wm_harvest_gt/00045-mt5PhMmTk5m/beyond_frontier.npz"}
- worldmodel.dataset - INFO - WMDataRecorder: wrote 43 samples to output/wm_harvest_gt/00055-HxmXPBbFCkH/beyond_frontier.npz
-[done] {"scene": "00055-HxmXPBbFCkH", "trajectories": 3, "frontiers_recorded": 48, "dataset": "output/wm_harvest_gt/00055-HxmXPBbFCkH/beyond_frontier.npz"}
- worldmodel.dataset - INFO - WMDataRecorder: wrote 52 samples to output/wm_harvest_gt/00065-kZhZfAhdnNN/beyond_frontier.npz
-[done] {"scene": "00065-kZhZfAhdnNN", "trajectories": 3, "frontiers_recorded": 58, "dataset": "output/wm_harvest_gt/00065-kZhZfAhdnNN/beyond_frontier.npz"}
- worldmodel.dataset - INFO - WMDataRecorder: wrote 44 samples to output/wm_harvest_gt/00075-u3zrj4Nojev/beyond_frontier.npz
-[done] {"scene": "00075-u3zrj4Nojev", "trajectories": 3, "frontiers_recorded": 50, "dataset": "output/wm_harvest_gt/00075-u3zrj4Nojev/beyond_frontier.npz"}
+annotated-only: 145 scenes
+harvesting 14 scenes (shard 6/10)
+[skip] 00022-gmuS7Wgsbrx already harvested
+[skip] 00059-kJxT5qssH4H already harvested
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 82 samples to output/wm_harvest_gt/00135-HeSYRw7eMtG/beyond_frontier.npz
+[done] {"scene": "00135-HeSYRw7eMtG", "trajectories": 4, "frontiers_recorded": 87, "dataset": "output/wm_harvest_gt/00135-HeSYRw7eMtG/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 31 samples to output/wm_harvest_gt/00173-qZ4B7U6XE5Y/beyond_frontier.npz
+[done] {"scene": "00173-qZ4B7U6XE5Y", "trajectories": 4, "frontiers_recorded": 35, "dataset": "output/wm_harvest_gt/00173-qZ4B7U6XE5Y/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 53 samples to output/wm_harvest_gt/00234-nACV8wLu1u5/beyond_frontier.npz
+[done] {"scene": "00234-nACV8wLu1u5", "trajectories": 4, "frontiers_recorded": 61, "dataset": "output/wm_harvest_gt/00234-nACV8wLu1u5/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 41 samples to output/wm_harvest_gt/00261-fK2vEV32Lag/beyond_frontier.npz
+[done] {"scene": "00261-fK2vEV32Lag", "trajectories": 4, "frontiers_recorded": 46, "dataset": "output/wm_harvest_gt/00261-fK2vEV32Lag/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 47 samples to output/wm_harvest_gt/00313-PE6kVEtrxtj/beyond_frontier.npz
+[done] {"scene": "00313-PE6kVEtrxtj", "trajectories": 4, "frontiers_recorded": 54, "dataset": "output/wm_harvest_gt/00313-PE6kVEtrxtj/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 139 samples to output/wm_harvest_gt/00386-b3WpMbPFB6q/beyond_frontier.npz
+[done] {"scene": "00386-b3WpMbPFB6q", "trajectories": 4, "frontiers_recorded": 151, "dataset": "output/wm_harvest_gt/00386-b3WpMbPFB6q/beyond_frontier.npz"}

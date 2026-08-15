@@ -396,6 +396,9 @@ def main():
     ap.add_argument("--unet-weight", type=str, default="model_weights/rgbd_11cls.pth")
     ap.add_argument("--demos", type=str, default=None,
                     help="dir of PIRLNav <scene>.json.gz demo files; enables replay mode")
+    ap.add_argument("--annotated-only", action="store_true",
+                    help="restrict to scenes carrying semantic annotations, "
+                         "which ground-truth goal-distance labels require")
     ap.add_argument("--demo-eps-per-scene", type=int, default=25,
                     help="subsample this many human demos per scene (0 = all)")
     args = ap.parse_args()
@@ -425,6 +428,12 @@ def main():
         label = "demo scenes"
     else:
         units = sorted(p for p in TRAIN_SCENES.iterdir() if p.is_dir())
+        if args.annotated_only:
+            # only 145 of 800 HM3D train scenes ship semantic annotations, and
+            # ground-truth goal-distance labels need them; harvesting the rest
+            # produces data that cannot be labeled
+            units = [u for u in units if list(u.glob("*.semantic.glb"))]
+            print(f"annotated-only: {len(units)} scenes", flush=True)
         label = "scenes"
     idx, total = args.scenes
     units = [s for i, s in enumerate(units) if i % total == (idx - 1)]
