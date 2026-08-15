@@ -177,6 +177,15 @@ class NavigationAgent:
         self.strict_stop_min_dist = float(
             self.config.get("strict_stop_min_dist", self.success_threshold)
         )
+        # Endgame commit. 58 of 185 search failures (31%) ended within 3 m of
+        # the goal and 18 of those inside 1 m: the agent reached the right place
+        # and kept deliberating until the budget expired. Past endgame_frac of
+        # the budget, stop at the nearest candidate within endgame_radius
+        # regardless of verification status -- standing next to a plausible
+        # object scores better than timing out beside it.
+        self.endgame_commit = bool(self.config.get("endgame_commit", False))
+        self.endgame_frac = float(self.config.get("endgame_frac", 0.90))
+        self.endgame_radius = float(self.config.get("endgame_radius", 2.0))
         self.crop_rescue_band = float(self.config.get("crop_rescue_band", 0.0))
         self.crop_rescue_margin = float(self.config.get("crop_rescue_margin", 0.0))
 
@@ -969,6 +978,40 @@ class NavigationAgent:
             else:
                 self.path_to_go = []
                 self.move_enough = True  # try again next cycle
+
+        # Endgame commit: past endgame_frac of the budget, walk to the nearest
+        # candidate within endgame_radius and stop there, accepting candidates
+        # the verifier rejected. Runs before the older fallback because it also
+        # fires when an object is already locked in, which is the state most of
+        # the near-miss timeouts died in.
+        if (
+            self.endgame_commit
+            and self.navigation_steps >= int(self.endgame_frac * self.max_steps)
+            and self.detected_objects
+        ):
+            here = W_T_C2[:3, 3]
+            near = [
+                o for o in self.detected_objects
+                if o.centroid is not None
+                and float(np.linalg.norm(np.asarray(o.centroid) - here))
+                <= self.endgame_radius
+            ]
+            if near:
+                tgt = min(
+                    near,
+                    key=lambda o: float(
+                        np.linalg.norm(np.asarray(o.centroid) - here)
+                    ),
+                )
+                d = float(np.linalg.norm(np.asarray(tgt.centroid) - here))
+                self.log(
+                    "info",
+                    self.logging_file,
+                    f"Endgame commit at step {self.navigation_steps}/"
+                    f"{self.max_steps}: stopping at candidate {d:.2f} m away "
+                    f"(status={getattr(tgt, 'verification_status', 'unverified')}).",
+                )
+                return False, "object_found"
 
         # End-of-budget fallback: with the step budget nearly gone and nothing
         # verified, commit to the nearest plausible detected object instead of
