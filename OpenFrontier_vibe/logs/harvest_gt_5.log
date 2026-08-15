@@ -16,3 +16,18 @@ harvesting 15 scenes (shard 5/10)
 [done] {"scene": "00307-vDfkYo5VqEQ", "trajectories": 4, "frontiers_recorded": 81, "dataset": "output/wm_harvest_gt/00307-vDfkYo5VqEQ/beyond_frontier.npz"}
  worldmodel.dataset - INFO - WMDataRecorder: wrote 91 samples to output/wm_harvest_gt/00384-ceJTwFNjqCt/beyond_frontier.npz
 [done] {"scene": "00384-ceJTwFNjqCt", "trajectories": 4, "frontiers_recorded": 97, "dataset": "output/wm_harvest_gt/00384-ceJTwFNjqCt/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 75 samples to output/wm_harvest_gt/00422-8wJuSPJ9FXG/beyond_frontier.npz
+[done] {"scene": "00422-8wJuSPJ9FXG", "trajectories": 4, "frontiers_recorded": 87, "dataset": "output/wm_harvest_gt/00422-8wJuSPJ9FXG/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 57 samples to output/wm_harvest_gt/00506-QVAA6zecMHu/beyond_frontier.npz
+[done] {"scene": "00506-QVAA6zecMHu", "trajectories": 4, "frontiers_recorded": 67, "dataset": "output/wm_harvest_gt/00506-QVAA6zecMHu/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 82 samples to output/wm_harvest_gt/00547-9h5JJxM6E5S/beyond_frontier.npz
+[done] {"scene": "00547-9h5JJxM6E5S", "trajectories": 4, "frontiers_recorded": 92, "dataset": "output/wm_harvest_gt/00547-9h5JJxM6E5S/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 138 samples to output/wm_harvest_gt/00606-W16Bm4ysK8v/beyond_frontier.npz
+[done] {"scene": "00606-W16Bm4ysK8v", "trajectories": 4, "frontiers_recorded": 145, "dataset": "output/wm_harvest_gt/00606-W16Bm4ysK8v/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 52 samples to output/wm_harvest_gt/00668-6YtDG3FhNvx/beyond_frontier.npz
+[done] {"scene": "00668-6YtDG3FhNvx", "trajectories": 4, "frontiers_recorded": 53, "dataset": "output/wm_harvest_gt/00668-6YtDG3FhNvx/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 62 samples to output/wm_harvest_gt/00723-hWDDQnSDMXb/beyond_frontier.npz
+[done] {"scene": "00723-hWDDQnSDMXb", "trajectories": 4, "frontiers_recorded": 67, "dataset": "output/wm_harvest_gt/00723-hWDDQnSDMXb/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 105 samples to output/wm_harvest_gt/00758-HfMobPm86Xn/beyond_frontier.npz
+[done] {"scene": "00758-HfMobPm86Xn", "trajectories": 4, "frontiers_recorded": 112, "dataset": "output/wm_harvest_gt/00758-HfMobPm86Xn/beyond_frontier.npz"}
+harvest complete: 12 scenes

@@ -1,0 +1,33 @@
+labeling 32 scenes (shard 1/8)
+/home/ashed/miniconda3/envs/openfrontier/lib/python3.9/site-packages/numpy/lib/nanfunctions.py:1879: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  00008-VYnUX657cVo: n=145 labeled | cats present=0/6 | median d=nanm | spread(std within scene)=nan
+  00016-qk9eeNeR4vw: n=63 labeled | cats present=6/6 | median d=4.9m | spread(std within scene)=2.27
+  00032-jTTGECZYKRA: n=90 labeled | cats present=0/6 | median d=nanm | spread(std within scene)=nan
+  00040-ZB8o8rMmPdB: n=129 labeled | cats present=0/6 | median d=nanm | spread(std within scene)=nan
+  00048-aKwZ7VJDAjr: n=45 labeled | cats present=0/6 | median d=nanm | spread(std within scene)=nan
+  00056-kdw2Uapns3b: n=91 labeled | cats present=0/6 | median d=nanm | spread(std within scene)=nan
+  00064-gQgtJ9Stk5s: n=40 labeled | cats present=6/6 | median d=nanm | spread(std within scene)=nan
+  00072-t8wCA6Qe8uT: n=39 labeled | cats present=0/6 | median d=nanm | spread(std within scene)=nan
+  00080-gPf8XzHACGn: n=94 labeled | cats present=0/6 | median d=nanm | spread(std within scene)=nan
+  00088-z9w4aD7JsiQ: n=82 labeled | cats present=0/6 | median d=nanm | spread(std within scene)=nan
+  00096-6HRFAUDqpTb: n=32 labeled | cats present=6/6 | median d=2.0m | spread(std within scene)=0.98
+  00104-KJxdMPgweZG: n=45 labeled | cats present=0/6 | median d=nanm | spread(std within scene)=nan
+  00112-r38SGhq8aJr: n=51 labeled | cats present=0/6 | median d=nanm | spread(std within scene)=nan
+  00122-QDtpZSqaeyW: n=46 labeled | cats present=0/6 | median d=nanm | spread(std within scene)=nan
+  00135-HeSYRw7eMtG: n=82 labeled | cats present=6/6 | median d=11.9m | spread(std within scene)=4.12
+  00166-RaYrxWt5pR1: n=51 labeled | cats present=6/6 | median d=3.1m | spread(std within scene)=4.47
+  00205-NEVASPhcrxR: n=88 labeled | cats present=5/6 | median d=8.7m | spread(std within scene)=4.35
+  00245-741Fdj7NLF9: n=106 labeled | cats present=0/6 | median d=nanm | spread(std within scene)=nan
+  00262-1xGrZPxG1Hz: n=40 labeled | cats present=4/6 | median d=9.0m | spread(std within scene)=3.72
+  00307-vDfkYo5VqEQ: n=77 labeled | cats present=6/6 | median d=5.0m | spread(std within scene)=3.53
+  00378-DqJKU7YU7dA: n=96 labeled | cats present=6/6 | median d=nanm | spread(std within scene)=nan
+  00407-NPHxDe6VeCc: n=108 labeled | cats present=6/6 | median d=2.0m | spread(std within scene)=4.49
+  00463-URjpCob8MGw: n=58 labeled | cats present=5/6 | median d=2.3m | spread(std within scene)=2.11
+  00525-iKFn6fzyRqs: n=87 labeled | cats present=6/6 | median d=17.6m | spread(std within scene)=6.36
+  00547-9h5JJxM6E5S: n=82 labeled | cats present=6/6 | median d=9.4m | spread(std within scene)=4.82
+  00592-CthA7sQNTPK: n=54 labeled | cats present=6/6 | median d=6.9m | spread(std within scene)=2.88
+  00643-ggNAcMh8JPT: n=71 labeled | cats present=6/6 | median d=4.5m | spread(std within scene)=1.93
+  00688-SgkmkWjjmDJ: n=56 labeled | cats present=5/6 | median d=13.5m | spread(std within scene)=2.04
+  00733-GtM3JtRvvvR: n=81 labeled | cats present=6/6 | median d=6.2m | spread(std within scene)=3.83
+  00758-HfMobPm86Xn: n=105 labeled | cats present=6/6 | median d=12.8m | spread(std within scene)=7.41

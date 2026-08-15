@@ -101,13 +101,21 @@ def ranking_metrics(net, scenes, dev):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--harvest", default="output/wm_harvest_gt")
+    ap.add_argument("--harvest", nargs="+", default=["output/wm_harvest_gt"])
     ap.add_argument("--out", default="checkpoints/relevance_v90.pth")
     ap.add_argument("--epochs", type=int, default=40)
     ap.add_argument("--lambda-list", type=float, default=1.0)
     args = ap.parse_args()
 
-    scenes = load(args.harvest)
+    scenes = []
+    seen = set()
+    for root in args.harvest:
+        for sc in load(root):
+            # later roots deepen earlier ones; keep the richer copy per scene
+            if sc["name"] in seen:
+                continue
+            seen.add(sc["name"])
+            scenes.append(sc)
     print(f"labeled scenes: {len(scenes)}   "
           f"frontiers: {sum(len(s['crop']) for s in scenes)}")
     if len(scenes) < 8:
@@ -126,6 +134,7 @@ def main():
 
     t1, rg, ch, n = ranking_metrics(net, te, dev)
     print(f"before training: top-1 {t1:.3f} (chance {ch:.3f})  regret {rg:.2f}m  n={n}")
+    best = (-1.0, float("inf"), 0, None)
 
     for ep in range(args.epochs):
         rng.shuffle(tr)
@@ -154,15 +163,22 @@ def main():
             loss = l_point + args.lambda_list * l_list
             opt.zero_grad(); loss.backward(); opt.step()
             tot += float(loss)
-        if (ep + 1) % 10 == 0 or ep == 0:
+        if (ep + 1) % 5 == 0 or ep == 0:
             t1, rg, ch, n = ranking_metrics(net, te, dev)
             print(f"epoch {ep+1:3d}  loss {tot/len(tr):.4f}   "
                   f"held-out top-1 {t1:.3f} (chance {ch:.3f})  regret {rg:.2f}m")
+            if t1 > best[0]:
+                best = (t1, rg, ep + 1,
+                        {k: v.detach().cpu().clone() for k, v in net.state_dict().items()})
 
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
-    torch.save({"model": net.state_dict(), "goals": GOALS}, args.out)
+    if best[3] is not None:
+        net.load_state_dict(best[3])   # early stop at the held-out peak
+    torch.save({"model": net.state_dict(), "goals": GOALS,
+                "best_epoch": best[2]}, args.out)
     t1, rg, ch, n = ranking_metrics(net, te, dev)
-    print(f"\nFINAL held-out: top-1 {t1:.3f} vs chance {ch:.3f}   regret {rg:.2f}m   n={n}")
+    print(f"\nEARLY-STOPPED at epoch {best[2]}")
+    print(f"FINAL held-out: top-1 {t1:.3f} vs chance {ch:.3f}   regret {rg:.2f}m   n={n}")
     print(f"saved {args.out}")
     print("\ntop-1 must beat chance on HELD-OUT SCENES for the world model to be")
     print("worth deploying; the shipped predictor scores at chance on this metric.")

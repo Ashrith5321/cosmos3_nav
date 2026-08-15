@@ -1,0 +1,7 @@
+ worldmodel.encoder - INFO - Loading CLIP encoder openai/clip-vit-base-patch32 on cuda
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Logger initialized with level: INFO
+annotated-only: 145 scenes
+harvesting 15 scenes (shard 1/10)
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 189 samples to output/wm_harvest_gt2/00006-HkseAnWCgqk/beyond_frontier.npz
+[done] {"scene": "00006-HkseAnWCgqk", "trajectories": 11, "frontiers_recorded": 192, "dataset": "output/wm_harvest_gt2/00006-HkseAnWCgqk/beyond_frontier.npz"}
