@@ -184,11 +184,71 @@ def segment_target_object(
     return (output_masks, combined)
 
 
+def _dispatch_detection(image, rgb, prompt, vlm_model, api_key):
+    """Send one detection prompt to the configured VLM and parse its JSON."""
+    if is_google_api(vlm_model):
+        if api_key is None:
+            raise ValueError("API key must be provided for Gemini models.")
+
+        model_name = vlm_model.value.replace("-api", "")
+
+        client = genai.Client(api_key=api_key)
+
+        if is_gemma_api(vlm_model):
+            response = client.models.generate_content(
+                model=model_name, contents=[prompt, image]
+            )
+        else:
+            response = client.models.generate_content(
+                model=model_name, contents=[prompt, image], config=GEMINI_CONFIG
+            )
+
+        response_text = response.text
+    else:
+        client = VLMClient("vlm", port=int(os.environ.get("OF_VLM_PORT", "12185")))
+        response = client.send_request(image=rgb, prompt=prompt)
+        response_text = response.get("response", "")
+
+    # Strip formatting artifacts if present
+    raw_response = response_text.strip()
+
+    # Find ```json
+    if "```json" in raw_response:
+        raw_response = raw_response.split("```json")[-1]
+    if "```" in raw_response:
+        raw_response = raw_response.split("```")[0].strip()
+
+    # Parse JSON
+    try:
+        output = json.loads(raw_response)
+        if isinstance(output, dict):
+            return True, output, raw_response
+        elif (
+            isinstance(output, list) and len(output) > 0 and isinstance(output[0], dict)
+        ):
+            return True, output[0], raw_response
+        else:
+            print("Unexpected JSON structure.")
+            return (
+                False,
+                {"probability": 0.0, "reason": "Unexpected JSON structure."},
+                raw_response,
+            )
+    except json.JSONDecodeError as e:
+        print("Failed to decode JSON:", e)
+        return (
+            False,
+            {"probability": 0.0, "reason": "Failed to decode JSON."},
+            raw_response,
+        )
+
+
 def detect_target_object(
     rgb: np.ndarray,
     target_object: str,
     vlm_model: VLMModel,
     api_key: str = None,
+    strict: bool = False,
 ) -> Tuple[bool, list[dict], str]:
     """
     Given an image and a target object (e.g., 'bathroom', 'toy'), use Gemini to estimate
@@ -238,6 +298,30 @@ def detect_target_object(
     if special is not None and special == "no_purple_flowers":
         addition += ", do not consider purple flowers on top of a golden table"
 
+    if strict:
+        # Confirmation pass: the robot is already standing in front of a
+        # candidate and is about to declare success. The failure mode here is
+        # a confidently-wrong category match, so ask discriminatively and put
+        # the burden of proof on accepting.
+        prompt = (
+            f"A robot has navigated up to an object it believes is a "
+            f"{target_object} and is about to declare its search successful. "
+            f"This is a close-up view of that candidate. Verify it."
+            f" Estimate the probability that the object in the centre of this "
+            f"image really is a {target_object}{addition}."
+            f" Be strict: a different object of a similar shape, size or "
+            f"function is NOT a {target_object}. If it is a photo, painting, "
+            f"reflection, or is behind glass, it is not present."
+            f" If you are unsure which category the object belongs to, return a "
+            f"low probability rather than guessing."
+            f" Keep probabilities either close to 0 for a wrong match or close "
+            f"to 1 for a confirmed {target_object}."
+            f" Add one sentence of reasoning. "
+            f"Return a JSON list with one dictionary. Format: "
+            f'{{"probability": 0.9, "reason": "reason"}}'
+        )
+        return _dispatch_detection(image, rgb, prompt, vlm_model, api_key)
+
     prompt = (
         f"This image may be a grid of several separate camera views from a robot; "
         f"examine every view independently - the {target_object} counts as present if it "
@@ -254,63 +338,7 @@ def detect_target_object(
         f'{{"probability": 0.9, "reason": "reason"}}'
     )
 
-    if is_google_api(vlm_model):
-        if api_key is None:
-            raise ValueError("API key must be provided for Gemini models.")
-
-        model_name = vlm_model.value.replace("-api", "")
-
-        client = genai.Client(api_key=api_key)
-
-        if is_gemma_api(vlm_model):
-            response = client.models.generate_content(
-                model=model_name, contents=[prompt, image]
-            )
-        else:
-            response = client.models.generate_content(
-                model=model_name, contents=[prompt, image], config=GEMINI_CONFIG
-            )
-
-        response_text = response.text
-    else:
-        client = VLMClient("vlm", port=int(os.environ.get("OF_VLM_PORT","12185")))
-        response = client.send_request(image=rgb, prompt=prompt)
-        response_text = response.get("response", "")
-
-
-    # Strip formatting artifacts if present
-    raw_response = response_text.strip()
-
-
-    # Find ```json
-    if "```json" in raw_response:
-        raw_response = raw_response.split("```json")[-1]
-    if "```" in raw_response:
-        raw_response = raw_response.split("```")[0].strip()
-
-    # Parse JSON
-    try:
-        output = json.loads(raw_response)
-        if isinstance(output, dict):
-            return True, output, raw_response
-        elif (
-            isinstance(output, list) and len(output) > 0 and isinstance(output[0], dict)
-        ):
-            return True, output[0], raw_response
-        else:
-            print("Unexpected JSON structure.")
-            return (
-                False,
-                {"probability": 0.0, "reason": "Unexpected JSON structure."},
-                raw_response,
-            )
-    except json.JSONDecodeError as e:
-        print("Failed to decode JSON:", e)
-        return (
-            False,
-            {"probability": 0.0, "reason": "Failed to decode JSON."},
-            raw_response,
-        )
+    return _dispatch_detection(image, rgb, prompt, vlm_model, api_key)
 
 
 def _parse_json(json_output: str):

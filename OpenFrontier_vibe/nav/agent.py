@@ -159,6 +159,26 @@ class NavigationAgent:
         # re-verify the target from the final viewpoint before declaring
         # success (kills far/oblique-view false positives)
         self.reverify_on_stop = bool(self.config.get("reverify_on_stop", False))
+        # v86: the stop-time gate above re-asks on the same downscaled composite
+        # that produced the false positive. Confirm on a full-res crop centred on
+        # the candidate, with a category-discriminative prompt and its own
+        # threshold, and only rescue sub-threshold detections from a mid band
+        # instead of taking max(composite, crop).
+        # Measured on 60 real stop frames: the strict prompt rejects 29% of the
+        # false positives the loose prompt accepts, but also 11% of the true
+        # positives. Successes outnumber false positives ~9:1, so applying it to
+        # every stop loses more than it saves. Gate it on distance instead --
+        # successes stop inside success_threshold, false positives stop at a
+        # median of 2.2 m -- so only low-confidence far stops pay the strict bar.
+        self.strict_stop_verify = bool(self.config.get("strict_stop_verify", False))
+        self.strict_stop_threshold = float(
+            self.config.get("strict_stop_threshold", self.termination_threshold)
+        )
+        self.strict_stop_min_dist = float(
+            self.config.get("strict_stop_min_dist", self.success_threshold)
+        )
+        self.crop_rescue_band = float(self.config.get("crop_rescue_band", 0.0))
+        self.crop_rescue_margin = float(self.config.get("crop_rescue_margin", 0.0))
 
         # Reset the files
         open(self.vlm_log_file, "w").close()
@@ -415,7 +435,17 @@ class NavigationAgent:
         ):
             start_segm = time.time()
 
-            rgb_composition = self.compose_images(self.composition_images)
+            # The mask splitter lays the grid out from n_images_eff, and
+            # image_index from it indexes the depth/viewpoint lists, so the
+            # composite must be built from exactly that many frames. Composing
+            # all of composition_images while telling the splitter a different
+            # count desynchronises the two grids and returns masks sized to the
+            # wrong cell (ValueError against the 640x480 depth frame).
+            seg_images = self.composition_images[-n_images_eff:]
+            seg_depths = self.composition_depths[-n_images_eff:]
+            seg_viewpoints = self.composition_viewpoints[-n_images_eff:]
+
+            rgb_composition = self.compose_images(seg_images)
             if save_images:
                 composition_path = os.path.join(
                     self.composition_dir,
@@ -483,8 +513,10 @@ class NavigationAgent:
 
                 for mask in masks:
                     image_index = mask["image_index"]
-                    mask_depth = self.composition_depths[image_index]
-                    viewpoint = self.composition_viewpoints[image_index]
+                    if image_index >= len(seg_depths):
+                        continue
+                    mask_depth = seg_depths[image_index]
+                    viewpoint = seg_viewpoints[image_index]
 
                     obj = DetectedObject.from_mask(
                         mask=mask,
@@ -1078,8 +1110,17 @@ class NavigationAgent:
                     # Zoomed-crop second opinion: if the composite verdict is
                     # below threshold, verify on a close crop centered on the
                     # candidate (small objects vanish in 4-frame composites)
+                    # With crop_rescue_band set, only candidates already close to
+                    # threshold are eligible: max(composite, crop) is a monotone
+                    # loosening of the detector and it cost more episodes to
+                    # false positives than it won back on missed detections.
+                    rescue_floor = (
+                        self.termination_threshold - self.crop_rescue_band
+                        if self.crop_rescue_band > 0
+                        else 0.0
+                    )
                     if (
-                        probability < self.termination_threshold
+                        rescue_floor <= probability < self.termination_threshold
                         and self.goal_object is not None
                     ):
                         crop = self._crop_around_point(
@@ -1102,7 +1143,11 @@ class NavigationAgent:
                                         self.logging_file,
                                         f"Crop verification: {p2:.2f} (composite {probability:.2f})",
                                     )
-                                    probability = max(probability, p2)
+                                    if p2 >= (
+                                        self.termination_threshold
+                                        + self.crop_rescue_margin
+                                    ):
+                                        probability = max(probability, p2)
                             except Exception as e:
                                 self.handle_vlm_exception(
                                     e, "Crop verification failed"
@@ -1202,19 +1247,38 @@ class NavigationAgent:
                     and self._reverify_rejections < 3
                     and self.navigation_steps < self.max_steps - 30
                 ):
+                    gate_threshold = self.termination_threshold
+                    strict_now = (
+                        self.strict_stop_verify
+                        and dist >= self.strict_stop_min_dist
+                    )
                     try:
-                        termination = self.compose_images(self.termination_images)
+                        termination = None
+                        if strict_now:
+                            # ask on a full-resolution crop centred on the
+                            # candidate rather than the downscaled composite
+                            # that produced the false positive in the first
+                            # place, and hold it to a stricter bar
+                            obj_now = self.ft_manager.object_lockin or self.goal_object
+                            if obj_now is not None:
+                                termination = self._crop_around_point(
+                                    rgb, W_T_C2, obj_now.centroid, frac=0.5
+                                )
+                            gate_threshold = self.strict_stop_threshold
+                        if termination is None:
+                            termination = self.compose_images(self.termination_images)
                         ok, resp, raw = detect_target_object(
                             rgb=termination,
                             target_object=self.goal,
                             vlm_model=self.detection_source,
                             api_key=self.get_api_key_for_model(self.detection_source),
+                            strict=strict_now,
                         )
                         prob = float(resp.get("probability", 0.0)) if ok and isinstance(resp, dict) else 1.0
                     except Exception as e:
                         self.handle_vlm_exception(e, "Stop-time re-verification failed")
                         prob = 1.0  # on VLM failure, fall through to stopping
-                    if prob < self.termination_threshold:
+                    if prob < gate_threshold:
                         self._reverify_rejections += 1
                         obj = self.ft_manager.object_lockin
                         self.log(
@@ -1623,7 +1687,13 @@ class NavigationAgent:
         """
         Compose multiple images into a grid for visualization.
         """
-        rows, cols = COMPOSITIONS.get(len(image_array), self.composition_dims)
+        n = len(image_array)
+        rows, cols = COMPOSITIONS.get(n, self.composition_dims)
+        if rows * cols < n:
+            # the adaptive detection cadence can emit counts absent from
+            # COMPOSITIONS (3, 5, 7...); fall back to a grid that always fits
+            cols = int(np.ceil(np.sqrt(n)))
+            rows = int(np.ceil(n / cols))
         img_h, img_w = image_array[0].shape[:2]
         canvas_h = rows * img_h
         canvas_w = cols * img_w
