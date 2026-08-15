@@ -330,3 +330,40 @@ with the detector's — metric evidence from depth (object extent and size, whic
 would catch a small lookalike being read as a sofa) or explicit multi-instance
 reasoning about which instance is the episode's goal. That is a research step,
 not a threshold.
+
+## 10. The bottleneck is semantic, not perceptual
+
+`compose_images` tiles four 640x480 frames into a 1280x960 canvas and then
+`COMPRESSION = 0.5` halves it, so every camera view reaches the detector at
+**320x240** — a quarter of the sensor's pixels. A chair at 5 m occupies roughly
+20x20 px there, which looked like an obvious cause of the recognition failures.
+
+It is not (`res_test.py`, same prompt and frames, only pixels differ; condition
+A degrades to the effective 320x240, condition B keeps native):
+
+| | 320x240 (shipped) | 640x480 (native) |
+|---|---:|---:|
+| TP mean p | 0.900 | 0.897 |
+| FP mean p | 0.550 | 0.622 |
+| TP accepted @0.7 | 90.0% | 90.0% |
+| FP accepted @0.7 | 55.0% | 62.5% |
+| **separation TP-FP** | **35.0%** | **27.5%** |
+
+True-positive recall is identical to the decimal, and false positives get
+*worse* — more detail gives the model more to read as confirmation, including on
+the wrong object. (Caveat: frames come from H.264 video, so "native" is
+640x512 video-quality rather than raw sensor output; both conditions share that
+compression, and the direction is unambiguous.)
+
+Three independent attacks on the recognition failure now agree:
+
+| intervention | effect |
+|---|---|
+| re-ask the same VLM (strict prompt, full-res crop) | 4.7:1, net-negative |
+| ask an independent model (CLIP) | 1.7:1, net-negative |
+| give it 4x the pixels | recall unchanged, separation -7.5 pts |
+
+The agent has enough pixels and enough looks. It is standing in front of a real
+object and assigning it the wrong category with confidence. That is a semantic
+failure, and neither more evidence nor a second opinion from a correlated model
+addresses it.
