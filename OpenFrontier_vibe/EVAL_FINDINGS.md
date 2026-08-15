@@ -411,3 +411,43 @@ irreducible under this architecture without instance-level grounding — knowing
 separation between the classes. That came from recomputing the loose prompt
 offline on the final frame, not from the values the agent acted on, and it does
 not survive contact with the logs.
+
+## 12. v86 retracted: its premise was small-sample noise
+
+v86 existed to tighten the zoomed-crop second opinion, because
+`max(composite, crop)` is a monotone loosening of the detector and an early
+paired sample charged it with 10 broken episodes against 4 fixed. Both halves of
+that reasoning fail on more data.
+
+**The trade was never 1:1.** At n=257 the v85 changes looked like 18 fixed / 19
+broken. At n=884:
+
+```
+FIXED  by v85: 88   final_stop=42, max_steps=22, false_positive=21, robot_stuck=3
+BROKEN by v85: 62   false_positive=34, final_stop=11, robot_stuck=9, max_steps=8
+```
+
+Net **+26**. The 1:1 reading was noise, and a change was designed on top of it.
+
+**And the mechanism is net positive.** Tracing which episodes each v85
+detection-loosening mechanism actually fired in:
+
+| mechanism | fired in false positives | fired in successes | ratio |
+|---|---:|---:|---:|
+| crop rescue flipped the decision | 23 / 84 (27%) | 82 / 720 (11%) | 1 : 3.6 |
+| second-chance retry | 20 / 84 (24%) | 81 / 720 (11%) | 1 : 4.1 |
+
+The crop rescue yields 3.6 successes per false positive. Tightening it trades
+~82 successes against ~23 false positives; at the measured 55% recovery after a
+rejection that is about **-24 episodes per 1000**. Both loosening mechanisms are
+enriched in false positives by ~2x but produce far more true detections than
+false ones, and should be left alone.
+
+The config is retained with the knobs neutralised, as a record rather than a
+candidate.
+
+**Method note.** This is the second time in this evaluation that a mechanism
+looked harmful because it was over-represented among failures while being
+strongly net positive overall. Enrichment among failures is not evidence of harm
+without the base rate — the same error that made aggregate SPL look like a
+world-model cost (§1) and that the completion-order artifact produces (§4).

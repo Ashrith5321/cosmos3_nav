@@ -94,7 +94,7 @@ probabilities_source: gemini-3.1-flash-lite
 detection_source: gemini-3.1-flash-lite
 pointnav_weights_path: model_weights/pointnav_weights.pth
 world_model:
-  enabled: true
+  enabled: false
   backend: learned
   checkpoint: checkpoints/frontier_wm_v2.pth
   encoder:
@@ -159,28 +159,23 @@ geometric_frontiers:
   frontier_z: 0.4
 reverify_on_stop: true
 
-# --- v86: false-positive containment -----------------------------------------
-# v85's recognition changes fixed 18 v80 failures and broke 19, and the breakage
-# was concentrated in false positives (33% -> 55% of all failures).
-
-# Stop-time strict re-verification is DISABLED, and the measurement is the
-# reason. On stop-time frames, a category-discriminative prompt run on a
-# full-resolution crop rejects only 21.9% of the false positives the shipped
-# detector accepts, while rejecting 4.7-7.0% of the true positives. Measured
-# recovery after a rejection is 55.3% (21 of 38 episodes still succeed), so a
-# correct rejection is worth +0.55 episodes and a wrong one costs -0.45. At the
-# observed ~90:870 FP:success base rate the gate must reject false positives
-# 7.9x more often than true positives to break even; the best operating point
-# over thresholds 0.1-0.7 reaches 4.7x, i.e. -7 episodes per 1000. The VLM's
-# probabilities are bimodal (0.0 or ~1.0), so no threshold recovers it: these
-# are confident misidentifications, and re-asking the same model reaffirms 78%
-# of them. Fixing them needs a different information source, not a better prompt.
+# --- v86: NOT A CANDIDATE — retained as a record of a refuted change ---------
+# v86 was built to tighten the zoomed-crop second opinion, on the reading that
+# max(composite, crop) is a monotone loosening of the detector that cost 10
+# episodes to false positives against 4 fixed. Two measurements refute that:
+#
+# 1. That 10-vs-4 came from an early 257-episode paired sample. At n=884 the
+#    v85 changes fix 88 and break 62 -- net +26, not the 1:1 trade it looked
+#    like. The original reading was small-sample noise.
+#
+# 2. Tracing which episodes the mechanism actually fired in: the crop rescue
+#    flipped the decision in 23 of 84 false positives (27%) but also in 82 of
+#    720 successes (11%) -- 3.6 successes per false positive. Tightening it
+#    trades ~82 successes for ~23 false positives, and at 55% recovery after a
+#    rejection that is roughly -24 episodes per 1000.
+#
+# The second-chance retry shows the same shape (20 vs 81, 1:4.1). Both v85
+# detection-loosening mechanisms are net positive and should be left alone.
 strict_stop_verify: false
-
-# This one survives. The zoomed-crop second opinion used max(composite, crop),
-# a monotone loosening of the detector that can only ever add detections -- and
-# the paired v80 comparison charges it with 10 newly-broken episodes against 4
-# newly-fixed. Restrict the rescue to candidates already near threshold and
-# require the crop to clear threshold by a margin.
-crop_rescue_band: 0.25
-crop_rescue_margin: 0.10
+crop_rescue_band: 0.0
+crop_rescue_margin: 0.0
