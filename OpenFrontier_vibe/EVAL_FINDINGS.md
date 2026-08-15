@@ -18,9 +18,28 @@ Paired on common (scene, episode) pairs, v85 (world model on) against v85off
 | 254 | 0.902 | 0.902 | 12/12/230 | 1.00 |
 | 329 | 0.897 | 0.897 | 16/16/297 | 1.00 |
 
-Seven independent samples, every one a tie. Wins and losses cancel almost exactly
+| 486 | 0.854 | 0.854 | 31/31/424 | 1.00 |
+
+Eight independent samples, every one a tie. Wins and losses cancel almost exactly
 rather than both being zero, so this is not a case of the world model being
-inert — it changes individual episode outcomes, just symmetrically.
+inert — it changes individual episode outcomes, just symmetrically. No goal
+category shows a consistent advantage either (largest swing at n=486 is toilet,
+-0.07, *against* the world model).
+
+It is null on path efficiency too. Aggregate SPL over all common episodes looks
+lower with the world model on, but that number is dominated by which episodes
+failed rather than by path length. Restricted to the 384 episodes where **both**
+arms succeeded:
+
+```
+mean SPL   WM-on 0.4291   WM-off 0.4402   diff -0.0110
+WM-on higher: 169   WM-off higher: 162   ties 53
+sign test p = 0.742      paired t = -1.10
+```
+
+A coin flip. (Comparing aggregate SPL across all common episodes instead is the
+same conditioning error as §4 in a different guise, and it briefly produced a
+spurious "the world model costs efficiency" reading.)
 
 Against the previous iteration both arms gain the *same* amount, which is what
 you would expect if the shared recognition work owns the entire improvement:
