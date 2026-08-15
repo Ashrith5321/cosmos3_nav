@@ -1,0 +1,20 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+scenes: 18 (shard 6/8)
+  00022-gmuS7Wgsbrx: 28 decisions, 112 branches, d_delta spread=3.09m
+  00055-HxmXPBbFCkH: 25 decisions, 100 branches, d_delta spread=3.40m
+  00099-226REUyJh2K: 28 decisions, 112 branches, d_delta spread=3.08m
+  00150-LcAd9dhvVwh: 22 decisions, 88 branches, d_delta spread=2.81m
+  00179-MVVzj944atG: 21 decisions, 84 branches, d_delta spread=1.22m
+  00234-nACV8wLu1u5: 17 decisions, 68 branches, d_delta spread=2.38m
+  00256-92vYG1q49FY: 26 decisions, 104 branches, d_delta spread=1.84m
+  00294-PPTLa8SkUfo: 30 decisions, 120 branches, d_delta spread=3.25m
+  00327-xgLmjqzoAzF: 28 decisions, 112 branches, d_delta spread=3.04m
+  00397-ZNanfzgCdm3: 30 decisions, 120 branches, d_delta spread=3.42m
+  00434-L5QEsaVqwrY: 29 decisions, 116 branches, d_delta spread=3.25m
+  00495-CQWES1bawee: 29 decisions, 116 branches, d_delta spread=3.51m
+  00539-zUG6FL9TYeR: 29 decisions, 116 branches, d_delta spread=3.19m
+  00582-TYDavTf8oyy: 29 decisions, 116 branches, d_delta spread=3.57m
+  00624-ooq3SnvC79d: 16 decisions, 64 branches, d_delta spread=2.77m
+  00669-DNWbUAJYsPy: 30 decisions, 120 branches, d_delta spread=3.01m
+  00720-8B43pG641ff: 28 decisions, 112 branches, d_delta spread=2.71m
+  00746-RTV2n6fXB2w: 24 decisions, 96 branches, d_delta spread=1.92m

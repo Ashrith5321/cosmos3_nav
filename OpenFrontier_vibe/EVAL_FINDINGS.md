@@ -569,3 +569,38 @@ model still contributed nothing -- 55 wins against 54 losses.
 
 That is eleven independent paired samples, now spanning both the slack-budget
 and tight-budget regimes, all null.
+
+## 16. Endgame commit: converts timeouts into false positives, not successes
+
+185 of v85's episodes failed on search/budget, and 58 of those (31%) ended
+within 3 m of the goal with 18 inside the 1 m success radius -- the agent
+reached the right place and deliberated until the budget expired. `endgame_commit`
+walks to the nearest candidate within a radius past a budget fraction and stops,
+accepting verifier-rejected candidates and firing even when locked in (the older
+fallback did neither, which is why it missed all 58).
+
+Paired against v85off (0.7870, n=1000):
+
+| arm | frac / radius | n | SR | Δ | W/L | p |
+|---|---|---:|---:|---:|---|---:|
+| v90 | 0.90 / 2.0 m | 968 | 0.7913 vs 0.7944 | **-0.0031** | 64/67 | 0.861 |
+| v95 | 0.80 / 3.5 m | 963 | 0.7850 vs 0.7985 | **-0.0135** | 62/75 | 0.305 |
+
+The mechanism works and still loses. v95 cut timeouts 85->60 (-29%) and paid
+93->131 in false positives (+38 against 25 timeouts saved). v90's gentler
+setting moved neither materially. Both lose on SPL.
+
+**Reading a partial run would have inverted this.** At n~400 both arms showed
++0.020 / +0.024 with timeouts falling and false positives flat. The near-miss
+timeouts this targets live in the slow episodes that finish last -- which is
+exactly where the false-positive cost lives too. Partial-run deltas on a
+mechanism that acts on the hard tail are not merely noisy, they are biased.
+
+**The pattern across nine attempts.** Every intervention that reliably converts
+one failure mode resurrects another: timeouts <-> false positives, recall <->
+precision. v85's recognition changes (18 fixed / 19 broken at the time),
+seven false-positive interventions, and now both endgame arms. The remaining
+failures are coupled rather than independent, which is what a local optimum
+looks like.
+
+Best system remains **v85off at 0.787**.
