@@ -1,0 +1,20 @@
+labeling 17 scenes (shard 4/8)
+  00017-oEPjPNSPmzL: n=127 labeled | cats present=6/6 | median d=3.6m | spread(std within scene)=2.90
+  00035-3XYAD64HpDr: n=160 labeled | cats present=6/6 | median d=8.5m | spread(std within scene)=3.70
+  00087-YY8rqV6L6rf: n=133 labeled | cats present=6/6 | median d=3.8m | spread(std within scene)=2.48
+  00143-5Kw4nGdqYtS: n=192 labeled | cats present=5/6 | median d=9.8m | spread(std within scene)=2.45
+  00173-qZ4B7U6XE5Y: n=86 labeled | cats present=6/6 | median d=5.7m | spread(std within scene)=2.44
+  00217-qz3829g1Lzf: n=161 labeled | cats present=6/6 | median d=3.6m | spread(std within scene)=1.82
+  00254-YMNvYDhK8mB: n=243 labeled | cats present=5/6 | median d=10.4m | spread(std within scene)=6.93
+/home/ashed/miniconda3/envs/openfrontier/lib/python3.9/site-packages/numpy/lib/nanfunctions.py:1879: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+  00269-JNiWU5TZLtt: n=175 labeled | cats present=4/6 | median d=nanm | spread(std within scene)=nan
+  00324-DoSbsoo4EAg: n=119 labeled | cats present=5/6 | median d=1.5m | spread(std within scene)=0.76
+  00386-b3WpMbPFB6q: n=315 labeled | cats present=6/6 | median d=12.7m | spread(std within scene)=4.74
+  00417-nGhNxKrgBPb: n=254 labeled | cats present=6/6 | median d=17.4m | spread(std within scene)=4.94
+  00476-NtnvZSMK3en: n=198 labeled | cats present=5/6 | median d=6.8m | spread(std within scene)=2.72
+  00537-oahi4u45xMf: n=174 labeled | cats present=6/6 | median d=4.2m | spread(std within scene)=2.12
+  00567-KjZrPggnHm8: n=184 labeled | cats present=6/6 | median d=4.8m | spread(std within scene)=1.83
+  00612-GsQBY83r3hb: n=148 labeled | cats present=6/6 | median d=0.6m | spread(std within scene)=3.26
+  00669-DNWbUAJYsPy: n=148 labeled | cats present=5/6 | median d=7.9m | spread(std within scene)=4.04
+  00732-Z2DQddYp1fn: n=222 labeled | cats present=6/6 | median d=8.5m | spread(std within scene)=3.93

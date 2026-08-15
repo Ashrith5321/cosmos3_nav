@@ -496,3 +496,55 @@ are judged genuine.
 is not fully independent — though it disagrees with the detector on 66% of these
 frames, so it is not merely echoing. A human pass over the 24 agreed frames would
 settle it; the frames are saved under `vlm_input_samples/_false_positives/`.
+
+## 14. The label was broken, fixing it did not rescue the world model
+
+§2 established that the goal-relevance score ranks frontiers at chance. The
+first-order cause turned out to be the training target itself.
+
+`_object_pseudo_labels` marks a category present when ANY beyond-frontier frame
+clears a CLIP similarity threshold. Over many frames that saturates: on held-out
+harvest scenes **46,945 of 51,357 labels are positive (91%)**. "Is there a chair
+somewhere beyond this frontier" is nearly always true in a house, so the target
+cannot distinguish frontiers, and per-goal AUC of the trained model against it is
+0.477-0.558 -- chance. (A pooled AUC of 0.714 is a base-rate artifact of mixing
+goals with different positive rates; it does not survive per-goal conditioning.)
+
+**The fix.** `scripts/label_goal_distance.py` replaces presence with the geodesic
+distance from each frontier to the nearest *ground-truth annotated instance* of
+each goal category, as graded relevance `exp(-d/tau)`. This is a genuinely
+discriminative target: measured within-scene spread is 3.46 m, where the binary
+label had none. 145 annotated HM3D train scenes were harvested and labeled
+(`worldmodel/train_relevance.py` trains on it with a within-decision listwise
+KL term, the analogue the reconstruction objective never had).
+
+**It still does not work.** Three-way split, checkpoint selected on validation,
+test set touched once, five seeds:
+
+| seed | TEST top-1 | chance |
+|---:|---:|---:|
+| 0 | 0.033 | 0.015 |
+| 1 | 0.000 | 0.023 |
+| 2 | 0.071 | 0.015 |
+| 3 | 0.000 | 0.021 |
+| 4 | 0.000 | 0.016 |
+| **mean** | **0.021 ± 0.028** | **0.018** |
+
+**1.16x chance, 2/5 seeds above it, three seeds exactly zero.**
+
+**Two intermediate results were selection artifacts.** A single split reported
+0.126 vs chance 0.037 (3.4x), and a pooled run reported 0.125 vs 0.015 (8.3x).
+Both selected the checkpoint on the same held-out set they reported. Under
+honest selection the effect vanishes. The tell was visible before the rigorous
+run: held-out top-1 collapsed to 0.000 for twenty consecutive epochs, and regret
+*rose* with training (5.75 -> 7.52 m) while top-1 spiked -- metrics that should
+move together did not.
+
+**Conclusion.** The failure is not the objective, the label, the architecture, or
+the channel weighting; each was tested and corrected in turn. Given a correct,
+graded, ground-truth target, a model with the world model's own inputs (CLIP crop
+embedding + scene context + geometry) still cannot predict which frontier leads
+closer to the goal on unseen scenes. Predicting what lies beyond an unobserved
+boundary, from a view of the boundary, is not solvable to useful accuracy with
+these representations. That is the mechanism behind all ten null paired
+ablations, and it is the honest result of the project.

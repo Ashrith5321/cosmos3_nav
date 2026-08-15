@@ -5,3 +5,30 @@ annotated-only: 145 scenes
 harvesting 14 scenes (shard 10/10)
  worldmodel.dataset - INFO - WMDataRecorder: wrote 179 samples to output/wm_harvest_gt2/00033-oPj9qMxrDEa/beyond_frontier.npz
 [done] {"scene": "00033-oPj9qMxrDEa", "trajectories": 12, "frontiers_recorded": 187, "dataset": "output/wm_harvest_gt2/00033-oPj9qMxrDEa/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 133 samples to output/wm_harvest_gt2/00087-YY8rqV6L6rf/beyond_frontier.npz
+[done] {"scene": "00087-YY8rqV6L6rf", "trajectories": 12, "frontiers_recorded": 144, "dataset": "output/wm_harvest_gt2/00087-YY8rqV6L6rf/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 229 samples to output/wm_harvest_gt2/00150-LcAd9dhvVwh/beyond_frontier.npz
+[done] {"scene": "00150-LcAd9dhvVwh", "trajectories": 12, "frontiers_recorded": 251, "dataset": "output/wm_harvest_gt2/00150-LcAd9dhvVwh/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 143 samples to output/wm_harvest_gt2/00203-VoVGtfYrpuQ/beyond_frontier.npz
+[done] {"scene": "00203-VoVGtfYrpuQ", "trajectories": 12, "frontiers_recorded": 145, "dataset": "output/wm_harvest_gt2/00203-VoVGtfYrpuQ/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 264 samples to output/wm_harvest_gt2/00250-U3oQjwTuMX8/beyond_frontier.npz
+[done] {"scene": "00250-U3oQjwTuMX8", "trajectories": 12, "frontiers_recorded": 284, "dataset": "output/wm_harvest_gt2/00250-U3oQjwTuMX8/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 175 samples to output/wm_harvest_gt2/00269-JNiWU5TZLtt/beyond_frontier.npz
+[done] {"scene": "00269-JNiWU5TZLtt", "trajectories": 12, "frontiers_recorded": 190, "dataset": "output/wm_harvest_gt2/00269-JNiWU5TZLtt/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 190 samples to output/wm_harvest_gt2/00327-xgLmjqzoAzF/beyond_frontier.npz
+[done] {"scene": "00327-xgLmjqzoAzF", "trajectories": 12, "frontiers_recorded": 215, "dataset": "output/wm_harvest_gt2/00327-xgLmjqzoAzF/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 230 samples to output/wm_harvest_gt2/00404-QN2dRqwd84J/beyond_frontier.npz
+[done] {"scene": "00404-QN2dRqwd84J", "trajectories": 12, "frontiers_recorded": 233, "dataset": "output/wm_harvest_gt2/00404-QN2dRqwd84J/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 138 samples to output/wm_harvest_gt2/00466-xAHnY3QzFUN/beyond_frontier.npz
+[done] {"scene": "00466-xAHnY3QzFUN", "trajectories": 12, "frontiers_recorded": 157, "dataset": "output/wm_harvest_gt2/00466-xAHnY3QzFUN/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 174 samples to output/wm_harvest_gt2/00537-oahi4u45xMf/beyond_frontier.npz
+[done] {"scene": "00537-oahi4u45xMf", "trajectories": 12, "frontiers_recorded": 183, "dataset": "output/wm_harvest_gt2/00537-oahi4u45xMf/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 177 samples to output/wm_harvest_gt2/00582-TYDavTf8oyy/beyond_frontier.npz
+[done] {"scene": "00582-TYDavTf8oyy", "trajectories": 12, "frontiers_recorded": 179, "dataset": "output/wm_harvest_gt2/00582-TYDavTf8oyy/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 292 samples to output/wm_harvest_gt2/00638-iePHCSf119p/beyond_frontier.npz
+[done] {"scene": "00638-iePHCSf119p", "trajectories": 12, "frontiers_recorded": 313, "dataset": "output/wm_harvest_gt2/00638-iePHCSf119p/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 203 samples to output/wm_harvest_gt2/00696-DsEJeNPcZtE/beyond_frontier.npz
+[done] {"scene": "00696-DsEJeNPcZtE", "trajectories": 12, "frontiers_recorded": 215, "dataset": "output/wm_harvest_gt2/00696-DsEJeNPcZtE/beyond_frontier.npz"}
+ worldmodel.dataset - INFO - WMDataRecorder: wrote 159 samples to output/wm_harvest_gt2/00744-1S7LAXRdDqK/beyond_frontier.npz
+[done] {"scene": "00744-1S7LAXRdDqK", "trajectories": 12, "frontiers_recorded": 167, "dataset": "output/wm_harvest_gt2/00744-1S7LAXRdDqK/beyond_frontier.npz"}
+harvest complete: 14 scenes
