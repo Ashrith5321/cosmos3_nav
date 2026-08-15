@@ -159,11 +159,11 @@ nearest annotated goal viewpoint (both v85 arms pooled, n=79, median 2.67 m):
 | 2.5–5 m | 31 | 39.2% | different part of the room or house |
 | >5 m | 14 | 17.7% | nowhere near any annotated goal |
 
-Only ~20% are plausibly "correct object, stopped slightly too far". **Nearly 57%
-are 2.5 m or further from any goal** — genuine misidentifications, not annotation
-edge cases. The agent's own belief is uniform across all of these: it thinks it
-is 0.8–1.0 m from its target in nearly every case, having approached correctly
-and locked onto the wrong thing.
+The agent's own belief is uniform across all of these: it thinks it is 0.8-1.0 m
+from its target in nearly every case, having approached correctly and locked onto
+something. **What that something is does not follow from the distance** — see
+§13, which measures it and refutes the reading originally written here (that the
+2.5 m+ cases are necessarily misidentifications rather than annotation gaps).
 
 Only the 1.0–1.6 m band (20%, worth roughly +1.5 SR points if fully converted)
 is cheap to attack. §7 shows the rest resists verification.
@@ -451,3 +451,48 @@ looked harmful because it was over-represented among failures while being
 strongly net positive overall. Enrichment among failures is not evidence of harm
 without the base rate — the same error that made aggregate SPL look like a
 world-model cost (§1) and that the completion-order artifact produces (§4).
+
+## 13. A quarter of the "false positives" are annotation gaps
+
+Habitat scores success by proximity to an **annotated** goal viewpoint. A scene
+containing a real instance of the goal category that is absent from the
+annotation set will mark an agent that finds it as wrong.
+
+For each false positive (`unannotated.py`), an independent forced-choice judgement
+of what the object actually is, cross-tabulated against distance to the nearest
+annotated goal (n=70):
+
+| distance to nearest annotated goal | judged genuine `<goal>` | judged something else |
+|---|---:|---:|
+| 1.0–1.6 m (just outside radius) | 5 | 11 |
+| 1.6–2.5 m | 3 | 11 |
+| 2.5–5 m | 6 | 17 |
+| **>5 m (nowhere near a goal)** | **10** | **7** |
+| **total** | **24 (34%)** | **46 (66%)** |
+
+**The far tail inverts.** Beyond 5 m, more stops are judged genuine instances
+than wrong ones. For recognition errors the opposite should hold — a stop far
+from any goal should look like a wrong object. This is the signature of
+unannotated instances, and two inspected frames confirm it directly: a
+`tv_monitor` episode stopped in front of an unmistakable television and a
+`toilet` episode in front of an unmistakable toilet, both scored false positive
+with the nearest annotated goal 10 m away.
+
+**23% of all false positives** are stops ≥2.5 m from any annotated goal that an
+independent judge calls genuine. Revised composition of the ~9% false-positive
+rate:
+
+- **~6%** genuine recognition errors — irreducible for the reasons in §7-§11
+- **~2-3%** annotation artifacts — unwinnable by any agent
+
+So the benchmark's effective ceiling is roughly **97%, not 100%**.
+
+**Correction.** §3 originally read "nearly 57% are 2.5 m or further from any goal
+— genuine misidentifications, not annotation edge cases." That inferred
+"far ⇒ wrong object", and the far tail shows the opposite. 40% of the far cases
+are judged genuine.
+
+**Caveat.** The judge is the same model family as the detector, so its agreement
+is not fully independent — though it disagrees with the detector on 66% of these
+frames, so it is not merely echoing. A human pass over the 24 agreed frames would
+settle it; the frames are saved under `vlm_input_samples/_false_positives/`.
