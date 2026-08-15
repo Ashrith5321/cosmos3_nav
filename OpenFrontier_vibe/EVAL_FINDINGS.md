@@ -548,3 +548,24 @@ closer to the goal on unseen scenes. Predicting what lies beyond an unobserved
 boundary, from a view of the boundary, is not solvable to useful accuracy with
 these representations. That is the mechanism behind all ten null paired
 ablations, and it is the honest result of the project.
+
+## 15. Null under budget pressure too, where ordering demonstrably matters
+
+The strongest objection to §1 is that a 500-step budget lets the agent visit
+nearly every frontier, so the ORDER it visits them in cannot matter much and a
+frontier-prioritisation signal has no room to help. Re-run at 250 steps, both
+arms simultaneously on the same episodes, differing only in
+`world_model.enabled`:
+
+```
+PAIRED n=430:  ON 0.7093  vs  OFF 0.7070   (+0.0023)
+               55W / 54L / 321T    p = 1.000
+SPL:           ON 0.3087  vs  OFF 0.3148
+```
+
+The manipulation worked: halving the budget cost 11 points of success rate
+(0.82 -> 0.71), so exploration order genuinely bound in this regime. The world
+model still contributed nothing -- 55 wins against 54 losses.
+
+That is eleven independent paired samples, now spanning both the slack-budget
+and tight-budget regimes, all null.
