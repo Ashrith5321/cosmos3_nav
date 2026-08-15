@@ -221,6 +221,35 @@ class NavigationAgent:
             "read_habitat": {"total_time": 0.0, "calls": 0}
         }
         
+    def _crop_around_point(self, rgb, W_T_C2, point3d, frac=0.35):
+        """Crop rgb around the projection of a world point (None if off-view).
+
+        Verification on a zoomed crop fixes the dominant failure mode found
+        in forensics: small goals (toilet/plant) appear as tiny patches in
+        the 4-frame composite and the verifier rejects them - 48 of 84
+        walked-past failures had candidates rejected while the agent stood
+        within 1m of a true goal.
+        """
+        try:
+            K = self.cam_intrinsic.intrinsic_matrix
+            C_T_W = np.linalg.inv(W_T_C2)
+            pc = C_T_W[:3, :3] @ np.asarray(point3d, dtype=float) + C_T_W[:3, 3]
+            if pc[2] <= 0.1:
+                return None
+            u = K[0, 0] * pc[0] / pc[2] + K[0, 2]
+            v = K[1, 1] * pc[1] / pc[2] + K[1, 2]
+            H, W = rgb.shape[:2]
+            if not (0 <= u < W and 0 <= v < H):
+                return None
+            half = int(frac * min(H, W))
+            x0, x1 = max(int(u) - half, 0), min(int(u) + half, W)
+            y0, y1 = max(int(v) - half, 0), min(int(v) + half, H)
+            if x1 - x0 < 40 or y1 - y0 < 40:
+                return None
+            return np.ascontiguousarray(rgb[y0:y1, x0:x1, :3])
+        except Exception:
+            return None
+
     def get_google_api_key(self) -> str:
         if self.google_api_key is None:
             self.google_api_key = get_google_api_key()
@@ -373,8 +402,15 @@ class NavigationAgent:
         if self.world_model is not None:
             self.world_model.observe(rgb=rgb, W_T_C2=W_T_C2, step=self.navigation_steps)
 
+        # Detection-cadence boost: with zero detections deep into the episode,
+        # halve the composite size so SAM3 sees bigger frames more often (36
+        # of 84 walked-past failures never got a single detection)
+        n_images_eff = self.n_images
+        if not self.detected_objects and self.navigation_steps > 150:
+            n_images_eff = 2
+
         if (
-            len(self.composition_images) == self.n_images
+            len(self.composition_images) >= n_images_eff
             and self.ft_manager.object_lockin is None
         ):
             start_segm = time.time()
@@ -411,7 +447,7 @@ class NavigationAgent:
                 start_sam = time.time()
                 response = segment_target_object(
                     rgb_composition=rgb_composition,
-                    n_images=self.n_images,
+                    n_images=len(self.composition_images) if False else n_images_eff,
                     target_object=seg_target,
                     segmentation_model=self.segmentation_source,
                     api_key=self.get_api_key_for_model(self.segmentation_source),
@@ -456,6 +492,30 @@ class NavigationAgent:
                         viewpoint=viewpoint,
                         intrinsic_mat=self.cam_intrinsic.intrinsic_matrix,
                     )
+
+                    # Second-chance: a fresh detection near a previously
+                    # rejected candidate resets it once - the verifier's
+                    # false negatives were killing correct candidates
+                    # permanently (forensics: 119 rejected candidates among
+                    # walked-past failures)
+                    for prev in self.detected_objects:
+                        if (
+                            getattr(prev, "verification_status", "") == "false_positive"
+                            and not getattr(prev, "_retried", False)
+                            and prev.centroid is not None
+                            and obj.centroid is not None
+                            and np.linalg.norm(
+                                np.asarray(prev.centroid) - np.asarray(obj.centroid)
+                            ) < 0.7
+                        ):
+                            prev._retried = True
+                            prev.is_valid = True
+                            prev.verification_status = "unverified"
+                            self.log(
+                                "info",
+                                self.logging_file,
+                                "Re-detection near rejected candidate; granting retry.",
+                            )
 
                     self.detected_objects.append(obj)
 
@@ -1014,6 +1074,39 @@ class NavigationAgent:
                 else:
                     probability = response.get("probability", 0.0)
                     reason = response.get("reason", "")
+
+                    # Zoomed-crop second opinion: if the composite verdict is
+                    # below threshold, verify on a close crop centered on the
+                    # candidate (small objects vanish in 4-frame composites)
+                    if (
+                        probability < self.termination_threshold
+                        and self.goal_object is not None
+                    ):
+                        crop = self._crop_around_point(
+                            rgb, W_T_C2, self.goal_object.centroid
+                        )
+                        if crop is not None:
+                            try:
+                                ok2, resp2, _ = detect_target_object(
+                                    rgb=crop,
+                                    target_object=self.goal,
+                                    vlm_model=self.detection_source,
+                                    api_key=self.get_api_key_for_model(
+                                        self.detection_source
+                                    ),
+                                )
+                                if ok2 and isinstance(resp2, dict):
+                                    p2 = float(resp2.get("probability", 0.0))
+                                    self.log(
+                                        "info",
+                                        self.logging_file,
+                                        f"Crop verification: {p2:.2f} (composite {probability:.2f})",
+                                    )
+                                    probability = max(probability, p2)
+                            except Exception as e:
+                                self.handle_vlm_exception(
+                                    e, "Crop verification failed"
+                                )
                     self.log(
                         "info",
                         self.logging_file,
@@ -1530,7 +1623,7 @@ class NavigationAgent:
         """
         Compose multiple images into a grid for visualization.
         """
-        rows, cols = self.composition_dims
+        rows, cols = COMPOSITIONS.get(len(image_array), self.composition_dims)
         img_h, img_w = image_array[0].shape[:2]
         canvas_h = rows * img_h
         canvas_w = cols * img_w
