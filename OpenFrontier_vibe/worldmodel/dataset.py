@@ -188,6 +188,11 @@ class WMDataRecorder:
                     "object_labels": self._object_pseudo_labels(frame_embs),
                     "gain_label": float(np.expm1(fs.geom[0])),
                     "num_beyond_frames": len(beyond),
+                    # position and decision step: needed to attach ground-truth
+                    # geodesic-distance-to-goal labels, and to group frontiers
+                    # that were live at the same decision for a listwise loss
+                    "pos3d": np.asarray(fs.pos3d, dtype=np.float32),
+                    "step": int(fs.step),
                 }
             )
 
@@ -209,6 +214,8 @@ class WMDataRecorder:
             num_beyond_frames=np.array(
                 [s["num_beyond_frames"] for s in samples], dtype=np.int64
             ),
+            pos3d=np.stack([s["pos3d"] for s in samples]),
+            step=np.array([s["step"] for s in samples], dtype=np.int64),
         )
         with open(os.path.join(self.out_dir, "meta.json"), "w") as f:
             json.dump(
