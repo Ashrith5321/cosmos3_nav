@@ -15,10 +15,20 @@ Paired on common (scene, episode) pairs, v85 (world model on) against v85off
 | 85 | 0.859 | 0.859 | 4/4/77 | 1.00 |
 | 215 | 0.902 | 0.907 | 9/10/196 | 1.00 |
 | 226 | 0.898 | 0.898 | 10/10/206 | 1.00 |
+| 254 | 0.902 | 0.902 | 12/12/230 | 1.00 |
+| 329 | 0.897 | 0.897 | 16/16/297 | 1.00 |
 
-Five independent samples, every one a tie. Wins and losses cancel almost exactly
+Seven independent samples, every one a tie. Wins and losses cancel almost exactly
 rather than both being zero, so this is not a case of the world model being
 inert — it changes individual episode outcomes, just symmetrically.
+
+Against the previous iteration both arms gain the *same* amount, which is what
+you would expect if the shared recognition work owns the entire improvement:
+
+| comparison | n | SR | Δ | W/L | p |
+|---|---:|---:|---:|---|---:|
+| v85 (WM-on) vs v80 | 379 | 0.900 vs 0.865 | +0.034 | 29/16 | 0.072 |
+| v85off (WM-off) vs v80 | 547 | 0.861 vs 0.832 | +0.029 | 46/30 | 0.085 |
 
 ## 2. Why: the relevance signal does not discriminate *within* a decision
 
@@ -119,18 +129,25 @@ BROKEN by v85: 19   false_positive=10, robot_stuck=4, exception=2, ...
 A 1:1 trade. Timeouts were converted into successes (`final_stop` fell from 38%
 to 12% of failures) and bought back as false positives (33% → **55%**).
 
-False positives are not mostly wrong-category errors — they are mostly stops
-made too far away:
+Where the false positives actually stop, by true geodesic distance to the
+nearest annotated goal viewpoint (both v85 arms pooled, n=79, median 2.67 m):
 
-| arm | n | median stop distance | 1–1.5 m | 2.5–5 m | >5 m |
-|---|---:|---:|---:|---:|---:|
-| v80 | 76 | 2.66 m | 17% | 32% | 22% |
-| v85off | 27 | 2.96 m | 15% | 37% | 30% |
-| v85 | 14 | 2.15 m | 7% | 36% | 7% |
+| band | n | share | reading |
+|---|---:|---:|---|
+| <1.0 m | 0 | 0.0% | — (success radius; none land here) |
+| 1.0–1.6 m | 16 | 20.3% | right object, just outside the radius |
+| 1.6–2.5 m | 18 | 22.8% | same room, likely a second instance |
+| 2.5–5 m | 31 | 39.2% | different part of the room or house |
+| >5 m | 14 | 17.7% | nowhere near any annotated goal |
 
-The two ends need opposite fixes: the >5 m group is a recognition failure, the
-1–1.5 m group is a stopping-distance failure where stricter recognition would
-make things worse.
+Only ~20% are plausibly "correct object, stopped slightly too far". **Nearly 57%
+are 2.5 m or further from any goal** — genuine misidentifications, not annotation
+edge cases. The agent's own belief is uniform across all of these: it thinks it
+is 0.8–1.0 m from its target in nearly every case, having approached correctly
+and locked onto the wrong thing.
+
+Only the 1.0–1.6 m band (20%, worth roughly +1.5 SR points if fully converted)
+is cheap to attack. §7 shows the rest resists verification.
 
 ## 4. Sampling artifact: never read a running SR
 
@@ -222,3 +239,75 @@ replan path *more* often (20%) than false positives (16%).
 
 v86 therefore ships only the crop-rescue tightening, which the paired v80
 comparison independently charges with 10 newly-broken episodes against 4 fixed.
+
+## 8. A learned ranker does better *without* the world model
+
+The strongest form of the test (`listwise.py`). Rather than judging the shipped
+hand-tuned Q, train a listwise ranker directly on the navmesh oracle — softmax
+over the frontiers of one decision, target = the frontier actually closest to
+the goal — and then ablate the two world-model terms out of the feature set.
+Split by scene: 8,000 training decisions from 27 scenes, 4,000 held-out
+decisions from 9 scenes never trained on.
+
+| ranker | top-1 | mean regret |
+|---|---:|---:|
+| chance | 16.2% | — |
+| wm_mu alone | 20.5% | 3.59 m |
+| p_obs alone | 21.8% | 3.49 m |
+| hand-tuned Q (shipped) | 26.5% | 3.78 m |
+| learned listwise, ALL features | 23.5% | 3.65 m |
+| **learned listwise, NO world model** | **26.1%** | **3.28 m** |
+
+**World-model contribution: -2.56 points of top-1, +0.374 m of regret.**
+
+Given an objective built to exploit them and free to weight them arbitrarily,
+the ranker does better discarding the world-model features. They also quadruple
+seed variance (top-1 sd 0.012 with, 0.003 without), the signature of noise
+features hurting generalisation to unseen scenes.
+
+This closes the question the SR ablation opened. The world model is not merely
+redundant with signals the planner already has, and it is not being used
+suboptimally by a hand-tuned blend: it carries negative information for this
+task.
+
+Two side observations. The shipped hand-tuned Q is already competitive with a
+learned ranker (26.5% vs 26.1% top-1), so there is no easy win from learning
+the blend. But it has the *worst* regret of any ranker tested (3.78 m vs the
+learned no-world-model ranker's 3.28 m) — it picks the single best frontier
+slightly more often, and is wronger when it misses.
+
+## 9. A second opinion from an independent model does not work either
+
+If re-asking the detector fails because it is the detector, the natural next
+move is a model with uncorrelated errors. CLIP is already a dependency, so this
+was free to test (`clip_disagree.py`, 45 false positives and 45 successes,
+zero-shot over the six goal categories plus 20 distractors drawn from the
+confusions the failure data actually shows).
+
+| CLIP threshold | FP rejected | TP rejected | ratio | net eps/1000 |
+|---:|---:|---:|---:|---:|
+| 0.02 | 48.9% | 28.9% | 1.7 | -88.9 |
+| 0.10 | 71.1% | 48.9% | 1.5 | -156.2 |
+| 0.30 | 84.4% | 66.7% | 1.3 | -219.2 |
+
+CLIP separates the classes in the mean (P(goal) 0.151 on false positives vs
+0.295 on successes) but its rejection ratio never exceeds **1.7:1** against the
+7.9:1 required — an order of magnitude short, and worse than the detector
+re-asking itself (4.7:1).
+
+Four measured attempts at this failure mode, all net-negative:
+
+| approach | best ratio | verdict |
+|---|---:|---|
+| detector strict re-ask, global | 2.7:1 | -28 eps/1000 |
+| detector strict, distance-gated | — | gate never fires (agent believes 0.85 m) |
+| detector strict, threshold-swept | 4.7:1 | -7 eps/1000 |
+| CLIP independent second opinion | 1.7:1 | -89 eps/1000 |
+
+Both verifiers share the bias that produced the error: one *is* the detector,
+the other is trained on similar web-image distributions and makes correlated
+mistakes. Closing this needs a verifier whose errors are genuinely uncorrelated
+with the detector's — metric evidence from depth (object extent and size, which
+would catch a small lookalike being read as a sofa) or explicit multi-instance
+reasoning about which instance is the episode's goal. That is a research step,
+not a threshold.
